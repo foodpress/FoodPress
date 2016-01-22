@@ -1,0 +1,127 @@
+/*
+	Backend Post styles for menu and reservation posts
+*/
+
+.marb20{margin-bottom: 20px;}
+
+/* metabox styling */
+	#fp_meta_fields{margin:0 -12px 0 -12px;}
+	#fp_meta_fields li{margin-bottom: 0;}
+	#fp_meta_fields h4, .meta_value{
+		padding-left:10px; padding-right:10px;
+		margin:0;
+	}
+
+	#fp_meta_fields h4{
+		padding-top:10px; padding-bottom:10px;
+		border-bottom:1px solid #dfdfdf;
+		cursor:pointer;
+	}
+	#fp_meta_fields h4:hover{
+		background: #f4f4f4 url(../images/arrows.png) no-repeat right 10px;
+	}
+	/* icons */
+		#fp_meta_fields h4{vertical-align: middle;}
+		#fp_meta_fields h4 span.txt{line-height: 22px;}
+		#fp_meta_fields h4 i{
+			float: left;
+			color: #949494;
+			margin-right: 10px;
+			font-size: 20px;
+		}
+
+	#fp_meta_fields .meta_value .mceLayout{
+		background-color:#fff
+	}
+	#fp_meta_fields .meta_value.foodpress_metafield{
+		border-top: 2px solid #9B9B9B;
+	}
+	#fp_meta_fields .meta_value{
+		background-color:#C4C4C4;
+		padding-top:6px;
+		padding-bottom:8px;
+	}
+	#fp_meta_fields .meta_value.closed{display:none}
+	#fp_meta_fields .meta_value p{
+		margin:0;
+		padding-bottom:7px;
+	}
+	#fp_meta_fields.foodpress .meta_value input.fp_input_fullWidth{width: 100%;}
+	.foodpress_metafield p input, #fp_meta_fields.foodpress .meta_value input.fp_input_fullWidth, .foodpress_metafield select{
+		border-color: #aaa;
+		border-radius:4px;
+		padding: 4px 6px 4px;
+		font-style: italic;
+		-webkit-box-shadow: 0px 2px #AFAFAF;
+		box-shadow: 0px 2px #AFAFAF;
+		border: none;
+	}	
+
+	#fp_meta_fields .foodpress_metafield .menu_item_icons{
+		display: inline-block; margin-right: 10px;
+		cursor: pointer;
+		opacity: 0.3;	
+		border-radius: 7px;
+		padding: 3px 8px;
+	}
+		#fp_meta_fields .foodpress_metafield .menu_item_icons i{font-size: 20px;
+			float: left;
+		}
+		#fp_meta_fields .foodpress_metafield .menu_item_icons span{line-height: 22px; margin-left: 6px;}
+		#fp_meta_fields .foodpress_metafield .menu_item_icons:hover{
+			opacity:1;
+			background-color: #E0E0E0;
+		}
+		#fp_meta_fields .foodpress_metafield .menu_item_icons.selected{
+			opacity: 1;
+			background-color: #EFEFEF
+		}
+
+/* yes no button */
+	.yesno_row .fpGuideCall{
+		display: inline-block;
+		padding: 0;
+	}
+	.yesno_row span {
+		padding-left: 77px;
+		padding-top: 4px;
+		display: block;
+	}
+
+	.yesno_row .fp_yn_btn {
+		display: inline-block;
+		padding: 0;
+		position: absolute;
+	}
+	.yesno_row .fp_yn_btn span.catchHandle {
+		padding-left: 0;
+	}
+
+/* woocommercer section */
+	#fp_woo_oo .fp_yn_btn {border-color: #aaa;}
+	#fp_woo_oo select, #fp_woo_oo input{border-color: #aaa;
+		border-radius: 4px;
+	}
+	#fp_woo_oo{
+		border-top: 1px solid #bbbbbb;
+		margin: 0 -10px;
+		padding: 10px 10px 15px;
+		background-color: #cfcfcf;
+	}
+
+/* reservations post */
+	body.post-type-reservation #edit-slug-box{display: none;}
+	.reservation_cpt_data .reservation_status p:hover{opacity: 1}
+	.reservation_cpt_data .reservation_status p{
+		display: inline-block;
+		border-radius: 4px;
+		padding: 0 5px;
+		color: #fff;
+		cursor: pointer;
+		margin: 0;
+		opacity: 0.6
+	}	
+	.reservation_cpt_data .reservation_status.checked p{background-color: #AFD78B;}
+	.reservation_cpt_data .reservation_status.check-in p{background-color: #B6B6B6;	}
+	#reservation_table .custom_field td{background-color: #F5F5F5	}
+	#reservation_table .custom_field:hover td{background-color: #FAF4E9	}

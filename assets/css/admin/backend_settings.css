@@ -1,0 +1,306 @@
+/**
+ * Backend Settings Styles
+ * @version 1.3
+ */
+
+.foodpress_custom_lang_line:hover{border-color:#b1b1b1}
+.foodpress_custom_lang_line:hover .foodpress_cl_label_out{background-color:#e5d3e0}
+.foodpress_custom_lang_line:focus{
+	border-color:#949494
+}
+.foodpress_custom_lang_line.onfocus .foodpress_cl_label_out{
+	border-color:#949494;
+	background-color:#DBDBDB;
+}
+.foodpress_custom_lang_line{
+	background-color: #fff;
+	border:1px solid #c9c9c9;
+	position:relative;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	margin-bottom:3px;
+}
+.foodpress_cl_label_out, .foodpress_cl_input{
+	float:left
+}
+.foodpress_cl_label_out{
+	width:20%;
+	background-color:#eee1ea;
+	margin:0;
+	height:100%;
+	text-align:right;
+	border-right:1px solid #c9c9c9;
+}
+.foodpress_cl_label_out .foodpress_cl_label{margin: 0;}
+.foodpress_cl_label{
+	padding:5px; margin:0;
+	text-shadow: 0px 1px 2px #ffffff;
+    filter: dropshadow(color=#ffffff, offx=0, offy=1);
+}
+.foodpress_custom_lang_lines .foodpress_cl_input:focus{
+	outline:none; border:none; box-shadow:none;
+}
+.foodpress_custom_lang_lines .foodpress_cl_input{
+	font-size: 13px;
+	padding:4px;
+	width:75%;
+	border:none;
+	background-color:transparent;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;	
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
+.foodpress_cl_legend{
+	margin:0 0 2px;
+	font-size:11px;
+	color:#a7a7a7
+}
+
+.foodpress_admin_meta{
+	background-color: transparent;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	border: none;
+}
+.foodpress_admin_meta .inside{
+	padding: 0;margin: 0;
+}
+.foodpress_admin_meta.postbox{
+	background: #fff;
+	border: 1px solid #e5e5e5;
+	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.04);
+	box-shadow: 0 1px 1px rgba(0,0,0,.04);
+}
+.foodpress_admin_meta.postbox .inside{padding: 0 12px 12px;margin: 11px 0;}
+
+/* reservation section */
+	.add_reservation_time{padding-top: 10px;}
+	.add_reservation_time .add_reservation_time_slot{
+		background-color: #ABABAB;
+		color: #fff;
+		padding: 3px 6px;
+		border-radius: 5px;
+		display: inline-block;
+		cursor: pointer;
+		margin-left: 5px;
+	}
+	.add_reservation_time .add_reservation_time_slot:hover{background-color:#989696 }
+	.add_reservation_time .add_reservation_time_row{background-color: #F3F3F3; padding: 9px; border-radius: 5px;
+		line-height: 130%;
+	}
+	.customization_right_in .fp_reservable p:hover{background-color: #E2E4DA;}
+	.customization_right_in .fp_reservable p{
+		border:1px solid #D2D2D2;
+		padding: 5px 8px 2px;
+		background-color: #E0E0E0;
+		margin: 0;
+		display: inline-block;
+		border-radius: 5px;
+		margin-right: 5px;
+		margin-bottom: 5px;
+	}
+	.fp_reservable p:first-child{border-top:1px solid #D2D2D2;}
+	.fp_reservable p span{
+		background-color: #ABABAB;
+		border-radius: 5px;
+		color: #fff;
+		float: right;
+		display: inline-block;
+		padding: 0 5px;
+		opacity: 0.4;
+		cursor: pointer;
+		margin-left: 10px;
+	}
+	.fp_reservable p span:hover{opacity: 1;}
+	.fp_reservation_time_settings .subheader_fp{
+		font-weight: bold;
+	}
+	.fp_unreservable_dates p{}
+
+
+/* licenses */
+	.fp_hide_this{display:none!important}
+	.licenses_list{
+		background-color:#792662;
+		color:#fff;
+		padding:25px 30px;
+		margin-bottom:20px;
+	}
+	.licenses_list h2.heading, .foodpress_addons h2.heading a, .foodpress_settings_page h2.heading{	
+		text-shadow:none;
+		font:300 24px 'open sans';
+		text-decoration:none
+	}
+	.licenses_list h2.heading{
+		color:#fff;
+	}
+	.licenses_list h2.heading em{
+		color:#e6bddb;
+		font-style:italic;
+	}
+	
+	.licenses_list .fp_admin_btn.btn_noBG{color:#ba74a7;background-color:#a55c91;}
+	.licenses_list .fp_admin_btn.btn_noBG:hover{color:#d19fc3;background-color:#a55c91;}
+	.licenses_list .fp_admin_btn.btn_prime{background-color:#e6bddb	}
+
+	.licenses_list .padb10{
+		padding-bottom:10px;
+	}
+	.versions .version{
+		float:left;
+		margin-right:30px;
+		font-size:36px;
+	}
+	.versions .version.remote{
+		opacity:0.4;
+	}
+	.versions .version.remote:hover{
+		opacity:0.7
+	}
+	.versions .version em{
+		font-size:12px;
+		display:block;
+		padding-top: 10px;
+	}
+
+/* support */
+	#chatIN {
+		height: 405px;
+		width: 370px;
+		background-color: #fff;
+		margin: 0px auto;
+	}
+	#chatbox {
+		position: fixed;
+		width: 100%;
+		margin: 60px auto;
+		z-index: 98999;left: 0;
+	}
+	#chatboxB {
+		background-color: #000;
+		opacity: 0.5;
+		position: fixed;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		z-index: 9999;
+	}
+	.fp_support_box{
+		border-radius:3px;
+		padding:20px;
+		margin-bottom:20px;
+		background-color:#F3F3F3;
+		display:block;
+		color:#333;
+		text-decoration:none
+	}	
+	
+	.fp_support_box:hover{
+		color:#333;
+		background-color: #DFDFDF;
+	}
+	.js .postbox.evcal_admin_meta .fp_support_box h3{
+		margin-bottom:10px;
+		cursor:pointer;
+	}
+	.fp_support_box.special{background-color:#F0DFBB}
+	.fp_support_box.special:hover{background-color:#F6DA9E}
+	.fp_support_box p{
+		font-size:14px;
+		color:#747474
+	}
+	.foodpress_admin_meta h3 {
+		font-size: 20px;
+		padding: 9px 15px 4px 0;
+		line-height: 22px;
+		font-family: "open sans";
+		color:#767676;
+	}
+	.foodpress_admin_meta p {
+		font: 13px 'open sans';
+		margin: 5px 0;
+	}
+
+	#food_4 .fp_support_box p{font-size: 14px;}
+	#food_4 h3{
+		color: #616161; font-size: 20px;
+		border:none; cursor:pointer;
+	}
+
+/*-- addons ---*/
+	.fp_addons_list{
+		margin-bottom:20px;
+		margin-top:10px
+	}
+	.fp_addons_list h5{
+		font: bold 14px 'open sans';
+		color:#383838;
+		margin:0;
+		background-repeat:no-repeat;
+		padding:8px 0 8px 40px;
+		height:19px;
+	}
+	.fp_addons_list h5 span{color:#9c9c9c;font-weight:normal}
+	.fp_addons_list p{ 
+		margin-top:0px;
+		font-style:italic
+	}
+
+	.fpaddon_box{
+		float:left; display:block;
+		margin-bottom:3px;
+		width:50%;
+	}
+	.fpa_boxe{
+		margin-right:3px;
+		background-color:#fff;
+		border:1px solid #dadada;
+		padding:15px;
+		min-height:150px;
+	}
+
+/* languages */
+	.fpLANG_section_header {
+		border-top: 1px solid #d9d7d7;
+		position: relative;
+		padding: 6px 20px 6px 25px;
+		background-color: #eeeeee;
+		color: #533D5F;
+		text-transform: uppercase;
+		font-size: 14px;
+		cursor: pointer;
+		margin: 0 -12px;
+	}
+	.fpLANG_section_header:before {
+		margin-left: -16px;
+		margin-top: 3px;
+		position: absolute;
+		content: "";
+		width: 0px;
+		height: 0px;
+		border-style: solid;
+		border-width: 5px 0 5px 5px;
+		border-color: transparent transparent transparent #ffffff;
+	}
+	.fpLANG_section_header.open:before {
+		border-width: 5px 5px 0 5px;
+		border-color: #ffffff transparent transparent transparent;
+		margin-top: 6px;
+		margin-left: -18px;
+	}
+	.fpLANG_section_header:hover {
+		background-color: #DBDBDB;
+		color: #3d3d3d;
+	}
+	.fp_settings_togbox {
+		margin: 0 -12px 0 -12px;
+		padding: 15px;
+		background-color: #F7F7F7;
+		display: none;
+	}
