@@ -72,11 +72,13 @@ class foodpress {
 			include_once( 'includes/foodpress-core-functions.php' );
 			include_once( 'includes/class-frontend.php' );
 			include_once( 'includes/class-fp-post-types.php' );
+			include_once( 'includes/class-fp-github-updater.php' );
 			include_once( 'includes/class_functions.php' );
 
 			// admin only files
 			if ( is_admin() ){
 				include_once( 'includes/admin/class-admin-init.php' );
+				new foodpress_github_updater( __FILE__, 'myGitHubUsername', "Repo-Name", "Access-Token");
 				$this->admin = new fp_Admin();
 
 			}
