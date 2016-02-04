@@ -24,7 +24,7 @@ if ( ! class_exists( 'foodpress' ) ) {
 
 class foodpress {
 	
-	public $version = '1.3';
+	public $version = '1.3.0';
 	
 	public $foodpress_menus;
 	public $reservations;
