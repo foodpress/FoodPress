@@ -18,6 +18,8 @@ class foodpress_github_updater {
     private $githubAPIResult; // holds data from GitHub
     private $accessToken; // GitHub private repo token
  
+    private $test;
+
     function __construct( $pluginFile, $gitHubUsername, $gitHubProjectName, $accessToken = '' ) {
         add_filter( "pre_set_site_transient_update_plugins", array( $this, "setTransitent" ) );
         add_filter( "plugins_api", array( $this, "setPluginInfo" ), 10, 3 );
@@ -38,17 +40,17 @@ class foodpress_github_updater {
     // Get information regarding our plugin from GitHub
     private function getRepoReleaseInfo() {
 		// Only do this once as WP runs this twice by default
-		if (!empty( $this->githubAPIResult)) {
+		if (!empty($this->githubAPIResult)) {
 		    return;
 		}
 		// Query the GitHub API
-		$url = "https://api.github.com/repos/{$this->username}/{$this->repo}/releases";
+		$url = "https://api.github.com/repos/{$this->repo}/releases";
 		 
 		// We need the access token for private repos
 		if (!empty($this->accessToken)) {
 		    $url = add_query_arg(array("access_token" => $this->accessToken), $url);
 		}
-		 
+
 		// Get the results
 		$this->githubAPIResult = wp_remote_retrieve_body(wp_remote_get($url));
 		if (!empty($this->githubAPIResult)) {
