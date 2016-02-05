@@ -68,8 +68,7 @@ function foodpress_prevent_admin_access() {
 	        $typenow = $post->post_type;
 	    }
 		
-		if ( $typenow =='' || $typenow == "menu" ) return;
-		
+		if ( $typenow =='' || $typenow == "menu" ) return;		
 		
 		if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') ) return;
 		
@@ -78,7 +77,7 @@ function foodpress_prevent_admin_access() {
 	  	$title = 'foodpress Shortcode Generator';
 
 		//append the icon
-	  	$context .= "<a id='fp_shortcode_btn' class='fp_popup_trig fp_admin_btn btn_prime' title='{$title}' href='#'>{$text}</a>";
+	  	$context .= "<a id='fp_shortcode_btn' class='fp_popup_trig fp_admin_btn btn_prime' title='{$title}' href=''>{$text}</a>";
 
 	  	foodpress_shortcode_pop_content();
 

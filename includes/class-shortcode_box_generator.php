@@ -199,9 +199,9 @@ class foodpress_admin_shortcode_box{
 									'default'=>'no',
 								)
 								,array('type'=>'sectionclose', 'name'=>'de')	
-							,array('type'=>'sectionopen', 'name'=>'tb')								
+							,array('type'=>'sectionopen', 'name'=>'tb', 'display'=>'hide')								
 								,array( // only for tabbed version
-									'name'=>'Focused tabbed term ID',
+									'name'=>'Tabbed Menu focused tab term ID',
 									'type'=>'text',
 									'guide'=>'Set the focused term id (meal type or dish type tab term id) to focus on the tabbed view',
 									'var'=>'focused_tab',
@@ -507,7 +507,8 @@ class foodpress_admin_shortcode_box{
 
 			// section only open
 			if(!empty($var['type']) && $var['type']=='sectionopen'){
-				echo "<div class='fp_section ".$var['name']."' style='display:block'>";
+				$display = (!empty($var['display']) && $var['display']=='hide')? 'none':'block';
+				echo "<div class='fp_section ".$var['name']."' style='display:{$display}'>";
 			}
 			
 			return ob_get_clean();
