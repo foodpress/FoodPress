@@ -81,11 +81,13 @@ $foodpress_custom_language_array = array(
 		array('label'=>__('Date Placeholder','foodpress'),'name'=>'fp_lang_resform_A5A','placeholder'=>__('Select Date','foodpress'),),
 		array('label'=>__('Time','foodpress'),'name'=>'fp_lang_resform_A4'),
 		array('label'=>__('Party Size','foodpress'),'name'=>'fp_lang_resform_A3'),
+			array('label'=>__('Party Size Placeholder','foodpress'),'name'=>'fp_lang_resform_004dB'),
 		array('label'=>__('Your Name','foodpress'),'name'=>'fp_lang_resform_004a'),
 		array('label'=>__('Email Address','foodpress'),'name'=>'fp_lang_resform_004c'),
 		array('label'=>__('Phone Number','foodpress'),'name'=>'fp_lang_resform_004d','placeholder'=>__('(555) 235-2020','foodpress'),),
 		array('label'=>__('Restaurant Location','foodpress'),'name'=>'fp_lang_resform_004e'),
 		array('label'=>__('Phone Number Placeholder','foodpress'),'name'=>'fp_lang_resform_004dA'),
+
 		array('type'=>'parent', 'children'=>foodpress_lang_get_custom_fields('dish_type')),
 		array('label'=>__('Type the code to validate','foodpress'),'name'=>'fp_lang_resform_si008'),
 		array('label'=>__('Reserve Now','foodpress'),'name'=>'fp_lang_resform_A1'),

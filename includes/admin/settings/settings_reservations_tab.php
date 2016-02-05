@@ -19,7 +19,6 @@ $cutomization_pg_array = apply_filters('foodpress_reservation_setting',
 			array('id'=>'fpr_timesl','type'=>'yesno','name'=>__('Set time restriction for reservations'),'afterstatement'=>'fpr_timesl', 'legend'=>'This will allow you to restrict the time slots available for reservations to between certain times only. Both start and end times are required.'),
 				array('id'=>'fpr_timesl','type'=>'begin_afterstatement'),
 
-					array('id'=>'reservation','type'=>'customcode','code'=>foodpress_reservation_customcode($opt6)),
 					array('id'=>'reservation','type'=>'subheader','name'=>'Everyday Reservable Hours'),
 					array('id'=>'fpr_start_time',
 						'type'=>'dropdown',

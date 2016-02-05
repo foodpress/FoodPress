@@ -271,29 +271,37 @@ jQuery(document).ready(function($){
 				}				
 			});
 
-			// date picker
-			var dateformat__ = $('.fpres_form_datetime').attr('data-dateformat');
-			date_format = (typeof dateformat__ !== 'undefined' && dateformat__ !== false)?	
-				dateformat__: 'dd/mm/yy';	
+			// for each reservation lightbox
+				$('body').find('.fp_make_res').each(function(){
+					lightbox = $(this);
+					topsection = lightbox.find('.fpres_form_datetime');
 
-			// start date range
-			var blk24 = $('.fpres_form_datetime').attr('data-blk24')
-			minDate = (blk24=='1')? '+1':'0';
+					// date picker
+					var dateformat__ = topsection.attr('data-dateformat');
+					date_format = (typeof dateformat__ !== 'undefined' && dateformat__ !== false)?	
+						dateformat__: 'dd/mm/yy';	
 
-			// reserverable dates
-			unres_ar = [];
-			$('#fp_unres i').each(function(){
-				unres_ar.push( $(this).html() );
-			});
+					// start date range
+					var blk24 = lightbox.attr('data-blk24')
+					minDate = (blk24=='1')? '+1':'0';
 
-			$( "#fp_res_date" ).datepicker({
-				dateFormat: date_format,
-				minDate:minDate,
-				beforeShowDay: function(date){
-			        var string = $.datepicker.formatDate('yy-mm-dd', date);
-			        return [ unres_ar.indexOf(string) == -1 ]
-			    }
-			});
+					// reserverable dates
+					unres_ar = [];
+					lightbox.find('#fp_unres i').each(function(){
+						unres_ar.push( $(this).html() );
+					});
+
+					lightbox.find( "#fp_res_date" ).datepicker({
+						dateFormat: date_format,
+						minDate:minDate,
+						beforeShowDay: function(date){
+					        var string = $.datepicker.formatDate('yy-mm-dd', date);
+					        return [ unres_ar.indexOf(string) == -1 ]
+					    }
+					});
+				});
+
+			
 
 		// hide form clicking outside of it and resetting to beginning
 			$('.fpres_bg').on('click',function(){

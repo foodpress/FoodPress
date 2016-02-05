@@ -416,7 +416,7 @@ class foodpress_reservations {
 								}
 								echo "</select>";
 							}else{
-								echo '<input class="resinput req fp_res_short_input" type="text" name="party" placeholder="Qty" value="1" id="fp_res_people" autocomplete="off">';
+								echo '<input class="resinput req fp_res_short_input" type="text" name="party" placeholder="'.$this->get_lang($opt, 'fp_lang_resform_004dB', 'Qty').'" value="1" id="fp_res_people" autocomplete="off">';
 							}
 						?>	
 					</p>
