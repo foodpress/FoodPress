@@ -3,7 +3,7 @@
  * foodpress menu main class.
  *
  * @class 		foodpress_menus
- * @version		1.2
+ * @version		1.3.2
  * @package		foodpress/Classes
  * @category	Class
  * @author 		AJDE
@@ -309,16 +309,45 @@ class foodpress_menus {
 					case 'ss_5': // specific meal and dish type
 
 						if(!empty($meal_type) && !empty($dish_type)){
-							$MTterm = get_term($meal_type, 'meal_type');
-								$MTterm_name = $this->get_lang('fp_lang_tax_meal_type_'.$MTterm->term_id,$MTterm->name );
-							$DTterm = get_term($dish_type, 'dish_type');
-								$DTterm_name = $this->get_lang('fp_lang_tax_meal_type_'.$DTterm->term_id,$DTterm->name );
+							// initials
+								$slug = '';
+								$mealTypeText = $dishTypeText = '';
+							// term names
+								if($dish_type=='all'){
+									$DTterm_name = 'All';
+								}else{
+									$DTterm = get_term($dish_type, 'dish_type');
+									$DTterm_name = $this->get_lang('fp_lang_tax_meal_type_'.$DTterm->term_id,$DTterm->name );
+									$slug = $DTterm->slug;
+								}
 
-							echo "<h2 class='meal_type fp_menu_sub_section tint_menu menu_term_{$MTterm->term_id} '>{$MTterm_name} > {$DTterm_name}</h2>";
+								if($meal_type=='all'){
+									$mealTypeName = 'All';
+								}else{
+									$MTterm = get_term($meal_type, 'meal_type');
+									$mealTypeName = $this->get_lang('fp_lang_tax_meal_type_'.$MTterm->term_id,$MTterm->name );
+									$slug = $MTterm->slug;
+								}
 
-							echo "<div class='fp_container fp_{$MTterm->slug}'>";
+							
+							// if meal type is all
+							if($meal_type=='all' && $dish_type!='all'){
+								$dishTypeText = $DTterm_name;
+							}elseif($meal_type!='all' && $dish_typ=='all'){
+								$mealTypeText = $mealTypeName;
+							}elseif($meal_type!='all' && $dish_type!='all'){
+								$mealTypeText = $mealTypeName;
+								$dishTypeText = ' > '.$DTterm_name;
+							}							
+							
+							echo "<h2 class='meal_type fp_menu_sub_section tint_menu dish_type_{$dish_type} meal_type_{$meal_type}'>{$mealTypeText}{$dishTypeText}</h2>";
+							
+
+							echo "<div class='fp_container fp_{$slug}'>";
 							echo "<div class='food_items_container' >";
-							echo $this->get_dishtype_menuitems($dish_type, $meal_type);
+
+							echo $this->get_menu_items('', false);
+							//echo $this->get_dishtype_menuitems($dish_type, $meal_type);
 							echo "</div><div class='clear'></div>";
 							echo "</div>";
 
@@ -411,6 +440,7 @@ class foodpress_menus {
 					foreach($tax_terms as $term): // each meal type or dish type
 
 						// intials
+							$section = array();
 							$term_meta = get_option( "fp_taxonomy_$term->term_id" );
 							$__des_class = (!empty($__mt_des))? 'data-desc="1"':null;
 
@@ -431,7 +461,7 @@ class foodpress_menus {
 
 						// header content for primary tax term
 							if($header){
-								echo "<h2 class='meal_type fp_menu_sub_section tint_menu menu_term_{$term->term_id} {$_collapsable}' {$__des_class} data-name='{$term_name}' data-slug='{$term->slug}' data-src='{$__mt_img_src}'>{$__menuicons}{$term_name}<span class='fp_menu_expand'></span>{$__mt_des}</h2>";
+								$section['header'] = "<h2 class='meal_type fp_menu_sub_section tint_menu menu_term_{$term->term_id} {$_collapsable}' {$__des_class} data-name='{$term_name}' data-slug='{$term->slug}' data-src='{$__mt_img_src}'>{$__menuicons}{$term_name}<span class='fp_menu_expand'></span>{$__mt_des}</h2>";
 							}
 
 
@@ -471,16 +501,23 @@ class foodpress_menus {
 
 						// NO sub categorization
 						}else{
-							echo ($container)? "<div class='fp_container fp_{$term->slug}' {$__colps}>":'';
-							echo "<div class='food_items_container' >";
+							$content =  ($container)? "<div class='fp_container fp_{$term->slug}' {$__colps}>":'';
+							$content .=  "<div class='food_items_container' >";
 
-							echo ($tax=='dish_type')? 
+							$inside_content = ($tax=='dish_type')? 
 								$this->get_dishtype_menuitems($term->term_id)
 								:$this->get_primary_menuitems($term->term_id);
-							
-							echo "</div><div class='clear'></div>";
-							echo ($container)? "</div>":'';
+
+							$content .= $inside_content;							
+							$content .= "</div><div class='clear'></div>";
+							$content .= ($container)? "</div>":'';
+
+							if(!empty($inside_content)) $section['content']= $content;
 						}
+
+						// check if section content is provided to create section
+						if(!empty($section['content']))
+							echo implode('',$section);
 						
 					endforeach;
 				endif;

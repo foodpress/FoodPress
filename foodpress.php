@@ -3,11 +3,11 @@
  * Plugin Name: foodPress
  * Plugin URI: http://www.myfoodpress.com/
  * Description: Restaurant Menu & Reservation Plugin
- * Version: 1.3.0
+ * Version: 1.3.2
  * Author: Ashan Jay & Michael Gamble
  * Author URI: http://www.myfoodpress.com
  * Requires at least: 3.8
- * Tested up to: 4.4.1
+ * Tested up to: 4.4.2
  *
  * Text Domain: foodpress
  * Domain Path: /lang/languages/
@@ -24,7 +24,7 @@ if ( ! class_exists( 'foodpress' ) ) {
 
 class foodpress {
 	
-	public $version = '1.3.0';
+	public $version = '1.3.2';
 	
 	public $foodpress_menus;
 	public $reservations;
@@ -80,7 +80,6 @@ class foodpress {
 				require_once( 'includes/class-fp-github-updater.php' );
 				new foodpress_github_updater( __FILE__, 'foodpressGIT', "foodpress/FoodPress", "a0a94517a98c994d5730291236173a613eb92931");
 				$this->admin = new fp_Admin();
-
 			}
 
 			if ( ! is_admin() || defined('DOING_AJAX') )
