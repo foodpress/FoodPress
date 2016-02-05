@@ -332,17 +332,18 @@ class foodpress_menus {
 							
 							// if meal type is all
 							if($meal_type=='all' && $dish_type!='all'){
+								$this->shortcode_args['primary'] = 'dish_type';
 								$dishTypeText = $DTterm_name;
-							}elseif($meal_type!='all' && $dish_typ=='all'){
+							}elseif($meal_type!='all' && $dish_type=='all'){
 								$mealTypeText = $mealTypeName;
 							}elseif($meal_type!='all' && $dish_type!='all'){
 								$mealTypeText = $mealTypeName;
 								$dishTypeText = ' > '.$DTterm_name;
-							}							
+							}
+
 							
 							echo "<h2 class='meal_type fp_menu_sub_section tint_menu dish_type_{$dish_type} meal_type_{$meal_type}'>{$mealTypeText}{$dishTypeText}</h2>";
 							
-
 							echo "<div class='fp_container fp_{$slug}'>";
 							echo "<div class='food_items_container' >";
 

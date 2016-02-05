@@ -20,6 +20,9 @@ FoodPress is a complete restaurant menu management system that allow you to crea
 = 1.3.2 (2016-
 FIXED: Dish type shortcode not working
 FIXED: Meal type header coming empty for locations when empty meal types
+FIXED: Dish type var incorrect causing specific type menu not work
+FIXED: unnecessary shortcode options showing incorrectly
+UPDATED: Shortcode generator to prevent default <a> click actions
 
 = 1.3.1 (2016-1-20)
 FIXED: timepicker initiating on unsupported pages

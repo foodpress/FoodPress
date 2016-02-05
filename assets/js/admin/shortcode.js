@@ -27,5 +27,9 @@ jQuery(document).ready(function($) {
 
     tinymce.PluginManager.add('foodpress_shortcode_button', tinymce.plugins.foodpress_shortcode_button);
 
+    // click on the foodpress shortcode button
+      $('body').on('click','#fp_shortcode_btn', function(e){
+          e.preventDefault();
+      });
 
 });
