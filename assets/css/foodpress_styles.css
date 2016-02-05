@@ -165,7 +165,6 @@
 	/* Added styles for Description Content Styles */
 	.fp_inner_box h1 {
 	    font-size: 28px;
-	    font-size: 28px;
 	    line-height: 1;
 	    margin: 4px 0px;
 	    padding: 0px;
@@ -174,7 +173,7 @@
 	}
 
 	.fp_inner_box h2 {
-	    font-size: 20px;
+	    font-size: 24px;
 	    margin: 4px 0px;
 	    padding: 0px;
 	    line-height: 1;
@@ -183,7 +182,7 @@
 	}
 
 	.fp_inner_box h3 {
-	    font-size: 18px;
+	    font-size: 20px;
 	    margin: 4px 0px;
 	    padding: 0px;
 	    line-height: 1;
@@ -192,12 +191,61 @@
 	}
 
 	.fp_inner_box h4 {
-	    font-size: 14px;
+	    font-size: 16px;
 	    margin: 4px 0px;
 	    padding: 0px;
 	    line-height: 1;
 	    word-spacing: normal;
 	    letter-spacing: normal;
+	}
+
+	.fp_inner_box h5 {
+	    font-size: 14px;
+	    font-weight: normal;
+	    margin: 4px 0px;
+	    padding: 0px;
+	    line-height: 1;
+	    letter-spacing: normal;
+	    word-spacing: normal;
+	}
+
+	.fp_inner_box h6 {
+	    font-size: 12px;
+	    font-weight: normal;
+	    margin: 4px 0px;
+	    padding: 0px;
+	    line-height: 1;
+	    letter-spacing: normal;
+	    word-spacing: normal;
+	}
+
+	.fp_inner_box blockquote {
+	  background: #f9f9f9;
+	  border-left: 10px solid #ccc;
+	  margin: 1.5em 10px;
+	  padding: 0.5em 10px;
+	  quotes: "\201C""\201D""\2018""\2019";
+	}
+	
+	.fp_inner_box blockquote:before {
+	  color: #ccc;
+	  content: open-quote;
+	  font-size: 4em;
+	  line-height: 0.1em;
+	  margin-right: 0.25em;
+	  vertical-align: -0.4em;
+	}
+	
+	.fp_inner_box blockquote p {
+	  display: inline;
+	}
+
+	.menu_description ul {
+	    padding-left: 30px;
+	}
+
+	.menu_description ol {
+	    padding-left: 30px;
 	}
 
 
