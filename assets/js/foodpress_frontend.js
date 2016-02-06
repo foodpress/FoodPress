@@ -517,7 +517,26 @@ jQuery(document).ready(function($){
 		var errorMsg = $("#phone-error-msg");
 		var validMsg = $("#phone-valid-msg");
 
-		telInput.intlTelInput();
+		telInput.intlTelInput({
+	        // allowExtensions: true,
+	        autoFormat: true,
+	        // autoHideDialCode: false,
+	        autoPlaceholder: true,
+	        // dropdownContainer: "body",
+	        // excludeCountries: ["us"],
+	       geoIpLookup: function(callback) {
+	       $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+	        var countryCode = (resp && resp.country) ? resp.country : "";
+	        callback(countryCode);
+	        });
+	        },
+	        // initialCountry: "auto",
+	        // nationalMode: false,
+	        // numberType: "MOBILE",
+	        // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
+	        // preferredCountries: ['cn', 'jp'],
+	        utilsScript: "js/utils.js"
+	      });
 
 		var reset = function() {
 			telInput.removeClass("error");

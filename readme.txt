@@ -20,6 +20,7 @@ FoodPress is a complete restaurant menu management system that allow you to crea
 = 1.3.2 (2016-
 ADDED: Styles for Menu Descriptions for Headings, Lists, etc. within WYSIWYG editor
 ADDED: github based auto updates for the plugin
+ADDED: International phone number validation and required field option
 FIXED: Dish type shortcode not working
 FIXED: Meal type header coming empty for locations when empty meal types
 FIXED: Dish type var incorrect causing specific type menu not work
