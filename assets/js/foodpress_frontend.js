@@ -532,10 +532,9 @@ jQuery(document).ready(function($){
 	        },
 	        // initialCountry: "auto",
 	        // nationalMode: false,
-	        // numberType: "MOBILE",
+	        numberType: "MOBILE",
 	        // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
-	        // preferredCountries: ['cn', 'jp'],
-	        utilsScript: "js/utils.js"
+	        // preferredCountries: ['cn', 'jp']
 	      });
 
 		var reset = function() {
