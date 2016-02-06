@@ -27,7 +27,7 @@ class foodpress_reservations {
 		//add_action('new_to_publish',array($this,'send_new_event_email'), 10, 1);
 		add_action('draft_to_publish',array($this,'send_confirmatiion_from_post'), 10, 1);
 	}
-	
+
 	// Send emails
 		// SEND notification and confirmation emails
 			public function successful_reservation_emails($reservation_id, $args){
@@ -63,7 +63,7 @@ class foodpress_reservations {
 					$this->send_confirmation_email($reservation_id);
 			}
 		// SEND confirmation email for reservation
-			public function send_confirmation_email($reservation_id, $args=''){		
+			public function send_confirmation_email($reservation_id, $args=''){
 
 				$res_pmv = get_post_custom($reservation_id);
 				$lang = !empty($args['lang'])? $args['lang']:
@@ -72,7 +72,7 @@ class foodpress_reservations {
 				$resOPT = $this->resOPT;
 				$siteemail = get_bloginfo('admin_email');
 
-				$c_to = (!empty($res_pmv['email_address']))? 
+				$c_to = (!empty($res_pmv['email_address']))?
 					$res_pmv['email_address'][0]:(!empty($res_pmv['email'])? $res_pmv['email'][0]:false);
 
 				// stop if reserver email is missing
@@ -96,10 +96,10 @@ class foodpress_reservations {
 
 				$email_template_file_name = ($email_type=='notification')? 'reservation-notification':'reservation-confirmation';
 
-				$path = FP_PATH2.'templates/email/';							
+				$path = FP_PATH2.'templates/email/';
 
 				$headers = 'From: '.$from;
-				
+
 				// output or process
 					if($echo){
 						$args = array(
@@ -115,7 +115,7 @@ class foodpress_reservations {
 								'people'=>array('4'),
 							),
 						);
-						$message_ = $foodpress->get_email_body($email_template_file_name,$path, $args);	
+						$message_ = $foodpress->get_email_body($email_template_file_name,$path, $args);
 						return array(
 							'headers'=>$headers,
 							'to'=>$to,
@@ -128,11 +128,11 @@ class foodpress_reservations {
 							'type'=>$email_type, // notification email or confirmation email
 							'lang'=>(!empty($sc_args['lang'])? $sc_args['lang']:'L1'),
 						);
-						$message_ = $foodpress->get_email_body($email_template_file_name,$path, $args);	
+						$message_ = $foodpress->get_email_body($email_template_file_name,$path, $args);
 						add_filter('wp_mail_content_type',create_function('', 'return "text/html";'));
-						return wp_mail($to, $subject, $message_, $headers);	
+						return wp_mail($to, $subject, $message_, $headers);
 					}
-							
+
 			}
 		// preview of emails that are sent out
 			function get_email_preview($to, $type){
@@ -148,7 +148,7 @@ class foodpress_reservations {
 					$from = (!empty($resOPT['fpr_ntf_admin_from']))? $resOPT['fpr_ntf_admin_from']: $siteemail;
 					$subject =  $this->get_lang('','fprsvp_004','New Reservation Submission!');
 				}
-				
+
 				$email = $this->send_email($to, $from, $subject, $type, '', '', true);
 
 				ob_start();
@@ -198,7 +198,7 @@ class foodpress_reservations {
 			endif;
 		}
 
-		// send out list of rsvp for foodpress settings page 
+		// send out list of rsvp for foodpress settings page
 			public function get_rsvp_list($type='upcoming'){
 				$rsvp = new WP_Query( array(
 					'post_type'=>'reservation',
@@ -210,10 +210,10 @@ class foodpress_reservations {
 
 				$upcoming = $past = 0;
 
-				
+
 				if($rsvp->have_posts()):
 					ob_start();
-					
+
 					while($rsvp->have_posts()): $rsvp->the_post();
 
 						$_id = get_the_ID();
@@ -225,22 +225,22 @@ class foodpress_reservations {
 						// compare to current time to find if the rsvp is in past or future
 						if($type=='upcoming' && $current_time<=$rsvp_time || $type=='past' && $current_time> $rsvp_time){
 
-							$name = (!empty($rmeta['name']))? $rmeta['name'][0]: 
-								( !empty($rmeta['first_name'])? 
+							$name = (!empty($rmeta['name']))? $rmeta['name'][0]:
+								( !empty($rmeta['first_name'])?
 									$rmeta['last_name'][0].', '.$rmeta['first_name'][0] : '-name-');
 
 							$email = (!empty($rmeta['email']))?
 								$rmeta['email'][0]: (!empty($rmeta['email_address'])? $rmeta['email_address'][0]:null);
-							
-							?>						
+
+							?>
 								<p class='fp_reservation'><span class='party'><?php echo $rmeta['people'][0];?></span>
 								<br /><b><?php echo 'Reservation #'.$_id.' '. $name.' <br /><i>('.$email.')</i>';?></b>
 								<br/>Time: <?php echo $rmeta['date'][0];?> @ <?php echo $rmeta['time'][0]; echo !empty($rmeta['end_time'])? ' - '.$rmeta['end_time'][0]:null?>
 								<br />Phone: <?php echo (!empty($rmeta['phone_number'])? $rmeta['phone_number'][0]: '-');?>
-								<br/><i class='Dres'data-rid='<?php echo $_id;?>'>Delete Reservation</i></p>							
-							<?php 
+								<br/><i class='Dres'data-rid='<?php echo $_id;?>'>Delete Reservation</i></p>
+							<?php
 						}
-						
+
 					endwhile;
 
 					$content = ob_get_clean();
@@ -248,7 +248,7 @@ class foodpress_reservations {
 					if(!empty($content)){
 						$content = "<p class='header'>Reservations <span>Size of the party</span></p>".$content;
 					}else{ $content=false;}
-					
+
 
 					return $content;
 				else:
@@ -286,11 +286,11 @@ class foodpress_reservations {
 			$args = (!empty($args))? shortcode_atts($defaults, $args): $defaults;
 			$this->shortcode_args = $args;
 
-			ob_start();		
+			ob_start();
 
 			if(!empty($args['type']) && $args['type']=='onpage'){
 				$this->output_reservation_form($args);
-			}else{			
+			}else{
 
 				$link = (!empty($args['res_link']))? $args['res_link']:false;
 				$new_window = (!empty($args['res_link_new']) && $args['res_link_new']=='yes')? '1':'0';
@@ -303,7 +303,7 @@ class foodpress_reservations {
 				<?php
 				add_action('wp_footer', array($this, 'output_reservation_form'));
 			}
-			
+
 			return ob_get_clean();
 		}
 
@@ -314,7 +314,7 @@ class foodpress_reservations {
 			// shortcode arguments for the form
 			$args = !empty($args)? $args: $this->shortcode_args;
 
-			// re-call the option values 
+			// re-call the option values
 			$opt = $this->opt2;
 			$opt6 = $this->resOPT;
 
@@ -322,7 +322,7 @@ class foodpress_reservations {
 
 			$multi_times_boxes = ( !empty($opt6['fpr_startend']) && $opt6['fpr_startend'] =='yes')? true:false;
 
-			ob_start(); 
+			ob_start();
 
 			// set language
 			$this->lang = (!empty($args['lang']))? $args['lang']:'L1';
@@ -343,25 +343,25 @@ class foodpress_reservations {
 				<h2 class='title'><?php echo $this->get_lang($opt, 'fp_lang_resform_001', 'Make a Reservation'); ?></h2>
 				<p class='subtitle'><?php echo $this->get_lang($opt, 'fp_lang_resform_A2', 'For further questions, please call'); ?></p>
 				<p class="divider"></p>
-				
+
 				<div class='reservation_section'>
 				<?php
-					$__time_incre = (!empty($opt6['fpr_time_incer']))? 
+					$__time_incre = (!empty($opt6['fpr_time_incer']))?
 						( (in_array($opt6['fpr_time_incer'], array('1','2','4','12')))?
 							$opt6['fpr_time_incer']: 2): 2;
 					$__time_format = (!empty($opt6['fpr_24hr']) &&  $opt6['fpr_24hr']=='yes')? '24':'12';
 					$__time_restrict = (!empty($opt6['fpr_timesl']) &&  $opt6['fpr_timesl']=='yes')? 'yes':'no';
 					$__time_start = (!empty($opt6['fpr_start_time']) )? $opt6['fpr_start_time']:'-';
-					$__time_end = (!empty($opt6['fpr_end_time']) )? $opt6['fpr_end_time']:'-';					
+					$__time_end = (!empty($opt6['fpr_end_time']) )? $opt6['fpr_end_time']:'-';
 
 					// date format
 					$date_format = foodpress_get_timeNdate_format($opt6);
 					$placeholder_dateformat = (!empty($opt6['fpr_univ_date_format']) && $opt6['fpr_univ_date_format']=='yes')?get_option('date_format'): 'Y/m/d';
 
 					// unreservable dates
-						$unres = (!empty($opt6['fp_unres']) && is_array($opt6['fp_unres'])) ? 'yes':'no'; 
+						$unres = (!empty($opt6['fp_unres']) && is_array($opt6['fp_unres'])) ? 'yes':'no';
 						$str = '';
-						if($unres=='yes'){							
+						if($unres=='yes'){
 							foreach($opt6['fp_unres'] as $date){
 								$str .= '<i>'.$date.'</i>';
 							}
@@ -369,12 +369,12 @@ class foodpress_reservations {
 				?>
 				<div class="fpres_form_datetime form_section_1 step" data-format='<?php echo $__time_format;?>' data-restrict='<?php echo $__time_restrict;?>' data-start='<?php echo $__time_start;?>' data-end='<?php echo $__time_end;?>' data-incre='<?php echo $__time_incre;?>' data-dateformat='<?php echo $date_format[0];?>' >
 					<p class='date'><span><?php echo $this->get_lang($opt, 'fp_lang_resform_A5', 'Date'); ?></span><input class='resinput req fp_res_short_input fp_res_input_icon_calendar' type="text" name="date" size="30" value="" id="fp_res_date" placeholder="<?php echo $this->get_lang($opt, 'fp_lang_resform_A5A', 'Select Date'); ?>" autocomplete="off" data-unres='<?php echo $unres;?>' readonly='true'/><em id='fp_unres' style='display:none'><?php echo $str;?></em></p>
-					
+
 					<p class='time' data-type='<?php echo ($multi_times_boxes)? 'multi':'';?>'><span><?php echo $this->get_lang($opt, 'fp_lang_resform_A4', 'Time'); ?></span>
 						<?php
 							// if show both start and end time slots
 							if( $multi_times_boxes):	?>
-								
+
 								<select name="time" class="fpres_time_range resinput req fp_res_short_input fp_res_input_icon_clock"  id="fp_res_time_start"><?php
 								foreach(foodpress_get_times($__time_incre) as $time){
 									echo "<option value='{$time}'>{$time}</option>";
@@ -386,7 +386,7 @@ class foodpress_reservations {
 								}
 								?></select>
 
-								<?php /*	
+								<?php /*
 								<input class='resinput req fp_res_short_input fp_res_input_icon_clock' type="text" name="time" size="30" value="" id="fp_res_time" placeholder="<?php echo (!empty($opt6['fpr_24hr']) &&  $opt6['fpr_24hr']=='yes')? 'eg. 13:00':'eg. 1:00pm';?>" autocomplete="off" readonly='true'>
 								<input class='resinput req fp_res_short_input fp_res_input_icon_clock' type="text" name="end_time" size="30" value="" id="fp_res_time" placeholder="<?php echo (!empty($opt6['fpr_24hr']) &&  $opt6['fpr_24hr']=='yes')? 'eg. 13:00':'eg. 1:00pm';?>" autocomplete="off">
 								*/?>
@@ -406,7 +406,7 @@ class foodpress_reservations {
 
 					<p class='size'><span><?php echo $this->get_lang($opt, 'fp_lang_resform_A3', 'Party Size'); ?></span>
 						<?php
-							$_partysize_cap = ( !empty($opt6['fpr_partysize']) && $opt6['fpr_partysize'] =='yes' && !empty($opt6['fpr_partysz_num']))? $opt6['fpr_partysz_num']: false;	
+							$_partysize_cap = ( !empty($opt6['fpr_partysize']) && $opt6['fpr_partysize'] =='yes' && !empty($opt6['fpr_partysz_num']))? $opt6['fpr_partysz_num']: false;
 
 							// if party size cap set
 							if($_partysize_cap){
@@ -418,7 +418,7 @@ class foodpress_reservations {
 							}else{
 								echo '<input class="resinput req fp_res_short_input" type="text" name="party" placeholder="'.$this->get_lang($opt, 'fp_lang_resform_004dB', 'Qty').'" value="1" id="fp_res_people" autocomplete="off">';
 							}
-						?>	
+						?>
 					</p>
 					<div class="clear"></div>
 				</div>
@@ -432,19 +432,20 @@ class foodpress_reservations {
 						<label for=""><?php echo $this->get_lang($opt, 'fp_lang_resform_004c', 'Email Address'); ?></label>
 						<input type="text" name='email' class='resinput req' placeholder='<?php echo $this->get_lang($opt, 'fp_lang_resform_004c', 'Email Address'); ?>'/>
 					</p>
-					<?php 
+					<?php
 					// phone number field
 					if(!empty($opt6['fpr_phonenumber']) && $opt6['fpr_phonenumber']=='yes'):
-						$required_field = (!empty($opt6['fp_res_phone_req']) && $opt6['fp_res_phone_req']=='yes')? true:false;
-						$phone_pattern = !empty($opt6['fp_res_phone_pattern']) ? $opt6['fp_res_phone_pattern']: false;
 					?>
 						<p>
 							<label for="phone"><?php echo $this->get_lang($opt, 'fp_lang_resform_004d', 'Phone Number'); ?></label>
-							<input id='fp_phone_<?php echo rand(100,113);?>' type="tel" <?php echo $phone_pattern? 'pattern="'.$phone_pattern.'"':'no';?> name='phone' class='resinput <?php echo $required_field? 'req':'';?> fp_resform_phone' placeholder="<?php echo $this->get_lang($opt, 'fp_lang_resform_004dA', 'xxx-xxx-xxxx'); ?>" /></p>
-					<?php endif; 
+							<input id="fp_phone_" type="tel" name="phone" />
+							<br>
+							<span id="phone-valid-msg" class="hide">✓ Valid</span>
+							<span id="phone-error-msg" class="hide">Invalid number</span>
+					<?php endif;
 
 					// Restaurant Location
-					if(!empty($opt6['fpr_location']) && $opt6['fpr_location']=='yes'): 
+					if(!empty($opt6['fpr_location']) && $opt6['fpr_location']=='yes'):
 						$locations = get_terms('menu_location');
 						if(!empty($locations)):
 					?>
@@ -461,7 +462,7 @@ class foodpress_reservations {
 
 						// additional form fields
 						for($x=1; $x<=foodpress_get_reservation_form_fields(); $x++){
-							// check if fields are good					
+							// check if fields are good
 							if( !empty($opt6['fp_af_'.$x]) && $opt6['fp_af_'.$x]=='yes' && !empty($opt6['fp_ec_f'.$x]) ){
 
 								$field_name = $this->get_lang($opt, 'fp_ec_f'.$x, $opt6['fp_ec_f'.$x]);
@@ -487,15 +488,15 @@ class foodpress_reservations {
 										break;
 									case 'checkbox':
 										echo "<p><input class='resinput check' name='".'fp_af_'.$x."' type='checkbox' /> ".$field_name."</p>";
-										break;	
+										break;
 									case 'multiline':
-										echo "<p><label>".$field_name."</label><textarea class='resinput multiline {$required}' name='".'fp_af_'.$x."'></textarea></p>";										
-										break;							
+										echo "<p><label>".$field_name."</label><textarea class='resinput multiline {$required}' name='".'fp_af_'.$x."'></textarea></p>";
+										break;
 									default:	break;
 								}
 							}
 						}
-					?>	
+					?>
 
 					<?php
 						// form validation
@@ -507,7 +508,7 @@ class foodpress_reservations {
 
 					<a id="fp_reservation_submit" class="reserve-submit fp_reservation_submit" ><?php echo $this->get_lang($opt, 'fp_lang_resform_A1', 'Reserve Now'); ?></a>
 
-					<?php 
+					<?php
 					// privacy and terms of use statement
 						if(!empty($opt6['fpr_privacy']) || !empty($opt6['fpr_terms'])):
 
@@ -524,7 +525,7 @@ class foodpress_reservations {
 				<!-- form messages -->
 				<div class="form_message">
 					<p class='error' style='display:none'>Error Message</p>
-					<div class='fp_res_success'> 
+					<div class='fp_res_success'>
 						<div class='fp_res_success_icon'></div>
 						<div class='fp_res_success_title'><span class='name'></span> <?php echo $this->get_lang($opt, 'fp_lang_resform_s001', 'Awesome, we got your reservation!'); ?></div>
 						<p class='reservation_info'><?php echo $this->get_lang($opt, 'fp_lang_resform_si001', 'Reservation Information');?><span></span></p>
@@ -575,7 +576,7 @@ class foodpress_reservations {
 				}else{
 					return (!empty($opt2[$lang]['fp_lang_resform_R1']))? $opt2[$lang]['fp_lang_resform_R1']: $this->def_status();
 				}
-			}			
+			}
 		}
 		function def_status(){
 			return 'check-in';

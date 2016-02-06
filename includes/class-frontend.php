@@ -17,19 +17,19 @@ class fp_frontend{
 	/** Register/queue frontend scripts. */
 		public function register_scripts() {
 			global $foodpress;
-			// javascripts			
+			// javascripts
 			wp_register_script( 'fp_ajax_handle', FP_URL. '/assets/js/foodpress_frontend.js', array('jquery'),$foodpress->version,true );
 			wp_localize_script( 'fp_ajax_handle', 'fp_ajax_script', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
 
-			// jQuery UI Custom 
+			// jQuery UI Custom
 			wp_register_script('fp_jquery_ui',FP_URL.'/assets/js/jquery-ui-1.10.4.custom.min.js' ,array('jquery'),'1.0', true);
-			
-			// Reservation 
+
+			// Reservation
 			wp_register_script('fp_reservation_timepicker',FP_URL.'/assets/js/jquery.timepicker.js' ,array('jquery', 'jquery-ui-core','jquery-ui-datepicker'),$foodpress->version, true);
-			
+
 			// styles
-			wp_register_style('fp_font_icons',FP_URL.'/assets/fonts/font-awesome.css');	
-			wp_register_style('fp_fonts',FP_URL.'/assets/fonts/fp_fonts.css');	
+			wp_register_style('fp_font_icons',FP_URL.'/assets/fonts/font-awesome.css');
+			wp_register_style('fp_fonts',FP_URL.'/assets/fonts/fp_fonts.css');
 			wp_register_style('fp_default',FP_URL.'/assets/css/foodpress_styles.css');
 
 			// jQuery UI Custom CSS
@@ -38,12 +38,17 @@ class fp_frontend{
 			// reservation modal
 			wp_register_style('fp_res_timepicker_style',FP_URL.'/assets/css/jquery.timepicker.css');
 
-			// LOAD custom google fonts for skins		
+			// LOAD custom google fonts for skins
 			$gfont="//fonts.googleapis.com/css?family=Open+Sans:400italic,600,700,400,300";
 			wp_register_style( 'fp_google_fonts', $gfont, '', '', 'screen' );
-			
+
+			// international phone number input
+			wp_register_script('fp_res_intl_phone_script', FP_URL.'/assets/js/intlTelInput.min.js', array('jquery'), '1.0', true);
+			wp_register_script('fp_res_intl_phone_utils_script', FP_URL.'/assets/js/intlTelInputUtils.js', array('jquery'), '1.0', true);
+			wp_register_style('fp_res_intl_phone_input', FP_URL.'/assets/css/intlTelInput.css');
+
 			$this->register_fp_dynamic_styles();
-		}	
+		}
 		public function register_fp_dynamic_styles(){
 			$opt= $this->fpOpt;
 
@@ -52,7 +57,7 @@ class fp_frontend{
 					$uploads = wp_upload_dir();
 					wp_register_style('foodpress_dynamic_styles', $uploads['baseurl'] . '/foodpress_dynamic_styles.css', 'style');
 				} else {
-					wp_register_style('foodpress_dynamic_styles', 
+					wp_register_style('foodpress_dynamic_styles',
 						FP_URL. '/assets/css/foodpress_dynamic_styles.css', 'style');
 				}
 			}
@@ -63,45 +68,48 @@ class fp_frontend{
 				$dynamic_css = get_option('fp_dyn_css');
 				if(!empty($dynamic_css)){
 					echo '<style type ="text/css" class="fp_styles">'.$dynamic_css.'</style>';
-				}				
+				}
 			}else{
 				wp_enqueue_style( 'foodpress_dynamic_styles');
 			}
 		}
 		public function load_default_fp_scripts(){
-			//wp_enqueue_script('add_to_cal');			
-			wp_enqueue_script('fp_reservation_timepicker');			
-			wp_enqueue_script('fp_jquery_ui');		
+			//wp_enqueue_script('add_to_cal');
+			wp_enqueue_script('fp_reservation_timepicker');
+			wp_enqueue_script('fp_jquery_ui');
 			wp_enqueue_script('fp_ajax_handle');
+			wp_enqueue_script('fp_res_intl_phone_script');
+			wp_enqueue_script('fp_res_intl_phone_utils_script');
 		}
-		public function load_default_fp_styles(){		
+		public function load_default_fp_styles(){
 			wp_enqueue_style( 'fp_font_icons');
 			wp_enqueue_style( 'fp_fonts');
-			wp_enqueue_style( 'fp_default');	
+			wp_enqueue_style( 'fp_default');
 			wp_enqueue_style( 'fp_google_fonts' );
 			wp_enqueue_style( 'foodpress_dynamic_styles' );
 			//wp_enqueue_style( 'fp_res_modal' );
 			wp_enqueue_style( 'fp_res_timepicker_style' );
 			wp_enqueue_style( 'fp_res_jquery_ui_style' );
+			wp_enqueue_style( 'fp_res_intl_phone_input' );
 		}
 
 	/** Output generator to aid debugging. */
 		public function generator() {
 			global $foodpress;
 			echo "\n\n" . '<!-- foodPress Version -->' . "\n" . '<meta name="generator" content="foodPress ' . esc_attr( $foodpress->version ) . '" />' . "\n\n";
-		}	
+		}
 
 	// emailing
 		public function get_email_part($part){
-			global $foodpress; 
+			global $foodpress;
 			$file_name = 'email_'.$part.'.php';
 			$paths = array(
 				0=> TEMPLATEPATH.'/'.$foodpress->template_url.'templates/email/',
 				1=> FP_PATH.'/templates/email/',
 			);
-			foreach($paths as $path){				
-				if(file_exists($path.$file_name) ){	
-					$template = $path.$file_name;	
+			foreach($paths as $path){
+				if(file_exists($path.$file_name) ){
+					$template = $path.$file_name;
 					break;
 				}
 			}
@@ -112,15 +120,15 @@ class fp_frontend{
 
 		// body part of the email template loading
 			public function get_email_body($part, $def_location, $args){
-				global $foodpress; 
+				global $foodpress;
 				$file_name = $part.'.php';
 				$paths = array(
 					0=> TEMPLATEPATH.'/'.$foodpress->template_url.'templates/email/',
 					1=> $def_location,
 				);
 
-				foreach($paths as $path){	
-					if(file_exists($path.$file_name) ){	
+				foreach($paths as $path){
+					if(file_exists($path.$file_name) ){
 						$template = $path.$file_name;
 						break;
 					}					//echo($path.$file_name.'<br/>');

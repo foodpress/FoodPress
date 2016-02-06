@@ -18,15 +18,15 @@ jQuery(document).ready(function($){
 			if( $('.foodpress_scroll_section_body').length==0) return;
 			$('.foodpress_scroll_section_body').each(function(){
 				sib = $(this).siblings('.foodpress_scroll_sections');
-				topmenu = $(this).offset().top;				
+				topmenu = $(this).offset().top;
 				bottommenu = topmenu+ $(this).height();
 				sibheight = sib.height();
-				if($(window).scrollTop() > topmenu ) { 
+				if($(window).scrollTop() > topmenu ) {
 					if($(window).scrollTop() > (bottommenu-sibheight) ){
-						sib.attr('class', 'foodpress_scroll_sections bottom'); 
+						sib.attr('class', 'foodpress_scroll_sections bottom');
 					}else{
-						sib.attr('class', 'foodpress_scroll_sections top'); 
-					}		            
+						sib.attr('class', 'foodpress_scroll_sections top');
+					}
 		        }else{
 		        	sib.removeClass('top');
 		        }
@@ -37,14 +37,14 @@ jQuery(document).ready(function($){
 				index = $(this).data('i');
 				menusection = $(this).parent().siblings('.foodpress_scroll_section_body').find('.foodpress_section_content[data-i='+index+']');
 				sectiontop = parseInt(menusection.offset().top);
-				
+
 				$('html, body').animate({
 				    scrollTop: sectiontop-30
 				}, 2000);
 
 			});
 
-	// Tabbed menu		
+	// Tabbed menu
 		// switching tabbed menu tabs
 			$('.foodpress_tabs h4').on('click',function(){
 				// tab focus
@@ -66,7 +66,7 @@ jQuery(document).ready(function($){
 				$(this).find('.foodpress_categories').width(width);
 				$(this).find('.fp_content').width(width);
 				$(this).find('.fp_categories_holder').width(width*2);
-				//$(this).find('h2.fp_menu_sub_section').hide();			
+				//$(this).find('h2.fp_menu_sub_section').hide();
 			});
 		}
 		// click on each category
@@ -82,7 +82,7 @@ jQuery(document).ready(function($){
 				fp_content.show().find('.fp_'+section+' .fp_container').show();
 				obj.parent().parent().animate({'margin-left':'-'+width}, 200);
 
-				// set go back title 
+				// set go back title
 				fp_content.find('.fp_category_subtitle').html( obj.attr('data-name') );
 			});
 
@@ -91,7 +91,7 @@ jQuery(document).ready(function($){
 				$(this).closest('.fp_categories_holder').animate({'margin-left':0}, function(){
 					$(this).parent().find('.fp_container').hide();
 				});
-				
+
 			});
 
 		// responsive boxes
@@ -107,12 +107,12 @@ jQuery(document).ready(function($){
 			});
 
 	// Featured menu item hover effect
-		$('.fp_featured_content').hover(function(){			
-			$(this).find('.fp_featured_description').stop().slideDown('fast');			
-		},function(){		
+		$('.fp_featured_content').hover(function(){
+			$(this).find('.fp_featured_description').stop().slideDown('fast');
+		},function(){
 			$(this).find('.fp_featured_description').stop().slideUp('fast');
 		});
-		
+
 	// collapsable menu
 		$('.foodpress_menu').on('click', 'h2.collapsable', function(){
 			$(this).toggleClass('collapsed').next('.fp_container').slideToggle('fast');
@@ -120,34 +120,34 @@ jQuery(document).ready(function($){
 		$('.foodpress_menu.clps_dt').on('click', 'h3.collapsable', function(){
 			$(this).toggleClass('collapsed').next('.food_items_container').slideToggle('fast');
 		});
-	
+
 	// close menu popup
-		$('body').on('click', '#fp_close', function(){	
+		$('body').on('click', '#fp_close', function(){
 			closePopup();
 		});
 
 	// close with click outside popup box when pop is shown
 		$(document).mouseup(function (e){
 			var container=$('body').find('.fp_pop_body');
-			
+
 			if (!container.is(e.target) // if the target of the click isn't the container...
 			&& e.pageX < ($(window).width() - 30)
 			&& container.has(e.target).length === 0) // ... nor a descendant of the container
 			{
 				closePopup();
-			}			
+			}
 		});
-	
+
 	// open popup
 		$('.foodpress_menu').on('click', '.fp_popTrig', function(e){
 			menuarg = $(this).closest('.foodpress_menu').find('.menu_arguments');
 			var xx = e.target;
-			
+
 			if(menuarg.attr('data-ux') !== 'none'){// if ux none is not set
 				var menuitem_id = $(this).closest('.menuItem').data('menuitem_id');
-				var menu_id = $(this).closest('.foodpress_menu').attr('id');		
+				var menu_id = $(this).closest('.foodpress_menu').attr('id');
 				//console.log(menuitem_id);
-				ajax_menuitem_content(menuitem_id, menu_id);			
+				ajax_menuitem_content(menuitem_id, menu_id);
 			}
 		});
 
@@ -158,7 +158,7 @@ jQuery(document).ready(function($){
 				menuitem_id:item_id,
 				args:get_arguments(menu_id)
 			};
-			
+
 			$.ajax({
 				beforeSend: function(){
 					get_popup_html();
@@ -169,19 +169,19 @@ jQuery(document).ready(function($){
 				url:fp_ajax_script.ajaxurl,
 				data: data_arg,
 				dataType:'json',
-				success:function(data){					
-					$('body').find('.fp_pop_inner').html(data.content);		
-					$('body').find('.fp_lightbox').removeClass('loading');			
-					setTimeout(function(){	
-						$('body').find('.fp_lightbox').addClass('show');				
+				success:function(data){
+					$('body').find('.fp_pop_inner').html(data.content);
+					$('body').find('.fp_lightbox').removeClass('loading');
+					setTimeout(function(){
+						$('body').find('.fp_lightbox').addClass('show');
 					}, 100);
 
-				},complete:function(){					
-					
+				},complete:function(){
+
 				}
 			});
 		}
-		
+
 		// prepare the HTML for lightbox
 			function get_popup_html(type){
 				if(!$('body').hasClass('fp_overflow')){
@@ -235,7 +235,7 @@ jQuery(document).ready(function($){
 						window.open(link);
 					}else{
 						window.location.href=link;
-					}					
+					}
 					return;
 				}
 
@@ -246,7 +246,7 @@ jQuery(document).ready(function($){
 			});
 
 		// date and time fields in the reservation form
-		
+
 		// reservation time
 			$('body').find('.fpres_time_range').each(function(){
 				var OBJ = $(this);
@@ -260,7 +260,7 @@ jQuery(document).ready(function($){
 					OBJ.val(START);
 				}
 
-				if( OBJ.attr('id')=='fp_res_time_start'){					
+				if( OBJ.attr('id')=='fp_res_time_start'){
 					OBJ.on('change',function(){
 						//console.log('t');
 						VAL = OBJ.val();
@@ -268,7 +268,7 @@ jQuery(document).ready(function($){
 						OBJ.next().find('option[value="'+VAL+'"]').prevAll().wrap( '<span style="display: none;" />' );
 						OBJ.next().val(VAL);
 					});
-				}				
+				}
 			});
 
 			// for each reservation lightbox
@@ -278,8 +278,8 @@ jQuery(document).ready(function($){
 
 					// date picker
 					var dateformat__ = topsection.attr('data-dateformat');
-					date_format = (typeof dateformat__ !== 'undefined' && dateformat__ !== false)?	
-						dateformat__: 'dd/mm/yy';	
+					date_format = (typeof dateformat__ !== 'undefined' && dateformat__ !== false)?
+						dateformat__: 'dd/mm/yy';
 
 					// start date range
 					var blk24 = lightbox.attr('data-blk24')
@@ -301,14 +301,14 @@ jQuery(document).ready(function($){
 					});
 				});
 
-			
+
 
 		// hide form clicking outside of it and resetting to beginning
 			$('.fpres_bg').on('click',function(){
 				var container=$('body').find('#fp_make_res');
 				if(container.hasClass('open')){
 					//$('#fp_res_modal').animate({'margin-top':'200px'},500);
-					$('#fp_make_res').fadeOut(200).removeClass('open');	
+					$('#fp_make_res').fadeOut(200).removeClass('open');
 					$('.fpres_bg').fadeOut(500, function(){
 						$('#fp_make_res').find('.reservation_section').show();
 					});
@@ -327,9 +327,9 @@ jQuery(document).ready(function($){
 
 		// submission of reservation form
 			$('body').on('click','.fp_reservation_submit', function(e){
-				
+
 				e.preventDefault();
-				var error = 0;		   
+				var error = 0;
 			    var form = $(this).closest('.fp_make_res');
 
 			    // form type
@@ -380,7 +380,7 @@ jQuery(document).ready(function($){
 				    		if(pattern !='no'){
 				    			pattern = new RegExp(pattern);
 				    			phonenumber = phone.val();
-				    			
+
 				    			result = pattern.test(phonenumber);
 				    			console.log(pattern+' '+result);
 				    			if(result ){
@@ -389,18 +389,18 @@ jQuery(document).ready(function($){
 				    			}
 				    		}
 				    	}*/
-				   
+
 				// all field values
 					form.find('.resinput').each(function(){
 				    	var thisO = $(this);
 						var val = thisO.val();
-				    	
+
 				    	// build ajax data string
 				    	if(thisO.hasClass('check')){
 				    		ajaxdataa[ thisO.attr('name')] = (thisO.is(':checked'))?'yes':'no';
 				    	}else{
 				    		ajaxdataa[ thisO.attr('name')] = encodeURIComponent(thisO.val());
-				    	}				    	
+				    	}
 				    });
 
 				// check validation of capcha
@@ -413,23 +413,23 @@ jQuery(document).ready(function($){
 						if(OBJvalidation.find('input').val() != c_codes[val_num ]){
 							error=5;
 							OBJvalidation.find('input').addClass('error');
-						}						
+						}
 					}
-				   
+
 			   	if(error==0){
-			   		ajaxdataa['action']= 'fp_ajax_popup';		   		
+			   		ajaxdataa['action']= 'fp_ajax_popup';
 
 			   		// get all shortcode arguments for the form
-			   		var shortcode_array ={}; 
+			   		var shortcode_array ={};
 			   		$.each(form.get(0).attributes, function (i, attrib){
 			   			if(attrib.name!='class' && attrib.name!='id' && attrib.value !=''){
 			   				name__ = attrib.name.split('-');
 			   				shortcode_array[name__[1]]= attrib.value;
 			   			}
 			   		});
-			   		ajaxdataa['args']= shortcode_array;	
-			   						   			
-				    $.ajax({ 
+			   		ajaxdataa['args']= shortcode_array;
+
+				    $.ajax({
 				    	beforeSend: function(){
 							form.addClass('loading');
 						},
@@ -439,7 +439,7 @@ jQuery(document).ready(function($){
 				        success: function(data) {
 				        	form.removeClass('loading');
 				        	if(data.status=='0'){
-				        		// update success message with 
+				        		// update success message with
 				        		form.find('.fp_res_success_title .name').html( form.find('.form_section_2 input[name=name]').val());
 				        		form.find('.fp_res_success').find('.reservation_info span').html( '<em>'+form_msg.res2+'</em>: '+decodeURIComponent(ajaxdataa.date)+ ' <em>'+form_msg.res3+'</em>: ' +decodeURIComponent(ajaxdataa.time)+ ' <em>'+form_msg.res4+'</em>: '+decodeURIComponent(ajaxdataa.party));
 
@@ -449,7 +449,7 @@ jQuery(document).ready(function($){
 				        			if(onpage)
 				        				form.addClass('success');
 				        		});
-				        		
+
 				        		$('body').find('.fpres_bg').addClass('success');
 
 
@@ -461,10 +461,10 @@ jQuery(document).ready(function($){
 
 				        	}else{
 				        		if(data.status=='01'){
-				        			// could not create reseration 
+				        			// could not create reseration
 				        			form_msg_el.addClass('err').html( form_msg.err4).show();
 				        		}
-				        	}				        	
+				        	}
 				        }
 				    });
 				}else{
@@ -475,7 +475,7 @@ jQuery(document).ready(function($){
 						case 5: 	form_msg_el.addClass('err').html( form_msg.err5).fadeIn();	break;
 					}
 				}
-			    
+
 			});
 
 	// form validation
@@ -487,19 +487,19 @@ jQuery(document).ready(function($){
 	// get menu shortcode arguments
 		function get_arguments(menu_id){
 			var shortcode_array ={};
-					
+
 			$('#'+menu_id).find('.menu_arguments').each(function(){
 				$.each(this.attributes, function(i, attrib){
 					var name = attrib.name;
 					if(attrib.name!='class' && attrib.name!='style' && attrib.value !=''){
 						name__ = attrib.name.split('-');
-						shortcode_array[name__[1]] = attrib.value;	
+						shortcode_array[name__[1]] = attrib.value;
 					}
 				});
-			});	
+			});
 			return shortcode_array;
 		}
-		
+
 	// Added script for Boxed Menu to scroll to top of the Menu
 		$(".foodpress_menu.box_cats h4").on("click", function(event) {
 	        event.preventDefault();
@@ -511,6 +511,33 @@ jQuery(document).ready(function($){
 
 	        $("html, body").stop().animate({ scrollTop: topToScrollTo}, 1000);
 	    });
-		
-});
 
+	// Initiate reservation phone number
+		var telInput = $("#fp_phone_");
+		var errorMsg = $("#phone-error-msg");
+		var validMsg = $("#phone-valid-msg");
+
+		telInput.intlTelInput();
+
+		var reset = function() {
+			telInput.removeClass("error");
+			errorMsg.addClass("hide");
+		    validMsg.addClass("hide");
+		};
+
+		// on blur: validate
+		telInput.blur(function() {
+		    reset();
+		    if ($.trim(telInput.val())) {
+		        if (telInput.intlTelInput("isValidNumber")) {
+			        validMsg.removeClass("hide");
+			    } else {
+			        telInput.addClass("error");
+			        errorMsg.removeClass("hide");
+			    }
+		    }
+		});
+
+		// on keyup / change flag: reset
+		telInput.on("keyup change", reset);
+});
