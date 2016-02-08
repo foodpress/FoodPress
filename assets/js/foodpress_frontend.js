@@ -122,8 +122,8 @@ jQuery(document).ready(function($){
 		});
 
 	// close menu popup
-		$('body').on('click', '#fp_close', function(){
-			closePopup();
+		$('body').on('click', '.fplbclose', function(){
+			closePopup();			
 		});
 
 	// close with click outside popup box when pop is shown

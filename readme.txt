@@ -27,6 +27,7 @@ FIXED: Dish type var incorrect causing specific type menu not work
 FIXED: unnecessary shortcode options showing incorrectly
 FIXED: Party size placeholder text missing in translations
 FIXED: Start reservations from tomorrow not working
+FIXED: Mobile lightbox menu not closing
 UPDATED: Shortcode generator to prevent default <a> click actions
 
 = 1.3.1 (2016-1-20)
