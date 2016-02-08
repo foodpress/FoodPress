@@ -1986,3 +1986,33 @@ select#fp_res_people {
     -webkit-appearance: none;
     height:45px;
 }
+
+div.fp_oo_sim_cart .quantity {
+    display: inline-block;
+    height: 45px;
+    overflow: hidden;
+    vertical-align: top;
+}
+
+.fp_oo_sim_cart .quantity input {
+    min-width: 40px;
+    float: none;
+    max-width: 60px;
+    text-align: left;
+    display: inline-block;
+    height: 40px;
+}
+
+.foodpress_menu a.onpage_fpAddToCart.fp_bnt.single_add_to_cart_button.button.alt {
+    display: inline-block;
+    height: 40px;
+    margin-top: 0px;
+    padding: 10px;
+}
+
+.foodpress_menu .var_add_to_cart_button {
+    margin-top: 0px !important;
+    margin-bottom: 10px;
+    height: 40px;
+    padding: 10px;
+}
