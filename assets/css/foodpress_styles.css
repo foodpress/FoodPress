@@ -314,7 +314,7 @@
 			margin-left: 0px;
 		}
 		.food_items_container .c_100:last-child{
-			border-bottom: dashed thin #e1e1e1
+			border-bottom: none;
 		}
 	
 	/* style 2 */
