@@ -1,7 +1,7 @@
 /**
  * FoodPress front-end javascript
  *
- * @version  1.3
+ * @version  1.3.2
  * @author AJDE & Michael Gamble
  */
 jQuery(document).ready(function($){

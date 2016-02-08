@@ -1,6 +1,8 @@
 <?php
-	// FoodPress Settings tab - Addons and licenses
-	// version: 1.0
+/**
+ * FoodPress Addons and Licenses Page
+ * @version 1.3.2
+ */
 ?>
 <div id="food_4" class="foodpress_admin_meta">		
 	<?php	/*	LICENSES Section	*/		?>
@@ -44,15 +46,16 @@
 					// if activated already
 					if($fpl['status']=='active'){
 						
-						echo "<h2 class='heading'>foodpress <span>License</span> <em>activated</em></h2>";
+						echo "<h2 class='heading'>FoodPress <span>License</span> <em>activated</em></h2>";
 						
 						$new_update_details_btn = (!empty($fpl['has_new_update']) && $fpl['has_new_update'])?
 							"<a class='fp_admin_btn btn_prime' href='".$admin_url."update-core.php'>Update Now</a>  <a class='fp_admin_btn btn_prime thickbox' href='".$admin_url."plugin-install.php?tab=plugin-information&plugin=foodpress&section=changelog&TB_iframe=true&width=600&height=400'>Version Details</a> ":null;
 						
 						echo "
 						<p class='versions'>
-							<span class='version'>{$fpl['current_version']}<em>Your version</em></span>".$new_update_text."	
+							<span class='version'>{$fpl['current_version']}<em>Your Version</em></span>".$new_update_text."	
 						</p>
+						<p style='font-style:italic'>INTO: You have successfully activated this license on this website. You will need a seperate license to activate FoodPress for another site. With foodpress 1.3.2 you should be able to auto update foodpress from here on out :)</p>
 						<p class='clear padb10'></p>
 							
 						<p>".$new_update_details_btn." <a href='". $admin_url."admin.php?page=foodpress&tab=food_5&lic=remove' class='fp_admin_btn btn_noBG'>Remove License</a></p>";
@@ -105,7 +108,7 @@
 		
 		global $wp_version; 
 		
-		echo "<h2 class='heading'><a href='http://www.myfoodpress.com/addons/' target='_blank'>myfoodpress Addons</a></h2>";
+		echo "<h2 class='heading'><a href='http://www.myfoodpress.com/addons/' target='_blank'>FOODPRESS ADDONS</a></h2>";
 		
 		$url = 'http://update.myfoodpress.com/addons.php';
 		$response = wp_remote_post(
@@ -119,11 +122,10 @@
             )
         );
 
-        if ( !is_wp_error( $response ) ) {
-
-        	//print_r($response['body']);
-
-        	$request = unserialize($response['body']);
+        if ( !is_wp_error( $response )  && isset($response['body']))  {
+        	
+        	if(is_serialized($response['body']))
+        		$request = unserialize($response['body']);
 
         	if(!empty($request)){
 				
