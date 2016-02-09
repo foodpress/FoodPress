@@ -4,7 +4,7 @@ Plugin Name: FoodPress
 Author URI: http://www.myfoodpress.com/
 Tags: restaurants, menu, food, eating, menu management
 Requires at least: 3.8
-Tested up to: 4.4.1
+Tested up to: 4.4.2
 Stable tag: 1.3.2
 
 == Description ==
