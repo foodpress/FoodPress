@@ -98,19 +98,6 @@ class fp_Admin {
 
 					update_option('_foodpress_install',$value);
 				}
-
-			// connect to foodpress server to get updates
-				global $pagenow, $foodpress;
-				$__needed_pages = array('update-core.php','plugins.php', 'admin.php','admin-ajax.php', 'plugin-install.php','index.php');
-
-				if(!empty($pagenow) && in_array($pagenow, $__needed_pages)){
-
-					// Initiate foodpress update checker		
-					require_once( FP_PATH.'/classes/class-fp-updater.php' );		
-					//$api_url = 'http://update.myfoodpress.com/';
-					$api_url = 'http://update.myfoodpress.com/index.php';
-					$foodpress->fp_updater = new fp_updater ( $foodpress->version, $api_url, FP_BASENAME);
-				}			
 		}
 
 		

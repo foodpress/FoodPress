@@ -78,7 +78,7 @@ class foodpress {
 			if ( is_admin() ){
 				include_once( 'includes/admin/class-admin-init.php' );
 				require_once( 'includes/class-fp-github-updater.php' );
-				new foodpress_github_updater( __FILE__, 'foodpressGIT', "foodpress/FoodPress", "a0a94517a98c994d5730291236173a613eb92931");
+				new foodpress_github_updater( __FILE__, "foodpress/FoodPress", "a0a94517a98c994d5730291236173a613eb92931");
 				$this->admin = new fp_Admin();
 			}
 

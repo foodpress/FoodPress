@@ -12,7 +12,6 @@ class foodpress_github_updater {
  
     private $slug; // plugin slug
     private $pluginData; // plugin data
-    private $username; // GitHub username
     private $repo; // GitHub repo name
     private $pluginFile; // __FILE__ of our plugin
     private $githubAPIResult; // holds data from GitHub
@@ -20,13 +19,12 @@ class foodpress_github_updater {
  
     private $test;
 
-    function __construct( $pluginFile, $gitHubUsername, $gitHubProjectName, $accessToken = '' ) {
+    function __construct( $pluginFile, $gitHubProjectName, $accessToken = '' ) {
         add_filter( "pre_set_site_transient_update_plugins", array( $this, "setTransitent" ) );
         add_filter( "plugins_api", array( $this, "setPluginInfo" ), 10, 3 );
         add_filter( "upgrader_post_install", array( $this, "postInstall" ), 10, 3 );
  
         $this->pluginFile = $pluginFile;
-        $this->username = $gitHubUsername;
         $this->repo = $gitHubProjectName;
         $this->accessToken = $accessToken;
     }
@@ -57,9 +55,14 @@ class foodpress_github_updater {
 		    $this->githubAPIResult = @json_decode($this->githubAPIResult);
 		}
 
-		// Use only the latest release
+		// Use only the latest non-draft release
 		if (is_array($this->githubAPIResult)) {
-		    $this->githubAPIResult = $this->githubAPIResult[0];
+			foreach ($this->githubAPIResult as $result) {
+				if ($result->draft == false) {
+					$this->githubAPIResult = $result;
+					break;
+				}
+			}
 		}
     }
  
@@ -115,7 +118,7 @@ class foodpress_github_updater {
 		$response->version = $this->githubAPIResult->tag_name;
 		$response->author = $this->pluginData["AuthorName"];
 		$response->homepage = $this->pluginData["PluginURI"];
-		 
+
 		// This is our release download zip file
 		$downloadLink = $this->githubAPIResult->zipball_url;
 		 
@@ -131,12 +134,52 @@ class foodpress_github_updater {
 		// We're going to parse the GitHub markdown release notes, include the parser
 		require_once(plugin_dir_path( __FILE__ ) . "parsedown.php");
 
+		// Set basic info
+		$install_instructions = '
+			<p>Download, Upgrading, Installation:</p>
+			<p><strong>Upgrade</strong></p>
+			<ul>
+				<li>First deactivate foodpress.</li>
+				<li>Remove the <code>foodpress</code> directory.</li>
+			</ul>
+			<p><strong>Install</strong></p>
+			<ul>
+				<li>Unzip the <code>foodpress.zip</code> file.</li>
+				<li>Upload the <code>foodpress</code> folder (not just the files in it) to your <code>wp-contents/plugins</code> folder. If you are using FTP, use binary mode.</li>
+			</ul>
+			<p><strong>Activate</strong></p>
+			<ul>
+				<li>In your WordPress admin, go to Plugins Page</li>
+				<li>Activate the foodpress plugin which will take you to the new welcome screen</li>
+			</ul>
+		';
+		$license_info = '
+			<p><strong>Get free updates</strong></p>
+			<p>In order to get free foodpress updates and download them directly in here activate your copy of foodpress with proper license.</p>
+			<p><strong>How to get your license key</strong></p>
+			<ul>
+				<li>Login into your Envato account</li>
+				<li>Go to Download tab</li>
+				<li>Under foodpress click "License Cerificate"</li>
+				<li>Open text file and copy the <strong>Item Purchase Code</strong></li>
+				<li>Go to myfoodpress in your website admin</li>
+				<li>Under "Licenses" tab find the foodpress license and click "Activate Now"</li>
+				<li>Paste the copied purchased code from envato, and click "Activate Now"</li>
+				<li>Once the license if verified and activated you will be able to download updates automatically</li>
+			</ul>
+			<a href="http://www.myfoodpress.com/documentation/how-to-find-foodpress-license-key/">Updated Documentation</a>
+		';
+
 		// Create tabs in the lightbox
 		$response->sections = array(
-		    'description' => $this->pluginData["Description"],
+		    'description' => 'FoodPress is a wordpress restaurant menu management plugin for wordpress.',
 		    'changelog' => class_exists("Parsedown")
 		        ? Parsedown::instance()->parse($this->githubAPIResult->body)
-		        : $this->githubAPIResult->body
+		        : $this->githubAPIResult->body,
+		    'installation' => $install_instructions,
+		    'register_license' => $license_info,
+		    'FAQ' => 'For support & frequently asked questions, visit <a href="http://support.ashanjay.com">the FoodPress forums</a>.',
+		    'latest_news' => 'Make sure to follow us via twitter <code>@myfoodpress</code> for updates.'
 		);
 
 		// Gets the required version of WP if available
