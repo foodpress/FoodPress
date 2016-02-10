@@ -7,7 +7,7 @@
  * @author 		AJDE
  * @category 	Admin
  * @package 	foodpress/Admin
- * @version     0.1
+ * @version     1.3.2
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
@@ -105,42 +105,36 @@ class fp_welcome_page {
 		<?php
 	}
 	
-	/**
-	 * Sends user to the welcome page on first activation
-	 */
-	public function welcome() {
+	// Sends user to the welcome page on first activation
+		public function welcome() {
+			// Bail if no activation redirect transient is set
+		    if ( ! get_transient( '_fp_activation_redirect' )  )
+				return;
 
-		// Bail if no activation redirect transient is set
-	    if ( ! get_transient( '_fp_activation_redirect' )  )
-			return;
+			// Delete the redirect transient
+			delete_transient( '_fp_activation_redirect' );
 
-		// Delete the redirect transient
-		delete_transient( '_fp_activation_redirect' );
+			// Bail if we are waiting to install or update via the interface update/install links
+			if ( get_option( '_fp_needs_update' ) == 1  )
+				return;
 
-		// Bail if we are waiting to install or update via the interface update/install links
-		if ( get_option( '_fp_needs_update' ) == 1  )
-			return;
-
-		// Bail if activating from network, or bulk, or within an iFrame
-		if ( is_network_admin() || isset( $_GET['activate-multi'] ) || defined( 'IFRAME_REQUEST' ) )
-			return;
-		
-		// plugin is updated
-		if ( ( isset( $_GET['action'] ) && 'upgrade-plugin' == $_GET['action'] ) && ( isset( $_GET['plugin'] ) && strstr( $_GET['plugin'], 'foodpress.php' ) ) )
-			return;
-			//wp_safe_redirect( admin_url( 'index.php?page=fp-about&fp-updated=true' ) );
-		
-		
-		wp_safe_redirect( admin_url( 'index.php?page=fp-about' ) );
-		foodpress_generate_options_css();
-		
+			// Bail if activating from network, or bulk, or within an iFrame
+			if ( is_network_admin() || isset( $_GET['activate-multi'] ) || defined( 'IFRAME_REQUEST' ) )
+				return;
 			
-		
-		exit;
-	}	
-	
-	
-	
+			// plugin is updated
+			if ( ( isset( $_GET['action'] ) && 'upgrade-plugin' == $_GET['action'] ) && ( isset( $_GET['plugin'] ) && strstr( $_GET['plugin'], 'foodpress.php' ) ) )
+				return;
+				//wp_safe_redirect( admin_url( 'index.php?page=fp-about&fp-updated=true' ) );
+			
+			
+			wp_safe_redirect( admin_url( 'index.php?page=fp-about' ) );
+
+			// update dynamic styles and appearance styles upon new update
+			foodpress_generate_options_css();
+			
+			exit;
+		}	
 }
 
 new fp_welcome_page();
