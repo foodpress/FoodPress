@@ -112,8 +112,8 @@ class FP_Admin_Post_Types {
 					echo '</strong>';
 
 					// Price
-					$price = get_post_meta($post_id, 'fp_price', true);
-					echo (!empty($price))? '<br/><i>'.apply_filters('foodpress_price_value', $price, $pmv).'</i>': null;
+						$price = get_post_meta($post_id, 'fp_price', true);
+						echo '<br/><i class="fp_menuitem_price">'.apply_filters('foodpress_price_value', $price, $pmv).'</i>';
 
 					// Spicy level
 					$slevel = get_post_meta($post_id, 'fp_spicy', true);

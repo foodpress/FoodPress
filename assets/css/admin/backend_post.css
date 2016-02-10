@@ -18,7 +18,7 @@
 		cursor:pointer;
 	}
 	#fp_meta_fields h4:hover{
-		background: #f4f4f4 url(../images/arrows.png) no-repeat right 10px;
+		background: #f4f4f4 url(../../images/arrows.png) no-repeat right 10px;
 	}
 	/* icons */
 		#fp_meta_fields h4{vertical-align: middle;}

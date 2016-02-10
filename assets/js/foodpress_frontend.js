@@ -140,10 +140,11 @@ jQuery(document).ready(function($){
 
 	// open popup
 		$('.foodpress_menu').on('click', '.fp_popTrig', function(e){
-			menuarg = $(this).closest('.foodpress_menu').find('.menu_arguments');
+			obj = $(this);
+			menuarg = obj.closest('.foodpress_menu').find('.menu_arguments');
 			var xx = e.target;
 
-			if(menuarg.attr('data-ux') !== 'none'){// if ux none is not set
+			if(menuarg.attr('data-ux') !== 'none' || obj.hasClass('var_add_to_cart_button')){// if ux none is not set
 				var menuitem_id = $(this).closest('.menuItem').data('menuitem_id');
 				var menu_id = $(this).closest('.foodpress_menu').attr('id');
 				//console.log(menuitem_id);
@@ -177,7 +178,7 @@ jQuery(document).ready(function($){
 					}, 100);
 
 				},complete:function(){
-
+					$('body').trigger('menu_lightbox_open');
 				}
 			});
 		}
