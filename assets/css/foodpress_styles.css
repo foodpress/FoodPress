@@ -1399,6 +1399,7 @@
 			.form_section_2 input, .form_section_2 select{
 				width: 90%;				
 			}
+			.fplbclose{ padding: 0; height: 60px; width: 60px; line-height: 60px; font-size: 36px; }
 		}
 		
 		

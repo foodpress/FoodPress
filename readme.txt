@@ -34,6 +34,7 @@ FIXED: OrderOnline select options to open lightbox when ux none for menu
 FIXED: Missing arrows.png image wrong url in styles
 UPDATED: Shortcode generator to prevent default <a> click actions
 UPDATED: Duplication of menu items functions
+UPDATED: Made the lightbox close button bigger for smaller screen 
 
 = 1.3.1 (2016-1-20)
 FIXED: timepicker initiating on unsupported pages
