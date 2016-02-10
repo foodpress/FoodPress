@@ -10,14 +10,13 @@ Stable tag: 1.3.2
 == Description ==
 FoodPress is a complete restaurant menu management system that allow you to create various menus with categorizations and more.
 
-
 == Installation ==
 1. Unzip the download zip file
 1. Upload `foodpress` to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
-= 1.3.2 (2016-
+= 1.3.2 (2016-2-10) =
 ADDED: Styles for Menu Descriptions for Headings, Lists, etc. within WYSIWYG editor
 ADDED: github based auto updates for the plugin
 ADDED: International phone number validation and required field option
@@ -36,7 +35,7 @@ UPDATED: Shortcode generator to prevent default <a> click actions
 UPDATED: Duplication of menu items functions
 UPDATED: Made the lightbox close button bigger for smaller screen 
 
-= 1.3.1 (2016-1-20)
+= 1.3.1 (2016-1-20) =
 FIXED: timepicker initiating on unsupported pages
 FIXED: lightbox menu make page stop scrolling
 FIXED: Menu type ss_5 not working properly
