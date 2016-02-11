@@ -117,7 +117,7 @@ class foodpress_github_updater {
 
 		// If nothing is found, do nothing
 		if (empty($response->slug) || $response->slug != $this->slug) {
-		    return false;
+		    return $false;
 		}
 
 		// Add our plugin information
