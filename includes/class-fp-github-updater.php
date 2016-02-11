@@ -16,14 +16,17 @@ class foodpress_github_updater {
     private $pluginFile; // __FILE__ of our plugin
     private $githubAPIResult; // holds data from GitHub
     private $accessToken; // GitHub private repo token
+    private $pluginActivated; // is plugin activated
+    private $changeLog; // store for all git change logs
  
     private $test;
 
-    function __construct( $pluginFile, $gitHubProjectName, $accessToken = '' ) {
-        add_filter( "pre_set_site_transient_update_plugins", array( $this, "setTransitent" ) );
-        add_filter( "plugins_api", array( $this, "setPluginInfo" ), 10, 3 );
-        add_filter( "upgrader_post_install", array( $this, "postInstall" ), 10, 3 );
- 
+    function __construct($pluginFile, $gitHubProjectName, $accessToken = '') {
+        add_filter("pre_set_site_transient_update_plugins", array($this, "setTransitent"));
+        add_filter("plugins_api", array($this, "setPluginInfo"), 10, 3);
+        add_filter("upgrader_pre_install", array($this, "preInstall"));
+        add_filter("upgrader_post_install", array($this, "postInstall"), 10, 3); 
+
         $this->pluginFile = $pluginFile;
         $this->repo = $gitHubProjectName;
         $this->accessToken = $accessToken;
@@ -55,15 +58,21 @@ class foodpress_github_updater {
 		    $this->githubAPIResult = @json_decode($this->githubAPIResult);
 		}
 
-		// Use only the latest non-draft release
+		// Use only the latest non-draft release and append older releases to the change log
+		$latest_result = null;
+		$this->changeLog = "# Latest Update";
 		if (is_array($this->githubAPIResult)) {
 			foreach ($this->githubAPIResult as $result) {
 				if ($result->draft == false) {
-					$this->githubAPIResult = $result;
-					break;
+					$this->changeLog .= " - " . $result->tag_name . " - " . $result->name . "\n" . $result->body . "\n";
+					if ($latest_result == null) { 
+						$latest_result = $result;
+						$this->changeLog .= "# Previous Updates\n";
+					}
 				}
 			}
 		}
+		if ($latest_result != null) { $this->githubAPIResult = $latest_result; }
     }
  
     // Push in plugin version information to get the update notification
@@ -174,8 +183,8 @@ class foodpress_github_updater {
 		$response->sections = array(
 		    'description' => 'FoodPress is a wordpress restaurant menu management plugin for wordpress.',
 		    'changelog' => class_exists("Parsedown")
-		        ? Parsedown::instance()->parse($this->githubAPIResult->body)
-		        : $this->githubAPIResult->body,
+		        ? Parsedown::instance()->parse($this->changeLog)
+		        : $this->changeLog,
 		    'installation' => $install_instructions,
 		    'register_license' => $license_info,
 		    'FAQ' => 'For support & frequently asked questions, visit <a href="http://support.ashanjay.com">the FoodPress forums</a>.',
@@ -207,14 +216,18 @@ class foodpress_github_updater {
         return $response;
     }
  
+ 	// Perform check before install
+    public function preInstall($true, $args = null) {
+		// Get the plugin info
+		$this->initPluginData();
+		// Check to see if the plugin was previously installed
+		$this->pluginActivated = is_plugin_active($this->slug);
+
+	    return $true;
+    }
+
     // Perform additional actions to successfully install our plugin
     public function postInstall($true, $hook_extra, $result) {
-		// Get plugin information
-		$this->initPluginData();
-
-		// Remember if our plugin was previously activated
-		$wasActivated = is_plugin_active($this->slug);
-
 		// Since we are hosted in GitHub, our plugin folder would have a dirname of
 		// reponame-tagname change it to our original one:
 		global $wp_filesystem;
@@ -223,7 +236,7 @@ class foodpress_github_updater {
 		$result['destination'] = $pluginFolder;
 
 		// Re-activate plugin if needed
-		if ($wasActivated) {
+		if ($this->pluginActivated) {
 		    $activate = activate_plugin($this->slug);
 		}
 
