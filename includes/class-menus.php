@@ -307,6 +307,7 @@ class foodpress_menus {
 					break;
 
 					case 'ss_5': // specific meal and dish type
+					case 'ss_4':
 
 						if(!empty($meal_type) && !empty($dish_type)){
 							// initials
