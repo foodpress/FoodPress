@@ -16,7 +16,12 @@ FoodPress is a complete restaurant menu management system that allow you to crea
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
-= 1.3.2 (2016-2-11) =
+
+= 1.3.3 (2016-2-12) =
+FIXED: Dish type not working with old shortcode
+FIXED: Errors occuring after auto-updating
+
+= 1.3.2 (2016-2-10) =
 ADDED: Styles for Menu Descriptions for Headings, Lists, etc. within WYSIWYG editor
 ADDED: github based auto updates for the plugin
 ADDED: International phone number validation and required field option
@@ -31,7 +36,6 @@ FIXED: Mobile lightbox menu not closing
 FIXED Addons and licenses page not showing all addon information 
 FIXED: OrderOnline select options to open lightbox when ux none for menu
 FIXED: Missing arrows.png image wrong url in styles
-FIXED: Dish type only previous shortcode not working
 UPDATED: Shortcode generator to prevent default <a> click actions
 UPDATED: Duplication of menu items functions
 UPDATED: Made the lightbox close button bigger for smaller screen 
