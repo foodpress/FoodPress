@@ -65,10 +65,12 @@ class foodpress_github_updater {
 		if (is_array($this->githubAPIResult)) {
 			foreach ($this->githubAPIResult as $result) {
 				if ($result->draft == false) {
-					$this->changeLog .= "##" . $result->tag_name . " - " . $result->name . "\n" . $result->body . "\n";
 					if ($latest_result == null) { 
+						$this->changeLog .= " - " . $result->tag_name . " - " . $result->name . "\n" . $result->body . "\n";
 						$latest_result = $result;
 						$this->changeLog .= "# Previous Updates\n";
+					} else {
+						$this->changeLog .= "## " . $result->tag_name . " - " . $result->name . "\n" . $result->body . "\n";
 					}
 				}
 			}
