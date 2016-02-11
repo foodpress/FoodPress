@@ -17,6 +17,9 @@ FoodPress is a complete restaurant menu management system that allow you to crea
 
 == Changelog ==
 
+= 1.3.4 (2016-2-12) =
+FIXED: Errors occuring when viewing details of updates
+
 = 1.3.3 (2016-2-12) =
 FIXED: Dish type not working with old shortcode
 FIXED: Errors occuring after auto-updating
