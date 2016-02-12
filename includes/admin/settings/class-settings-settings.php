@@ -36,7 +36,7 @@ class foodpress_settings_settings{
 				'id'=>'food_003',
 				'name'=>__('Look and Feel','foodpress'),
 				'tab_name'=>__('Appearance','foodpress'),
-				'fields'=> $this->appearnace()
+				'fields'=> $this->appearance()
 			),array(
 				'id'=>'food_002',
 				'name'=>__('Menu Item Custom Meta Data Settings','foodpress'),
@@ -223,8 +223,8 @@ class foodpress_settings_settings{
 			return $rearrange_items;
 		}
 
-	// appearnace
-		function appearnace(){
+	// appearance
+		function appearance(){
 			return apply_filters('foodpress_settings_appearances', 
 				array(
 					array('id'=>'fc_mcolor','type'=>'multicolor','name'=>'Multiple colors',
@@ -359,14 +359,14 @@ class foodpress_settings_settings{
 					
 					array('id'=>'fs_fontres3','type'=>'fontation','name'=>'Reservation Box Title Text',
 						'variations'=>array(
-							array('id'=>'fc_res3', 'type'=>'color', 'default'=>'ffffff'),
+							array('id'=>'fc_res3', 'type'=>'color', 'default'=>'3b3b3b'),
 							array('id'=>'fs_res3', 'type'=>'font_size', 'default'=>'22px'),
 						)
 					),
 					
 					array('id'=>'fs_fontres4','type'=>'fontation','name'=>'Reservation Box Subtitle Text',
 						'variations'=>array(
-							array('id'=>'fc_res4', 'type'=>'color', 'default'=>'ffffff'),
+							array('id'=>'fc_res4', 'type'=>'color', 'default'=>'3b3b3b'),
 							array('id'=>'fs_res4', 'type'=>'font_size', 'default'=>'14px'),
 						)
 					),		
@@ -374,27 +374,27 @@ class foodpress_settings_settings{
 					
 					array('id'=>'fp_res_formbd','type'=>'fontation','name'=>'Reservation Background',
 						'variations'=>array(
-							array('id'=>'fp_res_formbd_bgc', 'type'=>'color', 'title'=>'Default Background Color', 'default'=>'8a2945'),
+							array('id'=>'fp_res_formbd_bgc', 'type'=>'color', 'title'=>'Default Background Color', 'default'=>'FFFFFF'),
 							array('id'=>'fp_res_formbd_bgcS', 'type'=>'color', 'title'=>'Success Stage Background Color', 'default'=>'7A9E6B'),						
 						)
 					),
 
 					array('id'=>'fp_res_formtext','type'=>'fontation','name'=>'Reservation Form Content',
 						'variations'=>array(
-							array('id'=>'fp_res_form_genfont', 'type'=>'color', 'title'=>'General Text Color', 'default'=>'ffffff'),					
-							array('id'=>'fp_res_formbd_fields', 'type'=>'color', 'title'=>'Input/textarea Fields Background Color', 'default'=>'A54460'),	
-							array('id'=>'fp_res_formbd_fieldtext', 'type'=>'color', 'title'=>'Input/textarea Fields Text Color', 'default'=>'FFFFFF'),				
-							array('id'=>'fp_res_formbd_fieldborder', 'type'=>'color', 'title'=>'Input/textarea Fields Border Color', 'default'=>'8A2945'),	
-							array('id'=>'fp_res_formbd_fieldplaceholder', 'type'=>'color', 'title'=>'Input Placeholder Text Color', 'default'=>'ffffff'),	
-							array('id'=>'fp_res_links', 'type'=>'color', 'title'=>'Permalink Text Color', 'default'=>'ffffff'),	
+							array('id'=>'fp_res_form_genfont', 'type'=>'color', 'title'=>'General Text Color', 'default'=>'3b3b3b'),					
+							array('id'=>'fp_res_formbd_fields', 'type'=>'color', 'title'=>'Input/textarea Fields Background Color', 'default'=>'FFFFFF'),	
+							array('id'=>'fp_res_formbd_fieldtext', 'type'=>'color', 'title'=>'Input/textarea Fields Text Color', 'default'=>'3b3b3b'),				
+							array('id'=>'fp_res_formbd_fieldborder', 'type'=>'color', 'title'=>'Input/textarea Fields Border Color', 'default'=>'dedede'),	
+							array('id'=>'fp_res_formbd_fieldplaceholder', 'type'=>'color', 'title'=>'Input Placeholder Text Color', 'default'=>'c4c4c4'),	
+							array('id'=>'fp_res_links', 'type'=>'color', 'title'=>'Permalink Text Color', 'default'=>'8a2945'),	
 						)
 					),
 
 					array('id'=>'fp_res_btn','type'=>'fontation','name'=>'Reservation Form Button',
 						'variations'=>array(											
-							array('id'=>'fp_res_btn_text', 'type'=>'color', 'title'=>'Button Text Color', 'default'=>'ffffff'),
+							array('id'=>'fp_res_btn_text', 'type'=>'color', 'title'=>'Button Text Color', 'default'=>'FFFFFF'),
 							array('id'=>'fp_res_btn_bgc', 'type'=>'color', 'title'=>'Button Background Color', 'default'=>'8a2945'),				
-							array('id'=>'fp_res_btn_bgcH', 'type'=>'color', 'title'=>'Button Background Color (Hover)', 'default'=>'8f3174'),				
+							array('id'=>'fp_res_btn_bgcH', 'type'=>'color', 'title'=>'Button Background Color (Hover)', 'default'=>'5dc24e'),				
 						)
 					),
 					

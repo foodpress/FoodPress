@@ -141,7 +141,7 @@
 			array(
 				'item'=>'.tabbed_menu .foodpress_tabs h4',
 				'css'=>'font-size:$',
-				'var'=>'fs_007',	'default'=>'20px'
+				'var'=>'fs_007', 'default'=>'20px'
 			),
 			array(
 				'item'=>'.foodpress_menu.box_cats .foodpress_categories h4',
@@ -151,25 +151,25 @@
 			array(
 				'item'=>'.foodpress_menu.box_cats .foodpress_categories h4 i',
 				'css'=>'color:#$',
-				'var'=>'fc_009',	'default'=>'ffffff'
+				'var'=>'fc_009', 'default'=>'ffffff'
 			),	
 			array(
 				'item'=>'.foodpress_menu.box_cats .foodpress_categories h4',
 				'css'=>'color:#$',
-				'var'=>'fc_010',	'default'=>'ffffff'
+				'var'=>'fc_010', 'default'=>'ffffff'
 			),array(
 				'item'=>'.foodpress_menu.box_cats .foodpress_categories h4',
 				'css'=>'font-size:$',
-				'var'=>'fs_010',	'default'=>'18px'
+				'var'=>'fs_010', 'default'=>'18px'
 			),
 			array(
 				'item'=>'.foodpress_menu.box_cats .foodpress_categories h4 p.fp_meal_type_description',
 				'css'=>'color:#$',
-				'var'=>'fc_011',	'default'=>'ffffff'
+				'var'=>'fc_011', 'default'=>'ffffff'
 			),array(
 				'item'=>'.foodpress_menu.box_cats .foodpress_categories h4 p.fp_meal_type_description',
 				'css'=>'font-size:$',
-				'var'=>'fs_011',	'default'=>'14px'
+				'var'=>'fs_011', 'default'=>'14px'
 			),			
 			array(
 				'item'=>'.tabbed_menu .foodpress_tabs h4.focused',
@@ -182,59 +182,59 @@
 				'item'=>'.fp_res_button, #fp_make_res.onpage .form_section_2 #fp_reservation_submit','css'=>'background-color:#$','var'=>'fp_res_btn_bgc',	'default'=>'8a2945'
 			),			
 			array(
-				'item'=>'.fp_res_button:hover, #fp_make_res.onpage .form_section_2 #fp_reservation_submit:hover','css'=>'background-color:#$','var'=>'fp_res_btn_bgcH',	'default'=>'8f3174'
+				'item'=>'.fp_res_button:hover, #fp_make_res.onpage .form_section_2 #fp_reservation_submit:hover','css'=>'background-color:#$','var'=>'fp_res_btn_bgcH',	'default'=>'5dc24e'
 			),			
 			array(
 				'item'=>'.fp_res_t1',
 				'css'=>'color:#$',
-				'var'=>'fc_res3',	'default'=>'ffffff'
+				'var'=>'fc_res3', 'default'=>'ffffff'
 			),array(
 				'item'=>'.fp_res_t1',
 				'css'=>'font-size:$',
-				'var'=>'fs_res3',	'default'=>'22px'
+				'var'=>'fs_res3', 'default'=>'22px'
 			),			
 			array(
 				'item'=>'.fp_res_t2',
 				'css'=>'color:#$',
-				'var'=>'fc_res4',	'default'=>'ffffff'
+				'var'=>'fc_res4', 'default'=>'ffffff'
 			),array(
 				'item'=>'.fp_res_t2',
 				'css'=>'font-size:$',
-				'var'=>'fs_res4',	'default'=>'14px'
+				'var'=>'fs_res4', 'default'=>'14px'
 			),array(
 				'item'=>'.fpres_bg',
 				'multicss'=>array(
-					array('css'=>'background-color:#$', 'var'=>'fp_res_formbd_bgc',	'default'=>'8a2945'),	
-				)	
+					array('css'=>'background-color:#$', 'var'=>'fp_res_formbd_bgc',	'default'=>'FFFFFF'),
+				)
 			),array(
 				'item'=>'.form_section_2 #fp_reservation_submit',
 				'multicss'=>array(
-					array('css'=>'background-color:#$', 'var'=>'fp_res_btn_bgc',	'default'=>'8a2945'),	
-					array('css'=>'color:#$', 'var'=>'fp_res_btn_text',	'default'=>'ffffff'),	
+					array('css'=>'background-color:#$', 'var'=>'fp_res_btn_bgc', 'default'=>'8a2945'),
+					array('css'=>'color:#$', 'var'=>'fp_res_btn_text',	'default'=>'FFFFFF'),
 				)	
 			),array(
 				'item'=>'#fp_make_res .reservation_section input, #fp_make_res .reservation_section textarea, #fp_make_res .reservation_section select, .form_section_1 p select option, .form_section_2 p select option',
 				'multicss'=>array(
-					array('css'=>'background-color:#$', 'var'=>'fp_res_formbd_fields',	'default'=>'A54460'),	
-					array('css'=>'color:#$', 'var'=>'fp_res_formbd_fieldtext',	'default'=>'FFFFFF'),	
-					array('css'=>'border-color:#$', 'var'=>'fp_res_formbd_fieldborder',	'default'=>'8A2945'),	
+					array('css'=>'background-color:#$', 'var'=>'fp_res_formbd_fields', 'default'=>'FFFFFF'),
+					array('css'=>'color:#$', 'var'=>'fp_res_formbd_fieldtext', 'default'=>'3b3b3b'),
+					array('css'=>'border-color:#$', 'var'=>'fp_res_formbd_fieldborder',	'default'=>'c4c4c4'),
 				)	
 			)
 
 			// input placeholder color
 			,array(
-				'item'=>'.form_section_2 input::-webkit-input-placeholder, .form_section_1 input::-webkit-input-placeholder','css'=>'color:#$','var'=>'fp_res_formbd_fieldplaceholder',	'default'=>'ffffff'
+				'item'=>'.form_section_2 input::-webkit-input-placeholder, .form_section_1 input::-webkit-input-placeholder','css'=>'color:#$','var'=>'fp_res_formbd_fieldplaceholder',	'default'=>'c4c4c4'
 			),array(
-				'item'=>'.form_section_2 input:-moz-input-placeholder, .form_section_1 input:-moz-input-placeholder','css'=>'color:#$','var'=>'fp_res_formbd_fieldplaceholder',	'default'=>'ffffff'
+				'item'=>'.form_section_2 input:-moz-input-placeholder, .form_section_1 input:-moz-input-placeholder','css'=>'color:#$','var'=>'fp_res_formbd_fieldplaceholder',	'default'=>'c4c4c4'
 			),array(
-				'item'=>'.form_section_2 input::-moz-input-placeholder, .form_section_1 input::-moz-input-placeholder','css'=>'color:#$','var'=>'fp_res_formbd_fieldplaceholder',	'default'=>'ffffff'
+				'item'=>'.form_section_2 input::-moz-input-placeholder, .form_section_1 input::-moz-input-placeholder','css'=>'color:#$','var'=>'fp_res_formbd_fieldplaceholder',	'default'=>'c4c4c4'
 			),array(
-				'item'=>'.form_section_2 input:-ms-input-placeholder, .form_section_1 input:-ms-input-placeholder','css'=>'color:#$','var'=>'fp_res_formbd_fieldplaceholder',	'default'=>'ffffff'
+				'item'=>'.form_section_2 input:-ms-input-placeholder, .form_section_1 input:-ms-input-placeholder','css'=>'color:#$','var'=>'fp_res_formbd_fieldplaceholder',	'default'=>'c4c4c4'
 			)
 
 			// permalink color
 			,array(
-				'item'=>'#fp_make_res .terms a','css'=>'color:#$','var'=>'fp_res_links',	'default'=>'ffffff'
+				'item'=>'#fp_make_res .terms a','css'=>'color:#$','var'=>'fp_res_links',	'default'=>'8a2945'
 			)
 
 			,array(
@@ -242,7 +242,7 @@
 				'var'=>'fp_res_formbd_bgcS',	'default'=>'7A9E6B'
 			),array(
 				'item'=>'#fp_make_res','css'=>'color:#$',
-				'var'=>'fp_res_form_genfont',	'default'=>'ffffff'
+				'var'=>'fp_res_form_genfont',	'default'=>'3b3b3b'
 			),
 			
 

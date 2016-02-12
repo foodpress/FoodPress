@@ -1274,22 +1274,22 @@
 		}
 		#fp_make_res .form_message .fp_res_success{display: none;}
 
-		.fp_res_success_icon:before{
-			content: '';
-			display: block;
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			margin: -5px 0 0 -6px;
-			height: 4px;
-			width: 8px;
-			border: solid #fff;
-			border-width: 0 0 4px 4px;
-			-webkit-transform: rotate(-45deg);
-			-moz-transform: rotate(-45deg);
-			-ms-transform: rotate(-45deg);
-			-o-transform: rotate(-45deg);
-			transform: rotate(-45deg);
+		.fp_res_success_icon:before {
+		    content: '';
+		    display: block;
+		    position: absolute;
+		    top: 50%;
+		    left: 50%;
+		    margin: -7px 0 0 -10px !important;
+		    height: 10px !important;
+		    width: 18px !important;
+		    border: solid #fff;
+		    border-width: 0 0 4px 4px;
+		    -webkit-transform: rotate(-45deg);
+		    -moz-transform: rotate(-45deg);
+		    -ms-transform: rotate(-45deg);
+		    -o-transform: rotate(-45deg);
+		    transform: rotate(-45deg);
 		}
 		.fp_res_success_icon{
 			position: relative;

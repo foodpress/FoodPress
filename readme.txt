@@ -17,6 +17,10 @@ FoodPress is a complete restaurant menu management system that allow you to crea
 
 == Changelog ==
 
+= 1.3.4.1 (2016-2-12)
+FIXED: Reservation input field color not saving in backend
+FIXED: Reservation success message checkmark not displaying icon
+
 = 1.3.4 (2016-2-12) =
 FIXED: Errors occuring when viewing details of updates
 
