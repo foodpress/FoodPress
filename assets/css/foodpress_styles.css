@@ -1135,16 +1135,16 @@
 		#fp_make_res.onpage #fp_close{display: none;}
 		#fp_make_res.onpage .divider{border:1px dashed #3d3d3d;}
 		#fp_make_res.onpage .form_section_1 p input, #fp_make_res.onpage .form_section_1 p select{
-			color: #ffffff;
+			color: #3b3b3b;
 			border:1px solid #D0D0D0;
 		}
 		#fp_make_res.onpage .form_section_2 input, #fp_make_res.onpage .form_section_2 select, #fp_make_res.onpage .form_section_2 textarea{
-			color: #ffffff;
+			color: #3b3b3b;
 			border:1px solid #D0D0D0;
 		}		
 		.form_section_2 input::-webkit-input-placeholder,
 		.form_section_2 textarea::-webkit-input-placeholder{
-			color: #ffffff;
+			color: #C4C4C4;
 		}
 
 		#fp_make_res.onpage .form_section_2 #fp_reservation_submit{
