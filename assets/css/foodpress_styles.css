@@ -1351,9 +1351,12 @@
 			-webkit-transition: all 0.2s ease-in-out;
 		}
 		#fp_make_res #fp_close:hover{opacity: 1}
-		#fp_make_res #fp_close{
-			right:0; left: auto;background-color: transparent;
-			opacity: 0.3; color: #fff;
+		#fp_make_res #fp_close {
+		    right: 0;
+		    left: auto;
+		    background-color: transparent;
+		    opacity: 0.5;
+		    color: #848484;
 		}
 	/* submit button */
 		.fp_res_cf .bottom_step{text-align: center; padding: 15px 0;}
