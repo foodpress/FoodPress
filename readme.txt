@@ -16,6 +16,8 @@ FoodPress is a complete restaurant menu management system that allow you to crea
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
+= 1.3.5 (2016-) =
+FIXED: Plugin name passed incorrect in gihub updater for new update infor window
 
 = 1.3.4.1 (2016-2-12)
 FIXED: Reservation input field color not saving in backend
