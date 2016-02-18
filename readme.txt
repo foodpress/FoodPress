@@ -5,7 +5,7 @@ Author URI: http://www.myfoodpress.com/
 Tags: restaurants, menu, food, eating, menu management
 Requires at least: 3.8
 Tested up to: 4.4.2
-Stable tag: 1.3.2
+Stable tag: 1.3.4
 
 == Description ==
 FoodPress is a complete restaurant menu management system that allow you to create various menus with categorizations and more.
@@ -18,6 +18,7 @@ FoodPress is a complete restaurant menu management system that allow you to crea
 == Changelog ==
 = 1.3.5 (2016-) =
 FIXED: Plugin name passed incorrect in gihub updater for new update infor window
+FIXED: Boxed Menu layout collapse when navigating back to menu
 
 = 1.3.4.1 (2016-2-12)
 FIXED: Reservation input field color not saving in backend
