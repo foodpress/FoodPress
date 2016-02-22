@@ -77,7 +77,7 @@ class fp_Admin {
 			$this->verify_plugin_version();
 				
 			if ( $typenow == 'post' && ! empty( $_GET['post'] ) ) {
-				$typenow = $post->post_type;
+//				$typenow = $post->post_type;
 			} elseif ( empty( $typenow ) && ! empty( $_GET['post'] ) ) {
 		        $post = get_post( $_GET['post'] );
 		        $typenow = $post->post_type;
@@ -204,7 +204,7 @@ class fp_Admin {
 			global $foodpress, $pagenow, $typenow;
 
 			if ( $typenow == 'post' && ! empty( $_GET['post'] ) ) {
-				$typenow = $post->post_type;
+//				$typenow = $post->post_type;
 			} elseif ( empty( $typenow ) && ! empty( $_GET['post'] ) ) {
 		        $post = get_post( $_GET['post'] );
 		        $typenow = $post->post_type;

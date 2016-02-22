@@ -33,7 +33,7 @@ class foodpress_reservation_metaboxes {
 	function translation_mangler($translation, $text, $domain) {
         global $post, $typenow;
         if ( $typenow == 'post' && ! empty( $_GET['post'] ) ) {
-			$typenow = $post->post_type;
+//			$typenow = $post->post_type;
 		} elseif ( empty( $typenow ) && ! empty( $_GET['post'] ) ) {
 	        $post = get_post( $_GET['post'] );
 	        $typenow = $post->post_type;

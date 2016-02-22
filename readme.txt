@@ -1,11 +1,11 @@
 === FoodPress ===
 Contributors: Ashan Jay & Michael Gamble
-Plugin Name: FoodPress
+Plugin Name: foodPress
 Author URI: http://www.myfoodpress.com/
 Tags: restaurants, menu, food, eating, menu management
 Requires at least: 3.8
 Tested up to: 4.4.2
-Stable tag: 1.3.4
+Stable tag: 1.3.5
 
 == Description ==
 FoodPress is a complete restaurant menu management system that allow you to create various menus with categorizations and more.
@@ -16,20 +16,22 @@ FoodPress is a complete restaurant menu management system that allow you to crea
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
-= 1.3.5 (2016-) =
-FIXED: Plugin name passed incorrect in gihub updater for new update infor window
-FIXED: Boxed Menu layout collapse when navigating back to menu
+
+= 1.3.5 (2016-2-22) =
+FIXED: Shortcode Generator now working for Divi/Avada Themes
+FIXED: Plugin name passed incorrect in github updater for new update information window
+FIXED: Boxed Menu layout now collapsing properly when navigating back to menu
 
 = 1.3.4.1 (2016-2-12)
 FIXED: Reservation input field color not saving in backend
-FIXED: Reservation success message checkmark not displaying icon
+FIXED: Reservation success message check mark not displaying icon
 
 = 1.3.4 (2016-2-12) =
-FIXED: Errors occuring when viewing details of updates
+FIXED: Errors occurring when viewing details of updates
 
 = 1.3.3 (2016-2-12) =
 FIXED: Dish type not working with old shortcode
-FIXED: Errors occuring after auto-updating
+FIXED: Errors occurring after auto-updating
 
 = 1.3.2 (2016-2-10) =
 ADDED: Styles for Menu Descriptions for Headings, Lists, etc. within WYSIWYG editor

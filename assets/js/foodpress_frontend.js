@@ -86,16 +86,15 @@ jQuery(document).ready(function($){
 				fp_content.find('.fp_category_subtitle').html( obj.attr('data-name') );
 			});
 
-		// going back to categories EDITED Feb 18th 2016 with FIX Contribution from @prcoles
+		// going back to categories
 			$('.box_cats').on('click', '.fp_backto_cats' , function(){
-			$(this).closest('.fp_categories_holder').animate({'margin-left':0}, function(){
-			$(this).parent().find('.fp_container').hide();
-			});
-
-			var pc_elements = this.parentNode.querySelectorAll('.foodpress_tab_content');
-			for (var pc_loopcount = 0; pc_loopcount < pc_elements.length; pc_loopcount++) {
-			pc_elements[pc_loopcount].style.display = 'none';
-			}
+				$(this).closest('.fp_categories_holder').animate({'margin-left':0}, function(){
+					$(this).parent().find('.fp_container').hide();
+				});
+				var pc_elements = this.parentNode.querySelectorAll(".foodpress_tab_content");
+				for (var pc_loopcount = 0; pc_loopcount < pc_elements.length; pc_loopcount++) {
+					pc_elements[pc_loopcount].style.display = 'none';
+				}
 			});
 
 		// responsive boxes

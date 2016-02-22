@@ -1135,21 +1135,21 @@
 		#fp_make_res.onpage #fp_close{display: none;}
 		#fp_make_res.onpage .divider{border:1px dashed #3d3d3d;}
 		#fp_make_res.onpage .form_section_1 p input, #fp_make_res.onpage .form_section_1 p select{
-			color: #3b3b3b;
+			color: #ffffff;
 			border:1px solid #D0D0D0;
 		}
 		#fp_make_res.onpage .form_section_2 input, #fp_make_res.onpage .form_section_2 select, #fp_make_res.onpage .form_section_2 textarea{
-			color: #3b3b3b;
+			color: #ffffff;
 			border:1px solid #D0D0D0;
 		}		
 		.form_section_2 input::-webkit-input-placeholder,
 		.form_section_2 textarea::-webkit-input-placeholder{
-			color: #C4C4C4;
+			color: #ffffff;
 		}
 
 		#fp_make_res.onpage .form_section_2 #fp_reservation_submit{
 			background-color: #7a2662;
-			color: #ffffff;
+			color: #fff;
 		}
 		#fp_make_res.onpage .form_message .error{
 			color: #fff;
@@ -1274,22 +1274,22 @@
 		}
 		#fp_make_res .form_message .fp_res_success{display: none;}
 
-		.fp_res_success_icon:before {
-		    content: '';
-		    display: block;
-		    position: absolute;
-		    top: 50%;
-		    left: 50%;
-		    margin: -7px 0 0 -10px !important;
-		    height: 10px !important;
-		    width: 18px !important;
-		    border: solid #fff;
-		    border-width: 0 0 4px 4px;
-		    -webkit-transform: rotate(-45deg);
-		    -moz-transform: rotate(-45deg);
-		    -ms-transform: rotate(-45deg);
-		    -o-transform: rotate(-45deg);
-		    transform: rotate(-45deg);
+		.fp_res_success_icon:before{
+			content: '';
+			display: block;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			margin: -5px 0 0 -6px;
+			height: 4px;
+			width: 8px;
+			border: solid #fff;
+			border-width: 0 0 4px 4px;
+			-webkit-transform: rotate(-45deg);
+			-moz-transform: rotate(-45deg);
+			-ms-transform: rotate(-45deg);
+			-o-transform: rotate(-45deg);
+			transform: rotate(-45deg);
 		}
 		.fp_res_success_icon{
 			position: relative;
@@ -1351,12 +1351,9 @@
 			-webkit-transition: all 0.2s ease-in-out;
 		}
 		#fp_make_res #fp_close:hover{opacity: 1}
-		#fp_make_res #fp_close {
-		    right: 0;
-		    left: auto;
-		    background-color: transparent;
-		    opacity: 0.5;
-		    color: #848484;
+		#fp_make_res #fp_close{
+			right:0; left: auto;background-color: transparent;
+			opacity: 0.3; color: #fff;
 		}
 	/* submit button */
 		.fp_res_cf .bottom_step{text-align: center; padding: 15px 0;}

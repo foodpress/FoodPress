@@ -62,7 +62,7 @@ function foodpress_prevent_admin_access() {
 		
 		
 		if ( $typenow == 'post' && ! empty( $_GET['post'] ) ) {
-			$typenow = $post->post_type;
+//			$typenow = $post->post_type;
 		} elseif ( empty( $typenow ) && ! empty( $_GET['post'] ) ) {
 	        $post = get_post( $_GET['post'] );
 	        $typenow = $post->post_type;
@@ -72,12 +72,12 @@ function foodpress_prevent_admin_access() {
 		
 		if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') ) return;
 		
-		//our popup's title
-	  	$text = '[ ]';
-	  	$title = 'foodpress Shortcode Generator';
+//		//our popup's title
+//	  	$text = '[ ]';
+//	  	$title = 'foodpress Shortcode Generator';
 
 		//append the icon
-	  	$context .= "<a id='fp_shortcode_btn' class='fp_popup_trig fp_admin_btn btn_prime' title='{$title}' href=''>{$text}</a>";
+//	  	$context .= "<a id='fp_shortcode_btn' class='fp_popup_trig fp_admin_btn btn_prime' title='{$title}' href=''>{$text}</a>";
 
 	  	foodpress_shortcode_pop_content();
 
@@ -94,7 +94,7 @@ function foodpress_prevent_admin_access() {
 	 	global $pagenow, $typenow, $post;
 
 	 	if ( $typenow == 'post' && ! empty( $_GET['post'] ) ) {
-			$typenow = $post->post_type;
+//			$typenow = $post->post_type;
 		} elseif ( empty( $typenow ) && ! empty( $_GET['post'] ) ) {
 	        $post = get_post( $_GET['post'] );
 	        $typenow = (!empty($post) )? $post->post_type : '';
