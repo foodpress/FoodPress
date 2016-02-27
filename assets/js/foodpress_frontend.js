@@ -1,7 +1,7 @@
 /**
  * FoodPress front-end javascript
  *
- * @version  1.3.2
+ * @version  1.3.5
  * @author AJDE & Michael Gamble
  */
 jQuery(document).ready(function($){
@@ -245,7 +245,7 @@ jQuery(document).ready(function($){
 
 				$('body').find('.fp_make_res.popup').fadeIn().addClass('open');
 				$('.fpres_bg').fadeIn();
-				$('html, body').animate({scrollTop:0});
+				//$('html, body').animate({scrollTop:0});
 				$('.fp_res_success').hide();
 			});
 
@@ -449,7 +449,7 @@ jQuery(document).ready(function($){
 
 				        		form.find('.reservation_section').slideUp(function(){
 				        			$('.fp_res_success').slideDown(400);
-				        			$('html, body').animate({scrollTop:0});
+				        			//$('html, body').animate({scrollTop:0});
 				        			if(onpage)
 				        				form.addClass('success');
 				        		});
@@ -527,7 +527,7 @@ jQuery(document).ready(function($){
 	        // autoHideDialCode: false,
 	        autoPlaceholder: true,
 	        // dropdownContainer: "body",
-	        // excludeCountries: ["us"],
+	        // excludeCountries: ["us, sg, de"],
 	       geoIpLookup: function(callback) {
 	       $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
 	        var countryCode = (resp && resp.country) ? resp.country : "";
@@ -537,7 +537,7 @@ jQuery(document).ready(function($){
 	        // initialCountry: "auto",
 	        // nationalMode: false,
 	        numberType: "MOBILE",
-	        // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
+	        //onlyCountries: ['us, sg, de'],
 	        // preferredCountries: ['cn', 'jp']
 	      });
 
