@@ -18,6 +18,7 @@ class foodpress_github_updater {
     private $accessToken; // GitHub private repo token
     private $pluginActivated; // is plugin activated
     private $changeLog; // store for all git change logs
+    private $url; // url for github repo
  
     private $test;
 
@@ -31,6 +32,7 @@ class foodpress_github_updater {
         add_filter("upgrader_post_install", array($this, "postInstall"), 10, 3); 
 
         $this->repo = $gitHubProjectName;
+        $this->url = "https://api.github.com/repos/{$this->repo}/releases";
     }
  
     // Get information regarding our plugin from WordPress
@@ -45,12 +47,14 @@ class foodpress_github_updater {
 		if (!empty($this->githubAPIResult)) {
 		    return;
 		}
-		// Query the GitHub API
-		$url = "https://api.github.com/repos/{$this->repo}/releases";
 		 
+		$this->getInfoFromGitHub();
+    }
+ 
+    public function getInfoFromGitHub($latestOnly = false){
 		// We need the access token for private repos
 		if (!empty($this->accessToken)) {
-		    $url = add_query_arg(array("access_token" => $this->accessToken), $url);
+		    $url = add_query_arg(array("access_token" => $this->accessToken), $this->url);
 		}
 
 		// Get the results
@@ -68,6 +72,9 @@ class foodpress_github_updater {
 					if ($latest_result == null) { 
 						$this->changeLog .= " - " . $result->tag_name . " - " . $result->name . "\n" . $result->body . "\n";
 						$latest_result = $result;
+						if ($latestOnly) {
+							return $result;
+						}
 						$this->changeLog .= "# Previous Updates\n";
 					} else {
 						$this->changeLog .= "## " . $result->tag_name . " - " . $result->name . "\n" . $result->body . "\n";
@@ -76,6 +83,9 @@ class foodpress_github_updater {
 			}
 		}
 		if ($latest_result != null) { $this->githubAPIResult = $latest_result; }
+
+		// Return the info incase it is being called outside of the class
+		return $this->githubAPIResult;
     }
  
     // Push in plugin version information to get the update notification

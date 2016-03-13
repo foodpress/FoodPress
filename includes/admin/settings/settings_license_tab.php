@@ -17,8 +17,8 @@
 			if(isset($_GET['lic']) && $_GET['lic']=='remove')
 				delete_option('_fp_licenses');
 
-			$fp_licenses = get_option('_fp_licenses');		
-			
+			$fp_licenses = get_option('_fp_licenses');
+
 			// running for the first time
 			if(empty($fp_licenses)){
 				
@@ -40,8 +40,9 @@
 				foreach($fp_licenses as $slug=>$fpl){
 					
 					// new version text
+					$latest_release_info = $foodpress->fp_updater->getInfoFromGitHub(true);
 					$new_update_text = (!empty($fpl['has_new_update']) && $fpl['has_new_update'])?
-						"<span class='version remote' title='There is a newer version of foodpress available now!'>".$fpl['remote_version']."<em>Latest version</em></span>":null;
+						"<span class='version remote' title='There is a newer version of foodpress available now!'>".$latest_release_info->tag_name."<em>Latest version</em></span>":null;
 					
 					// if activated already
 					if($fpl['status']=='active'){
@@ -53,7 +54,7 @@
 						
 						echo "
 						<p class='versions'>
-							<span class='version'>{$fpl['current_version']}<em>Your Version</em></span>".$new_update_text."	
+							<span class='version'>{$foodpress->version}<em>Your Version</em></span>".$new_update_text."	
 						</p>
 						<p style='font-style:italic'>INTO: You have successfully activated this license on this website. You will need a seperate license to activate FoodPress for another site. With foodpress 1.3.2 you should be able to auto update foodpress from here on out :)</p>
 						<p class='clear padb10'></p>
@@ -69,7 +70,7 @@
 													
 						echo "
 						<p class='versions'>
-							<span class='version'>{$fpl['current_version']}<em>Your version</em></span>".$new_update_text."	
+							<span class='version'>{$foodpress->version}<em>Your version</em></span>".$new_update_text."	
 						</p>
 						<p class='clear padb10'></p>
 						
