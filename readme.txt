@@ -16,6 +16,8 @@ FoodPress is a complete restaurant menu management system that allow you to crea
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
+= 1.3.6 (2016
+
 
 = 1.3.5 (2016-2-22) =
 FIXED: Shortcode Generator now working for Divi/Avada Themes

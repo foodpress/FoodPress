@@ -1290,6 +1290,8 @@
 			-ms-transform: rotate(-45deg);
 			-o-transform: rotate(-45deg);
 			transform: rotate(-45deg);
+			box-sizing:initial;
+			-webkit-box-sizing:initial;
 		}
 		.fp_res_success_icon{
 			position: relative;
