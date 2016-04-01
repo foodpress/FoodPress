@@ -17,7 +17,8 @@ FoodPress is a complete restaurant menu management system that allow you to crea
 
 == Changelog ==
 = 1.3.6 (2016
-
+FIXED: In safari reservation time passing incorrectly
+FIXED: reservation start time change not updating end time
 
 = 1.3.5 (2016-2-22) =
 FIXED: Shortcode Generator now working for Divi/Avada Themes

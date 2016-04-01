@@ -372,28 +372,35 @@ class foodpress_reservations {
 
 					<p class='time' data-type='<?php echo ($multi_times_boxes)? 'multi':'';?>'><span><?php echo $this->get_lang($opt, 'fp_lang_resform_A4', 'Time'); ?></span>
 						<?php
+							
+							// get the incremental time array
+							$timeItems = foodpress_get_times($__time_incre, $__time_start, $__time_end);
+							
+
 							// if show both start and end time slots
-							if( $multi_times_boxes):	?>
+							if( $multi_times_boxes):	
+
+							?>
 
 								<select name="time" class="fpres_time_range resinput req fp_res_short_input fp_res_input_icon_clock"  id="fp_res_time_start"><?php
-								foreach(foodpress_get_times($__time_incre) as $time){
+								foreach($timeItems as $time){
 									echo "<option value='{$time}'>{$time}</option>";
 								}
 								?></select>
 								<select name="end_time" class="fpres_time_range resinput req fp_res_short_input fp_res_input_icon_clock"  id="fp_res_time_end"><?php
-								foreach(foodpress_get_times($__time_incre) as $time){
+								foreach($timeItems as $time){
 									echo "<option value='{$time}'>{$time}</option>";
 								}
 								?></select>
 
 								<?php /*
-								<input class='resinput req fp_res_short_input fp_res_input_icon_clock' type="text" name="time" size="30" value="" id="fp_res_time" placeholder="<?php echo (!empty($opt6['fpr_24hr']) &&  $opt6['fpr_24hr']=='yes')? 'eg. 13:00':'eg. 1:00pm';?>" autocomplete="off" readonly='true'>
-								<input class='resinput req fp_res_short_input fp_res_input_icon_clock' type="text" name="end_time" size="30" value="" id="fp_res_time" placeholder="<?php echo (!empty($opt6['fpr_24hr']) &&  $opt6['fpr_24hr']=='yes')? 'eg. 13:00':'eg. 1:00pm';?>" autocomplete="off">
+									<input class='resinput req fp_res_short_input fp_res_input_icon_clock' type="text" name="time" size="30" value="" id="fp_res_time" placeholder="<?php echo (!empty($opt6['fpr_24hr']) &&  $opt6['fpr_24hr']=='yes')? 'eg. 13:00':'eg. 1:00pm';?>" autocomplete="off" readonly='true'>
+									<input class='resinput req fp_res_short_input fp_res_input_icon_clock' type="text" name="end_time" size="30" value="" id="fp_res_time" placeholder="<?php echo (!empty($opt6['fpr_24hr']) &&  $opt6['fpr_24hr']=='yes')? 'eg. 13:00':'eg. 1:00pm';?>" autocomplete="off">
 								*/?>
 						<?php	else:	?>
 
 							<select name="time" class="fpres_time_range resinput req fp_res_short_input fp_res_input_icon_clock"  id="fp_res_time"><?php
-							foreach(foodpress_get_times($__time_incre) as $time){
+							foreach($timeItems as $time){
 								echo "<option value='{$time}'>{$time}</option>";
 							}
 							?></select>

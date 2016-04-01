@@ -299,13 +299,21 @@ function add_foodpress_menu($atts){
 
 // get times for reservation form time selector
 // interval values, 12 (5), 6(10), 4(15), 2(30), 1(60)
-	function foodpress_get_times($interval=4){	
+	function foodpress_get_times($interval=4, $start='-', $end='-'){	
 		$WP_timeformat = get_option('time_format');
 		$format = (strpos($WP_timeformat, 'H')=== false)?
 			((strpos($WP_timeformat, 'G')=== false)?'12':'24'):'24';
 
 		if($format=='24' ){
+
+			if($start!='-') $startX = explode(':', $start);
+			if($end!='-') $endX = explode(':', $end);
+
 			for($y=0; $y<24; $y++){
+
+				if($start!= '-' && ($y< (int)$startX[0])) continue;
+				if($end!= '-' && ($y>= (int)$endX[0])) continue;
+
 				if($interval==1){
 					$data = sprintf("%02d",$y).':00';
 					$HOURS[$data] = $data;
@@ -318,8 +326,31 @@ function add_foodpress_menu($atts){
 				}				
 			}
 		}else{
+
+			if($start!='-') $startX = explode(':',date('g:a', strtotime($start)));
+			if($end!='-') $endX = explode(':',date('g:a', strtotime($end)));
+
 			foreach(array('am','pm') as $AMPM){
+
+				if($start!='-'&& $AMPM =='am' && $startX[1]=='pm' ) continue;
+				
 				for($y=1; $y<13; $y++){
+
+					if($start!= '-' && 
+						( ($AMPM =='am' && $startX[1]=='pm') || 
+							($AMPM == $startX[1] && $y< (int)$startX[0])
+						)
+					) 
+						continue;
+
+					if($end!= '-' && 
+						( ($AMPM =='pm' && $endX[1]=='am') || 
+							($AMPM == $endX[1] && $y>= (int)$endX[0])
+						)
+					) 
+						continue;
+
+
 					$AMPM = ($y==12)? (($AMPM=='am')?'pm':'am'): $AMPM;
 					for($z=0; $z<$interval; $z++){
 						$min = sprintf("%02d",(60/$interval)*$z);

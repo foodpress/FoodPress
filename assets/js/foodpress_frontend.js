@@ -263,49 +263,61 @@ jQuery(document).ready(function($){
 
 					OBJ.val(START);
 				}
-
-				if( OBJ.attr('id')=='fp_res_time_start'){
-					OBJ.on('change',function(){
-						//console.log('t');
-						VAL = OBJ.val();
-						OBJ.next().find('option').show();
-						OBJ.next().find('option[value="'+VAL+'"]').prevAll().wrap( '<span style="display: none;" />' );
-						OBJ.next().val(VAL);
-					});
-				}
 			});
 
-			// for each reservation lightbox
-				$('body').find('.fp_make_res').each(function(){
-					lightbox = $(this);
-					topsection = lightbox.find('.fpres_form_datetime');
+		// on changing time picker
+		// @version 1.3.6
+			$('body').on('change','.fpres_time_range', function(){
+				OBJ = $(this);
+				var step = OBJ.closest('.step');
+				if(step.attr('data-restrict')!='yes') return;
 
-					// date picker
-					var dateformat__ = topsection.attr('data-dateformat');
-					date_format = (typeof dateformat__ !== 'undefined' && dateformat__ !== false)?
-						dateformat__: 'dd/mm/yy';
+				if(OBJ.attr('id') != 'fp_res_time_start') return;
 
-					// start date range
-					var blk24 = lightbox.attr('data-blk24')
-					minDate = (blk24=='1')? '+1':'0';
+				VAL = OBJ.val();
+				//console.log(VAL);
+				END = OBJ.next();
 
-					// reserverable dates
-					unres_ar = [];
-					lightbox.find('#fp_unres i').each(function(){
-						unres_ar.push( $(this).html() );
-					});
+				//END.find('option').show();
+				END.find('option').each(function(){
+					if($(this).parent().is('span') )
+						$(this).unwrap();
+				});
+				
+				END.find('option[value="'+VAL+'"]').prevAll().
+				wrap( '<span style="display: none;"></span>' );
+				END.val(VAL);
+			});
 
-					lightbox.find( "#fp_res_date" ).datepicker({
-						dateFormat: date_format,
-						minDate:minDate,
-						beforeShowDay: function(date){
-					        var string = $.datepicker.formatDate('yy-mm-dd', date);
-					        return [ unres_ar.indexOf(string) == -1 ]
-					    }
-					});
+		// for each reservation lightbox
+			$('body').find('.fp_make_res').each(function(){
+				lightbox = $(this);
+				topsection = lightbox.find('.fpres_form_datetime');
+
+				// date picker
+				var dateformat__ = topsection.attr('data-dateformat');
+				date_format = (typeof dateformat__ !== 'undefined' && dateformat__ !== false)?
+					dateformat__: 'dd/mm/yy';
+
+				// start date range
+				var blk24 = lightbox.attr('data-blk24')
+				minDate = (blk24=='1')? '+1':'0';
+
+				// reserverable dates
+				unres_ar = [];
+				lightbox.find('#fp_unres i').each(function(){
+					unres_ar.push( $(this).html() );
 				});
 
-
+				lightbox.find( "#fp_res_date" ).datepicker({
+					dateFormat: date_format,
+					minDate:minDate,
+					beforeShowDay: function(date){
+				        var string = $.datepicker.formatDate('yy-mm-dd', date);
+				        return [ unres_ar.indexOf(string) == -1 ]
+				    }
+				});
+			});
 
 		// hide form clicking outside of it and resetting to beginning
 			$('.fpres_bg').on('click',function(){
@@ -377,7 +389,7 @@ jQuery(document).ready(function($){
 				    		party.addClass('error');
 				    	}
 				    // validate phone number
-				    /*
+				    	/*
 				    	phone = form.find('.fp_resform_phone');
 				    	if(phone.length>0){
 				    		pattern = phone.attr('pattern');
@@ -403,7 +415,14 @@ jQuery(document).ready(function($){
 				    	if(thisO.hasClass('check')){
 				    		ajaxdataa[ thisO.attr('name')] = (thisO.is(':checked'))?'yes':'no';
 				    	}else{
-				    		ajaxdataa[ thisO.attr('name')] = encodeURIComponent(thisO.val());
+
+				    		if(thisO.attr('name')=='end_time' || thisO.attr('name')=='time'){
+				    			VAL = thisO.find('option:selected').attr('value');
+				    			ajaxdataa[ thisO.attr('name')] = encodeURIComponent(VAL);
+				    		}else{
+				    			ajaxdataa[ thisO.attr('name')] = encodeURIComponent(thisO.val());
+				    		}
+				    		
 				    	}
 				    });
 
