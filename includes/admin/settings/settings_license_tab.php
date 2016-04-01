@@ -40,9 +40,13 @@
 				foreach($fp_licenses as $slug=>$fpl){
 					
 					// new version text
+					$localpluginVersion = $foodpress->version;					
 					$latest_release_info = $foodpress->fp_updater->getInfoFromGitHub(true);
+					$remoteVersion = $latest_release_info->tag_name;
+					// should compare versions and check for update here.
+
 					$new_update_text = (!empty($fpl['has_new_update']) && $fpl['has_new_update'])?
-						"<span class='version remote' title='There is a newer version of foodpress available now!'>".$latest_release_info->tag_name."<em>Latest version</em></span>":null;
+						"<span class='version remote' title='There is a newer version of foodpress available now!'>".$latest_release_info."<em>Latest version</em></span>":null;
 					
 					// if activated already
 					if($fpl['status']=='active'){
@@ -56,7 +60,7 @@
 						<p class='versions'>
 							<span class='version'>{$foodpress->version}<em>Your Version</em></span>".$new_update_text."	
 						</p>
-						<p style='font-style:italic'>INTO: You have successfully activated this license on this website. You will need a seperate license to activate FoodPress for another site. With foodpress 1.3.2 you should be able to auto update foodpress from here on out :)</p>
+						<p style='font-style:italic'>INTO: You have successfully activated this license on this website. You will need a seperate license to activate FoodPress for another site.</p>
 						<p class='clear padb10'></p>
 							
 						<p>".$new_update_details_btn." <a href='". $admin_url."admin.php?page=foodpress&tab=food_5&lic=remove' class='fp_admin_btn btn_noBG'>Remove License</a></p>";

@@ -227,6 +227,8 @@ class foodpress_settings_settings{
 		function appearnace(){
 			return apply_filters('foodpress_settings_appearances', 
 				array(
+					
+					array('id'=>'NOTE','type'=>'note','name'=>sprintf(__('NOTE: Once you make changed to appearance make sure to clear browser and website cache to see results.<br/>If you can not find appearance for items you want to change.. <a target="_blank" href="%s">See how you can add custom styles to change additional appearances</a>','foodpress'), 'http://myfoodpress.com/documents/override-css-foodpress-menu/'), 'default'=>'menu'),
 					array('id'=>'fc_mcolor','type'=>'multicolor','name'=>'Multiple colors',
 						'variations'=>array(
 							array('id'=>'fc_1', 'default'=>'955181', 'name'=>'Primary color'),
@@ -374,8 +376,9 @@ class foodpress_settings_settings{
 					
 					array('id'=>'fp_res_formbd','type'=>'fontation','name'=>'Reservation Background',
 						'variations'=>array(
-							array('id'=>'fp_res_formbd_bgc', 'type'=>'color', 'title'=>'Default Background Color', 'default'=>'8a2945'),
-							array('id'=>'fp_res_formbd_bgcS', 'type'=>'color', 'title'=>'Success Stage Background Color', 'default'=>'7A9E6B'),						
+							array('id'=>'fp_res_formbd_bgc', 'type'=>'color', 'title'=>'(LightBox) Default Background Color', 'default'=>'8a2945'),
+							array('id'=>'fp_res_formbd_bgcS', 'type'=>'color', 'title'=>'(LightBox) Success Stage Background Color', 'default'=>'7A9E6B'),						
+							array('id'=>'fp_res_formbd_bgcS_ONP', 'type'=>'color', 'title'=>'(OnPage Form) Background Color', 'default'=>'ffffff'),						
 						)
 					),
 

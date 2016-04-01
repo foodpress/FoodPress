@@ -213,7 +213,7 @@
 					array('css'=>'color:#$', 'var'=>'fp_res_btn_text',	'default'=>'ffffff'),	
 				)	
 			),array(
-				'item'=>'#fp_make_res .reservation_section input, #fp_make_res .reservation_section textarea, #fp_make_res .reservation_section select, .form_section_1 p select option, .form_section_2 p select option',
+				'item'=>'#fp_make_res .reservation_section input, #fp_make_res .reservation_section textarea, #fp_make_res.onpage .reservation_section input, #fp_make_res.onpage .reservation_section textarea, #fp_make_res .reservation_section select, .form_section_1 p select option, .form_section_2 p select option',
 				'multicss'=>array(
 					array('css'=>'background-color:#$', 'var'=>'fp_res_formbd_fields',	'default'=>'A54460'),	
 					array('css'=>'color:#$', 'var'=>'fp_res_formbd_fieldtext',	'default'=>'FFFFFF'),	
@@ -234,15 +234,17 @@
 
 			// permalink color
 			,array(
-				'item'=>'#fp_make_res .terms a','css'=>'color:#$','var'=>'fp_res_links',	'default'=>'ffffff'
+				'item'=>'#fp_make_res .terms a, #fp_make_res.onpage .terms a','css'=>'color:#$','var'=>'fp_res_links',	'default'=>'ffffff'
 			)
-
 			,array(
 				'item'=>'.fpres_bg.success','css'=>'background-color:#$',
 				'var'=>'fp_res_formbd_bgcS',	'default'=>'7A9E6B'
 			),array(
-				'item'=>'#fp_make_res','css'=>'color:#$',
+				'item'=>'#fp_make_res, #fp_make_res.onpage','css'=>'color:#$',
 				'var'=>'fp_res_form_genfont',	'default'=>'ffffff'
+			),array(
+				'item'=>'#fp_make_res.onpage','css'=>'background-color:#$',
+				'var'=>'fp_res_formbd_bgcS_ONP',	'default'=>'ffffff'
 			),
 			
 

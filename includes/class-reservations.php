@@ -375,7 +375,7 @@ class foodpress_reservations {
 							
 							// get the incremental time array
 							$timeItems = foodpress_get_times($__time_incre, $__time_start, $__time_end);
-							
+
 
 							// if show both start and end time slots
 							if( $multi_times_boxes):	
@@ -445,7 +445,7 @@ class foodpress_reservations {
 					?>
 						<p>
 							<label for="phone"><?php echo $this->get_lang($opt, 'fp_lang_resform_004d', 'Phone Number'); ?></label>
-							<input id="fp_phone_" type="tel" name="phone" />
+							<input id="fp_phone_" class='resinput' type="tel" name="phone" />
 							<br>
 							<span id="phone-valid-msg" class="hide">✓ Valid</span>
 							<span id="phone-error-msg" class="hide">Invalid number</span>
