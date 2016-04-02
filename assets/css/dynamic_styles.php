@@ -240,12 +240,17 @@
 				'item'=>'.fpres_bg.success','css'=>'background-color:#$',
 				'var'=>'fp_res_formbd_bgcS',	'default'=>'7A9E6B'
 			),array(
-				'item'=>'#fp_make_res, #fp_make_res.onpage','css'=>'color:#$',
+				'item'=>'#fp_make_res','css'=>'color:#$',
 				'var'=>'fp_res_form_genfont',	'default'=>'ffffff'
 			),array(
 				'item'=>'#fp_make_res.onpage','css'=>'background-color:#$',
 				'var'=>'fp_res_formbd_bgcS_ONP',	'default'=>'ffffff'
-			),
+			),array(
+				'item'=>'#fp_make_res.onpage','css'=>'color:#$',
+				'var'=>'fp_res_form_genfontOP',	'default'=>'717171'
+			),array(
+				'item'=>'#fp_make_res.onpage .terms a','css'=>'color:#$','var'=>'fp_res_linksOP',	'default'=>'C34545'
+			)
 			
 
 

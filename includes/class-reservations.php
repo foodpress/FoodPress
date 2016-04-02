@@ -447,8 +447,8 @@ class foodpress_reservations {
 							<label for="phone"><?php echo $this->get_lang($opt, 'fp_lang_resform_004d', 'Phone Number'); ?></label>
 							<input id="fp_phone_" class='resinput' type="tel" name="phone" />
 							<br>
-							<span id="phone-valid-msg" class="hide">✓ Valid</span>
-							<span id="phone-error-msg" class="hide">Invalid number</span>
+							<span class='resf_phone_valid hide' id="phone-valid-msg" >✓ Valid</span>
+							<span class='resf_phone_valid hide' id="phone-error-msg" >Invalid number</span>
 					<?php endif;
 
 					// Restaurant Location

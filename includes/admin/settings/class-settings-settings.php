@@ -390,9 +390,14 @@ class foodpress_settings_settings{
 							array('id'=>'fp_res_formbd_fieldborder', 'type'=>'color', 'title'=>'Input/textarea Fields Border Color', 'default'=>'8A2945'),	
 							array('id'=>'fp_res_formbd_fieldplaceholder', 'type'=>'color', 'title'=>'Input Placeholder Text Color', 'default'=>'ffffff'),	
 							array('id'=>'fp_res_links', 'type'=>'color', 'title'=>'Permalink Text Color', 'default'=>'ffffff'),	
+							
 						)
 					),
-
+					array('id'=>'fp_res_formtext','type'=>'fontation','name'=>'(OnPage) Form Content',
+						'variations'=>array(							
+							array('id'=>'fp_res_form_genfontOP', 'type'=>'color', 'title'=>'General Text Color', 'default'=>'717171'),
+							array('id'=>'fp_res_linksOP', 'type'=>'color', 'title'=>'Permalink Text Color', 'default'=>'C34545'),	
+					)),
 					array('id'=>'fp_res_btn','type'=>'fontation','name'=>'Reservation Form Button',
 						'variations'=>array(											
 							array('id'=>'fp_res_btn_text', 'type'=>'color', 'title'=>'Button Text Color', 'default'=>'ffffff'),

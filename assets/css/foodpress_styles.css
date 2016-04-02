@@ -1115,6 +1115,7 @@
 			border:1px solid #FF9757
 		}
 		#fp_make_res p, #fp_make_res{line-height: 1.5}
+		.form_section_2 span.resf_phone_valid.hide{display: none;}
 
 	/* onpage reservation form */
 		#fp_make_res.onpage.success{
@@ -1128,6 +1129,7 @@
 		    padding: 25px 15px 35px;
 		    border-radius: 0px;
 		    border: solid 1px #f1f1f1;
+		    z-index: 0;
 		}
 		#fp_make_res.onpage .inside{
 			max-width:100%; width: 90%;
