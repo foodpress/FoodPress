@@ -62,9 +62,23 @@
 	
 
 /* layout */	
+	
 	.food_items_container {
-		overflow:hidden; position:relative;
+		position:relative;
+		overflow: hidden;
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+		}
+	.fp_box.menuItem.c_33.normal_item.style_2 {
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
 	}
+	
 	.food_items_container p, .fp_single_item_box p{margin:0;}
 
 	.primbg{background-color:#792662;}
