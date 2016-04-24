@@ -126,7 +126,7 @@ jQuery(document).ready(function($){
 
 	// close menu popup
 		$('body').on('click', '.fplbclose', function(){
-			closePopup();			
+			closePopup();
 		});
 
 	// close with click outside popup box when pop is shown
@@ -283,7 +283,7 @@ jQuery(document).ready(function($){
 					if($(this).parent().is('span') )
 						$(this).unwrap();
 				});
-				
+
 				END.find('option[value="'+VAL+'"]').prevAll().
 				wrap( '<span style="display: none;"></span>' );
 				END.val(VAL);
@@ -422,7 +422,7 @@ jQuery(document).ready(function($){
 				    		}else{
 				    			ajaxdataa[ thisO.attr('name')] = encodeURIComponent(thisO.val());
 				    		}
-				    		
+
 				    	}
 				    });
 
@@ -536,7 +536,7 @@ jQuery(document).ready(function($){
 	    });
 
 	// Initiate reservation phone number
-		var telInput = $("#fp_phone_");
+		var telInput = $(".fp_resform_phone");
 		var errorMsg = $("#phone-error-msg");
 		var validMsg = $("#phone-valid-msg");
 
@@ -556,7 +556,7 @@ jQuery(document).ready(function($){
 	        // initialCountry: "auto",
 	        // nationalMode: false,
 	        numberType: "MOBILE",
-	        //onlyCountries: ['us, sg, de'],
+	        onlyCountries: ['us'],
 	        // preferredCountries: ['cn', 'jp']
 	      });
 
