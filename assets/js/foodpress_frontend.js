@@ -1,7 +1,7 @@
 /**
  * FoodPress front-end javascript
  *
- * @version  1.3.5
+ * @version  1.3.2
  * @author AJDE & Michael Gamble
  */
 jQuery(document).ready(function($){
@@ -126,7 +126,7 @@ jQuery(document).ready(function($){
 
 	// close menu popup
 		$('body').on('click', '.fplbclose', function(){
-			closePopup();
+			closePopup();			
 		});
 
 	// close with click outside popup box when pop is shown
@@ -245,7 +245,7 @@ jQuery(document).ready(function($){
 
 				$('body').find('.fp_make_res.popup').fadeIn().addClass('open');
 				$('.fpres_bg').fadeIn();
-				//$('html, body').animate({scrollTop:0});
+				$('html, body').animate({scrollTop:0});
 				$('.fp_res_success').hide();
 			});
 
@@ -263,61 +263,49 @@ jQuery(document).ready(function($){
 
 					OBJ.val(START);
 				}
+
+				if( OBJ.attr('id')=='fp_res_time_start'){
+					OBJ.on('change',function(){
+						//console.log('t');
+						VAL = OBJ.val();
+						OBJ.next().find('option').show();
+						OBJ.next().find('option[value="'+VAL+'"]').prevAll().wrap( '<span style="display: none;" />' );
+						OBJ.next().val(VAL);
+					});
+				}
 			});
 
-		// on changing time picker
-		// @version 1.3.6
-			$('body').on('change','.fpres_time_range', function(){
-				OBJ = $(this);
-				var step = OBJ.closest('.step');
-				if(step.attr('data-restrict')!='yes') return;
+			// for each reservation lightbox
+				$('body').find('.fp_make_res').each(function(){
+					lightbox = $(this);
+					topsection = lightbox.find('.fpres_form_datetime');
 
-				if(OBJ.attr('id') != 'fp_res_time_start') return;
+					// date picker
+					var dateformat__ = topsection.attr('data-dateformat');
+					date_format = (typeof dateformat__ !== 'undefined' && dateformat__ !== false)?
+						dateformat__: 'dd/mm/yy';
 
-				VAL = OBJ.val();
-				//console.log(VAL);
-				END = OBJ.next();
+					// start date range
+					var blk24 = lightbox.attr('data-blk24')
+					minDate = (blk24=='1')? '+1':'0';
 
-				//END.find('option').show();
-				END.find('option').each(function(){
-					if($(this).parent().is('span') )
-						$(this).unwrap();
+					// reserverable dates
+					unres_ar = [];
+					lightbox.find('#fp_unres i').each(function(){
+						unres_ar.push( $(this).html() );
+					});
+
+					lightbox.find( "#fp_res_date" ).datepicker({
+						dateFormat: date_format,
+						minDate:minDate,
+						beforeShowDay: function(date){
+					        var string = $.datepicker.formatDate('yy-mm-dd', date);
+					        return [ unres_ar.indexOf(string) == -1 ]
+					    }
+					});
 				});
 
-				END.find('option[value="'+VAL+'"]').prevAll().
-				wrap( '<span style="display: none;"></span>' );
-				END.val(VAL);
-			});
 
-		// for each reservation lightbox
-			$('body').find('.fp_make_res').each(function(){
-				lightbox = $(this);
-				topsection = lightbox.find('.fpres_form_datetime');
-
-				// date picker
-				var dateformat__ = topsection.attr('data-dateformat');
-				date_format = (typeof dateformat__ !== 'undefined' && dateformat__ !== false)?
-					dateformat__: 'dd/mm/yy';
-
-				// start date range
-				var blk24 = lightbox.attr('data-blk24')
-				minDate = (blk24=='1')? '+1':'0';
-
-				// reserverable dates
-				unres_ar = [];
-				lightbox.find('#fp_unres i').each(function(){
-					unres_ar.push( $(this).html() );
-				});
-
-				lightbox.find( "#fp_res_date" ).datepicker({
-					dateFormat: date_format,
-					minDate:minDate,
-					beforeShowDay: function(date){
-				        var string = $.datepicker.formatDate('yy-mm-dd', date);
-				        return [ unres_ar.indexOf(string) == -1 ]
-				    }
-				});
-			});
 
 		// hide form clicking outside of it and resetting to beginning
 			$('.fpres_bg').on('click',function(){
@@ -389,7 +377,7 @@ jQuery(document).ready(function($){
 				    		party.addClass('error');
 				    	}
 				    // validate phone number
-				    	/*
+				    /*
 				    	phone = form.find('.fp_resform_phone');
 				    	if(phone.length>0){
 				    		pattern = phone.attr('pattern');
@@ -415,14 +403,7 @@ jQuery(document).ready(function($){
 				    	if(thisO.hasClass('check')){
 				    		ajaxdataa[ thisO.attr('name')] = (thisO.is(':checked'))?'yes':'no';
 				    	}else{
-
-				    		if(thisO.attr('name')=='end_time' || thisO.attr('name')=='time'){
-				    			VAL = thisO.find('option:selected').attr('value');
-				    			ajaxdataa[ thisO.attr('name')] = encodeURIComponent(VAL);
-				    		}else{
-				    			ajaxdataa[ thisO.attr('name')] = encodeURIComponent(thisO.val());
-				    		}
-
+				    		ajaxdataa[ thisO.attr('name')] = encodeURIComponent(thisO.val());
 				    	}
 				    });
 
@@ -468,7 +449,7 @@ jQuery(document).ready(function($){
 
 				        		form.find('.reservation_section').slideUp(function(){
 				        			$('.fp_res_success').slideDown(400);
-				        			//$('html, body').animate({scrollTop:0});
+				        			$('html, body').animate({scrollTop:0});
 				        			if(onpage)
 				        				form.addClass('success');
 				        		});
@@ -535,8 +516,11 @@ jQuery(document).ready(function($){
 	        $("html, body").stop().animate({ scrollTop: topToScrollTo}, 1000);
 	    });
 
-	// Initiate reservation phone number
-		var telInput = $(".fp_resform_phone");
+
+
+
+// Initiate reservation phone number
+		var telInput = $("#fp_phone_");
 		var errorMsg = $("#phone-error-msg");
 		var validMsg = $("#phone-valid-msg");
 
@@ -546,7 +530,7 @@ jQuery(document).ready(function($){
 	        // autoHideDialCode: false,
 	        autoPlaceholder: true,
 	        // dropdownContainer: "body",
-	        // excludeCountries: ["us, sg, de"],
+	        // excludeCountries: ["us"],
 	       geoIpLookup: function(callback) {
 	       $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
 	        var countryCode = (resp && resp.country) ? resp.country : "";
@@ -556,7 +540,7 @@ jQuery(document).ready(function($){
 	        // initialCountry: "auto",
 	        // nationalMode: false,
 	        numberType: "MOBILE",
-	        onlyCountries: ['us'],
+	        // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
 	        // preferredCountries: ['cn', 'jp']
 	      });
 
@@ -582,3 +566,5 @@ jQuery(document).ready(function($){
 		// on keyup / change flag: reset
 		telInput.on("keyup change", reset);
 });
+
+
