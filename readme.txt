@@ -17,6 +17,10 @@ FoodPress is a complete restaurant menu management system that allow you to crea
 
 == Changelog ==
 = 1.3.7 (2016-
+FIXED: Success message for reservation form to use date_i18n()
+FIXED: reservation date i18n for confirmation email
+UPDATED: Loading jq ui off google CDN & wp library
+UPDATED: License activation for foodpress
 
 = 1.3.6 (2016-4-18) =
 FIXED: In safari reservation time passing incorrectly

@@ -64,7 +64,8 @@ class foodpress {
 			define( "FP_BASENAME", plugin_basename(__FILE__) );
 			define( "FP_BASE", basename(dirname(__FILE__)) );
 			define( "FP_PATH2", plugin_dir_path( __FILE__ ));
-			define( "FP_BACKEND_URL", get_bloginfo('url').'/wp-admin/' ); 
+			define( "FP_BACKEND_URL", get_bloginfo('url').'/wp-admin/' );
+			$this->assets_path = str_replace(array('http:','https:'), '',FP_URL).'/assets/';
 		}
 
 	/** Include required core files used in admin and on the frontend.	 */

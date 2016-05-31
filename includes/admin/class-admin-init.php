@@ -98,6 +98,9 @@ class fp_Admin {
 
 					update_option('_foodpress_install',$value);
 				}
+
+			// All FoodPress admin pages
+				$this->wp_admin_scripts_styles();
 		}
 
 		
@@ -115,6 +118,21 @@ class fp_Admin {
 				<style>#edit-slug-box, #preview-action{ display:none; }</style>
 				<?php
 			}
+
+	// 
+		function wp_admin_scripts_styles(){
+			global $foodpress;
+
+			if( (!empty($pagenow) && $pagenow=='admin.php')
+			 && (isset($_GET['page']) && ($_GET['page']=='foodpress') ) 
+			){
+
+				// only licenses page
+			 	if(!empty($_GET['tab']) && $_GET['tab']=='food_5'){
+			 		wp_enqueue_script('foodpress_licenses',$foodpress->assets_path. 'js/admin/settings_addons_licenses.js',array('jquery'),$eventon->version,true);
+			 	}
+			 }
+		}
 
 	/** Plugin version for updates **/
 		public function verify_plugin_version(){
@@ -210,6 +228,8 @@ class fp_Admin {
 		        $typenow = $post->post_type;
 		    }
 			
+			$jquery_version = isset( $wp_scripts->registered['jquery-ui-core']->ver ) ? $wp_scripts->registered['jquery-ui-core']->ver : '1.10.4';
+
 			// ONLY menu and reservations page
 			if ( $typenow == '' || $typenow == "menu" || $typenow == "reservation" ) {
 				wp_enqueue_style( 'backend_food_post',FP_URL.'/assets/css/admin/backend_post.css');
@@ -221,8 +241,9 @@ class fp_Admin {
 			}
 
 			// ONLY for reservations
-			if ( $typenow == '' || $typenow == "reservation" ) {	
-				wp_register_style('fp_res_jquery_ui_style',FP_URL.'/assets/css/jquery-ui.min.css');
+			if ( $typenow == '' || $typenow == "reservation" ) {
+				wp_enqueue_style("fp_res_jquery_ui_style", "//ajax.googleapis.com/ajax/libs/jqueryui/{$jquery_version}/themes/smoothness/jquery-ui.min.css");
+				
 				wp_register_style('fp_res_timepicker_style',FP_URL.'/assets/css/jquery.timepicker.css');
 				wp_enqueue_style( 'fp_res_timepicker_style' );
 				wp_enqueue_style( 'fp_res_jquery_ui_style' );

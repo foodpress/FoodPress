@@ -17,26 +17,32 @@ class fp_frontend{
 	/** Register/queue frontend scripts. */
 		public function register_scripts() {
 			global $foodpress;
+
+			$jquery_version = isset( $wp_scripts->registered['jquery-ui-core']->ver ) ? $wp_scripts->registered['jquery-ui-core']->ver : '1.10.4';	
+
 			// javascripts
-			wp_register_script( 'fp_ajax_handle', FP_URL. '/assets/js/foodpress_frontend.js', array('jquery'),$foodpress->version,true );
-			wp_localize_script( 'fp_ajax_handle', 'fp_ajax_script', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
-
-			// jQuery UI Custom
-			wp_register_script('fp_jquery_ui',FP_URL.'/assets/js/jquery-ui-1.10.4.custom.min.js' ,array('jquery'),'1.0', true);
-
+			wp_register_script( 'fp_ajax_handle', $foodpress->assets_path. 'js/foodpress_frontend.js', array('jquery','jquery-ui-core'),$foodpress->version,true );
+			wp_localize_script( 
+				'fp_ajax_handle', 
+				'fp_ajax_script', 
+				array( 
+					'ajaxurl' => admin_url( 'admin-ajax.php' )
+				)
+			);
+			
 			// Reservation
-			wp_register_script('fp_reservation_timepicker',FP_URL.'/assets/js/jquery.timepicker.js' ,array('jquery', 'jquery-ui-core','jquery-ui-datepicker'),$foodpress->version, true);
+			wp_register_script('fp_reservation_timepicker',$foodpress->assets_path. 'js/jquery.timepicker.js' ,array('jquery', 'jquery-ui-core','jquery-ui-datepicker'),$foodpress->version, true);
 
 			// styles
-			wp_register_style('fp_font_icons',FP_URL.'/assets/fonts/font-awesome.css');
-			wp_register_style('fp_fonts',FP_URL.'/assets/fonts/fp_fonts.css');
-			wp_register_style('fp_default',FP_URL.'/assets/css/foodpress_styles.css');
+			wp_register_style('fp_font_icons',$foodpress->assets_path. 'fonts/font-awesome.css');
+			wp_register_style('fp_fonts',$foodpress->assets_path. 'fonts/fp_fonts.css');
+			wp_register_style('fp_default',$foodpress->assets_path. 'css/foodpress_styles.css');
 
 			// jQuery UI Custom CSS
-			wp_register_style('fp_res_jquery_ui_style',FP_URL.'/assets/css/jquery-ui.min.css');
+			wp_enqueue_style("fp_res_jquery_ui_style", "//ajax.googleapis.com/ajax/libs/jqueryui/{$jquery_version}/themes/smoothness/jquery-ui.min.css");
 
 			// reservation modal
-			wp_register_style('fp_res_timepicker_style',FP_URL.'/assets/css/jquery.timepicker.css');
+			wp_register_style('fp_res_timepicker_style',$foodpress->assets_path. 'css/jquery.timepicker.css');
 
 			// LOAD custom google fonts for skins
 			$gfont="//fonts.googleapis.com/css?family=Open+Sans:400italic,600,700,400,300";
@@ -76,7 +82,6 @@ class fp_frontend{
 		public function load_default_fp_scripts(){
 			//wp_enqueue_script('add_to_cal');
 			wp_enqueue_script('fp_reservation_timepicker');
-			wp_enqueue_script('fp_jquery_ui');
 			wp_enqueue_script('fp_ajax_handle');
 			wp_enqueue_script('fp_res_intl_phone_script');
 			wp_enqueue_script('fp_res_intl_phone_utils_script');

@@ -20,16 +20,47 @@ class foodpress_ajax{
 			'fp_ajax_delete_res'=>'foodpress_delete_reservation',
 			'the_ajax_res01x'=>'foodpress_res01x',
 			'fp_ajax_content'=>'foodpress_get_menu_item',
-			'fp_dynamic_css'=>'foodpress_dymanic_css',
-			'foodpress_verify_lic'=>'foodpress_license_verification',
+			'fp_dynamic_css'=>'foodpress_dymanic_css',			
 			'fp_ajax_popup'=>'add_new_reservation',
+			'fp_validate_license'=>'validate_license',
+			'foodpress_verify_lic'=>'foodpress_license_verification',
+			'fp_remote_validity'=>'remote_validity',
 		);
-		foreach ( $ajax_events as $ajax_event => $class ) {			
-
+		foreach ( $ajax_events as $ajax_event => $class ) {	
 			add_action( 'wp_ajax_'. $ajax_event, array( $this, $class ) );
 			add_action( 'wp_ajax_nopriv_'. $ajax_event, array( $this, $class ) );
 		}
+
+		add_action('wp_ajax_foodpress-feature-menuitem', array($this,'foodpress_feature_menuitem'));
+
 	}
+
+	/** Feature a menu item from admin */
+		public function foodpress_feature_menuitem() {
+
+			if ( ! is_admin() ) die;
+
+			//if ( ! current_user_can('edit_products') ) wp_die( __( 'You do not have sufficient permissions to access this page.', 'foodpress' ) );
+
+			if ( ! check_admin_referer('foodpress-feature-menuitem')) wp_die( __( 'You have taken too long. Please go back and retry.', 'foodpress' ) );
+
+			$post_id = isset( $_GET['menu_id'] ) && (int) $_GET['menu_id'] ? (int) $_GET['menu_id'] : '';
+
+			if (!$post_id) die;
+
+			$post = get_post($post_id);
+
+			if ( ! $post || $post->post_type !== 'menu' ) die;
+
+			$featured = get_post_meta( $post->ID, '_featured', true );
+
+			if ( $featured == 'yes' )
+				update_post_meta($post->ID, '_featured', 'no');
+			else
+				update_post_meta($post->ID, '_featured', 'yes');
+
+			wp_safe_redirect( remove_query_arg( array('trashed', 'untrashed', 'deleted', 'ids'), wp_get_referer() ) );
+		}
 
 	// GET list of reservations for settings page
 		function foodpress_get_reservations(){
@@ -114,58 +145,78 @@ class foodpress_ajax{
 			exit;
 		}
 
+	// Activation of FoodPress product
+		// validate the license key	
+			function validate_license(){
+				global $foodpress;
+
+				require_once('admin/class-product.php');
+				$fpproduct = new FP_product();
+
+				$key = $_POST['key'];
+				$verifyformat = $fpproduct->purchase_key_format($key);
+
+				$return_content = array(
+					'status'=>($verifyformat?'good':'bad'),
+					'error_msg'=>(!$verifyformat? $fpproduct->error_code_('10'):''),
+				);
+				echo json_encode($return_content);		
+				exit;
+			}
 	// Verify foodpress Licenses AJAX function
 		function foodpress_license_verification(){
 			global $foodpress;	
-			$new_license_content= '';
-			$error_msg='00';
-			
-			$license_errors = array( 
-				'01'=>"No data returned from envato API",
-				"02"=>'Your license is not a valid one!, please check and try again.',
-				"03"=>'envato verification API is busy at moment, please try later.',
-				"00"=>'Could not verify the License key. Please try again.'
-			);			
-			
-			$key = $_POST['key'];
-			$slug = $_POST['slug'];			
 
-			// validate correct license format
-			$validated =$foodpress->fp_updater->purchase_key_format($key);
+			$debug = $content = $addition_msg ='';
+			$status = 'success';
+			$error_code = '11';
+			$error_msg='';
+
+			require_once('admin/class-product.php');
+			$fpproduct = new FP_product();
+			
+			// Passing Data				
+			$key = $_POST['key'];
+			$slug = $_POST['slug'];
+			$__passing_instance = (!empty($_POST['instance'])?(int)$_POST['instance']:'1');
+			$__data = array(
+				'slug'=> addslashes ($_POST['slug']),
+				'key'=> addslashes( str_replace(' ','',$_POST['key']) ),
+				'email'=>(!empty($_POST['email'])? $_POST['email']: null),
+				'product_id'=>(!empty($_POST['product_id'])?$_POST['product_id']:''),
+				'instance'=>$__passing_instance,
+			);
 			
 			// verify license from foodpress server
-			$status = $foodpress->fp_updater->_verify_license_key($slug, $key);
-						
-			if($status || $validated){
-				$save_license_date = $foodpress->fp_updater->save_license_key($slug, $key);				
-						
-				// successfully saved new verified license
-				if($save_license_date!=false){
-					$status = 'success';
-					
-					$new_license_content ="
-					<h2>{$save_license_date['name']}</h2>
-					<p>Version: {$save_license_date['current_version']}</p>
-					<p>Type: {$save_license_date['type']}</p>
-					<p class='license_key'>{$save_license_date['key']}</p>";
-				}else{
-					$status='error';
-				}
-			}else{					
-				$error_msg = $license_errors['00'];
-				$status='error';				
-			}
+			$status = $fpproduct->verify_product_license($__data);
 			
-			
+			$__save_new_lic = $fpproduct->save_license_key(
+				$__data['slug'],
+				$__data['key']
+			);
+			$content = $status; // url to envato json API		
+						
 			$return_content = array(
-				'status'=>$status,		
-				'new_content'=>$new_license_content,
-				'error_msg'=>$error_msg
+				'status'=>$status,
+				'error_msg'=>$fpproduct->error_code_($error_code),
+				'addition_msg'=>$addition_msg,
+				'this_content'=>$content,
+				'extra'=>$status_,
 			);
 			echo json_encode($return_content);		
 			exit;
-			
 		}
+		// update remote validity status of a license
+			function remote_validity(){
+				
+				require_once('admin/class-product.php');
+				$fpproduct = new FP_product();
+
+				$status = $fpproduct->update_field($_POST['slug'], 'remote_validity', $_POST['validity']);
+				$return_content = array(	'status'=>($status?'good':'bad')	);
+				echo json_encode($return_content);		
+				exit;
+			}
 
 	// save new reservation
 		function add_new_reservation() {
@@ -251,7 +302,8 @@ class foodpress_ajax{
 
 		    $return_content = array(
 				'status'=>$status,
-				'reservation_id'=>$id
+				'reservation_id'=>$id,
+				'i18n_date'=>date_i18n( get_option( 'date_format'), strtotime($date))
 			);
 			
 			echo json_encode($return_content);		
@@ -259,37 +311,6 @@ class foodpress_ajax{
 		
 		}
 }
+
 new foodpress_ajax();
-
-
-/** Feature a menu item from admin */
-	function foodpress_feature_menuitem() {
-
-		if ( ! is_admin() ) die;
-
-		//if ( ! current_user_can('edit_products') ) wp_die( __( 'You do not have sufficient permissions to access this page.', 'foodpress' ) );
-
-		if ( ! check_admin_referer('foodpress-feature-menuitem')) wp_die( __( 'You have taken too long. Please go back and retry.', 'foodpress' ) );
-
-		$post_id = isset( $_GET['menu_id'] ) && (int) $_GET['menu_id'] ? (int) $_GET['menu_id'] : '';
-
-		if (!$post_id) die;
-
-		$post = get_post($post_id);
-
-		if ( ! $post || $post->post_type !== 'menu' ) die;
-
-		$featured = get_post_meta( $post->ID, '_featured', true );
-
-		if ( $featured == 'yes' )
-			update_post_meta($post->ID, '_featured', 'no');
-		else
-			update_post_meta($post->ID, '_featured', 'yes');
-
-		wp_safe_redirect( remove_query_arg( array('trashed', 'untrashed', 'deleted', 'ids'), wp_get_referer() ) );
-	}
-	add_action('wp_ajax_foodpress-feature-menuitem', 'foodpress_feature_menuitem');
-
-
-
 ?>

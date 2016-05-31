@@ -44,6 +44,9 @@
 		
 		// reused elements
 		$__item_p_beg = "<p style='{$__styles_02}'><span style='{$__styles_02a}'>";
+
+		// Internationalized date
+		$reservation_date = date_i18n( get_option( 'date_format'), strtotime($r_pmv['date'][0]));
 ?>
 <?php
 	//print_r($args);
@@ -56,7 +59,7 @@
 				
 				<p style='<?php echo $__styles_02;?> padding-top:15px;'><span style='<?php echo $__styles_02a;?>'><?php echo foodpress_get_custom_language( $fp_options_2,'fprsvp_001', 'Reservation ID',$lang)?>:</span> # <?php echo $args['reservation_id'];?></p>
 
-				<?php echo $__item_p_beg;?><?php echo foodpress_get_custom_language( $fp_options_2,'reservation_time', 'Reservation Time',$lang)?>:</span> <?php echo $r_pmv['date'][0].' '.$r_pmv['time'][0];?><?php echo !empty($r_pmv['end_time'])? '-'.$r_pmv['end_time'][0]:null;?></p>
+				<?php echo $__item_p_beg;?><?php echo foodpress_get_custom_language( $fp_options_2,'reservation_time', 'Reservation Time',$lang)?>:</span> <?php echo $reservation_date.' '.$r_pmv['time'][0];?><?php echo !empty($r_pmv['end_time'])? '-'.$r_pmv['end_time'][0]:null;?></p>
 
 				<?php echo $__item_p_beg;?><?php echo foodpress_get_custom_language( $fp_options_2,'primary_content', 'Primary Contact',$lang)?>:</span> <?php echo (!empty($r_pmv['name'])? $r_pmv['name'][0]:null);?></p>
 

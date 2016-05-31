@@ -443,9 +443,12 @@ jQuery(document).ready(function($){
 				        success: function(data) {
 				        	form.removeClass('loading');
 				        	if(data.status=='0'){
+
+				        		translated_date = (data.i18n_date!== undefined)? data.i18n_date: decodeURIComponent(ajaxdataa.date);
+
 				        		// update success message with
 				        		form.find('.fp_res_success_title .name').html( form.find('.form_section_2 input[name=name]').val());
-				        		form.find('.fp_res_success').find('.reservation_info span').html( '<em>'+form_msg.res2+'</em>: '+decodeURIComponent(ajaxdataa.date)+ ' <em>'+form_msg.res3+'</em>: ' +decodeURIComponent(ajaxdataa.time)+ ' <em>'+form_msg.res4+'</em>: '+decodeURIComponent(ajaxdataa.party));
+				        		form.find('.fp_res_success').find('.reservation_info span').html( '<em>'+form_msg.res2+'</em>: '+ translated_date + ' <em>'+form_msg.res3+'</em>: ' +decodeURIComponent(ajaxdataa.time)+ ' <em>'+form_msg.res4+'</em>: '+decodeURIComponent(ajaxdataa.party));
 
 				        		form.find('.reservation_section').slideUp(function(){
 				        			$('.fp_res_success').slideDown(400);
