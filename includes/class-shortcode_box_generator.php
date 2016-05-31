@@ -242,6 +242,11 @@ class foodpress_admin_shortcode_box{
 										'var'=>'collapsed',
 										'default'=>'no','closestatement'=>'clps_mt_style'
 									),array(
+										'name'=>'Show '.$mealTypeName.' description',
+										'type'=>'YN',
+										'var'=>'mt_des',
+										'default'=>'no',
+									),array(
 										'name'=>'Sub-categorize by Dish Type',
 										'type'=>'YN',
 										'guide'=>'Selecting this will categorize each '.$mealTypeName.' categories into '.$dishTypeName.' sub categories.',
@@ -264,6 +269,7 @@ class foodpress_admin_shortcode_box{
 										)
 								,array(	'type'=>'close_select_step')
 
+								// dish type only settings
 								,array('type'=>'open_select_steps','id'=>'dish_type')
 									,array(
 										'name'=> $dishTypeName.' ID',
@@ -283,6 +289,11 @@ class foodpress_admin_shortcode_box{
 										'type'=>'YN',
 										'guide'=>'This will collapse the menus on page load.',
 										'var'=>'collapsed_dt',
+										'default'=>'no',
+									),array(
+										'name'=>'Show '.$dishTypeName.' description',
+										'type'=>'YN',
+										'var'=>'dt_des',
 										'default'=>'no',
 									)
 								,array(	'type'=>'close_select_step')
