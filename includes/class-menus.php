@@ -413,13 +413,27 @@ class foodpress_menus {
 						$__colps = null;
 						$_collapsable = ($collapsable=='yes')? 'collapsable':null;
 					}
-					if($collapsed_dt=='yes'){
-						$__colps_dt = 'style="display:none"';
-						$_collapsable_dt = 'collapsable collapsed';			
+
+					// if the primary categorization is by DT
+					if( $tax=='dish_type'){
+						if($collapsed_dt=='yes'){
+							$__colps = 'style="display:none"';
+							$_collapsable = 'collapsable collapsed';			
+						}else{
+							$__colps = null;
+							$_collapsable = ($collapsable_dt=='yes')? 'collapsable':null;
+						}
 					}else{
-						$__colps_dt = null;
-						$_collapsable_dt = ($collapsable_dt=='yes')? 'collapsable':null;
+						if($collapsed_dt=='yes'){
+							$__colps_dt = 'style="display:none"';
+							$_collapsable_dt = 'collapsable collapsed';			
+						}else{
+							$__colps_dt = null;
+							$_collapsable_dt = ($collapsable_dt=='yes')? 'collapsable':null;
+						}
 					}
+
+					
 									
 				// get tax terms
 					$tax_terms = $this->functions->get_tax_terms($tax, $terms);
@@ -461,7 +475,7 @@ class foodpress_menus {
 						// header content for primary tax term
 							if($header){
 								// description
-									$term_description = $this->functions->get_term_desc($term->description, 'meal_type');
+									$term_description = $this->functions->get_term_desc($term->description, $tax);
 
 								$section['header'] = "<h2 class='primary_type meal_type fp_menu_sub_section tint_menu menu_term_{$term->term_id} {$_collapsable}' {$__des_class} data-name='{$term_name}' data-slug='{$term->slug}' data-src='{$__mt_img_src}'>{$__menuicons}{$term_name}<span class='fp_menu_expand'></span>".( $term_description? $term_description:'')."</h2>";
 							}
