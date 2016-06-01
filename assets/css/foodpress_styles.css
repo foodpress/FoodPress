@@ -167,6 +167,11 @@
 	    padding-left: 44px;
 	}
 
+	.foodpress_tab_body .fp_box.menuItem:last-of-type {
+	    border-right: dashed thin;
+	    border-color: #e1e1e1;
+	}
+
 	h2.with_icons i {
 	    position: absolute;
 	    top: 12px;
