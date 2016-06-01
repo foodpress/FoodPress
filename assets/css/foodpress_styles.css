@@ -116,7 +116,7 @@
 	}
 	.fp_container{padding-bottom: 20px;}
 	.tabbed_menu .fp_container{padding-bottom: 0px;}
-	.fp_meal_type_description{
+	.fp_meal_type_description, .fp_term_description{
 		padding-bottom: 10px;
 		font-size: 14px;
 	}

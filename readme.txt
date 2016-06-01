@@ -17,8 +17,11 @@ FoodPress is a complete restaurant menu management system that allow you to crea
 
 == Changelog ==
 = 1.3.7 (2016-
+ADDED: Option to hide menu and dish type icons from settings
 FIXED: Success message for reservation form to use date_i18n()
 FIXED: reservation date i18n for confirmation email
+FIXED: Sub categorized by dish type not showing meal type headers
+FIXED: Dish type and meal type descriptions via shortcode
 UPDATED: Loading jq ui off google CDN & wp library
 UPDATED: License activation for foodpress
 

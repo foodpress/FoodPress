@@ -115,43 +115,39 @@ class fp_updater{
 			
 			return  $result;
         }  
-        return false;  
-			
-		
+        return false; 		
     }
 	
 	
-	/**
-	 *	Update field values to licenses
-	 */
-	function save_new_update_details($remote_version, $has_new_update, $current_version){
-		$licenses =get_option('_fp_licenses');
-		
-		if(!empty($licenses) && count($licenses)>0 && !empty($licenses[$this->slug]) ){
+	//	Update field values to licenses
+		function save_new_update_details($remote_version, $has_new_update, $current_version){
+			$licenses =get_option('_fp_licenses');
 			
-			$newarray = array();
-			
-			$this_license = $licenses[$this->slug];
-			
-			foreach($this_license as $field=>$val){		
-				if($field !='remote_version' || $field!='has_new_update' ){
-					$newarray[$field]=$val;
+			if(!empty($licenses) && count($licenses)>0 && !empty($licenses[$this->slug]) ){
+				
+				$newarray = array();
+				
+				$this_license = $licenses[$this->slug];
+				
+				foreach($this_license as $field=>$val){		
+					if($field !='remote_version' || $field!='has_new_update' ){
+						$newarray[$field]=$val;
+					}
 				}
+				$newarray['remote_version']=$remote_version;
+				$newarray['has_new_update']=$has_new_update;
+				
+				$new_ar[$this->slug] = $newarray;
+				
+				$merged=array_merge($licenses,$new_ar);
+							
+				update_option('_fp_licenses',$merged);
+				
+				return $newarray;
+			}else{
+				return false;
 			}
-			$newarray['remote_version']=$remote_version;
-			$newarray['has_new_update']=$has_new_update;
-			
-			$new_ar[$this->slug] = $newarray;
-			
-			$merged=array_merge($licenses,$new_ar);
-						
-			update_option('_fp_licenses',$merged);
-			
-			return $newarray;
-		}else{
-			return false;
 		}
-	}
 	
 	// save license fields to wp options
 	function save_new_license_field_values($license_field, $new_value, $license_slug){
@@ -290,42 +286,29 @@ class fp_updater{
 		
 		if(!empty($licenses) && count($licenses)>0 && !empty($licenses[$slug]) && !empty($key) ){
 			
-			$newarray = array();
-			
+			$newarray = array();			
 			$this_license = $licenses[$slug];
 			
 			foreach($this_license as $field=>$val){
-				if($field=='key')
-					$val=$key;
-				
-				if($field =='status')
-					$val='active';
-					
+				if($field=='key')	$val=$key;				
+				if($field =='status')	$val='active';					
 				$newarray[$field]=$val;
 			}
-			$new_ar[$slug] = $newarray;
-			
-			$merged=array_merge($licenses,$new_ar);
-			
+			$new_ar[$slug] = $newarray;			
+			$merged=array_merge($licenses,$new_ar);			
 			
 			update_option('_fp_licenses',$merged);
 			
 			return $newarray;
-		}else{
-			return false;
-		}
+		}else{	return false;	}
 		
 	}
 	
 	// compare and return true or false for has newset version;
 	public function has_newest_version($remote_version=''){			
 		if(empty($remote_version)){
-			$fpOpt = get_option('_fp_licenses');			
-			if(!empty($fpOpt)){
-				$remote_version = $fpOpt['foodpress']['remote_version'];
-			}else{
-				$remote_version = $this->getRemote_version;
-			}			
+			$fpOpt = get_option('_fp_licenses');
+			$remote_version = !empty($fpOpt)? 	$fpOpt['foodpress']['remote_version']:$this->getRemote_version;						
 		}	
 		return ( version_compare($remote_version, $this->current_version ) >=0)? true:false;		
 	}

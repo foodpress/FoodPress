@@ -69,8 +69,6 @@ class foodpress_menus {
 				'mt_des'=>'no', // show meal type description
 				'dt_des'=>'no', // show dish type description
 				'boxhei'=>'0',		// minimum height
-				'showmi'=> 'no',	// show icons for meal type headers
-				'showdi'=> 'no',	// show icons for dish type headers
 				'wordcount'=>'20',
 				'show_menu_updated'=>'no',// show menu last updated date
 				'link'=>'',
@@ -392,7 +390,7 @@ class foodpress_menus {
 			$terms = !empty($terms)? $terms:$shortc[$primary];
 
 			switch ($primary) {
-				case 'meal_type':					
+				case 'meal_type':		
 					return $this->general_categorized_menu('meal_type', $terms, $headers, $container);
 				break;
 				case 'dish_type':
@@ -402,7 +400,7 @@ class foodpress_menus {
 		}
 	
 	// GENERAL categorized menu
-		function general_categorized_menu($tax, $terms, $header= false, $container=true){
+		function general_categorized_menu($tax, $terms, $header=false, $container=true){
 			// initial
 				$args__ = $this->shortcode_args;
 				extract($args__);
@@ -423,23 +421,23 @@ class foodpress_menus {
 						$_collapsable_dt = ($collapsable_dt=='yes')? 'collapsable':null;
 					}
 									
-
 				// get tax terms
 					$tax_terms = $this->get_tax_terms($tax, $terms);
 
-				// DISH TYPE terms - is sub categorization by dish type
+				// DISH TYPE terms - is sub categorization by DT - while primary category is MT
 					if($cat_by_dish=='yes' && $tax=='meal_type'){
 						$dish_type_terms = get_terms(
-							'dish_type', 
-							array('orderby'=>'slug','order'=>'ASC')
+							'dish_type', 	array('orderby'=>'slug','order'=>'ASC')
 						);
 					}else{$dish_type_terms=array();}
 
 			ob_start();
 			
-			// For each tax term
+			// For each primary tax term
 				if(count($tax_terms)>0 && is_array($tax_terms)):
-					foreach($tax_terms as $term): // each meal type or dish type
+
+					// EACH primary tax terms
+					foreach($tax_terms as $term): 
 
 						// intials
 							$section = array();
@@ -463,43 +461,49 @@ class foodpress_menus {
 
 						// header content for primary tax term
 							if($header){
-								$section['header'] = "<h2 class='meal_type fp_menu_sub_section tint_menu menu_term_{$term->term_id} {$_collapsable}' {$__des_class} data-name='{$term_name}' data-slug='{$term->slug}' data-src='{$__mt_img_src}'>{$__menuicons}{$term_name}<span class='fp_menu_expand'></span>{$__mt_des}</h2>";
-							}
+								// description
+									$term_description = $this->functions->get_term_desc($term->description, 'meal_type');
 
+								$section['header'] = "<h2 class='primary_type meal_type fp_menu_sub_section tint_menu menu_term_{$term->term_id} {$_collapsable}' {$__des_class} data-name='{$term_name}' data-slug='{$term->slug}' data-src='{$__mt_img_src}'>{$__menuicons}{$term_name}<span class='fp_menu_expand'></span>{$__mt_des}</h2>". 
+									( $term_description? $term_description:'');
+							}
 
 						// IF dish type subcategory
 						if($cat_by_dish=='yes' &&  $tax=='meal_type' && count($dish_type_terms)>0){
 
 							// EACH DISH type terms
-							$content=$output='';
-								
-							// Main category header
-							echo ($container)? "<div class='fp_container fp_mt fp_{$term->slug}' ". $__colps.">":'';
-
+							$DT_content = $output='';
+										
 							// for EACH DISH TYPE term
 								foreach($dish_type_terms as $dish_term){
 
 									// icon
-									$DT_icon = '';
 									$DT_icon = $this->functions->get_term_icon($dish_term->term_id, '', true);
 
 									// description
-									$term_description = ($term->description)?"<p class='fp_meal_type_description'>{$term->description}</p>":'';
+									$term_description = $this->functions->get_term_desc($dish_term->description, 'dish_type');
 
 									$dishtype_items = $this->get_dishtype_menuitems($dish_term->term_id, $term->term_id);
 									if(empty($dishtype_items)) continue;
 
-									$content .= "<h3 class='dish_type fp_menu_sub_section tint_menu menu_term_{$dish_term->term_id} {$_collapsable_dt}'>{$DT_icon}{$dish_term->name}<span class='fp_menu_expand'></span>{$term_description}</h3>";
+									$output .= "<h3 class='secondary_type dish_type fp_menu_sub_section tint_menu menu_term_{$dish_term->term_id} {$_collapsable_dt}'>{$DT_icon}{$dish_term->name}<span class='fp_menu_expand'></span>{$term_description}</h3>";
 
-									$content .= "<div class='food_items_container fp_{$dish_term->slug}' {$__colps_dt} >";
-									$content .= $dishtype_items;
-									$content .= "</div><div class='clear'></div>";
+									$output .= "<div class='food_items_container fp_{$dish_term->slug}' {$__colps_dt} >";
+									$output .= $dishtype_items;
+									$output .= "</div><div class='clear'></div>";
 									
 								}
 
-							// closing
-							echo $output.$content.'<div class="clear"></div>';
-							echo ($container)? '</div>':'';
+							if(!empty($output)){
+								// Main category header
+								$DT_content .= ($container)? "<div class='secondary_container fp_container fp_mt fp_{$term->slug}' ". $__colps.">":'';
+
+								$DT_content .= $output;
+								$DT_content .=	'<div class="clear"></div>';
+								$DT_content .=	($container)? '</div>':'';
+
+								$section['content'] = $DT_content;
+							}
 
 						// NO sub categorization
 						}else{

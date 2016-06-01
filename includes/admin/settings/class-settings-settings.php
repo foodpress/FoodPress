@@ -19,10 +19,14 @@ class foodpress_settings_settings{
 				'top'=>'4',
 				'fields'=>array(		
 					array('id'=>'fp_css_head','type'=>'yesno','name'=>__('Write dynamic styles to header','foodpress'),'legend'=>__('If making changes to appearances dont reflect on front-end try this option. This will write those dynamic styles inline to page header.','foodpress'),),
-					array('id'=>'fp_dis_conFilter','type'=>'yesno','name'=>__('Disable Content Filter','foodpress'),'legend'=>__('This will disable to use of the_content filter on menu description and custom field values.','foodpress')),	
+					array('id'=>'fp_dis_conFilter','type'=>'yesno','name'=>__('Disable Content Filter','foodpress'),'legend'=>__('This will disable to use of the_content filter on menu description and custom field values.','foodpress')),
 
-					array('id'=>'fp_note','type'=>'subheader','name'=>__('Menu Type Categories customization','foodpress'),),
+
+					array('id'=>'fp_note','type'=>'subheader','name'=>__('Menu Type Categories customization','foodpress')),					
 					array('id'=>'fp_note','type'=>'note','name'=>__('Use this to assign custom names for the menu item type categories which you can use to categorize menu items in variety of ways. <b>NOTE:</b> Once you update these custom categories refresh the page for the values to show up.','foodpress'),),
+					
+					array('id'=>'fp_hide_icons','type'=>'yesno','name'=>__('Hide meal & dish type icons next to headers','foodpress'),'legend'=>__('This will hide the meal and dish type icons that appear next to the categorized menu header types.','foodpress')),
+					
 					array('id'=>'fp_mty1','type'=>'text','name'=>__('Custom name for Meal Type category (Meal type. eg. lunch, dinner)','foodpress'),),
 					array('id'=>'fp_mty2','type'=>'text','name'=>__('Custom name for Dish Type category (Dish Type: Dessert, Entree)','foodpress'),),
 

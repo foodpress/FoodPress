@@ -16,14 +16,36 @@ class fp_functions{
 		 	}
 			return (!empty($__mt_img_src))? $__mt_img_src[0]:false;
 		}
-		function get_term_icon($termid, $termmeta='', $html=false){			
+
+	// get menu term icons
+		function get_term_icon($termid, $termmeta='', $html=false){	
+			global $foodpress;
+
+			// check if the icons are set to be hidden
+			$hide_icons = (!empty($foodpress->fpOpt['fp_hide_icons']) && $foodpress->fpOpt['fp_hide_icons']=='yes')?
+				true: false;
+
+			if($hide_icons) return false;
+
 			$termmeta = (!empty($termmeta))?$termmeta: get_option( "fp_taxonomy_$termid" );
 			if(!$html){// dont return html
 				return (!empty($termmeta['fpm_iconname']))? $termmeta['fpm_iconname']: false;
 			}else{
 				return (!empty($termmeta['fpm_iconname']))? "<i class='fa {$termmeta['fpm_iconname']}'></i>": false;
-			}
-			
+			}			
+		}
+	// Get description for terms
+		function get_term_desc($desc='', $tax){
+			global $foodpress;
+
+			if(empty($desc)) return false;
+
+			$shortcodeVar = ($tax=='meal_type')? 'mt_des':'dt_des';
+			$shortcode = $foodpress->foodpress_menus->shortcode_args;
+
+			if( $shortcode[$shortcodeVar] =='no') return false;
+
+			return "<p class='fp_term_description'>".$desc."</p>";
 		}
 
 	// Language related
