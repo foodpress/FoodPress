@@ -217,28 +217,20 @@ function add_foodpress_menu($atts){
 	}
 
 	function foodpress_opt_val($options, $var, $default){
-
 		$options = (!empty($options))? $options : get_option('fp_options_food_1');	
-
 		return (!empty($options[$var]))? $options[$var] : $default;
 
 	}
-
 
 	function fp_placeholder_img_src(){
 		return FP_URL.'/assets/images/placeholder.png';
 	}
 
-
 /** 1.2 */
 	// return the reservation form field count
 	function foodpress_get_reservation_form_fields(){
 		return apply_filters('foodpress_reservation_form_fields', '5');
-	}
-	// return the custom meta field count
-	function foodpress_get_custom_meta_field_count(){
-		return apply_filters('foodpress_reservation_meta_field_count', '3');
-	}
+	}	
 
 /** getting setting options values */
 	function foodpress_get_option($option_index){

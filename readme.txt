@@ -21,6 +21,7 @@ ADDED: Option to hide menu and dish type icons from settings
 ADDED: Option to not delete settings when plugin uninstalled
 ADDED: pluggable hook 'foodpress_nutrition_items' to add more nutrition information fields
 ADDED: pluggable hook 'foodpress_icons_symbols_count' to add more icon symbols
+ADDED: pluggable hook 'foodpress_custom_meta_data_count' to extend custom meta fields
 ADDED: ability to set default image URL for menu items with no image
 FIXED: Success message for reservation form to use date_i18n()
 FIXED: reservation date i18n for confirmation email

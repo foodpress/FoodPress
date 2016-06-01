@@ -1,7 +1,7 @@
 <?php
 /**
  * foodpress ONLY frontend functions
- * @version  1.3
+ * @version  1.4
  */
 class fp_functions{
 	public function __construct(){}
@@ -138,6 +138,10 @@ class fp_functions{
 			}
 
 	// PLUGGABLE content
+		// Custom meta data
+			function custom_fields_cnt(){
+				return apply_filters('foodpress_custom_meta_data_count', 3);
+			}
 		// icon symboles
 			function icon_symols_cnt(){
 				return apply_filters('foodpress_icons_symbols_count', 3);

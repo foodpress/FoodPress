@@ -7,7 +7,7 @@
  * Author: Ashan Jay & Michael Gamble
  * Author URI: http://www.myfoodpress.com
  * Requires at least: 3.8
- * Tested up to: 4.4.2
+ * Tested up to: 4.5.2
  *
  * Text Domain: foodpress
  * Domain Path: /lang/languages/

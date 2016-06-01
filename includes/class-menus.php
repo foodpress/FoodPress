@@ -1192,7 +1192,7 @@ class foodpress_menus {
 					endif;
 
 				// custom fields
-					for($x =1; $x<= foodpress_get_custom_meta_field_count(); $x++){
+					for($x =1; $x<= $foodpress->functions->custom_fields_cnt(); $x++){
 						if(!empty($this->fopt1['fp_af_'.$x]) && $this->fopt1['fp_af_'.$x]=='yes'  && !empty($pmv['fp_ec_f'.$x]) ){
 
 							// field name

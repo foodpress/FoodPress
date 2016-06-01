@@ -49,48 +49,8 @@ class foodpress_settings_settings{
 				'name'=>__('Menu Item Custom Meta Data Settings','foodpress'),
 				'tab_name'=>__('Custom Meta Data','foodpress'),
 				'top'=>'4',
-				'fields'=>array(				
-					array('id'=>'fp__note','type'=>'note','name'=>__('You can add up to 3 additional custom fields for each menu item using the below fields. (* Required values)','foodpress'),),
-					
-					array('id'=>'fp_af_1','type'=>'yesno','name'=>__('Activate Additional Field #1','foodpress'),'legend'=>__('This will activate additional menu item field.','foodpress'),'afterstatement'=>'fp_af_1'),
-					array('id'=>'fp_af_1','type'=>'begin_afterstatement'),
-					array('id'=>'fp_ec','type'=>'subheader','name'=>__('Custom field #1','foodpress'),),
-					array('id'=>'fp_ec_f1','type'=>'text','name'=>__('Field Name*','foodpress'),),
-					array('id'=>'fp_ec_f1b','type'=>'dropdown','name'=>__('Content Type','foodpress'), 'options'=>array(
-						'text'=>__('Single line Text','foodpress'),
-						'textarea'=>__('Multiple lines of text','foodpress'), 
-						'menuadditions'=>__('Use Menu Additions Data','foodpress')
-						)),
-					array('id'=>'fp_ec_f1a','type'=>'icon','name'=>__('Icon','foodpress'),'default'=>'fa-asterisk'),
-					array('id'=>'fp_af_1','type'=>'end_afterstatement'),
-
-
-					array('id'=>'fp_af_2','type'=>'yesno','name'=>__('Activate Additional Field #2','foodpress'),'legend'=>__('This will activate a second additional menu item field.','foodpress'),'afterstatement'=>'fp_af_2'),
-					array('id'=>'fp_af_2','type'=>'begin_afterstatement'),
-					array('id'=>'fp_ec','type'=>'subheader','name'=>__('Custom field #2','foodpress'),),
-					array('id'=>'fp_ec_f2','type'=>'text','name'=>__('Field Name*','foodpress'),),
-					array('id'=>'fp_ec_f2b','type'=>'dropdown','name'=>__('Content Type','foodpress'), 'options'=>array(
-						'text'=>__('Single line Text','foodpress'),
-						'textarea'=>__('Multiple lines of text','foodpress'), 
-						'menuadditions'=>__('Use Menu Additions Data','foodpress'),
-						)),
-					array('id'=>'fp_ec_f2a','type'=>'icon','name'=>__('Icon','foodpress'),'default'=>'fa-asterisk'),
-					array('id'=>'fp_af_2','type'=>'end_afterstatement'),
-
-					array('id'=>'fp_af_3','type'=>'yesno','name'=>__('Activate Additional Field #3','foodpress'),'legend'=>__('This will activate a second additional menu item field.','foodpress'),'afterstatement'=>'fp_af_3'),
-					array('id'=>'fp_af_3','type'=>'begin_afterstatement'),
-					array('id'=>'fp_ec','type'=>'subheader','name'=>__('Custom field #3','foodpress'),),
-					array('id'=>'fp_ec_f3','type'=>'text','name'=>__('Field Name*','foodpress'),),
-					array('id'=>'fp_ec_f3b','type'=>'dropdown','name'=>__('Content Type','foodpress'), 'options'=>array(
-							'text'=>__('Single line Text','foodpress'),
-							'textarea'=>__('Multiple lines of text','foodpress'),
-							'menuadditions'=>__('Use Menu Additions Data','foodpress')
-						 )
-					),
-					array('id'=>'fp_ec_f3a','type'=>'icon','name'=>__('Icon','foodpress'),'default'=>'fa-asterisk'),
-					array('id'=>'fp_af_3','type'=>'end_afterstatement'),
-					
-			)),array(
+				'fields'=>$this->__array_get_meta_data()					
+			),array(
 				'id'=>'food_003a',
 				'name'=>__('Menu Item Card Settings','foodpress'),
 				'tab_name'=>__('Menu Card','foodpress'),
@@ -165,6 +125,32 @@ class foodpress_settings_settings{
 			
 		));	
 	}
+
+	// Custom Meta Data
+		function __array_get_meta_data(){
+
+			global $foodpress;
+			$data[] = '';
+
+			$data[] = array('id'=>'fp__note','type'=>'note','name'=>__('You can add up to 3 additional custom fields for each menu item using the below fields. (* Required values)','foodpress'),);
+
+			for($x=1; $x<= $foodpress->functions->custom_fields_cnt(); $x++){
+				$data[] = array('id'=>'fp_af_'.$x,'type'=>'yesno','name'=>__('Activate Additional Field #'.$x,'foodpress'),'legend'=>__('This will activate additional menu item field.','foodpress'),'afterstatement'=>'fp_af_'.$x);
+				$data[] = array('id'=>'fp_af_'.$x,'type'=>'begin_afterstatement');
+				$data[] = array('id'=>'fp_ec','type'=>'subheader','name'=>__('Custom field #'.$x,'foodpress'));
+				$data[] = array('id'=>'fp_ec_f'.$x,'type'=>'text','name'=>__('Field Name*','foodpress'));
+				$data[] = array('id'=>'fp_ec_f'.$x.'b','type'=>'dropdown','name'=>__('Content Type','foodpress'), 'options'=>array(
+					'text'=>__('Single line Text','foodpress'),
+					'textarea'=>__('Multiple lines of text','foodpress'), 
+					'menuadditions'=>__('Use Menu Additions Data','foodpress')
+					));
+				$data[] = array('id'=>'fp_ec_f'.$x.'a','type'=>'icon','name'=>__('Icon','foodpress'),'default'=>'fa-asterisk');
+				$data[] = array('id'=>'fp_af_'.$x,'type'=>'end_afterstatement');
+			}
+
+			return $data;
+			
+		}
 
 	// icon symboles
 		function _array_get_icon_symbols(){
