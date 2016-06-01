@@ -6,47 +6,65 @@
 class fp_functions{
 	public function __construct(){}
 
-	// menu term meta related
-		function get_term_image($termid, $termmeta='', $size='medium'){
-			$termmeta = (!empty($termmeta))?$termmeta: get_option( "fp_taxonomy_$termid" );
+	// MENU Related
+		// menu term meta related
+			function get_term_image($termid, $termmeta='', $size='medium'){
+				$termmeta = (!empty($termmeta))?$termmeta: get_option( "fp_taxonomy_$termid" );
 
-			$__mt_img_id = (!empty($termmeta['meal_type_thumbnail_id']))? $termmeta['meal_type_thumbnail_id']: false;
-		 	if($__mt_img_id){
-		 		$__mt_img_src = wp_get_attachment_image_src($__mt_img_id, $size);
-		 	}
-			return (!empty($__mt_img_src))? $__mt_img_src[0]:false;
-		}
+				$__mt_img_id = (!empty($termmeta['meal_type_thumbnail_id']))? $termmeta['meal_type_thumbnail_id']: false;
+			 	if($__mt_img_id){
+			 		$__mt_img_src = wp_get_attachment_image_src($__mt_img_id, $size);
+			 	}
+				return (!empty($__mt_img_src))? $__mt_img_src[0]:false;
+			}
 
-	// get menu term icons
-		function get_term_icon($termid, $termmeta='', $html=false){	
-			global $foodpress;
+		// get menu term icons
+			function get_term_icon($termid, $termmeta='', $html=false){	
+				global $foodpress;
 
-			// check if the icons are set to be hidden
-			$hide_icons = (!empty($foodpress->fpOpt['fp_hide_icons']) && $foodpress->fpOpt['fp_hide_icons']=='yes')?
-				true: false;
+				// check if the icons are set to be hidden
+				$hide_icons = (!empty($foodpress->fpOpt['fp_hide_icons']) && $foodpress->fpOpt['fp_hide_icons']=='yes')?
+					true: false;
 
-			if($hide_icons) return false;
+				if($hide_icons) return false;
 
-			$termmeta = (!empty($termmeta))?$termmeta: get_option( "fp_taxonomy_$termid" );
-			if(!$html){// dont return html
-				return (!empty($termmeta['fpm_iconname']))? $termmeta['fpm_iconname']: false;
-			}else{
-				return (!empty($termmeta['fpm_iconname']))? "<i class='fa {$termmeta['fpm_iconname']}'></i>": false;
-			}			
-		}
-	// Get description for terms
-		function get_term_desc($desc='', $tax){
-			global $foodpress;
+				$termmeta = (!empty($termmeta))?$termmeta: get_option( "fp_taxonomy_$termid" );
+				if(!$html){// dont return html
+					return (!empty($termmeta['fpm_iconname']))? $termmeta['fpm_iconname']: false;
+				}else{
+					return (!empty($termmeta['fpm_iconname']))? "<i class='fa {$termmeta['fpm_iconname']}'></i>": false;
+				}			
+			}
+		// Get description for terms
+			function get_term_desc($desc='', $tax){
+				global $foodpress;
 
-			if(empty($desc)) return false;
+				if(empty($desc)) return false;
 
-			$shortcodeVar = ($tax=='meal_type')? 'mt_des':'dt_des';
-			$shortcode = $foodpress->foodpress_menus->shortcode_args;
+				$shortcodeVar = ($tax=='meal_type')? 'mt_des':'dt_des';
+				$shortcode = $foodpress->foodpress_menus->shortcode_args;
 
-			if( $shortcode[$shortcodeVar] =='no') return false;
+				if( $shortcode[$shortcodeVar] =='no') return false;
 
-			return "<p class='fp_term_description'>".$desc."</p>";
-		}
+				return "<p class='fp_term_description'>".$desc."</p>";
+			}
+
+		// Get tax terms
+			function get_tax_terms($tax, $terms){
+				if(!empty($terms) && $terms!='all'){
+					$__term_ids = explode(',', $terms);
+					if(!is_array($__term_ids)) return;
+
+					// get only certain tax terms
+					$tax_terms = get_terms(
+						$tax, array('orderby'=>'slug','order'=>'ASC','include'=>$__term_ids));
+				}else{
+					// get all tax terms
+					$tax_terms = get_terms( $tax, array('orderby'=>'slug','order'=>'ASC'));
+				}
+				return $tax_terms;
+			}
+
 
 	// Language related
 		function fp_get_language($text, $opt_val='', $lang=''){

@@ -422,7 +422,7 @@ class foodpress_menus {
 					}
 									
 				// get tax terms
-					$tax_terms = $this->get_tax_terms($tax, $terms);
+					$tax_terms = $this->functions->get_tax_terms($tax, $terms);
 
 				// DISH TYPE terms - is sub categorization by DT - while primary category is MT
 					if($cat_by_dish=='yes' && $tax=='meal_type'){
@@ -456,16 +456,14 @@ class foodpress_menus {
 								$__mt_img_src = (!empty($__mt_img_src))? $__mt_img_src[0]:null;
 
 							$term_name = $this->get_lang('fp_lang_tax_meal_type_'.$term->term_id,$term->name );
-							// meal type description text
-								$__mt_des = (!empty($mt_des) && $mt_des=='yes' && !empty($term->description) || (!empty($term->description) && $cat_sty=='bx' ) )? "<p class='fp_meal_type_description'>{$term->description}</p>": null;
+							
 
 						// header content for primary tax term
 							if($header){
 								// description
 									$term_description = $this->functions->get_term_desc($term->description, 'meal_type');
 
-								$section['header'] = "<h2 class='primary_type meal_type fp_menu_sub_section tint_menu menu_term_{$term->term_id} {$_collapsable}' {$__des_class} data-name='{$term_name}' data-slug='{$term->slug}' data-src='{$__mt_img_src}'>{$__menuicons}{$term_name}<span class='fp_menu_expand'></span>{$__mt_des}</h2>". 
-									( $term_description? $term_description:'');
+								$section['header'] = "<h2 class='primary_type meal_type fp_menu_sub_section tint_menu menu_term_{$term->term_id} {$_collapsable}' {$__des_class} data-name='{$term_name}' data-slug='{$term->slug}' data-src='{$__mt_img_src}'>{$__menuicons}{$term_name}<span class='fp_menu_expand'></span>".( $term_description? $term_description:'')."</h2>";
 							}
 
 						// IF dish type subcategory
@@ -525,26 +523,14 @@ class foodpress_menus {
 						if(!empty($section['content']))
 							echo implode('',$section);
 						
-					endforeach;
+					endforeach; // each primary term
 				endif;
 
 			return ob_get_clean();
 		}
 
 		function get_tax_terms($tax, $terms){
-			if(!empty($terms) && $terms!='all'){
-				$__term_ids = explode(',', $terms);
-				if(!is_array($__term_ids)) return;
-
-				// get only certain tax terms
-				$tax_terms = get_terms(
-					$tax, array('orderby'=>'slug','order'=>'ASC','include'=>$__term_ids));
-			}else{
-				// get all tax terms
-				$tax_terms = get_terms(
-					$tax, array('orderby'=>'slug','order'=>'ASC'));
-			}
-			return $tax_terms;
+			return $this->functions->get_tax_terms($tax, $terms);
 		}
 
 	// return meal type and dish type menu item content
