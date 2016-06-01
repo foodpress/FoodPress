@@ -4,8 +4,8 @@ Plugin Name: foodPress
 Author URI: http://www.myfoodpress.com/
 Tags: restaurants, menu, food, eating, menu management
 Requires at least: 3.8
-Tested up to: 4.5.0
-Stable tag: 1.3.6
+Tested up to: 4.5.2
+Stable tag: 1.4.0
 
 == Description ==
 FoodPress is a complete restaurant menu management system that allow you to create various menus with categorizations and more.
@@ -16,7 +16,7 @@ FoodPress is a complete restaurant menu management system that allow you to crea
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
-= 1.4 (2016-
+= 1.4 (2016-6-1)
 ADDED: Option to hide menu and dish type icons from settings
 ADDED: Option to not delete settings when plugin uninstalled
 ADDED: pluggable hook 'foodpress_nutrition_items' to add more nutrition information fields
@@ -30,10 +30,12 @@ FIXED: Dish type and meal type descriptions via shortcode
 FIXED: Collapsed and collapsable dish type categorized menu
 UPDATED: Loading jq ui off google CDN & wp library
 UPDATED: License activation for foodpress
-UPDATED: Made entire menu box clickable - need OO update
+UPDATED: Made entire menu box clickable - requires OO update too
 UPDATED: License and addon page
 UPDATED: Font awesome icons to version 4.6.3
 UPDATED: Placeholder input field text color
+UPDATED: Multiple styles to better organize Main & Secondary Categories
+ALERT: We will be Discontinuing the entire Reservation System in next update
 
 = 1.3.6 (2016-4-18) =
 FIXED: In safari reservation time passing incorrectly
@@ -70,12 +72,12 @@ FIXED: unnecessary shortcode options showing incorrectly
 FIXED: Party size placeholder text missing in translations
 FIXED: Start reservations from tomorrow not working
 FIXED: Mobile lightbox menu not closing
-FIXED Addons and licenses page not showing all addon information 
+FIXED Addons and licenses page not showing all addon information
 FIXED: OrderOnline select options to open lightbox when ux none for menu
 FIXED: Missing arrows.png image wrong url in styles
 UPDATED: Shortcode generator to prevent default <a> click actions
 UPDATED: Duplication of menu items functions
-UPDATED: Made the lightbox close button bigger for smaller screen 
+UPDATED: Made the lightbox close button bigger for smaller screen
 
 = 1.3.1 (2016-1-20) =
 FIXED: timepicker initiating on unsupported pages
@@ -132,7 +134,7 @@ FIXED: Compatibility with WP 4.3 version
 FIXED: License activation not working
 UPDATED: dynamic styles to be updated upon new version update
 
-= 1.2.3 (2015-4-8) = 
+= 1.2.3 (2015-4-8) =
 ADDED: Reservation form to be able to link to a page
 FIXED: Tooltip display issue
 FIXED: Featured items breaking tabbed menu
@@ -140,12 +142,12 @@ FIXED: Appearance settings for reservation form
 FIXED: Style issues
 UPDATED: AJDE backend settings function
 
-= 1.2.2 (2015-3-23) = 
+= 1.2.2 (2015-3-23) =
 ADDED: phone number to emails
 FIXED: phone number as required field in the form
 FIXED: Deleting reservations from all reservations page
 FIXED: email address not saving on manual reservations
-FIXED: Reservation form not saving data correctly 
+FIXED: Reservation form not saving data correctly
 FIXED: Placeholder color for input fields in reservation form
 FIXED: Confirm reservations from draft bug
 FIXED: Widget not working correct
@@ -288,7 +290,7 @@ FIXED: Popup price box color can be changed from appearance now
 UPDATED: Color selection UI in foodpress settings appearance
 ADDED: Automatic updated to foodpress plugin from your website wp-admin with activated licenses
 ADDED: Menu Item widget. You can add individual items or execute foodpress shortcodes in the sidebar widget
-FIXED: Vegetarian icon styles 
+FIXED: Vegetarian icon styles
 FIXED: nutrition information dissappearing after saved
 FIXED: custom menu item field title name
 
