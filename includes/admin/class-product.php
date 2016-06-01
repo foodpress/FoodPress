@@ -1,6 +1,7 @@
 <?php
 /**
  * Foodpress software Product class
+ * @version   1.4
  */
 class FP_product{
 
@@ -25,8 +26,7 @@ class FP_product{
 			}else{
 				// for addons
 				
-				$instance = !empty($args['instance'])?$args['instance']:1;
-				
+				$instance = !empty($args['instance'])?$args['instance']:1;				
 				$url='http://www.myfoodpress.com/woocommerce/?wc-api=software-api&request=activation&email='.$args['email'].'&licence_key='.$args['key'].'&product_id='.$args['product_id'].'&instance='.$instance;
 				
 				//echo $url;

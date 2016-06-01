@@ -126,9 +126,10 @@ if ( ! function_exists( 'foodpress_settings' ) ) {
 			}			
 		?>		
 	</h2>	
-<div class='metabox-holder'>		
+<div class='metabox-holder'>
+	<div class="update-nag notice is-dismissible"><p><?php _e('Important: <b>Reservation</b> feature will be <b>discontinued</b> in the next foodpress update while we re-build it better as an addon!','foodpress');?></p></div>	
 <?php
-	$updated_code = (isset($_POST['settings-updated']) && $_POST['settings-updated']=='true')? '<div class="updated fade"><p>Settings Saved</p></div>':null;
+	$updated_code = (isset($_POST['settings-updated']) && $_POST['settings-updated']=='true')? '<div class="updated fade"><p>'.__('Settings Saved','foodpress').'</p></div>':null;
 	echo $updated_code;
 
 // TABS	
@@ -148,16 +149,14 @@ switch ($focus_tab):
 		<div class="inside">
 			<?php
 				// include settings tab content
-				require_once(FP_PATH.'/includes/admin/settings/class-settings-settings.php');
-				
+				require_once(FP_PATH.'/includes/admin/settings/class-settings-settings.php');				
 				$settings = new foodpress_settings_settings($food_opt);	
-
 				$foodpress->load_ajde_backender();	
 				print_ajde_customization_form($settings->content(), $food_opt[1]);				
 			?>			
 		</div>
 
-		<p class='fp_settings_bottom'><input type="submit" class="btn_prime fp_admin_btn" value="<?php _e('Save Changes') ?>" /> <a id='resetColor' style='display:none' class='fp_admin_btn btn_secondary'><?php _e('Reset to default colors','foodpress')?></a><br/><i id='resetcolornote' style='display:none'>NOTE: If you want to reset colors to default, click "<?php _e('Reset to default colors','foodpress')?>" button and click save changes.</i></p>
+		<p class='fp_settings_bottom'><input type="submit" class="btn_prime fp_admin_btn" value="<?php _e('Save Changes') ?>" /> <a id='resetColor' style='display:none' class='fp_admin_btn btn_secondary'><?php _e('Reset to default colors','foodpress')?></a><br/><i id='resetcolornote' style='display:none'><?php _e('NOTE: If you want to reset colors to default, click','foodpress')?> "<?php _e('Reset to default colors','foodpress')?>" <?php _e('button and click save changes.','foodpress');?></i></p>
 	</div>	
 	</form>
 <?php  
@@ -166,8 +165,7 @@ switch ($focus_tab):
 	// STYLES TAB
 		case "food_3":
 			
-			echo '<form method="post" action="">';
-			
+			echo '<form method="post" action="">';			
 			//settings_fields('food_field_group'); 
 			wp_nonce_field( plugin_basename( __FILE__ ), 'food_noncename' );
 					

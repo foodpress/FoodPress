@@ -31,6 +31,7 @@ UPDATED: Loading jq ui off google CDN & wp library
 UPDATED: License activation for foodpress
 UPDATED: Made entire menu box clickable - need OO update
 UPDATED: License and addon page
+UPDATED: Font awesome icons to version 4.6.3
 
 = 1.3.6 (2016-4-18) =
 FIXED: In safari reservation time passing incorrectly

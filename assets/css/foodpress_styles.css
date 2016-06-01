@@ -900,7 +900,7 @@
 	.foodpress_menu.box_cats span.fp_backto_cats i:before {
 		content: "\f137";
 		display: inline-block;
-		font-family: FontAwesome;
+		font-family: FP_FontAwesome;
 		font-style: normal;
 		font-weight: bold;
 		line-height: 1;

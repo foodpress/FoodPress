@@ -477,7 +477,7 @@ class foodpress_menus {
 								// description
 									$term_description = $this->functions->get_term_desc($term->description, $tax);
 
-								$section['header'] = "<h2 class='primary_type meal_type fp_menu_sub_section tint_menu menu_term_{$term->term_id} {$_collapsable}' {$__des_class} data-name='{$term_name}' data-slug='{$term->slug}' data-src='{$__mt_img_src}'>{$__menuicons}{$term_name}<span class='fp_menu_expand'></span>".( $term_description? $term_description:'')."</h2>";
+								$section['header'] = "<h2 class='primary_type meal_type fp_menu_sub_section tint_menu menu_term_{$term->term_id} {$_collapsable} ". ( $__menuicons? 'with_icons':'') ."' {$__des_class} data-name='{$term_name}' data-slug='{$term->slug}' data-src='{$__mt_img_src}'>{$__menuicons}{$term_name}<span class='fp_menu_expand'></span>".( $term_description? $term_description:'')."</h2>";
 							}
 
 						// IF dish type subcategory
@@ -498,7 +498,7 @@ class foodpress_menus {
 									$dishtype_items = $this->get_dishtype_menuitems($dish_term->term_id, $term->term_id);
 									if(empty($dishtype_items)) continue;
 
-									$output .= "<h3 class='secondary_type dish_type fp_menu_sub_section tint_menu menu_term_{$dish_term->term_id} {$_collapsable_dt}'>{$DT_icon}{$dish_term->name}<span class='fp_menu_expand'></span>{$term_description}</h3>";
+									$output .= "<h3 class='secondary_type dish_type fp_menu_sub_section tint_menu menu_term_{$dish_term->term_id} {$_collapsable_dt} ". ( $DT_icon? 'with_icons':'') ."'>{$DT_icon}{$dish_term->name}<span class='fp_menu_expand'></span>{$term_description}</h3>";
 
 									$output .= "<div class='food_items_container fp_{$dish_term->slug}' {$__colps_dt} >";
 									$output .= $dishtype_items;

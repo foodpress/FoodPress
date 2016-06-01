@@ -12,7 +12,6 @@
  
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-
 class foodpress_ajax{
 	public function __construct(){
 		$ajax_events = array(
@@ -48,11 +47,8 @@ class foodpress_ajax{
 			$post_id = isset( $_GET['menu_id'] ) && (int) $_GET['menu_id'] ? (int) $_GET['menu_id'] : '';
 
 			if (!$post_id) die;
-
 			$post = get_post($post_id);
-
 			if ( ! $post || $post->post_type !== 'menu' ) die;
-
 			$featured = get_post_meta( $post->ID, '_featured', true );
 
 			if ( $featured == 'yes' )
@@ -71,15 +67,11 @@ class foodpress_ajax{
 			ob_start();
 
 			echo "<div class='fp_res_list'>";
-
 			$return = $foodpress->reservations->get_rsvp_list($_POST['type']) ;
-
 			echo ($return)? $return: "<p>No reservations found.</p>";
 			echo "</div>";
 
-
 			$content = ob_get_clean();
-
 			$return = array(
 				'status'=>$status,
 				'content'=>$content
@@ -124,10 +116,8 @@ class foodpress_ajax{
 		function foodpress_get_menu_item(){
 			global $foodpress;
 			
-			$item_id = (int)($_POST['menuitem_id']);
-			
-			$content = $foodpress->foodpress_menus->get_detailed_menu_item_content($item_id, '',$_POST['args']);
-			
+			$item_id = (int)($_POST['menuitem_id']);			
+			$content = $foodpress->foodpress_menus->get_detailed_menu_item_content($item_id, '',$_POST['args']);			
 			//$popup_frame = $foodpress->foodpress_menus->get_popup_info_html();
 			
 			$return = array(
@@ -151,15 +141,12 @@ class foodpress_ajax{
 			function validate_license(){
 				global $foodpress;
 
-				require_once('admin/class-product.php');
-				$fpproduct = new FP_product();
-
 				$key = $_POST['key'];
-				$verifyformat = $fpproduct->purchase_key_format($key);
+				$verifyformat = $foodpress->admin->product->purchase_key_format($key);
 
 				$return_content = array(
 					'status'=>($verifyformat?'good':'bad'),
-					'error_msg'=>(!$verifyformat? $fpproduct->error_code_('10'):''),
+					'error_msg'=>(!$verifyformat? $foodpress->admin->product->error_code_('10'):''),
 				);
 				echo json_encode($return_content);		
 				exit;
@@ -173,9 +160,6 @@ class foodpress_ajax{
 			$error_code = '11';
 			$error_msg='';
 
-			require_once('admin/class-product.php');
-			$fpproduct = new FP_product();
-			
 			// Passing Data				
 			$key = $_POST['key'];
 			$slug = $_POST['slug'];
@@ -189,9 +173,9 @@ class foodpress_ajax{
 			);
 			
 			// verify license from foodpress server
-			$json_content = $fpproduct->verify_product_license($__data);
+			$json_content = $foodpress->admin->product->verify_product_license($__data);
 			
-			$__save_new_lic = $fpproduct->save_license_key(
+			$__save_new_lic = $foodpress->admin->product->save_license_key(
 				$__data['slug'],
 				$__data['key']
 			);
@@ -199,7 +183,7 @@ class foodpress_ajax{
 						
 			$return_content = array(
 				'status'=>$status,
-				'error_msg'=>$fpproduct->error_code_($error_code),
+				'error_msg'=>$foodpress->admin->product->error_code_($error_code),
 				'addition_msg'=>$addition_msg,
 				'json_url'=> (!is_array($json_content)? $json_content:'data'),
 			);
@@ -208,11 +192,9 @@ class foodpress_ajax{
 		}
 		// update remote validity status of a license
 			function remote_validity(){
+				global $foodpress;
 				
-				require_once('admin/class-product.php');
-				$fpproduct = new FP_product();
-
-				$status = $fpproduct->update_field($_POST['slug'], 'remote_validity', $_POST['remote_validity']);
+				$status = $foodpress->admin->product->update_field($_POST['slug'], 'remote_validity', $_POST['remote_validity']);
 				$return_content = array(	'status'=>($status?'good':'bad')	);
 				echo json_encode($return_content);		
 				exit;
