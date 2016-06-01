@@ -173,6 +173,10 @@
 	    left: 0px;
 	}
 
+	.food_items_container.secondary_section {
+	    padding-left: 47px;
+	}
+
 	h2.with_icons {
 	    padding-left: 40px !important;
 	}
