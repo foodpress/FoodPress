@@ -20,6 +20,7 @@ class foodpress_settings_settings{
 				'fields'=>array(		
 					array('id'=>'fp_css_head','type'=>'yesno','name'=>__('Write dynamic styles to header','foodpress'),'legend'=>__('If making changes to appearances dont reflect on front-end try this option. This will write those dynamic styles inline to page header.','foodpress'),),
 					array('id'=>'fp_dis_conFilter','type'=>'yesno','name'=>__('Disable Content Filter','foodpress'),'legend'=>__('This will disable to use of the_content filter on menu description and custom field values.','foodpress')),
+					array('id'=>'fp_do_not_delete_settings','type'=>'yesno','name'=>__('Do not delete settings when I delete foodpress plugin','foodpress'),'legend'=>__('Activating this will not delete the saved settings for foodpress when you delete the plugin. By default it will delete saved data.','foodpress')),
 
 
 					array('id'=>'fp_note','type'=>'subheader','name'=>__('Menu Type Categories customization','foodpress')),					

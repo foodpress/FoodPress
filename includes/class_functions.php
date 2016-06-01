@@ -136,4 +136,37 @@ class fp_functions{
 					return $opt['fpr_redire_url'];
 				}else{ return false;}
 			}
+
+	// Nutrition information array
+		function get_nutrition_items(){
+			return apply_filters('foodpress_nutrition_items', array(
+				array(
+					'name'=>__('Calories','foodpress'),
+					'slug'=>'calories','placeholder'=>'250kcal',
+					'title'=>__('How many calories is in this item?','foodpress')
+				),array(
+					'name'=>__('Cholesterol','foodpress'),'slug'=>'cholesterol','placeholder'=>'50mg',
+					'title'=>__('Cholesterol','foodpress')
+				),array(
+					'name'=>__('Fiber','foodpress'),'slug'=>'fiber','placeholder'=>'2.0g',
+					'title'=>__('Fiber','foodpress')
+				),array(
+					'name'=>__('Sodium','foodpress'),'slug'=>'sodium','placeholder'=>'175mg',
+					'title'=>__('Sodium','foodpress')
+				),array(
+					'name'=>__('Carbohydrates','foodpress'),'slug'=>'carbohydrates','placeholder'=>'4.5g',
+					'title'=>__('Carbohydrates','foodpress')
+				),array(
+					'name'=>__('Fat','foodpress'),'slug'=>'fat','placeholder'=>'3.0g',
+					'title'=>__('Fat','foodpress')
+				),array(
+					'name'=>__('Protein','foodpress'),'slug'=>'protein','placeholder'=>'1.7g',
+					'title'=>__('Protein','foodpress')
+				),array(
+					'name'=>__('Protein2','foodpress'),
+					'slug'=>'protein2','placeholder'=>'1.7g',
+					'title'=>__('Protein2','foodpress')
+				)
+			));
+		}
 }

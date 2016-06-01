@@ -1,6 +1,6 @@
-/*
-	backend menu post scripts
-*/
+/**
+ * backend menu post scripts
+ */
 jQuery(document).ready(function($){
 	
 
@@ -146,4 +146,6 @@ jQuery(document).ready(function($){
 				}
 			});
 		});
+
+		
 });

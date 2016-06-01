@@ -60,7 +60,7 @@ class fp_Admin {
 			if ( $screen->post_type == "menu" ) {
 				// includes
 				if( $pagenow == 'post-new.php' || $pagenow == 'post.php' || $pagenow == 'edit.php' ) {
-					include_once( 'post_types/menu_meta_boxes.php' );
+					include_once( 'post_types/class-menu_meta_boxes.php' );
 					include_once( 'post_types/class-fp-admin-cpt-menu.php' );
 				}
 			}

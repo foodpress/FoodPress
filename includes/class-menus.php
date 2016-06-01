@@ -1165,11 +1165,14 @@ class foodpress_menus {
 				// nutritions
 					$count =1;
 					$left = $right ='';
-					$nutri_vals = array('calories','cholesterol','fiber','sodium','carbohydrates','fat','protein');
+					
+					$nutrition_items = $this->functions->get_nutrition_items();
 
-					foreach($nutri_vals as $val){
-						if(!empty($pmv[$val])){
-							$data = "<b>".$this->functions->fp_get_language($val, $this->fopt2, $lang)."</b> ".$pmv[$val][0]."<br/>";
+					foreach($nutrition_items as $val){
+
+						$slug = $val['slug'];
+						if(!empty($pmv[$slug])){
+							$data = "<b>".$this->functions->fp_get_language($slug, $this->fopt2, $lang)."</b> ".$pmv[$slug][0]."<br/>";
 							if($count%2==0){	$right .= $data;	}else{	$left .= $data;	}
 							$count++;
 						}
