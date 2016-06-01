@@ -264,7 +264,7 @@ class FP_meta_boxes{
 			));
 
 			// add additional custom fields
-				for($x =1; $x<4; $x++){
+				for($x =1; $x<= $foodpress->functions->custom_fields_cnt(); $x++){
 					// field activated
 					if(!empty($fp_opt1['fp_af_'.$x]) && $fp_opt1['fp_af_'.$x]=='yes'){
 
