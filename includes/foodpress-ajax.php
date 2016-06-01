@@ -188,7 +188,7 @@ class foodpress_ajax{
 			);
 			
 			// verify license from foodpress server
-			$status = $fpproduct->verify_product_license($__data);
+			$json_content = $fpproduct->verify_product_license($__data);
 			
 			$__save_new_lic = $fpproduct->save_license_key(
 				$__data['slug'],
@@ -200,8 +200,7 @@ class foodpress_ajax{
 				'status'=>$status,
 				'error_msg'=>$fpproduct->error_code_($error_code),
 				'addition_msg'=>$addition_msg,
-				'this_content'=>$content,
-				'extra'=>$status_,
+				'json_url'=> (!is_array($json_content)? $json_content:'data'),
 			);
 			echo json_encode($return_content);		
 			exit;
@@ -212,7 +211,7 @@ class foodpress_ajax{
 				require_once('admin/class-product.php');
 				$fpproduct = new FP_product();
 
-				$status = $fpproduct->update_field($_POST['slug'], 'remote_validity', $_POST['validity']);
+				$status = $fpproduct->update_field($_POST['slug'], 'remote_validity', $_POST['remote_validity']);
 				$return_content = array(	'status'=>($status?'good':'bad')	);
 				echo json_encode($return_content);		
 				exit;

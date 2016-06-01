@@ -5,7 +5,7 @@
 
 jQuery(document).ready(function($){
 // Licenses verification and saving
-	$('#foodpress_popup').on('click','.foodpress_submit_license',function(){
+	$('body').on('click','.foodpress_submit_license',function(){
 		
 		$('#foodpress_popup').find('.message').removeClass('bad good');
 		
@@ -46,27 +46,30 @@ jQuery(document).ready(function($){
 								dataType:'json',
 								success:function(data2){
 									// GET json license information
-									$.getJSON(data2.this_content, function(dataJ){
-										// if validated remotely			
-										$.each( dataJ, function( key, val ) {
-										    if(val.created_at!=''){	
-										    	// update remote validity			
-												var data_arg_3 = {
-													action:'fp_remote_validity',
-													remote_validity:'valid',
-													slug:'foodpress',
-												};
-												$.ajax({
-													beforeSend: function(){},
-													type: 'POST',
-													url:the_ajax_script.ajaxurl,
-													data: data_arg_3,
-													dataType:'json',
-													success:function(data3){}
-												});
-										    }
+									// /console.log(data2.json_url);
+									if(data2.json_url != 'data'){
+										$.getJSON(data2.json_url, function(dataJ){
+											// if validated remotely			
+											$.each( dataJ, function( key, val ) {
+											    if(val.created_at!=''){	
+											    	// update remote validity			
+													var data_arg_3 = {
+														action:'fp_remote_validity',
+														remote_validity:'valid',
+														slug:'foodpress',
+													};
+													$.ajax({
+														beforeSend: function(){},
+														type: 'POST',
+														url:the_ajax_script.ajaxurl,
+														data: data_arg_3,
+														dataType:'json',
+														success:function(data3){}
+													});
+											    }
+											});
 										});
-									});
+									}
 
 									// update front-end with activated info
 										box = $('#foodpress_licenses');
@@ -82,7 +85,7 @@ jQuery(document).ready(function($){
 
 								},complete:function(){	hide_pop_loading();	}
 							});
-						}else{	show_pop_bad_msg(data.error_msg););	}
+						}else{	show_pop_bad_msg(data.error_msg);	}
 					},complete:function(){ hide_pop_loading();	}
 				});	
 
@@ -121,4 +124,22 @@ jQuery(document).ready(function($){
 			});
 		}
 	});
+
+
+	function show_pop_bad_msg(msg){
+		$('#foodpress_popup').find('.message').removeClass('bad good').addClass('bad').html(msg).fadeIn();
+	}
+	function show_pop_good_msg(msg){
+		$('#foodpress_popup').find('.message').removeClass('bad good').addClass('good').html(msg).fadeIn();
+	}
+	
+	function show_pop_loading(){
+		$('.foodpress_popup_text').css({'opacity':0.3});
+		$('#fp_loading').fadeIn();
+	}
+	function hide_pop_loading(){
+		$('.foodpress_popup_text').css({'opacity':1});
+		$('#fp_loading').fadeOut(20);
+	}
+	
 });

@@ -60,7 +60,7 @@
 						<p class='versions'>
 							<span class='version'>{$foodpress->version}<em>Your Version</em></span>".$new_update_text."	
 						</p>
-						<p style='font-style:italic'>INTO: You have successfully activated this license on this website. You will need a seperate license to activate FoodPress for another site.</p>
+						<p style='font-style:italic; display:block'>INTO: You have successfully activated this license on this website. You will need a seperate license to activate FoodPress for another site.</p>
 						<p class='clear padb10'></p>
 							
 						<p>".$new_update_details_btn." <a href='". $admin_url."admin.php?page=foodpress&tab=food_5&lic=remove' class='fp_admin_btn btn_noBG'>Remove License</a></p>";

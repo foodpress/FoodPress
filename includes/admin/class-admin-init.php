@@ -121,7 +121,7 @@ class fp_Admin {
 
 	// 
 		function wp_admin_scripts_styles(){
-			global $foodpress;
+			global $foodpress, $pagenow;
 
 			if( (!empty($pagenow) && $pagenow=='admin.php')
 			 && (isset($_GET['page']) && ($_GET['page']=='foodpress') ) 
@@ -129,7 +129,7 @@ class fp_Admin {
 
 				// only licenses page
 			 	if(!empty($_GET['tab']) && $_GET['tab']=='food_5'){
-			 		wp_enqueue_script('foodpress_licenses',$foodpress->assets_path. 'js/admin/settings_addons_licenses.js',array('jquery'),$eventon->version,true);
+			 		wp_enqueue_script('foodpress_licenses',$foodpress->assets_path. 'js/admin/settings_addons_licenses.js',array('jquery'),$foodpress->version,true);
 			 	}
 			 }
 		}

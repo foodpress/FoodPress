@@ -37,7 +37,7 @@ class FP_product{
 					//update_option('test1', json_decode($result));
 					return $result;
 				}else{	
-					return false;
+					return $url;
 				}
 			}	
 		}
