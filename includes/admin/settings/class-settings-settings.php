@@ -200,6 +200,7 @@ class foodpress_settings_settings{
 
 	// menu card boxes
 		function rearrange_code(){
+			global $foodpress;
 			$rearrange_items = apply_filters('foodpress_menucard_boxes',array(
 				'header'=>array('header',__('Featured Image','eventon')),
 				'details'=>array('details',__('Menu Details','eventon')),
@@ -209,8 +210,7 @@ class foodpress_settings_settings{
 			));
 
 			// custom fields
-			$_cmd_num = fp_calculate_cmd_count($this->fp_opt[1]);
-			for($x=1; $x<=$_cmd_num; $x++){
+			for($x=1; $x<= $foodpress->functions->custom_fields_cnt(); $x++){
 				if( !empty($this->fp_opt[1]['fp_ec_f'.$x]) && !empty($this->fp_opt[1]['fp_af_'.$x]) && $this->fp_opt[1]['fp_af_'.$x]=='yes')
 					$rearrange_items['customfield'.$x] = array('customfield'.$x, stripslashes($this->fp_opt[1]['fp_ec_f'.$x]) );
 			}

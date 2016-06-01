@@ -1103,6 +1103,7 @@ class foodpress_menus {
 	
 	// INDIVIDUAL MENU ITEM
 		function get_detailed_menu_item_content($item_id, $__type='', $args=''){
+			global $foodpress;
 
 			// initias
 				$lang = !empty($args['lang'])? $args['lang']:'L1';

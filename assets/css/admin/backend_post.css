@@ -56,6 +56,10 @@
 		box-shadow: 0px 2px #AFAFAF;
 		border: none;
 	}	
+	.foodpress_metafield p input::-webkit-input-placeholder{color:#dedede;}
+	.foodpress_metafield p input:-moz-placeholder{color:#dedede;}
+	.foodpress_metafield p input::-moz-placeholder{color:#dedede;}
+	.foodpress_metafield p input:-ms-input-placeholder{color:#dedede;}
 
 	#fp_meta_fields .foodpress_metafield .menu_item_icons{
 		display: inline-block; margin-right: 10px;

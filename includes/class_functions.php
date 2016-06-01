@@ -172,10 +172,6 @@ class fp_functions{
 					),array(
 						'name'=>__('Protein','foodpress'),'slug'=>'protein','placeholder'=>'1.7g',
 						'title'=>__('Protein','foodpress')
-					),array(
-						'name'=>__('Protein2','foodpress'),
-						'slug'=>'protein2','placeholder'=>'1.7g',
-						'title'=>__('Protein2','foodpress')
 					)
 				));
 			}
