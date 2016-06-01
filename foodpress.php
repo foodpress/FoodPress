@@ -33,6 +33,20 @@ class foodpress {
 
 	private $content;
 	public $template_url;
+
+	protected static $_instance = null;
+
+	// setup one instance of eventon
+	public static function instance(){
+		if ( is_null( self::$_instance ) ) {
+			self::$_instance = new self();
+		}
+		return self::$_instance;
+	}
+
+	public function template_path(){
+		return $this->template_url;
+	}
 	
 	// Construct
 		public function __construct() {
@@ -97,7 +111,6 @@ class foodpress {
 			include_once( 'includes/class-menus.php' );	// Main class to generate foodpress	menus
 			include_once( 'includes/class-reservations.php' );			
 		}	
-
 	
 	/** Init foodpress when WordPress Initialises. */
 		public function init() {
@@ -283,6 +296,10 @@ class foodpress {
 
 }// class exists
 
+
+// Main instanace of foodpress
+// @version 1.4
+ function FP(){ return foodpress::instanace(); }
 // init class
 $GLOBALS['foodpress'] = new foodpress();
 ?>

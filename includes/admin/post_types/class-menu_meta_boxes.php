@@ -177,7 +177,7 @@ class FP_meta_boxes{
 					$_menu_icons_value = (!empty($fmeta['fp_menuicons']))? $fmeta['fp_menuicons'][0]:null;
 
 					$show_icons = false;
-					for($x=1; $x<4; $x++){
+					for($x=1; $x<= $foodpress->functions->icon_symols_cnt(); $x++){
 
 						// if not activated
 						if(empty($fp_opt1['fp_mi'.$x]) || (!empty($fp_opt1['fp_mi'.$x]) && $fp_opt1['fp_mi'.$x]=='no')) continue;

@@ -41,6 +41,49 @@ class FP_product{
 				}
 			}	
 		}
+
+	// activation of foodpress licenses
+		function is_activated($slug){
+			$fp_licenses = get_option('_fp_licenses');
+
+			if(!empty($fp_licenses[$slug]) && $fp_licenses[$slug]['status']== 'active' && !empty($fp_licenses[$slug]['key']) ){
+				return true;
+			}else{
+				return false;
+			}
+		}
+	// get foodpress license data
+		function get_foodpress_license_data(){
+			$fp_licenses = get_option('_fp_licenses');
+
+			// running for the first time
+			if(empty($fp_licenses)){				
+				$lice = array(
+					'foodpress'=>array(
+						'name'=>'foodpress',
+						'current_version'=>$foodpress->version,
+						'type'=>'plugin',
+						'status'=>'inactive',
+						'key'=>'',
+					));
+				update_option('_fp_licenses', $lice);							
+			}
+			return get_option('_fp_licenses');
+		}
+	// deactivate license 
+		function deactivate($slug){
+			$product_data = get_option('_fp_licenses');
+			if(!empty($product_data[$slug])){
+
+				$new_data = $product_data;
+				//unset($new_data[$slug]['key']);
+				$new_data[$slug]['status']='inactive';
+
+				update_option('_fp_licenses',$new_data);
+				return true;
+			}else{return false;}
+		}
+
 	// save to wp options
 		public function save_license_key($slug, $key){
 			$licenses =get_option('_fp_licenses');

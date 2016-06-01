@@ -25,6 +25,7 @@ class foodpress_ajax{
 			'fp_validate_license'=>'validate_license',
 			'foodpress_verify_lic'=>'foodpress_license_verification',
 			'fp_remote_validity'=>'remote_validity',
+			'fp_deactivate_license'=>'deactivate_license',
 		);
 		foreach ( $ajax_events as $ajax_event => $class ) {	
 			add_action( 'wp_ajax_'. $ajax_event, array( $this, $class ) );
@@ -215,6 +216,19 @@ class foodpress_ajax{
 				$return_content = array(	'status'=>($status?'good':'bad')	);
 				echo json_encode($return_content);		
 				exit;
+			}
+		// deactivate license
+			function deactivate_license(){
+				global $foodpress;
+
+				// deactivate license locally
+					$foodpress->admin->product->deactivate($_POST['slug']);
+
+				echo json_encode( array(
+					'status'=>'good'
+				));
+				exit;
+					
 			}
 
 	// save new reservation

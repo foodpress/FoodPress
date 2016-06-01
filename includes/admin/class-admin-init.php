@@ -37,6 +37,8 @@ class fp_Admin {
 		public function includes() {
 			// Functions
 			include_once( 'fp-admin-functions.php' );
+			include_once( 'class-product.php' );
+			$this->product = new FP_product();
 
 			// Classes
 			include_once( 'post_types/class-fp-admin-post-types.php' );

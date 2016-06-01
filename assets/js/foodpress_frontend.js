@@ -13,6 +13,7 @@ jQuery(document).ready(function($){
 		alternate_categorized_menu();
 	}
 
+	
 	// scroll sections
 		$(window).scroll(function(){
 			if( $('.foodpress_scroll_section_body').length==0) return;
@@ -144,6 +145,7 @@ jQuery(document).ready(function($){
 	// open popup
 		$('.foodpress_menu').on('click', '.fp_popTrig', function(e){
 			obj = $(this);
+
 			menuarg = obj.closest('.foodpress_menu').find('.menu_arguments');
 			var xx = e.target;
 
@@ -154,6 +156,7 @@ jQuery(document).ready(function($){
 				ajax_menuitem_content(menuitem_id, menu_id);
 			}
 		});
+		
 
 	// load content for the popup item box
 		function ajax_menuitem_content(item_id, menu_id){

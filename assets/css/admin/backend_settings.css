@@ -125,12 +125,30 @@
 
 /* licenses */
 	.fp_hide_this{display:none!important}
-	.licenses_list{
+	.fp_product_main{
 		background-color:#792662;
 		color:#fff;
-		padding:25px 30px;
-		margin-bottom:20px;
+		padding:25px 30px;		
 	}
+	.fp_product_main, .fpaddon_box{
+		height: 280px;
+		float: left;
+		box-sizing:border-box;
+		-moz-box-sizing:border-box;
+		border-radius: 10px;	
+		width: 50%;	
+		border:5px solid #F1F1F1;
+	}
+	.fpaddon_box{
+		background-color:#fff;
+		padding:15px;
+		min-height:150px;
+	}
+	.fp_product_main.active_product{background-color: #B981AA;}
+	.fp_product_main.active_product:hover{background-color: #CE96BF;}
+	.fp_product_main:hover{background-color:#73205C }
+	.fpaddon_box.have_product{background-color: #E8DFE6	}
+	.fpaddon_box.have_product:hover{background-color: #DED2DB	}
 	.licenses_list h2.heading, .foodpress_addons h2.heading a, .foodpress_settings_page h2.heading{	
 		text-shadow:none;
 		font:300 24px 'open sans';
@@ -142,9 +160,8 @@
 	.licenses_list h2.heading em{
 		color:#e6bddb;
 		font-style:italic;
-	}
-	
-	.licenses_list .fp_admin_btn.btn_noBG{color:#ba74a7;background-color:#a55c91;}
+	}	
+	.licenses_list .fp_admin_btn.btn_noBG{color:#fff;background-color:#a55c91;}
 	.licenses_list .fp_admin_btn.btn_noBG:hover{color:#d19fc3;background-color:#a55c91;}
 	.licenses_list .fp_admin_btn.btn_prime{background-color:#e6bddb	}
 
@@ -166,7 +183,22 @@
 		font-size:12px;
 		display:block;
 		padding-top: 10px;
+	} 
+	
+	.fpaddon_box h5{
+		font: bold 20px 'open sans';
+		color:#383838;
+		margin:0;
+		background-repeat:no-repeat;
+		padding:8px 0 8px 0px;
+		height:19px;
 	}
+	.fpaddon_box h5 span{color:#9c9c9c;font-weight:normal}
+	.fpaddon_box p{ 
+		margin-top:0px;
+		font-style:italic
+	}
+	
 
 /* support */
 	#chatIN {
@@ -231,38 +263,6 @@
 	#food_4 h3{
 		color: #616161; font-size: 20px;
 		border:none; cursor:pointer;
-	}
-
-/*-- addons ---*/
-	.fp_addons_list{
-		margin-bottom:20px;
-		margin-top:10px
-	}
-	.fp_addons_list h5{
-		font: bold 14px 'open sans';
-		color:#383838;
-		margin:0;
-		background-repeat:no-repeat;
-		padding:8px 0 8px 40px;
-		height:19px;
-	}
-	.fp_addons_list h5 span{color:#9c9c9c;font-weight:normal}
-	.fp_addons_list p{ 
-		margin-top:0px;
-		font-style:italic
-	}
-
-	.fpaddon_box{
-		float:left; display:block;
-		margin-bottom:3px;
-		width:50%;
-	}
-	.fpa_boxe{
-		margin-right:3px;
-		background-color:#fff;
-		border:1px solid #dadada;
-		padding:15px;
-		min-height:150px;
 	}
 
 /* languages */

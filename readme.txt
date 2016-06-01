@@ -19,7 +19,9 @@ FoodPress is a complete restaurant menu management system that allow you to crea
 = 1.4 (2016-
 ADDED: Option to hide menu and dish type icons from settings
 ADDED: Option to not delete settings when plugin uninstalled
-ADDED: pluggable hooks to add more nutrition information fields
+ADDED: pluggable hook 'foodpress_nutrition_items' to add more nutrition information fields
+ADDED: pluggable hook 'foodpress_icons_symbols_count' to add more icon symbols
+ADDED: ability to set default image URL for menu items with no image
 FIXED: Success message for reservation form to use date_i18n()
 FIXED: reservation date i18n for confirmation email
 FIXED: Sub categorized by dish type not showing meal type headers
@@ -27,6 +29,8 @@ FIXED: Dish type and meal type descriptions via shortcode
 FIXED: Collapsed and collapsable dish type categorized menu
 UPDATED: Loading jq ui off google CDN & wp library
 UPDATED: License activation for foodpress
+UPDATED: Made entire menu box clickable - need OO update
+UPDATED: License and addon page
 
 = 1.3.6 (2016-4-18) =
 FIXED: In safari reservation time passing incorrectly

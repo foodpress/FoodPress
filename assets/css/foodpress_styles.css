@@ -1,6 +1,6 @@
 /*
 	Default FoodPress Theme
-	@version 1.3.1
+	@version 1.4
 */
 
 /*-- General styles go here --*/
@@ -23,23 +23,18 @@
 	.rnd5{-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;}
 	.rnd8{-moz-border-radius: 8px;-webkit-border-radius: 8px;border-radius: 8px;}
 	.rnd15{-moz-border-radius: 15px;-webkit-border-radius: 15px;border-radius: 15px;}
-
 	.brbox{
 		-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 		-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 		box-sizing: border-box;
 	}
-
 	.foodpress_menu{
 		font-family: 'Open Sans', sans-serif; 
 		font-size:14px; color:#767676; 
 		background:#fff;
 		position: relative;		
 	}	
-	.fp_menucard_content.fp_page {
-		position: relative;
-	}
-
+	.fp_menucard_content.fp_page {	position: relative;	}
 	.transish, .tint, .foodpress_menu h2.tint_menu, .fp_icons i, 
 	.fp_featured_content, .style_ft2 .menu_info, .style_3 .fp_thumbnail,
 	.style_ft3 .menu_image, .style_ft4 .menu_image, .foodpress_categories h4, .foodpress_categories h4 span{
@@ -49,20 +44,15 @@
 		-o-transition: all .2s ease;
 		transition: all .2s ease;	
 	}
-
 	.foodpress_menu h2.fp_menu_sub_section i, .foodpress_menu h3.dish_type i{
 		margin-right: 10px; float: left;
 		margin-top: 5px;
 	}
 	.ffgeo{font-family: georgia}
-	.bordb{border-bottom:dashed thin; border-color:#e1e1e1}
-	
+	.bordb{border-bottom:dashed thin; border-color:#e1e1e1}	
 	.flr{float:right;}
-	
-	
 
-/* layout */	
-	
+/* layout */
 	.food_items_container {
 		position:relative;
 		overflow: hidden;
@@ -77,12 +67,9 @@
 		display: -webkit-flex;
 		display: -ms-flexbox;
 		display: flex;
-	}
-	
+	}	
 	.food_items_container p, .fp_single_item_box p{margin:0;}
-
 	.primbg{background-color:#792662;}
-
 	.foodpress_menu .fp_menu_sub_section {
 		font-family: 'Open Sans', sans-serif;
 		font-weight:300;
@@ -92,9 +79,7 @@
 		/*text-indent:10px;*/
 		position:relative;
 	}
-	.foodpress_menu h3.fp_menu_sub_section{
-		text-indent: 10px; 
-	}
+	.foodpress_menu h3.fp_menu_sub_section{	text-indent: 10px; 	}
 	.foodpress_menu h2.fp_menu_sub_section.collapsable, .foodpress_menu.clps_dt h3.fp_menu_sub_section.collapsable{cursor: pointer;	}
 	
 	.foodpress_menu h3.collapsable .fp_menu_expand{display: none;}
@@ -128,7 +113,6 @@
 	    font-weight: 100;
 	    color: #e1e1e1;
 	}
-
 	/* center align menu style */
 		.foodpress_menu.centermenu {text-align: center;}
 		.foodpress_menu.centermenu .menuItem.style_1 span.fp_price {float: none; display:table; margin: 5px auto}
@@ -172,10 +156,7 @@
 		margin:15px 15px;
 		position: absolute;
 	}
-	.fp_popup_option .fp_menudata_icon i{
-		font-size: 26px;
-	}
-
+	.fp_popup_option .fp_menudata_icon i{	font-size: 26px;	}
 	/* Added styles for Description Content Styles */
 	.fp_inner_box h1 {
 	    font-size: 28px;
@@ -185,7 +166,6 @@
 	    word-spacing: normal;
 	    letter-spacing: normal;
 	}
-
 	.fp_inner_box h2 {
 	    font-size: 24px;
 	    margin: 4px 0px;
@@ -194,7 +174,6 @@
 	    word-spacing: normal;
 	    letter-spacing: normal;
 	}
-
 	.fp_inner_box h3 {
 	    font-size: 20px;
 	    margin: 4px 0px;
@@ -203,7 +182,6 @@
 	    word-spacing: normal;
 	    letter-spacing: normal;
 	}
-
 	.fp_inner_box h4 {
 	    font-size: 16px;
 	    margin: 4px 0px;
@@ -212,7 +190,6 @@
 	    word-spacing: normal;
 	    letter-spacing: normal;
 	}
-
 	.fp_inner_box h5 {
 	    font-size: 14px;
 	    font-weight: normal;
@@ -222,7 +199,6 @@
 	    letter-spacing: normal;
 	    word-spacing: normal;
 	}
-
 	.fp_inner_box h6 {
 	    font-size: 12px;
 	    font-weight: normal;
@@ -232,15 +208,13 @@
 	    letter-spacing: normal;
 	    word-spacing: normal;
 	}
-
 	.fp_inner_box blockquote {
 	  background: #f9f9f9;
 	  border-left: 10px solid #ccc;
 	  margin: 1.5em 10px;
 	  padding: 0.5em 10px;
 	  quotes: "\201C""\201D""\2018""\2019";
-	}
-	
+	}	
 	.fp_inner_box blockquote:before {
 	  color: #ccc;
 	  content: open-quote;
@@ -248,20 +222,10 @@
 	  line-height: 0.1em;
 	  margin-right: 0.25em;
 	  vertical-align: -0.4em;
-	}
-	
-	.fp_inner_box blockquote p {
-	  display: inline;
-	}
-
-	.menu_description ul {
-	    padding-left: 30px;
-	}
-
-	.menu_description ol {
-	    padding-left: 30px;
-	}
-
+	}	
+	.fp_inner_box blockquote p {  display: inline;}
+	.menu_description ul {    padding-left: 30px;	}
+	.menu_description ol {	    padding-left: 30px;	}
 
 /* regular items */
 	.fp_box {	
@@ -324,12 +288,9 @@
 			margin-left: 0px;
 		}
 		.style_1.c_50 .fp_price{
-			float: none;
-			margin-left: 0px;
+			float: none;margin-left: 0px;
 		}
-		.food_items_container .c_100:last-child{
-			border-bottom: none;
-		}
+		.food_items_container .c_100:last-child{border-bottom: none;}
 	
 	/* style 2 */
 		.style_2.fp_box{margin-bottom: 3px;}
@@ -492,18 +453,14 @@
 		background:#92417b;
 		text-decoration:none;
 		color: #fff;
-	}
-	
+	}	
 	/* light green button*/
 	.fp_bnt.fpsec{background-color: #e9f6c3;color: #a6be5c;}
 	.fp_bnt.fpsec:hover{background-color: #fff;color: #a6be5c;}
 
 	.fp_inline_btn, .ftone_btn, .fp_btn_cur, .fp_popTrig{	cursor:pointer;}
 
-
-/* single menu item */
-	
-
+/* single menu item */	
 /* borders */	
 	.fp_box.style_1{
 		border:dashed thin #e1e1e1;
@@ -634,7 +591,6 @@
 		overflow: hidden;
 		background-color: #ffffff;
 	}
-
 	.fp_menucard_content .fp_inner_box{padding:15px 20px 15px;}
 	.fp_menucard_content .iconrow .fp_inner_box{padding-left: 70px;}
 
@@ -702,10 +658,6 @@
 	.fp_text {float:none;}
 	.fp_text ul{list-style-type:disc;}
 	.fp_text li{margin-left: 20px;}
-
-	
-
-
 	.fp_menucard_content .fp_pop_headerS:hover{
 		background-color: rgba(0, 0, 0, 0.2);
 		opacity: 0.7
@@ -723,8 +675,7 @@
 		-ms-transition: all .2s ease;
 		-o-transition: all .2s ease;
 		transition: all .2s ease;
-	}
-	
+	}	
 	.fp_menucard_content .fp_popup_img.noimg .fp_pop_headerS{
 		padding: 35px 0;
 		min-height: 100%;
@@ -753,8 +704,6 @@
 		display: inline-block;
 		border-radius: 5px
 	}
-
-
 	.fp_text ul{padding-left: 0; margin-top: 3px;margin-bottom: 10px;}
 	.popupInfofooter{background-color:#f3f1f2}
 
@@ -820,10 +769,8 @@
 		line-height: 140%;
 		color: #999999;
 	}
-
 .feat_box{overflow:hidden}	
 .clear{clear:both}
-
 
 /* Widget */
 	.foodpress_widget .fp_box{float: none;}
@@ -862,9 +809,7 @@
 	}
 
 /* tabbed menu */
-	.tabbed_menu .foodpress_tabs {
-		margin-bottom: 15px;
-	}
+	.tabbed_menu .foodpress_tabs {margin-bottom: 15px;	}
 	.tabbed_menu .foodpress_tabs h4{
 		cursor: pointer;
 		margin: 0;
@@ -951,17 +896,7 @@
 		background-color: #955181;
 		color: #fff;
 	}
-	.foodpress_menu.box_cats span.fp_backto_cats i {
-		/* display: block; */
-		/* width: 22px; */
-		/* height: 22px; */
-		/* position: absolute; */
-		/* left: 10px; */
-		/* border: 2px solid #fff; */
-		/* border-radius: 50%; */
-		/* top: 14px; */
-		opacity: 0.6;
-	}
+	.foodpress_menu.box_cats span.fp_backto_cats i {opacity: 0.6;}
 	.foodpress_menu.box_cats span.fp_backto_cats i:before {
 		content: "\f137";
 		display: inline-block;
@@ -1001,7 +936,6 @@
 	.box_cats .foodpress_categories h4:hover span.mtimg{opacity: 0.4;}
 
 /* reservation form styles */
-
 	/* general */
 		#fp_make_res{
 			margin:0px auto;
@@ -1238,8 +1172,7 @@
 			margin: 60px auto;
 			max-width: 650px;
 			position: relative;
-		}
-		
+		}		
 		.fp_lightbox{
 			opacity: 0;
 		    -webkit-transition: opacity .15s linear;
@@ -1289,7 +1222,6 @@
 			padding-top: 20px;
 		}
 		#fp_make_res .form_message .fp_res_success{display: none;}
-
 		.fp_res_success_icon:before{
 			content: '';
 			display: block;
@@ -1319,9 +1251,7 @@
 			border: 2px solid #fff;
 			border-radius: 50%;
 		}
-		.fp_res_success_title{
-			font-size: 24px;
-		}
+		.fp_res_success_title{font-size: 24px;		}
 		#fp_make_res .form_message .error{
 			margin: 0; padding: 10px;
 			background-color: rgb(195, 101, 101)
@@ -1354,9 +1284,7 @@
 			text-align: center;
 			margin: 50px auto;
 		}
-
 		.fp_res_button:hover {cursor:pointer; background-color:#8f3174}
-
 		.fp_res_button p{
 			padding: 0; margin: 0;
 		}
@@ -1418,19 +1346,9 @@
 				width: 90%;				
 			}
 			.fplbclose{ padding: 0; height: 60px; width: 60px; line-height: 60px; font-size: 36px; }
-		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		}		
 
 /* Added styles from July 16, 2015 */
-
 	.fp_box .menu_description h4 {
 	  position: relative;
 	  color: inherit;
@@ -1440,122 +1358,88 @@
 	  font-weight: inherit;
 	  margin:0px;
 	  padding:0px;
-	}
-	
+	}	
 	.fp_box.menuItem.c_100.normal_item.style_2 .menu_info h3 {
 	  padding: 4px 0px 0px 10px;
-	}
-	
+	}	
 	.fp_box.menuItem.c_100.normal_item.style_2 .menu_info .menu_description {
 	  padding-left: 10px;
-	}
-	
+	}	
 	.style_2.fp_box .fp_price {
 	  font-size: 14px;
 	  position: absolute;
 	  top: 7px;
 	  right: 4px;
 	}
-
 	.fp_box.menuItem.c_100.normal_item.style_2 {
 	  margin-bottom: 0px;
-	}
-	
+	}	
 	.fp_box.menuItem.c_100.normal_item.style_2 .fp_subheader {
 	  padding-left: 10px;
 	}
-		
-		
 	.fp_box.menuItem.c_100.normal_item.style_2 img.new_fp_thumb {
 	  float: left;
 	  width: 30%;
 	  box-shadow: none;
 	  border: solid 5px transparent;
 	  box-sizing: border-box;
-	}
-		
+	}		
 	.fp_box.menuItem.c_100.normal_item.style_2 .menu_info {
-		width: 70%;
-		float: left;
-	}
-		
+		width: 70%;	float: left;
+	}		
 	.fp_box.menuItem.c_100.normal_item.style_2 .menu_info h3 {
 		max-width: 200px;
-	}
-		
+	}		
 	.style_2.fp_box.c_50 .fp_price, .style_2.fp_box.c_33 .fp_price {
 	  position: relative;
 	  float: left;
-	}
-		
+	}		
 	.style_2.fp_box.c_50 h3, .style_2.fp_box.c_33 h3 {
 	  padding-top: 5px;
 	}
-		
-		
 	.fp_box.menuItem.c_50.normal_item.style_2 .menu_info {
 		padding: 10px;
-	}
-		
+	}		
 	.fp_box.menuItem.c_50.normal_item.style_2 img.new_fp_thumb {
 	  box-shadow: none;
 	  width: 100%;
 	  border: solid 5px transparent;
 	  box-sizing: border-box;
-	}
-		
+	}		
 	.fp_box.menuItem.c_33.normal_item.style_2 {
 	  margin-bottom: 0px;
-	}
-	
+	}	
 	.fp_box.menuItem.c_33.normal_item.style_2 .menu_info {
 	  padding-bottom: 20px;
-	}
-	
+	}	
 	.new_ft2_layout.fp_box.menuItem.c_100.ft_item.style_ft2 .new_ft_img2 img {
 	  box-shadow: none;
 	  width: 100%;
 	  height: auto;
-	}
-	
+	}	
 	.new_ft2_layout.fp_box.menuItem.c_100.ft_item.style_ft2 {
-	  line-height: 0;
-	   margin-bottom: 5px;
-	}
-	
-	.style_ft2 .fp_inner_box {
-	  line-height: 1.5;
-	}
-	
-	.new_ft_img3 {
-	  position: relative;
-	}
-	
+	  line-height: 0;   margin-bottom: 5px;
+	}	
+	.style_ft2 .fp_inner_box {  line-height: 1.5;	}	
+	.new_ft_img3 {  position: relative;	}	
 	.new_ft3_layout.fp_box.menuItem.c_100.ft_item.style_ft3 .new_ft_img3 img {
 	  box-shadow: none;
-	}
-	
+	}	
 	.new_ft_img3 span.fp_price {
 	  position: absolute;
 	  bottom: 20px;
 	  left: 17px;
-	}
-	
+	}	
 	.new_ft3_layout.fp_box.menuItem.c_100.ft_item.style_ft3 {
 	  border-bottom: none;
-	}
-	
-	.fp_box.menuItem.c_100.normal_item.style_1 {
-	  border: none;
-	}
-	
+	}	
+	.fp_box.menuItem.c_100.normal_item.style_1 { border: none;	}	
 	.fp_box.menuItem.c_100.ft_item.style_2 .fp_inner_box .fp_thumbnail.new_fp_thumbnail img {
 	  width: 100%;
 	  height: auto;
 	  box-shadow: none;
 	  border-radius: 0px;
-	}
-	
+	}	
 	.fp_inner_box a.onpage_fpAddToCart.fp_bnt.single_add_to_cart_button.button.alt {
 	  margin-left: 10px;
 	  padding: 5px;
@@ -1564,41 +1448,32 @@
 	
 	.fp_box.menuItem.c_100.ft_item.style_2 a.onpage_fpAddToCart.fp_bnt.single_add_to_cart_button.button.alt {
 	  margin: 10px 0px 20px 0px;
-	}
-	
+	}	
 	.fp_box.menuItem.c_100.ft_item.style_2 .menu_info {
 	  padding: 10px;
 	}
-	
 	.fp_box.menuItem.c_100.ft_item.style_2 h3 {
 	  padding: 15px 0px 0px 0px;
 	  margin: 0px;
-	}
-	
+	}	
 	.fp_box.menuItem.c_100.normal_item.style_2 a.onpage_fpAddToCart.fp_bnt.single_add_to_cart_button.button.alt {
 	  float: none;
-	}
-	
+	}	
 	.new_ft2_layout.fp_box.menuItem.c_100.ft_item.style_ft2 a.onpage_fpAddToCart.fp_bnt.single_add_to_cart_button.button.alt {
 	  margin-left: 0px;
-	}
-	
+	}	
 	.new_ft3_layout.fp_box.menuItem.c_100.ft_item.style_ft3 a.onpage_fpAddToCart.fp_bnt.single_add_to_cart_button.button.alt {
 	  margin-left: 0px;
-	}
-	
+	}	
 	.fp_box.menuItem.c_33.normal_item.style_2 a.onpage_fpAddToCart.fp_bnt.single_add_to_cart_button.button.alt {
 	  margin-left: 0px;
-	}
-	
+	}	
 	.fp_box.menuItem.c_33.normal_item.style_2 .fp_thumbnail.new_fp_thumbnail img {
 	  box-shadow: none;
 	  border-radius: 0px;
 	  border: solid 5px transparent;
 	  box-sizing: border-box;
 	}
-	
-
 	.fp_popup_img.fp_header img {
 	  width: 100%;
 	  position: relative;
@@ -1607,8 +1482,7 @@
 	  top:0px;
 	  left:0px;
 	 min-height: 400px;
-	}
-	
+	}	
 	.fp_popup {
 	  position: relative;
 	  width: 95%;
@@ -1617,8 +1491,7 @@
 	  top: 0px;
 	  bottom: 0px;
 	  background: transparent;
-	}
-	
+	}	
 	.fp_menucard_content .fp_pop_headerS {
 	  position: absolute;
 	  padding-top: 175px;
@@ -1635,34 +1508,26 @@
 	  transition: all .2s ease;
 	  top: 0px;
 	  height: 400px;
-	}
-	
+	}	
 	.fp_popup_img.fp_header.image {
-		  max-height: 400px;
-		  overflow: hidden;
-		position: relative;
+		max-height: 400px; overflow: hidden;	position: relative;
 	}
 
 /*Media Queries================================================== */
-
 	/* Slight fix for IOS devices */
 	@media only screen and (min-width: 1100px) {
 		.fp_popup {max-width:600px;}
 	}
-
 	/* Smaller than standard 960 (devices and browsers) */
 	@media only screen and (max-width: 960px) {
 		.wrapper {width:100%}
-
 	}
 	/* Tablet Portrait size to standard 960 (devices and browsers) */
-	@media only screen and (min-width: 767px) and (max-width: 1280px) {	
-	}
+	@media only screen and (min-width: 767px) and (max-width: 1280px) {	}
 
 	/* All Mobile Sizes (devices and browser) */
 	@media only screen and (max-width: 767px) {
 		.wrapper {width:100%}	
-
 		.style_1.c_50 .fp_price{
 			font-size: 14px;margin-top: 0;float: none;margin-left: 7px;
 		}	
@@ -1695,14 +1560,11 @@
 		  top:0px;
 		  left:0px;
 		  min-height: 267px;
-		}
-		
+		}		
 		.fp_popup_img.fp_header.image {
 		  max-height: 267px;
 		  overflow: hidden;
-
-		}
-		
+		}		
 		.fp_popup {
 		  position: relative;
 		  width: 95%;
@@ -1711,8 +1573,7 @@
 		  top: 0px;
 		  bottom: 0px;
 		  background: transparent;
-		}
-		
+		}		
 		.fp_menucard_content .fp_pop_headerS {
 		  position: absolute;
 		  padding-top: 110px;
@@ -1732,12 +1593,7 @@
 		  max-height: 267px;
 		  overflow: hidden;
 		}
-		
-
-		
-		
 	}
-
 
 	/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
 	@media only screen and (min-width: 480px) and (max-width: 767px) {
@@ -1756,7 +1612,6 @@
 		.fp_box.menuItem.c_33.normal_item.style_2 .new_fp_thumb {
 		  width: 100%;
 		}
-
 	}
 
 	/* 480 */
@@ -1780,50 +1635,37 @@
 		.style_ft4.c_100 .menu_image{width: 40%;}
 		.style_ft4.c_100 .menu_info{padding-left: 40%;}
 		.style_ft4.c_100.no_img .menu_info{padding-left: 0;}
-
-		.fp_popup{width: 85%}
-		
-		.c_50 {width:100%}
-		
+		.fp_popup{width: 85%}		
+		.c_50 {width:100%}		
 		.tabbed_menu .foodpress_tabs h4 {font-size: 12px !important;}
-		.fp_res_button {
-			width: 80%;
-			}
-			
+		.fp_res_button {width: 80%;		}			
 		.fp_box.menuItem.c_100.normal_item.style_2 img.new_fp_thumb {
 		  float: left;
 		  width: 30%;
 		  max-width: 100px;
-		}
-		
+		}		
 		.fp_box.menuItem.c_100.normal_item.style_2 .menu_info {
 		  width: 70%;
 		  float: left;
 		  padding: 5px 0px;
-		}
-		
+		}		
 		.fp_box.menuItem.c_100.normal_item.style_2 .menu_info h3 {
 		  max-width: none;
 		  padding-top: 6px;
-		}
-		
+		}		
 		.fp_box.menuItem.c_100.normal_item.style_2 .menu_info span.fp_price {
 		  left: 10px;
 		  right: inherit;
 		  top: 3px;
-		}
-		
+		}		
 		.style_2.fp_box .fp_price {
 		  font-size: 14px;
 		  position: relative;
 		  float: left;
-		}
-		
+		}		
 		.fp_box.menuItem.c_33.normal_item.style_2 .new_fp_thumb {
 		  width: 100%;
-		}
-		
-		
+		}	
 		.fp_popup_img.fp_header img {
 		  width: 100%;
 		  position: relative;
@@ -1833,13 +1675,11 @@
 		  top:0px;
 		  left:0px;
 		  min-height: 187px;
-		}
-		
+		}		
 		.fp_popup_img.fp_header.image {
 		  max-height: 187px;
 		  overflow: hidden;
-		}
-		
+		}		
 		.fp_popup {
 		  position: relative;
 		  width: 95%;
@@ -1848,8 +1688,7 @@
 		  top: 0px;
 		  bottom: 0px;
 		  background: transparent;
-		}
-		
+		}		
 		.fp_menucard_content .fp_pop_headerS {
 		  position: absolute;
 		  padding-top: 70px;
@@ -1868,31 +1707,19 @@
 		  height: 187px;
 		  max-height: 187px;
 		  overflow: hidden;
-		}
-		
-		span.fp_popup_img_title {
-			  font-size: 18px !important;
-		}
-		
-		.fp_menucard_content .fp_popup_img_price {
-		  font-size: 16px;
-		 }
-		 
-		 .fp_popup h3 {
-		  font-size: 18px !important;
-		}
-		
+		}		
+		span.fp_popup_img_title {  font-size: 18px !important;	}		
+		.fp_menucard_content .fp_popup_img_price {  font-size: 16px; }		 
+		.fp_popup h3 {  font-size: 18px !important;	}		
 		.fp_orderonline_add_cart .quantity {
 		  margin-bottom: 10px;
-		}
-		
+		}		
 		.fp_menucard_content .menu_description p {
 		  margin: 0px;
 		  line-height: 140%;
 		  font-size: 12px;
 		  padding: 5px 0px 0px 0px;
-		}
-		
+		}	
 		
 		/* Added for scroll Menu on mobile devices*/
 		.foodpress_scroll_sections {
@@ -1901,8 +1728,7 @@
 			border: 1px solid #EAEAEA;
 			border-radius: 5px;
 			position: relative !important;
-		}
-		
+		}		
 		.foodpress_scroll_section_body {
 			display: block;
 			padding-left: 0px;
@@ -1916,82 +1742,59 @@
 		.foodpress_menu h2.fp_menu_sub_section {font-size:20px}
 		.spice_this p {background: none;color: #fff;margin: 8px 15px;padding: 6px 8px;font: 700 16px 'open sans';text-transform: uppercase;font-size: 16px;}
 
-		.style_2.fp_box .fp_price{clear:both; display: inline-block; }
-		
-		
+		.style_2.fp_box .fp_price{clear:both; display: inline-block; }	
 		.fp_box.menuItem.c_100.normal_item.style_2 img.new_fp_thumb {
 		  float: left;
 		  width: 100%;
 		  max-width: inherit;
 		  margin:20px auto 10px auto;
-		}
-		
+		}		
 		.fp_box.menuItem.c_100.normal_item.style_2 .menu_info {
 		  width: 100%;
 		  float: left;
 		}
-
-
-
 	}
-
-	
 	
 	/* Added styles for version 2.0 launch */
-	#fp_popup a.fp_bnt.fp_show_variations {
-		display: none;
-	}
-	#fp_popup form.variations_form.cart.fp_orderonline_variable.fp_cart {
-		display: block !important;
-	}
-	.foodpress_menu a.onpage_fpAddToCart.fp_bnt.single_add_to_cart_button.button.alt {
-		display: inline-block;
-	}
-	
-	.fp_inner_box .fpoo_addcart_msg {
-		margin-left: 7px;
-		padding-left: 13px;
-		display: inline-block;
-		margin-top: 4px;
-		font-size: 10px;
-	}
-	
-	.fp_oo_notic a.fp_bnt {
-		display: block;
-	}
-
-	.style_2.fp_box .fp_icons {
-		display:block;
-		padding:0px;
-		padding-left:0px;
-	}
-	.fp_icons {
-		display: block;
-		padding: 0;
-		padding-left: 0px;
-	}
-	.fp_icons i {
-		margin-right: 10px;
-		color: #EC2A33;
-		font-size: 20px;
-		padding: 10px 0px;
-	}
-
-	.fp_menucard_content .fp_popup_img.noimg .fp_pop_headerS {
-		display: none;
-	}
-	
-	.style_ft3.c_33 .fp_inner_box {
-		min-height: 100px;
-	}
-	.style_ft3.c_33:nth-child(3n+1), .style_ft3.c_33:nth-child(3n+2) {
-		border-right: none;
-	}
-	
-	.style_ft3 {
-		border-bottom: none;
-	}
-
+		#fp_popup a.fp_bnt.fp_show_variations {	display: none;	}
+		#fp_popup form.variations_form.cart.fp_orderonline_variable.fp_cart {
+			display: block !important;
+		}
+		.foodpress_menu a.onpage_fpAddToCart.fp_bnt.single_add_to_cart_button.button.alt {
+			display: inline-block;
+		}	
+		.fp_inner_box .fpoo_addcart_msg {
+			margin-left: 7px;
+			padding-left: 13px;
+			display: inline-block;
+			margin-top: 4px;
+			font-size: 10px;
+		}	
+		.fp_oo_notic a.fp_bnt {	display: block;	}
+		.style_2.fp_box .fp_icons {
+			display:block;
+			padding:0px;
+			padding-left:0px;
+		}
+		.fp_icons {
+			display: block;
+			padding: 0;
+			padding-left: 0px;
+		}
+		.fp_icons i {
+			margin-right: 10px;
+			color: #EC2A33;
+			font-size: 20px;
+			padding: 10px 0px;
+		}
+		.fp_menucard_content .fp_popup_img.noimg .fp_pop_headerS {
+			display: none;
+		}	
+		.style_ft3.c_33 .fp_inner_box {	min-height: 100px;	}
+		.style_ft3.c_33:nth-child(3n+1), .style_ft3.c_33:nth-child(3n+2) {
+			border-right: none;
+		}	
+		.style_ft3 {	border-bottom: none;	}
 
 /* Fixes for 1.2.5 Version of Foodpress by Michael Gamble */
 /*Fix for Safari Browser Reservation Form*/

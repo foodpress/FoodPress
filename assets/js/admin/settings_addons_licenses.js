@@ -72,7 +72,8 @@ jQuery(document).ready(function($){
 									}
 
 									// update front-end with activated info
-										box = $('#foodpress_licenses');
+										box = $('.fp_product_main');
+										box.addClass('active_product');
 										box.find('h2.heading em').html('Activated');
 										box.find('.fp_popup_trig').fadeOut();
 										
@@ -125,6 +126,32 @@ jQuery(document).ready(function($){
 		}
 	});
 
+// deactivate license
+	$('#fp_deactivate_license').on('click',function(event){
+		event.preventDefault();
+		OBJ = $(this);
+
+		var data_arg = {	
+			action:'fp_deactivate_license',	
+			slug: OBJ.data('slug')
+		};	
+		$.ajax({
+			beforeSend: function(){
+				OBJ.closest('.fp_product').css({'opacity':'0.2'});
+			},
+			type: 'POST',
+			url:the_ajax_script.ajaxurl,
+			data: data_arg,
+			dataType:'json',
+			success:function(data){
+				if(data.status =='good'){	
+					location.reload();						
+				}else{	alert(data.error_msg);	}	
+			},complete:function(){
+				OBJ.closest('.fp_product').css({'opacity':'1'});
+			}
+		});
+	});
 
 	function show_pop_bad_msg(msg){
 		$('#foodpress_popup').find('.message').removeClass('bad good').addClass('bad').html(msg).fadeIn();

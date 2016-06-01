@@ -22,6 +22,8 @@ class foodpress_settings_settings{
 					array('id'=>'fp_dis_conFilter','type'=>'yesno','name'=>__('Disable Content Filter','foodpress'),'legend'=>__('This will disable to use of the_content filter on menu description and custom field values.','foodpress')),
 					array('id'=>'fp_do_not_delete_settings','type'=>'yesno','name'=>__('Do not delete settings when I delete foodpress plugin','foodpress'),'legend'=>__('Activating this will not delete the saved settings for foodpress when you delete the plugin. By default it will delete saved data.','foodpress')),
 
+					array('id'=>'fp_def_thumb_url','type'=>'text','name'=>__('Default image URL for menu items with no image','foodpress'),'legend'=>__('This default thumbnail will be used for menu items that does not have menu image to make the menu look consistent.','foodpress'),'default'=>'http://www.site.com/images/image.jpg'),
+
 
 					array('id'=>'fp_note','type'=>'subheader','name'=>__('Menu Type Categories customization','foodpress')),					
 					array('id'=>'fp_note','type'=>'note','name'=>__('Use this to assign custom names for the menu item type categories which you can use to categorize menu items in variety of ways. <b>NOTE:</b> Once you update these custom categories refresh the page for the values to show up.','foodpress'),),
@@ -166,11 +168,13 @@ class foodpress_settings_settings{
 
 	// icon symboles
 		function _array_get_icon_symbols(){
+
+			global $foodpress;
 			$data = array(
 				array('id'=>'fp_mi','type'=>'note','name'=>__('<i>Menu Icons can be added into each menu item to represent a data value in graphic form. eg. Vegan</i>','foodpress'),),
 			);
 			
-			for($x=1; $x<4; $x++){
+			for($x=1; $x<= $foodpress->functions->icon_symols_cnt(); $x++){
 				$data[] = array('id'=>'fp_mi'.$x,'type'=>'yesno','name'=>__('Activate Icon Symbol #'.$x,'foodpress'),'legend'=>__('This will activate additional menu item field.','foodpress'),'afterstatement'=>'fp_mi'.$x);
 				$data[] = array('id'=>'fp_mi'.$x,'type'=>'begin_afterstatement');
 					$data[] = array('id'=>'fp_m_00'.$x,'type'=>'text','name'=>__('Name for the icon symbol','foodpress'),);

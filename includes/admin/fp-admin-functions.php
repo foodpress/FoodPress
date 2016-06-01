@@ -230,5 +230,34 @@ function foodpress_io_yn($var='', $afterstatement='', $codevar=''){
 		return $rightside;
 	}
 
+// FoodPress addons list
+	function foodpress_addon_list(){
+		return  array(
+			'foodpress-onlineorder' => array(
+				'name'=>'Online Order',
+				'link'=>'http://myfoodpress.com/addons/online-ordering/',
+				'download'=>'http://myfoodpress.com/addons/online-ordering/',
+				'icon'=>'assets/images/icons/icon_oo.jpg',
+				'iconty'=>'local',
+				'desc'=>'Online Ordering for foodPress seamlessly integrate woocommerce into our foodpress menu items allowing your customers to order menu items online.',
+			),'foodpress-single-menu' => array(
+				'name'=>'Single Menu',
+				'link'=>'http://myfoodpress.com/addons/single-menu-item/',
+				'download'=>'http://myfoodpress.com/addons/single-menu-item/',
+				'icon'=>'assets/images/icons/icon_sm.jpg',
+				'iconty'=>'local',
+				'desc'=>'Want to add social share buttons and share direct link to individual menu items from your delicious menu? Single Menu Items is the perfect addon that will allow you to do that.',
+			),'foodpress-importexport' => array(
+				'name'=>'Import Export',
+				'link'=>'http://myfoodpress.com/addons/import-export-menu-items/',
+				'download'=>'http://myfoodpress.com/addons/import-export-menu-items/',
+				'icon'=>'assets/images/icons/icon_ie.jpg',
+				'iconty'=>'local',
+				'desc'=>'Import and export foodpress menu items easily using this addon in CSV format',
+			)
+		);
+
+	}
+
 
 ?>

@@ -821,7 +821,7 @@ class foodpress_menus {
 
 			// menu icons
 				$__active_menu_icons = array();
-				for($x=1; $x<4; $x++){
+				for($x=1; $x<= $this->functions->icon_symols_cnt(); $x++){
 					$icon_name = !empty($this->fopt1['fp_m_00'.$x])?
 						$this->fopt1['fp_m_00'.$x]:null;
 					$icon_class = !empty($this->fopt1['fp_m_00'.$x.'i'])?
@@ -845,7 +845,7 @@ class foodpress_menus {
 		}
 
 	// RETURN HTML for menu item
-		function intepret_menu_item_html($pmv='', $menu_id, $type='', $style='', $vars){	
+		function intepret_menu_item_html($pmv='', $menu_id, $type='', $style='', $vars){
 
 			$pmv = (!empty($pmv))? $pmv : get_post_custom($menu_id);
 
@@ -885,9 +885,13 @@ class foodpress_menus {
 				
 				// THumbnail
 					$img_id =get_post_thumbnail_id($menu_id);
-					if($img_id!='')
+					if($img_id!=''){
 						$img_src = wp_get_attachment_image_src($img_id,'medium');
 						$img_src_full = wp_get_attachment_image_src($img_id,'large');
+					}else{
+						if(!empty($this->fopt1['fp_def_thumb_url']))
+							$img_src = $img_src_full = array($this->fopt1['fp_def_thumb_url']);
+					}
 				
 				// menu item title
 					$_title = get_the_title($menu_id);
@@ -951,7 +955,7 @@ class foodpress_menus {
 
 				/* <p class='fp_icons'><?php echo $_vegetarian;?></p>*/
 
-
+				$_box_classes[] = 'fp_popTrig';
 
 				// Featured item styles
 				switch ($featured_item_style):
@@ -965,7 +969,7 @@ class foodpress_menus {
 						?>
 							<div class='<?php echo $_class_nm;?>' <?php echo $_box_data_;?>>
 								<div class='fp_inner_box'>
-									<h3 class='fp_popTrig' title='<?php echo $_title;?>'><?php echo $__price_html;?><?php echo $_title;?></h3><?php echo $___mt_subheader;?>
+									<h3 class='' title='<?php echo $_title;?>'><?php echo $__price_html;?><?php echo $_title;?></h3><?php echo $___mt_subheader;?>
 									<div class='menu_description'><?php echo $_excerpt;?> <?php echo $_more_link;?><?php echo $___mt_additions;?></div>
 									<?php do_action('fp_menu_box_end',$menu_id, $pmv, $featured_item_style, $args__);?>
 								</div>
@@ -980,11 +984,11 @@ class foodpress_menus {
 						$_class_nm = implode(' ', $_box_classes); // process box class names
 						?>
 							<div class='new_ft2_layout <?php echo $_class_nm;?>' <?php echo $_box_data_;?>>
-								<div class='new_ft_img2 fp_popTrig'><img class='fp_popTrig' src='<?php echo $img_src_full[0];?>'></div>
+								<div class='new_ft_img2 '><img class='' src='<?php echo $img_src_full[0];?>'></div>
 								<div class='menu_info '>
 									<div class='fp_inner_box' >
 										<?php echo $__price_html;?>
-										<h3 class='fp_popTrig'><?php echo $_title;?></h3><?php echo $___mt_subheader;?>
+										<h3 class=''><?php echo $_title;?></h3><?php echo $___mt_subheader;?>
 										<p><?php echo $_more_link;?></p><?php echo $___mt_additions;?>
 										<?php do_action('fp_menu_box_end',$menu_id, $pmv, $featured_item_style, $args__);?>
 									</div>
@@ -1003,12 +1007,12 @@ class foodpress_menus {
 						?>
 							<div class='new_ft3_layout <?php echo $_class_nm;?>' data-type='ftone'<?php echo $_box_data_;?>>
 								<div class='new_ft_img3'>
-									<img class='fp_popTrig' src='<?php echo $img_src_full[0];?>'>
+									<img class='' src='<?php echo $img_src_full[0];?>'>
 									<?php echo $__price_html;?>
 								</div>
 								<div class='menu_info '>
 									<div class='fp_inner_box' >									
-										<h3 class='fp_popTrig'><?php echo $_title;?></h3><?php echo $___mt_subheader;?>
+										<h3 class=''><?php echo $_title;?></h3><?php echo $___mt_subheader;?>
 										<div class='menu_description'><?php echo $_excerpt;?><?php echo $_more_link;?><?php echo $___mt_additions;?></div>
 										<?php do_action('fp_menu_box_end',$menu_id, $pmv, $featured_item_style, $args__);?>
 									</div>
@@ -1026,11 +1030,11 @@ class foodpress_menus {
 						$_class_nm = implode(' ', $_box_classes); // process box class names
 						?>
 							<div class='<?php echo $_class_nm;?>' data-type='ftone'<?php echo $_box_data_;?>>
-								<div class='menu_image fp_popTrig' style='background-image: url(<?php echo $img_src_full[0];?>)'></div>
+								<div class='menu_image ' style='background-image: url(<?php echo $img_src_full[0];?>)'></div>
 								<div class='menu_info '>
 									<div class='fp_inner_box' >
 										<?php echo $__price_html;?>
-										<h3 class='fp_popTrig'><?php echo $_title;?></h3><?php echo $___mt_subheader;?>
+										<h3 class=''><?php echo $_title;?></h3><?php echo $___mt_subheader;?>
 										<div class='menu_description'><?php echo $_excerpt;?><?php echo $_more_link;?><?php echo $___mt_additions;?></div>
 										<?php do_action('fp_menu_box_end',$menu_id, $pmv, $featured_item_style, $args__);?>
 									</div>
@@ -1055,7 +1059,7 @@ class foodpress_menus {
 							<div class='<?php echo $_class_nm;?>' <?php echo $_box_data_;?> <?php echo $_styles;?>>
 								<div class='fp_inner_box'>
 								<?php echo ($box_width!='100')? $__price_html:null;?>
-									<h3 class='fp_popTrig' title='<?php echo $_title;?>'><?php echo $_title;?><?php echo ($box_width=='100')? $__price_html:null;?></h3><?php echo $___mt_subheader;?>
+									<h3 class='' title='<?php echo $_title;?>'><?php echo $_title;?><?php echo ($box_width=='100')? $__price_html:null;?></h3><?php echo $___mt_subheader;?>
 									<div class='menu_description'><?php echo $_excerpt;?><?php echo $_more_link;?><?php echo $___mt_additions;?><?php echo $_menu_item_icons;?></div>
 									<?php do_action('fp_menu_box_end',$menu_id, $pmv, $featured_item_style, $args__);?>
 								</div>
@@ -1074,12 +1078,12 @@ class foodpress_menus {
 							<div class='<?php echo $_class_nm;?>' <?php echo $_box_data_;?>>
 								<div class='fp_inner_box'>
 									<?php if(!empty($img_src)):?>
-										<div class='fp_thumbnail new_fp_thumbnail'><img class='new_fp_thumb fp_popTrig' src='<?php echo $img_src[0];?>'></div>
+										<div class='fp_thumbnail new_fp_thumbnail'><img class='new_fp_thumb ' src='<?php echo $img_src[0];?>'></div>
 									<?php endif;?>
 									
 									<div class='menu_info'>
 										<?php echo $__price_html;?>
-										<h3 class='fp_popTrig' title='<?php echo $_title;?>'><?php echo $_title;?></h3><?php echo $___mt_subheader;?>
+										<h3 class='' title='<?php echo $_title;?>'><?php echo $_title;?></h3><?php echo $___mt_subheader;?>
 										<div class='menu_description'><?php echo $_excerpt;?><?php echo $_more_link;?><?php echo $___mt_additions;?><?php echo $_menu_item_icons;?></div>
 										<?php do_action('fp_menu_box_end',$menu_id, $pmv, $featured_item_style, $args__);?>
 									</div>
