@@ -500,7 +500,7 @@ class foodpress_menus {
 
 									$output .= "<h3 class='secondary_type dish_type fp_menu_sub_section tint_menu menu_term_{$dish_term->term_id} {$_collapsable_dt} ". ( $DT_icon? 'with_icons':'') ."'>{$DT_icon}{$dish_term->name}<span class='fp_menu_expand'></span>{$term_description}</h3>";
 
-									$output .= "<div class='food_items_container fp_{$dish_term->slug}' {$__colps_dt} >";
+									$output .= "<div class='food_items_container secondary_section fp_{$dish_term->slug}' {$__colps_dt} >";
 									$output .= $dishtype_items;
 									$output .= "</div><div class='clear'></div>";
 									
