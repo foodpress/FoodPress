@@ -5,7 +5,7 @@ Author URI: http://www.myfoodpress.com/
 Tags: restaurants, menu, food, eating, menu management
 Requires at least: 3.8
 Tested up to: 4.5.2
-Stable tag: 1.4.0
+Stable tag: 1.4.1
 
 == Description ==
 FoodPress is a complete restaurant menu management system that allow you to create various menus with categorizations and more.
