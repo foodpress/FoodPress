@@ -16,6 +16,10 @@ FoodPress is a complete restaurant menu management system that allow you to crea
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
+= 1.4.1 (2016-6-3) =
+FIXED: Language tab not working correct
+FIXED: Version number update missing
+
 = 1.4 (2016-6-1)
 ADDED: Option to hide menu and dish type icons from settings
 ADDED: Option to not delete settings when plugin uninstalled

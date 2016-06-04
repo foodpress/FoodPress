@@ -24,11 +24,7 @@ if ( ! class_exists( 'foodpress' ) ) {
 
 class foodpress {
 
-<<<<<<< HEAD
-	public $version = '1.4';
-=======
 	public $version = '1.4.0';
->>>>>>> origin/master
 
 	public $foodpress_menus;
 	public $reservations;

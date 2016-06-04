@@ -1,4 +1,8 @@
 <?php
+/**
+ * Language settings for foodpress
+ * @version   1.4
+ */
 
 $foodpress_custom_language_array = array(
 
@@ -162,9 +166,10 @@ $foodpress_custom_language_array = array(
 
 // language for foodpress menu custom taxonomy terms
 	function foodpress_lang_get_custom_meta_field(){
+		global $foodpress;
 		$output = '';
 		$fpOPT = get_option('fp_options_food_1');
-		for($x=1; $x<=foodpress_get_custom_meta_field_count(); $x++){
+		for($x=1; $x<= $foodpress->functions->custom_fields_cnt(); $x++){
 			if( !empty($fpOPT['fp_af_'.$x]) && $fpOPT['fp_af_'.$x]=='yes' && !empty($fpOPT['fp_ec_f'.$x]) ){
 				$output[]= array('label'=>stripslashes($fpOPT['fp_ec_f'.$x]),
 					'name'=>'fp_ec_f'.$x );
