@@ -16,6 +16,10 @@ FoodPress is a complete restaurant menu management system that allow you to crea
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
+= 1.4.2 (2016
+FIXED: Meal type with multiple IDs not working
+FIXED: Boxes and other styles to support single meal type IDs
+
 = 1.4.1 (2016-6-3) =
 FIXED: Language tab not working correct
 FIXED: Version number update missing

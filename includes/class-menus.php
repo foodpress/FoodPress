@@ -168,18 +168,21 @@ class foodpress_menus {
 				switch ($menu_type){
 					case 'ss_2':// categorized menu
 						// menu style
+						
+						$primary_term = ($primary == 'meal_type')? $meal_type: $dish_type;
+						$primary_terms = $this->functions->get_tax_terms($primary, $primary_term);
+
 						switch ($cat_sty) {
 							// TABBED MENU
 							case 'tb':
-								$terms = $this->get_tax_terms($primary, 'all');
-								if(!empty($terms)){
+								if(!empty($primary_terms)){
 
 									// focused tab
 										$focused_tab = !empty($focused_tab)? (int)$focused_tab: false;
 
 									echo "<div class='foodpress_tabs'>";
 									$count = $cnt =0;
-									foreach($terms as $term){
+									foreach($primary_terms as $term){
 
 										// focused tab
 										$focsued = (
@@ -198,7 +201,7 @@ class foodpress_menus {
 
 									// each term for tab content
 									echo "<div class='foodpress_tab_body'>"; 
-									foreach($terms as $term){
+									foreach($primary_terms as $term){
 
 										$focused = (($focused_tab && $focused_tab==$term->term_id) || (!$focused_tab &&$cnt==0))? 'block':'none';
 
@@ -220,14 +223,13 @@ class foodpress_menus {
 
 							// box menu
 							case 'bx':
-								$terms = $this->get_tax_terms($primary, 'all');
-								if(!empty($terms)){
+								if(!empty($primary_terms)){
 
 									echo "<div class='fp_categories_holder'>";
 
 									echo "<div class='foodpress_categories'>";
 									$count = $cnt =0;
-									foreach($terms as $term){
+									foreach($primary_terms as $term){
 										$term_meta = get_option( "fp_taxonomy_$term->term_id" );
 										$image_src = $this->functions->get_term_image($term->term_id, $term_meta);
 										$icon = $this->functions->get_term_icon($term->term_id, $term_meta, true);
@@ -241,7 +243,7 @@ class foodpress_menus {
 									echo "</div><!-- foodpress_categories -->
 									<div class='fp_content' style='display:none'><span class='fp_backto_cats'><i></i><em>".$this->functions->fp_get_language('Back to Menu', $this->fopt2)."</em></span>
 										<span class='fp_category_subtitle'></span>"; 
-									foreach($terms as $term){
+									foreach($primary_terms as $term){
 										echo "<div class='foodpress_tab_content {$term->slug} fp_{$cnt}' style='display:".($cnt==0?'block':'none')."'>";
 										
 										$content = $this->get_menu_items($term->term_id, false, false);
@@ -258,15 +260,14 @@ class foodpress_menus {
 
 							// SCROLL MENU
 							case 'sc':
-								$terms = $this->get_tax_terms($primary, 'all');
-								if(!empty($terms)){
+								if(!empty($primary_terms)){
 
 									// focused tab
 										$focused_tab = !empty($focused_tab)? (int)$focused_tab: false;
 
 									echo "<div class='foodpress_scroll_sections'>";
 									$count = $cnt =0;
-									foreach($terms as $term){
+									foreach($primary_terms as $term){
 										// focused tab
 										$focsued = (($focused_tab && $focused_tab==$term->term_id) || (!$focused_tab && $count==0))? 'focused':'';
 
@@ -277,7 +278,7 @@ class foodpress_menus {
 
 									// each term for tab content
 									echo "<div class='foodpress_scroll_section_body'>"; 
-									foreach($terms as $term){
+									foreach($primary_terms as $term){
 										
 										echo "<div data-i='{$cnt}' class='foodpress_section_content fp_{$term->slug}' >";
 
@@ -308,49 +309,19 @@ class foodpress_menus {
 					case 'ss_4':
 
 						if(!empty($meal_type) && !empty($dish_type)){
-							// initials
-								$slug = '';
-								$mealTypeText = $dishTypeText = '';
-							// term names
-								if($dish_type=='all'){
-									$DTterm_name = 'All';
-								}else{
-									$DTterm = get_term($dish_type, 'dish_type');
-									$DTterm_name = $this->get_lang('fp_lang_tax_meal_type_'.$DTterm->term_id,$DTterm->name );
-									$slug = $DTterm->slug;
-								}
-
-								if($meal_type=='all'){
-									$mealTypeName = 'All';
-								}else{
-									$MTterm = get_term($meal_type, 'meal_type');
-									$mealTypeName = $this->get_lang('fp_lang_tax_meal_type_'.$MTterm->term_id,$MTterm->name );
-									$slug = $MTterm->slug;
-								}
-
-							
-							// if meal type is all
-							if($meal_type=='all' && $dish_type!='all'){
-								$this->shortcode_args['primary'] = 'dish_type';
-								$dishTypeText = $DTterm_name;
-							}elseif($meal_type!='all' && $dish_type=='all'){
-								$mealTypeText = $mealTypeName;
-							}elseif($meal_type!='all' && $dish_type!='all'){
-								$mealTypeText = $mealTypeName;
-								$dishTypeText = ' > '.$DTterm_name;
+							if($meal_type!='all' && $dish_type=='all'){
+								$this->shortcode_args['primary'] = 'meal_type';
+								echo $this->get_menu_items($meal_type);
 							}
-
-							
-							echo "<h2 class='meal_type fp_menu_sub_section tint_menu dish_type_{$dish_type} meal_type_{$meal_type}'>{$mealTypeText}{$dishTypeText}</h2>";
-							
-							echo "<div class='fp_container fp_{$slug}'>";
-							echo "<div class='food_items_container' >";
-
-							echo $this->get_menu_items('', false);
-							//echo $this->get_dishtype_menuitems($dish_type, $meal_type);
-							echo "</div><div class='clear'></div>";
-							echo "</div>";
-
+							if($dish_type!='all' && $meal_type=='all'){
+								$this->shortcode_args['primary'] = 'dish_type';
+								echo $this->get_menu_items($dish_type);
+							}
+							if($dish_type!='all' && $meal_type!='all'){
+								$this->shortcode_args['primary'] = 'meal_type';
+								$this->shortcode_args['cat_by_dish'] = 'yes';
+								echo $this->get_menu_items($meal_type);
+							}
 						}else{
 							echo __('Shortcode is missing required variables', 'foodpress');
 						}
@@ -379,6 +350,31 @@ class foodpress_menus {
 			$content = ob_get_clean();
 			return $this->validate_content($content);
 
+		}
+
+		function _each_type_outter($meal_type, $dish_type, $slug, $mealTypeName='', $DTterm_name=''){
+			$dishTypeText = $mealTypeText = '';
+
+			// if meal type is all
+			if($meal_type=='all' && $dish_type!='all'){
+				$this->shortcode_args['primary'] = 'dish_type';
+				$dishTypeText = $DTterm_name;
+			}elseif($meal_type!='all' && $dish_type=='all'){
+				$mealTypeText = $mealTypeName;
+			}elseif($meal_type!='all' && $dish_type!='all'){
+				$mealTypeText = $mealTypeName;
+				$dishTypeText = ' > '.$DTterm_name;
+			}
+
+			
+			echo "<h2 class='meal_type fp_menu_sub_section tint_menu dish_type_{$dish_type} meal_type_{$meal_type}'>{$mealTypeText}{$dishTypeText}</h2>";							
+			echo "<div class='fp_container fp_{$slug}'>";
+			echo "<div class='food_items_container' >";
+
+			echo $this->get_menu_items('', false);
+			//echo $this->get_dishtype_menuitems($dish_type, $meal_type);
+			echo "</div><div class='clear'></div>";
+			echo "</div>";
 		}
 
 	// get menu items for specific section
@@ -431,18 +427,14 @@ class foodpress_menus {
 							$__colps_dt = null;
 							$_collapsable_dt = ($collapsable_dt=='yes')? 'collapsable':null;
 						}
-					}
-
-					
+					}					
 									
 				// get tax terms
 					$tax_terms = $this->functions->get_tax_terms($tax, $terms);
 
 				// DISH TYPE terms - is sub categorization by DT - while primary category is MT
 					if($cat_by_dish=='yes' && $tax=='meal_type'){
-						$dish_type_terms = get_terms(
-							'dish_type', 	array('orderby'=>'slug','order'=>'ASC')
-						);
+						$dish_tax_terms = $this->functions->get_tax_terms('dish_type', $dish_type);
 					}else{$dish_type_terms=array();}
 
 			ob_start();
@@ -481,13 +473,13 @@ class foodpress_menus {
 							}
 
 						// IF dish type subcategory
-						if($cat_by_dish=='yes' &&  $tax=='meal_type' && count($dish_type_terms)>0){
+						if($cat_by_dish=='yes' &&  $tax=='meal_type' && count($dish_tax_terms)>0){
 
 							// EACH DISH type terms
 							$DT_content = $output='';
 										
 							// for EACH DISH TYPE term
-								foreach($dish_type_terms as $dish_term){
+								foreach($dish_tax_terms as $dish_term){
 
 									// icon
 									$DT_icon = $this->functions->get_term_icon($dish_term->term_id, '', true);

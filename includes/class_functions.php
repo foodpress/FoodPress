@@ -53,11 +53,12 @@ class fp_functions{
 			function get_tax_terms($tax, $terms){
 				if(!empty($terms) && $terms!='all'){
 					$__term_ids = explode(',', $terms);
+
 					if(!is_array($__term_ids)) return;
 
 					// get only certain tax terms
 					$tax_terms = get_terms(
-						$tax, array('orderby'=>'slug','order'=>'ASC','include'=>$__term_ids));
+						$tax, array('orderby'=>'slug','order'=>'ASC','include'=> $__term_ids ));
 				}else{
 					// get all tax terms
 					$tax_terms = get_terms( $tax, array('orderby'=>'slug','order'=>'ASC'));
