@@ -319,7 +319,7 @@ function foodpress_taxonomy_admin(){
 		} 
 
 // dish type extra fields
-	// add term page
+	// add dish type term page
 		function fp_add_new_tems_disht() {
 			global $foodpress;
 			echo foodpress_admin_load_font_icons_box();
@@ -329,72 +329,74 @@ function foodpress_taxonomy_admin(){
 			<div class="form-field" id='fp_icon_field'>
 				<label for="term_meta[fpm_iconname]"><?php _e( 'Dish Type Icon', 'foodpress' ); ?> <p class='faicon'><i class='fp fp-apple'></i><input type="hidden" name="term_meta[fpm_iconname]" id="term_meta[fpm_iconname]" value=""></p></label>
 			</div>
+			<?php /*
 			<div class="form-field">
 				<label><?php _e( 'Thumbnail', 'foodpress' ); ?></label>
-				<div id="meal_type_thumbnail" style="float:left;margin-right:10px;"><img src="<?php echo fp_placeholder_img_src(); ?>" width="60px" height="60px" /></div>
+				<div id="dish_type_thumbnail" style="float:left;margin-right:10px;"><img src="<?php echo fp_placeholder_img_src(); ?>" width="60px" height="60px" /></div>
 				<div style="line-height:60px;">
-					<input type="hidden" id="meal_type_thumbnail_id" name="term_meta[meal_type_thumbnail_id]" />
+					<input type="hidden" id="dish_type_thumbnail_id" name="term_meta[dish_type_thumbnail_id]" />
 					<button type="button" class="upload_image_button button"><?php _e( 'Upload/Add image', 'foodpress' ); ?></button>
 					<button type="button" class="remove_image_button button"><?php _e( 'Remove image', 'foodpress' ); ?></button>
 				</div>
-				<script type="text/javascript">
-
-					 // Only show the "remove image" button when needed
-					 if ( ! jQuery('#meal_type_thumbnail_id').val() )
-						 jQuery('.remove_image_button').hide();
-
-					// Uploading files
-					var file_frame;
-
-					jQuery(document).on( 'click', '.upload_image_button', function( event ){
-
-						event.preventDefault();
-
-						// If the media frame already exists, reopen it.
-						if ( file_frame ) {
-							file_frame.open();
-							return;
-						}
-
-						// Create the media frame.
-						file_frame = wp.media.frames.downloadable_file = wp.media({
-							title: '<?php _e( 'Choose an image', 'foodpress' ); ?>',
-							button: {
-								text: '<?php _e( 'Use image', 'foodpress' ); ?>',
-							},
-							multiple: false
-						});
-
-
-
-						// When an image is selected, run a callback.
-						file_frame.on( 'select', function() {
-							attachment = file_frame.state().get('selection').first().toJSON();
-
-							jQuery('#meal_type_thumbnail_id').val( attachment.id );
-							jQuery('#meal_type_thumbnail img').attr('src', attachment.url );
-							jQuery('.remove_image_button').show();
-						});
-
-						// Finally, open the modal.
-						file_frame.open();
-					});
-
-					jQuery(document).on( 'click', '.remove_image_button', function( event ){
-						jQuery('#meal_type_thumbnail img').attr('src', '<?php echo fp_placeholder_img_src(); ?>');
-						jQuery('#meal_type_thumbnail_id').val('');
-						jQuery('.remove_image_button').hide();
-						return false;
-					});
-
-				</script>
+				
 				<div class="clear"></div>
 			</div>
+			*/?>
+			<script type="text/javascript">
+				// Only show the "remove image" button when needed
+					 if ( ! jQuery('#dish_type_thumbnail_id').val() )
+						 jQuery('.remove_image_button').hide();
+
+				// Uploading files
+				var file_frame;
+
+				jQuery(document).on( 'click', '.upload_image_button', function( event ){
+
+					event.preventDefault();
+
+					// If the media frame already exists, reopen it.
+					if ( file_frame ) {
+						file_frame.open();
+						return;
+					}
+
+					// Create the media frame.
+					file_frame = wp.media.frames.downloadable_file = wp.media({
+						title: '<?php _e( 'Choose an image', 'foodpress' ); ?>',
+						button: {
+							text: '<?php _e( 'Use image', 'foodpress' ); ?>',
+						},
+						multiple: false
+					});
+
+
+
+					// When an image is selected, run a callback.
+					file_frame.on( 'select', function() {
+						attachment = file_frame.state().get('selection').first().toJSON();
+
+						jQuery('#dish_type_thumbnail_id').val( attachment.id );
+						jQuery('#dish_type_thumbnail img').attr('src', attachment.url );
+						jQuery('.remove_image_button').show();
+					});
+
+					// Finally, open the modal.
+					file_frame.open();
+				});
+
+				jQuery(document).on( 'click', '.remove_image_button', function( event ){
+					jQuery('#dish_type_thumbnail img').attr('src', '<?php echo fp_placeholder_img_src(); ?>');
+					jQuery('#dish_type_thumbnail_id').val('');
+					jQuery('.remove_image_button').hide();
+					return false;
+				});
+
+			</script>		
 			
 		<?php
 		}
 		
-	// Edit term page
+	// Edit Dish type term page
 		function fp_edit_term_page_disht($term) {
 
 			global $foodpress;
@@ -409,7 +411,7 @@ function foodpress_taxonomy_admin(){
 			//print_r($term_meta);
 
 			// thumbnail value
-			$thumbnail_id 	= (!empty($term_meta['meal_type_thumbnail_id']))? absint( $term_meta['meal_type_thumbnail_id'] ): null;
+			$thumbnail_id 	= (!empty($term_meta['dish_type_thumbnail_id']))? absint( $term_meta['dish_type_thumbnail_id'] ): null;
 			if ( $thumbnail_id )
 				$image = wp_get_attachment_thumb_url( $thumbnail_id );
 			else
@@ -428,69 +430,72 @@ function foodpress_taxonomy_admin(){
 					<button class="remove_icon_button button"><?php _e( 'Remove Icon', 'foodpress' ); ?></button>
 				</td>
 			</tr>
+			<?php /*
 			<tr class="form-field">
 				<th scope="row" valign="top"><label><?php _e( 'Thumbnail', 'foodpress' ); ?></label></th>
 				<td>
-					<div id="meal_type_thumbnail" style="float:left;margin-right:10px;"><img src="<?php echo $image; ?>" width="60px" height="60px" /></div>
+					<div id="dish_type_thumbnail" style="float:left;margin-right:10px;"><img src="<?php echo $image; ?>" width="60px" height="60px" /></div>
 					<div style="line-height:60px;">
-						<input type="hidden" id="meal_type_thumbnail_id" name="term_meta[meal_type_thumbnail_id]" value="<?php echo $thumbnail_id; ?>" />
+						<input type="hidden" id="dish_type_thumbnail_id" name="term_meta[dish_type_thumbnail_id]" value="<?php echo $thumbnail_id; ?>" />
 						<button type="submit" class="upload_image_button button"><?php _e( 'Upload/Add Image', 'foodpress' ); ?></button>
 						<button type="submit" class="remove_image_button button"><?php _e( 'Remove Image', 'foodpress' ); ?></button>
 					</div>
-					<script type="text/javascript">
-
-						// remove icon
-							jQuery('body').on('click','.remove_icon_button', function(event){
-								event.preventDefault();
-								jQuery(this).siblings('.fp_icon_p').find('input').attr({'value':''});
-							});
-
-						// Uploading files
-						var file_frame;						
-
-						jQuery(document).on( 'click', '.upload_image_button', function( event ){
-
-							event.preventDefault();
-
-							// If the media frame already exists, reopen it.
-							if ( file_frame ) {
-								file_frame.open();
-								return;
-							}
-
-							// Create the media frame.
-							file_frame = wp.media.frames.downloadable_file = wp.media({
-								title: '<?php _e( 'Choose an image', 'foodpress' ); ?>',
-								button: {
-									text: '<?php _e( 'Use image', 'foodpress' ); ?>',
-								},
-								multiple: false
-							});
-
-							// When an image is selected, run a callback.
-							file_frame.on( 'select', function() {
-								attachment = file_frame.state().get('selection').first().toJSON();
-
-								jQuery('#meal_type_thumbnail_id').val( attachment.id );
-								jQuery('#meal_type_thumbnail img').attr('src', attachment.url );
-								jQuery('.remove_image_button').show();
-							});
-
-							// Finally, open the modal.
-							file_frame.open();
-						});
-
-						jQuery(document).on( 'click', '.remove_image_button', function( event ){
-							jQuery('#meal_type_thumbnail img').attr('src', '<?php echo fp_placeholder_img_src(); ?>');
-							jQuery('#meal_type_thumbnail_id').val('');
-							jQuery('.remove_image_button').hide();
-							return false;
-						});
-
-					</script>
+					
 					<div class="clear"></div>
 				</td>
 			</tr>
+			*/?>
+			<script type="text/javascript">
+
+				// remove icon
+					jQuery('body').on('click','.remove_icon_button', function(event){
+						event.preventDefault();
+						jQuery(this).siblings('.fp_icon_p').find('input').attr({'value':''});
+					});
+
+				// Uploading files
+				var file_frame;						
+
+				jQuery(document).on( 'click', '.upload_image_button', function( event ){
+
+					event.preventDefault();
+
+					// If the media frame already exists, reopen it.
+					if ( file_frame ) {
+						file_frame.open();
+						return;
+					}
+
+					// Create the media frame.
+					file_frame = wp.media.frames.downloadable_file = wp.media({
+						title: '<?php _e( 'Choose an image', 'foodpress' ); ?>',
+						button: {
+							text: '<?php _e( 'Use image', 'foodpress' ); ?>',
+						},
+						multiple: false
+					});
+
+					// When an image is selected, run a callback.
+					file_frame.on( 'select', function() {
+						attachment = file_frame.state().get('selection').first().toJSON();
+
+						jQuery('#dish_type_thumbnail_id').val( attachment.id );
+						jQuery('#dish_type_thumbnail img').attr('src', attachment.url );
+						jQuery('.remove_image_button').show();
+					});
+
+					// Finally, open the modal.
+					file_frame.open();
+				});
+
+				jQuery(document).on( 'click', '.remove_image_button', function( event ){
+					jQuery('#dish_type_thumbnail img').attr('src', '<?php echo fp_placeholder_img_src(); ?>');
+					jQuery('#dish_type_thumbnail_id').val('');
+					jQuery('.remove_image_button').hide();
+					return false;
+				});
+
+			</script>
 
 		<?php
 		}

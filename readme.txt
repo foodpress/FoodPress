@@ -5,7 +5,7 @@ Author URI: http://www.myfoodpress.com/
 Tags: restaurants, menu, food, eating, menu management
 Requires at least: 3.8
 Tested up to: 4.5.2
-Stable tag: 1.4.1
+Stable tag: 1.4.2
 
 == Description ==
 FoodPress is a complete restaurant menu management system that allow you to create various menus with categorizations and more.
@@ -16,7 +16,7 @@ FoodPress is a complete restaurant menu management system that allow you to crea
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
-= 1.4.2 (2016
+= 1.4.2 (2016-6-28) = 
 FIXED: Meal type with multiple IDs not working
 FIXED: Boxes and other styles to support single meal type IDs
 
