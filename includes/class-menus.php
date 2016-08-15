@@ -696,10 +696,10 @@ class foodpress_menus {
 
 				// send the array of menu items to get HTML content
 				$output = $this->get_individual_item_content($items, '','',$featured);
-
+				wp_reset_postdata();
 				return $output;
 			else:
-
+				wp_reset_postdata();
 				return false;
 
 			endif;
