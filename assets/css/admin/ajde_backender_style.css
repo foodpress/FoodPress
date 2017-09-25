@@ -1,0 +1,390 @@
+/*-- AJDE backender styles --*/
+
+/* guide */
+	#fp_color_guide{
+		font: italic 12px 'open sans';
+		display: none;
+		position: absolute;
+		left: -1px;
+		min-width: 50px;
+		background-color: #a6be5c;
+		color: #fff;
+		padding: 3px 7px;
+		z-index: 900;
+		text-align: left;
+	}
+	#fp_color_guide:before{
+		content: "";
+		width: 0px;
+		height: 0px;
+		border-style: solid;
+		border-width: 10px 10px 0 0;
+		border-color: #a6be5c transparent transparent transparent;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		margin-bottom: -10px;
+		margin-left: 0px;
+	}
+
+	.customization_right_in #food_003{
+		position: relative;
+	}
+
+
+/* general */
+	.row_multicolor{padding-top: 8px;}
+#acus_arrow{
+	background: url(../images/ajde_backender/ajde_arrow.png) top left no-repeat;
+	display:block; height:28px; width:16px;margin:0 0 0 -15px;
+	position:absolute
+}
+
+#ajde_customization td, #ajde_customization{margin:0; padding:0; border:none; border-spacing:0}
+#acus_left, #acus_right{
+	border:1px solid #d9d7d7;
+	border-bottom-width: 3px;
+}
+#acus_left{
+	min-height:auto;
+	border-bottom:none;
+	border-right:none;
+	width:155px;
+}
+#acus_left ul, #acus_left ul li{margin:0}
+#acus_left ul a{cursor:pointer}
+
+#acus_left ul .level2 a{background-color: #e3e2e2;border-bottom:1px solid #b7b7b7;	}
+#acus_left ul .level2 a:hover{background-color:#d8d7d7;}
+#acus_left ul .level3 a{text-shadow: 0 1px #E8E8E8;color:#3d3d3d;background-color: #d0d0d0; border-bottom:1px solid #b7b7b7;}
+#acus_left ul .level3 a:hover{background-color:#c8c8c8;}
+
+.fp_settings_bottom{padding-left: 155px;}
+.foodpress_admin_meta  .inside{position: relative;}
+
+.backender_yn_sec{
+	background-color: #E6E6E6;	
+	padding: 10px 20px 0;
+	margin:0px -20px 0;
+	border-top: 1px solid #dbdbdb;
+}
+.backender_yn_sec em.hr_line:last-child{
+	border-bottom-width: 2px
+}
+.backender_yn_sec em.hr_line{
+	margin:10px -20px;
+	border-bottom:1px solid #dbdbdb;
+}
+
+#acus_left ul a.focused{
+	color:#3d3d3d;
+	border-left:3px solid #7A2561;
+	margin-left:-1px;
+}
+#acus_left ul a, #acus_left ul p{
+	color:#a8a8a8;
+	display:block; 
+	text-decoration:none;
+	padding:10px;
+	border-bottom:1px solid #e5e5e5;
+	margin:0;
+	border-left:2px solid transparent;
+	background-color: #f8f7f7;
+	font-size:14px;
+	line-height:130%;
+	outline:none
+}
+#acus_left ul a:hover{
+	background-color:#f4f4f4; 
+	color:#3d3d3d; 
+	outline:none;
+}
+#acus_left ul p{font-style:italic; font-family:georgia; color:#aeaeae}
+#acus_left ul a.ny_subfield{background-color:#fdfdfd}
+#acus_left ul a.ny_afterfield{background-color:transparent; color:#fff; border-bottom:1px solid #a6a6a6}
+#acus_right{	
+	background-color:#eeeeee; 
+	position:relative;
+	min-height:450px;
+}
+
+#acus_right .customization_right_in{padding:20px; min-width:410px}
+#acus_right h3{
+	border:none;moz-box-shadow: none;-webkit-box-shadow: none;box-shadow:none; background-color:transparent;
+	background-image:none;	
+	font-size:18px;
+	font-weight: normal;
+	padding:0px;
+	margin-top: 0;
+}
+.customization_right_in p{margin:0 0 3px; min-height: 23px;}
+.customization_right_in p select{
+	font-size: 13px;
+	margin: 0 0 0 3px;
+}
+.customization_right_in .nfe_f_width input, .customization_right_in .nfe_f_width textarea{
+	width:100%;
+	color:#666666;
+	padding:5px 8px;
+}
+
+/* horizontal divider */
+em.hr_line{border-bottom:1px dashed #d9d7d7; display:block; margin:8px -20px}
+em.hr_line.noexpand{margin:10px -10px}
+em.hr_line.yesno{}
+em.hr_line.yesnoEnd{margin-top: 0; border: none;}
+
+
+.nfer textarea{width:100%; height:80px}
+
+.acus_line.acus_checks span{display:block; padding:3px 0; font-style:italic}
+.acus_line.acus_checks input{width: 20px;text-align: left;display:none}
+.acus_line.acus_checks input[type="checkbox"] + label span {
+    display:inline-block;
+    width:19px;
+    height:19px;
+    margin:-1px 4px 0 0;
+    vertical-align:middle;
+    background:url(../images/ajde_backender/check_radio_sheet.png) left top no-repeat;
+    cursor:pointer;
+}
+.acus_line.acus_checks input[type="checkbox"]:checked + label span {
+    background:url(../images/ajde_backender/check_radio_sheet.png) -19px top no-repeat;
+}
+
+.acus_line.acus_radio input[type="radio"] + label span {
+    display:inline-block;
+    width:19px;
+    height:19px;
+    margin:-1px 4px 0 0;
+    vertical-align:middle;
+    background:url(../images/ajde_backender/check_radio_sheet.png) -38px top no-repeat;
+    cursor:pointer;
+}
+.acus_line.acus_radio input[type="radio"]{display:none}
+.acus_line.acus_radio input[type="radio"]:checked + label span {
+    background:url(../images/ajde_backender/check_radio_sheet.png) -57px top no-repeat;
+}
+
+
+.acus_line input{width:120px}
+.acus_line em{width:200px; position:relative}
+span.colorselector{
+	display:block;height:19px;
+	width:20px; top:0; 
+	background-color:#206177;
+	border-radius: 50%;
+	border:2px solid #fff;
+	cursor: pointer;
+}
+span.colorselector:hover{border-color: #909090;}
+.acus_line.color em{
+	display: block;
+	float: left;
+	padding-right: 8px;
+	width: 25px;
+	position:initial;
+}
+
+h4.acus_subheader{font:italic 16px georgia; margin:0;}
+.acus_radio em{display:block; padding-bottom:5px;width:100%}	
+.acus_radio input{width:15px; text-align:left;}
+
+.foodpress_note{font-style: italic;}
+
+	
+/* yes no button row */
+	.yesno_row{position:relative;min-height:26px}
+	.yesno_row span{	
+		padding-left:77px;
+		padding-top:4px;
+		display:block; 
+	}
+	.yesno_row .fp_yn_btn{
+		display: inline-block;padding: 0;
+		position: absolute;
+	}
+	.yesno_row .fp_yn_btn span.catchHandle{padding-left: 0;}
+
+.backender_left{width:295px;	}
+
+
+/* media queries */
+	@media only screen and (max-width: 900px){
+		#acus_left{width:45px}
+		.backender_left{width:70px}
+		#acus_left ul a{
+			text-indent:-9999px;
+			width:25px;
+			background: url(../images/ajde_backender/backender.png) 10px no-repeat
+		}
+		.fp_settings_bottom{padding-left: 45px;}
+	}
+
+
+/*-- customization styles --*/
+	.customization_right_in p.color{line-height: 170%;}
+	.row_multicolor .acus_line em{	width: 50px;}
+	.row_multicolor .acus_line{	float: left; margin-right: 10px;}
+	.row_multicolor .colorselector{	
+		width: 50px; height: 50px;
+	}
+	
+	.row_fontation p.color{margin-top: 2px;}
+	.row_fontation p, .row_faicons p{float: left;}
+	.row_fontation p.fieldname, .row_faicons p.fieldname{
+		padding-right: 10px; min-width: 175px;
+		line-height: 170%;
+	}
+	.row_faicons p{color: #6f6f6f;}
+	.row_faicons p i{font-size: 20px; cursor: pointer; padding-top: 3px;}
+	.row_faicons p i:hover{opacity: 0.7}
+	
+
+	#evcal_002{position: relative;}
+	.fa_icons_selection{
+		background-color: #fff;
+		height:200px; width: 385px;
+		padding: 0px;		
+		position: absolute;
+		z-index: 999;
+		border: 3px solid #000;
+		border-radius: 5px;
+	}
+	.fa_icons_selection:before{
+		content:"";
+		position: absolute;
+		bottom: 0; left: 0;
+		margin-bottom: -15px;
+		margin-left: 70px;
+		width: 0px;
+		height: 0px;
+		border-style: solid;
+		border-width: 12px 10px 0 10px;
+		border-color: #000000 transparent transparent transparent;
+	}
+	.fa_icons_selection .fai_in{
+		height:200px; width: 385px;
+		overflow: auto;
+	}
+	
+	.fa_icons_selection ul{margin-top: 0;}
+	.fa_icons_selection ul li:hover{
+		background-color: #eeeeee;
+	}
+	.fa_icons_selection ul li{
+		display: inline-block;
+		cursor: pointer;
+		margin: 0;
+		padding: 9px 9px;
+	}
+	.fa_icons_selection ul li i{
+		font-size: 28px; 
+		width: 28px;
+	}
+
+	
+/* -- hidden section */
+	.evoSET_hidden_open{position: relative;}
+	.evoSET_hidden_open.open:before{
+		border-width: 5px 5px 0 5px;
+		border-color: #8c8c8c transparent transparent transparent;
+		margin-top: 15px;
+		margin-left: -16px;
+	}
+	.evoSET_hidden_open:before{
+		margin-left: -12px;
+		margin-top: 12px;
+		position: absolute;
+		content:"";
+		width: 0px;
+		height: 0px;
+		border-style: solid;
+		border-width: 5px 0 5px 5px;
+		border-color: transparent transparent transparent #8c8c8c;
+	}
+	.evoSET_hidden_open h4{
+		font:700 14px 'open sans';
+		text-transform: uppercase;
+		margin: 0;
+		padding: 7px 10px 4px 0;
+	}
+	.evoSET_hidden_open{
+		cursor:pointer;
+		margin:-8px -20px 5px;
+		padding:0px 20px 4px;
+		background-color:#E6E6E6;
+		border-bottom: 1px dashed #d9d7d7;
+	}
+	.evoSET_hidden_open:hover{
+		background-color:#e1e1e1;
+	}
+/*-- arrgange box */
+	#ajdeEVC_arrange_box{
+		padding:7px;
+		border:1px dashed #d5d5d5;
+		margin-top:3px;
+	}
+	#ajdeEVC_arrange_box p{
+		background-color:#E4E4E4;
+		padding:5px 6px;
+		color:#6f6f6f;
+		text-transform:uppercase;
+		cursor:move;
+		position: relative;
+		padding-left: 35px;
+		border-radius: 5px;
+		height: 20px;
+		line-height: 20px
+	}
+	#ajdeEVC_arrange_box p:hover{
+		background-color:#F2E6D9
+	}
+	#ajdeEVC_arrange_box p:after{
+		content:"\f0c9";
+		position: absolute;
+		top: 8px;right:10px;
+		font-size: 22px;
+		opacity: 0.3;
+		display: inline-block;
+	  	font: normal normal normal 14px/1 FP_FontAwesome;
+	  	font-size: inherit;
+	  	text-rendering: auto;
+	 	 -webkit-font-smoothing: antialiased;
+	  	-moz-osx-font-smoothing: grayscale;
+	  	transform: translate(0, 0);
+	}
+	#ajdeEVC_arrange_box p span{
+		display: inline-block;
+		height: 20px;
+		width: 20px;
+		position: absolute;
+		top: 4px;
+		margin-right: 10px;
+		cursor:pointer;
+		font-size: 22px;
+		left: 5px;
+	}
+	#ajdeEVC_arrange_box p span:before{
+		content:"\f058";
+		height: 18px; width: 18px;
+		border-radius: 50%;
+		position: absolute;
+		top: 1px;
+		right: 1px;
+		opacity: 1
+	}
+	#ajdeEVC_arrange_box p span.hide:before{
+		content:"\f10c";
+		left: 1px;
+		right: auto;
+		opacity: 0.4
+	}
+
+/** email preview */
+	.foodpress_email_preview{
+		border-radius: 5px;
+		padding: 20px;
+		background-color: #fff;
+		margin-top: 20px;
+	}

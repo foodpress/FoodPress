@@ -1,0 +1,41 @@
+/* font icons box styles */
+	.fa_icons_selection{
+		background-color: #fff;
+		height:200px; width: 385px;
+		padding: 0px;		
+		position: absolute;
+		z-index: 99999;
+		border: 3px solid #000;
+		border-radius: 5px;
+	}
+	.fa_icons_selection:before{
+		content:"";
+		position: absolute;
+		bottom: 0; left: 0;
+		margin-bottom: -15px;
+		margin-left: 70px;
+		width: 0px;
+		height: 0px;
+		border-style: solid;
+		border-width: 12px 10px 0 10px;
+		border-color: #000000 transparent transparent transparent;
+	}
+	.fa_icons_selection .fai_in{
+		height:200px; width: 385px;
+		overflow: auto;
+	}
+	
+	.fa_icons_selection ul{margin-top: 0;}
+	.fa_icons_selection ul li:hover{
+		background-color: #eeeeee;
+	}
+	.fa_icons_selection ul li{
+		display: inline-block;
+		cursor: pointer;
+		margin: 0;
+		padding: 9px 9px;
+	}
+	.fa_icons_selection ul li i{
+		font-size: 28px; 
+		width: 28px;
+	}

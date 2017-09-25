@@ -1,0 +1,13 @@
+/* reservations */
+	.fp_set_res .foodpress_popup_text .fp_res_list span.party, .fp_set_res .foodpress_popup_text .fp_res_list .header span{
+		float: right;		
+	}
+	.fp_set_res .foodpress_popup_text .fp_res_list span.party{font-size: 22px;}
+	.fp_set_res .foodpress_popup_text .fp_res_list .header{font-size: 16px;font-style: italic;}
+	.fp_set_res .foodpress_popup_text .fp_res_list span.party, .fp_set_res .foodpress_popup_text .fp_res_list p{
+		border-bottom:1px dashed #E2E2E2;
+		margin: 0;
+		padding: 6px 0;
+	}
+	.fp_res_list .fp_reservation i.Dres{text-decoration: underline;cursor: pointer;}
+	.fp_res_list .fp_reservation i.Dres:hover{opacity:0.7;}

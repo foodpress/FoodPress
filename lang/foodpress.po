@@ -1,0 +1,1403 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: foodpress\n"
+"POT-Creation-Date: 2015-03-11 19:06-0800\n"
+"PO-Revision-Date: 2015-03-11 19:06-0800\n"
+"Last-Translator: Ashan Perera <ashanster@gmail.com>\n"
+"Language-Team: AJDE <info@ashanjay.com>\n"
+"Language: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../foodpress.php:428
+msgid "There is a new version of "
+msgstr ""
+
+#: ../foodpress.php:429
+#, php-format
+msgid "View version %s Details"
+msgstr ""
+
+#: ../foodpress.php:431
+msgid ""
+" Download the new version from <a href=\"http://www.myfoodpress.com/my-"
+"account/\" target=\"_blank\">My Account</a> at myfoodpress.com."
+msgstr ""
+
+#: ../includes/class-fp-post-types.php:60
+#: ../includes/class-fp-post-types.php:85
+#: ../includes/class-fp-post-types.php:114
+#: ../includes/class-fp-post-types.php:140
+#: ../includes/foodpress-core-functions.php:173
+msgid "Search "
+msgstr ""
+
+#: ../includes/class-fp-post-types.php:61
+#: ../includes/class-fp-post-types.php:86
+#: ../includes/class-fp-post-types.php:115
+#: ../includes/class-fp-post-types.php:141
+#: ../includes/foodpress-core-functions.php:171
+msgid "All "
+msgstr ""
+
+#: ../includes/class-fp-post-types.php:62
+#: ../includes/class-fp-post-types.php:63
+#: ../includes/class-fp-post-types.php:87
+#: ../includes/class-fp-post-types.php:88
+#: ../includes/class-fp-post-types.php:116
+#: ../includes/class-fp-post-types.php:117
+#: ../includes/class-fp-post-types.php:142
+#: ../includes/class-fp-post-types.php:143
+msgid "Parent "
+msgstr ""
+
+#: ../includes/class-fp-post-types.php:64
+#: ../includes/class-fp-post-types.php:89
+#: ../includes/class-fp-post-types.php:118
+#: ../includes/class-fp-post-types.php:144
+#: ../includes/foodpress-core-functions.php:169
+msgid "Edit "
+msgstr ""
+
+#: ../includes/class-fp-post-types.php:65
+#: ../includes/class-fp-post-types.php:90
+#: ../includes/class-fp-post-types.php:119
+#: ../includes/class-fp-post-types.php:145
+msgid "Update "
+msgstr ""
+
+#: ../includes/class-fp-post-types.php:66
+#: ../includes/class-fp-post-types.php:91
+#: ../includes/class-fp-post-types.php:120
+#: ../includes/class-fp-post-types.php:146
+#: ../includes/foodpress-core-functions.php:168
+msgid "Add New "
+msgstr ""
+
+#: ../includes/class-fp-post-types.php:67
+#: ../includes/class-fp-post-types.php:92
+#: ../includes/class-fp-post-types.php:121
+#: ../includes/class-fp-post-types.php:147
+msgid "New  Name"
+msgstr ""
+
+#: ../includes/class-fp-post-types.php:169
+msgid "Menu Item"
+msgstr ""
+
+#: ../includes/class-fp-post-types.php:169
+msgid "Menu Items"
+msgstr ""
+
+#: ../includes/class-fp-post-types.php:174
+#: ../includes/class-fp-post-types.php:196
+msgid "This is where you can add new items to your menu."
+msgstr ""
+
+#: ../includes/class-fp-post-types.php:191
+msgid "Menu Addition"
+msgstr ""
+
+#: ../includes/class-fp-post-types.php:191
+msgid "Menu Additions"
+msgstr ""
+
+#: ../includes/class-fp-post-types.php:214
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:519
+msgid "Reservation"
+msgstr ""
+
+#: ../includes/class-fp-post-types.php:214
+#: ../includes/admin/foodpress-admin-settings.php:39
+#: ../includes/admin/settings/settings_reservations_tab.php:82
+msgid "Reservations"
+msgstr ""
+
+#: ../includes/class-fp-post-types.php:219
+msgid "Reservations for your restaurant."
+msgstr ""
+
+#: ../includes/class-shortcode_box_generator.php:552
+msgid "Click to insert shortcode"
+msgstr ""
+
+#: ../includes/class-shortcode_box_generator.php:582
+msgid "full width"
+msgstr ""
+
+#: ../includes/class-shortcode_box_generator.php:593
+msgid "Select the featured item style"
+msgstr ""
+
+#: ../includes/class-shortcode_box_generator.php:614
+msgid "Select the single item style"
+msgstr ""
+
+#: ../includes/class-shortcode_box_generator.php:635
+msgid "Select Categorized Menu Style"
+msgstr ""
+
+#: ../includes/class-shortcode_box_generator.php:649
+msgid "Select the Menu Style"
+msgstr ""
+
+#: ../includes/foodpress-ajax.php:254
+msgid "You have taken too long. Please go back and retry."
+msgstr ""
+
+#: ../includes/foodpress-core-functions.php:170
+msgid "New "
+msgstr ""
+
+#: ../includes/foodpress-core-functions.php:172
+msgid "View "
+msgstr ""
+
+#: ../includes/foodpress-core-functions.php:174
+#: ../includes/foodpress-core-functions.php:175
+msgid "No "
+msgstr ""
+
+#: ../includes/admin/ajde_backender.php:241
+msgid "Font Style"
+msgstr ""
+
+#: ../includes/admin/ajde_backender.php:252
+msgid "Font Size"
+msgstr ""
+
+#: ../includes/admin/class-admin-init.php:157
+msgid "Upcoming Reservations"
+msgstr ""
+
+#: ../includes/admin/class-admin-init.php:168
+#: ../includes/admin/class-admin-init.php:174
+#: ../includes/admin/settings/settings_reservations_tab.php:115
+#: ../includes/admin/settings/settings_reservations_tab.php:121
+msgid "View Reservations"
+msgstr ""
+
+#: ../includes/admin/class-admin-init.php:178
+#: ../includes/admin/settings/settings_reservations_tab.php:125
+msgid "View all reservations"
+msgstr ""
+
+#: ../includes/admin/class-admin-init.php:180
+#: ../includes/admin/settings/settings_reservations_tab.php:127
+msgid "Manually submit reservation"
+msgstr ""
+
+#: ../includes/admin/class-admin-init.php:185
+#: ../includes/admin/settings/settings_reservations_tab.php:132
+msgid "Loading..."
+msgstr ""
+
+#: ../includes/admin/class-admin-init.php:185
+#: ../includes/admin/post_types/reservation_meta_boxes.php:25
+#: ../includes/admin/settings/settings_language_tab.php:91
+#: ../includes/admin/settings/settings_reservations_tab.php:132
+msgid "Reservation Information"
+msgstr ""
+
+#: ../includes/admin/class-admin-init.php:194
+#: ../includes/admin/foodpress-admin-settings.php:36
+#: ../includes/admin/welcome.php:87
+msgid "Settings"
+msgstr ""
+
+#: ../includes/admin/class-admin-init.php:195
+msgid "Docs"
+msgstr ""
+
+#: ../includes/admin/class-admin-init.php:196
+#: ../includes/admin/foodpress-admin-content.php:41
+#: ../includes/admin/foodpress-admin-settings.php:41
+#: ../includes/admin/welcome.php:91
+msgid "Support"
+msgstr ""
+
+#: ../includes/admin/class-fp-admin-menu.php:40
+msgid "foodPress"
+msgstr ""
+
+#: ../includes/admin/class-fp-admin-menu.php:66
+msgid "NO"
+msgstr ""
+
+#: ../includes/admin/class-fp-admin-menu.php:67
+msgid "YES"
+msgstr ""
+
+#: ../includes/admin/foodpress-admin-content.php:26
+msgid "Overview"
+msgstr ""
+
+#: ../includes/admin/foodpress-admin-content.php:29
+msgid "Thank you for using FoodPress plugin. "
+msgstr ""
+
+#: ../includes/admin/foodpress-admin-content.php:37
+msgid "For more information:"
+msgstr ""
+
+#: ../includes/admin/foodpress-admin-content.php:38
+msgid "foodpress Demo"
+msgstr ""
+
+#: ../includes/admin/foodpress-admin-content.php:40
+#: ../includes/admin/welcome.php:89
+msgid "Documentation"
+msgstr ""
+
+#: ../includes/admin/foodpress-admin-settings.php:37
+msgid "Language"
+msgstr ""
+
+#: ../includes/admin/foodpress-admin-settings.php:38
+msgid "Styles"
+msgstr ""
+
+#: ../includes/admin/foodpress-admin-settings.php:40
+msgid "Addons & Licenses"
+msgstr ""
+
+#: ../includes/admin/foodpress-admin-settings.php:109
+msgid "Action failed. Please refresh the page and retry."
+msgstr ""
+
+#: ../includes/admin/foodpress-admin-settings.php:166
+#: ../includes/admin/foodpress-admin-settings.php:274
+#: ../includes/admin/foodpress-admin-settings.php:308
+#: ../includes/admin/settings/settings_styles_tab.php:34
+msgid "Save Changes"
+msgstr ""
+
+#: ../includes/admin/foodpress-admin-settings.php:166
+msgid "Reset to default colors"
+msgstr ""
+
+#: ../includes/admin/foodpress-admin-settings.php:206
+msgid "Type in custom language text"
+msgstr ""
+
+#: ../includes/admin/foodpress-admin-settings.php:207
+msgid "Select your language"
+msgstr ""
+
+#: ../includes/admin/foodpress-admin-settings.php:212
+msgid ""
+"You can use this to save upto 2 different languages for customized text. "
+"Once saved use the shortcode to show calendar text in that customized "
+"language. eg. [add_foodpress lang='L2']"
+msgstr ""
+
+#: ../includes/admin/foodpress-admin-settings.php:213
+msgid ""
+"Please use the below fields to type in custom language text that will be "
+"used to replace the default language text on the front-end of the calendar."
+msgstr ""
+
+#: ../includes/admin/fp-admin-taxonomies.php:58
+msgid ""
+"Meal Type Categories can be managed here. You can add menu items to meal "
+"types and later create menus with meal types."
+msgstr ""
+
+#: ../includes/admin/fp-admin-taxonomies.php:63
+msgid ""
+"Dish Type Categories can be managed here. You can add menu items to dish "
+"types and later create menus with dish types."
+msgstr ""
+
+#: ../includes/admin/fp-admin-taxonomies.php:67
+msgid ""
+"Menu Locations Categories can be managed here. You can add menu items to "
+"locations and later create menus menu items from only certain locations."
+msgstr ""
+
+#: ../includes/admin/fp-admin-taxonomies.php:74
+#: ../includes/admin/fp-admin-taxonomies.php:97
+#: ../includes/admin/fp-admin-taxonomies.php:120
+msgid "ID"
+msgstr ""
+
+#: ../includes/admin/fp-admin-taxonomies.php:75
+#: ../includes/admin/fp-admin-taxonomies.php:98
+#: ../includes/admin/settings/class-settings-settings.php:51
+#: ../includes/admin/settings/class-settings-settings.php:64
+#: ../includes/admin/settings/class-settings-settings.php:77
+msgid "Icon"
+msgstr ""
+
+#: ../includes/admin/fp-admin-taxonomies.php:138
+#: ../includes/admin/fp-admin-taxonomies.php:232
+#: ../includes/admin/fp-admin-taxonomies.php:427
+msgid "Menu Type Icon"
+msgstr ""
+
+#: ../includes/admin/fp-admin-taxonomies.php:141
+#: ../includes/admin/fp-admin-taxonomies.php:240
+#: ../includes/admin/fp-admin-taxonomies.php:336
+#: ../includes/admin/fp-admin-taxonomies.php:435
+msgid "Thumbnail"
+msgstr ""
+
+#: ../includes/admin/fp-admin-taxonomies.php:145
+#: ../includes/admin/fp-admin-taxonomies.php:340
+msgid "Upload/Add image"
+msgstr ""
+
+#: ../includes/admin/fp-admin-taxonomies.php:146
+#: ../includes/admin/fp-admin-taxonomies.php:341
+msgid "Remove image"
+msgstr ""
+
+#: ../includes/admin/fp-admin-taxonomies.php:169
+#: ../includes/admin/fp-admin-taxonomies.php:271
+#: ../includes/admin/fp-admin-taxonomies.php:364
+#: ../includes/admin/fp-admin-taxonomies.php:466
+msgid "Choose an image"
+msgstr ""
+
+#: ../includes/admin/fp-admin-taxonomies.php:171
+#: ../includes/admin/fp-admin-taxonomies.php:273
+#: ../includes/admin/fp-admin-taxonomies.php:366
+#: ../includes/admin/fp-admin-taxonomies.php:468
+msgid "Use image"
+msgstr ""
+
+#: ../includes/admin/fp-admin-taxonomies.php:235
+#: ../includes/admin/fp-admin-taxonomies.php:430
+msgid "Click on the icon to change"
+msgstr ""
+
+#: ../includes/admin/fp-admin-taxonomies.php:236
+#: ../includes/admin/fp-admin-taxonomies.php:431
+msgid "Remove Icon"
+msgstr ""
+
+#: ../includes/admin/fp-admin-taxonomies.php:245
+#: ../includes/admin/fp-admin-taxonomies.php:440
+msgid "Upload/Add Image"
+msgstr ""
+
+#: ../includes/admin/fp-admin-taxonomies.php:246
+#: ../includes/admin/fp-admin-taxonomies.php:441
+msgid "Remove Image"
+msgstr ""
+
+#: ../includes/admin/fp-admin-taxonomies.php:333
+msgid "Dish Type Icon"
+msgstr ""
+
+#: ../includes/admin/welcome.php:31
+msgid "Welcome to FoodPress"
+msgstr ""
+
+#: ../includes/admin/welcome.php:77
+msgid "Thank you for updating foodpress to ver "
+msgstr ""
+
+#: ../includes/admin/welcome.php:79
+msgid "Thank you for purchasing foodpress ver "
+msgstr ""
+
+#: ../includes/admin/welcome.php:81
+#, php-format
+msgid "%s%s"
+msgstr ""
+
+#: ../includes/admin/welcome.php:117
+msgid "Go to myfoodpress Settings"
+msgstr ""
+
+#: ../includes/admin/post_types/class-fp-admin-cpt-menu.php:39
+msgid "Make a duplicate from this Menu Item"
+msgstr ""
+
+#: ../includes/admin/post_types/class-fp-admin-cpt-menu.php:40
+msgid "Duplicate"
+msgstr ""
+
+#: ../includes/admin/post_types/class-fp-admin-cpt-menu.php:59
+msgid "Duplicate this Menu Item"
+msgstr ""
+
+#: ../includes/admin/post_types/class-fp-admin-cpt-menu.php:66
+msgid ""
+"We recommend 600px X 400px image size for menu item images for best results."
+msgstr ""
+
+#: ../includes/admin/post_types/class-fp-admin-cpt-menu.php:74
+msgid "Insert into menu item"
+msgstr ""
+
+#: ../includes/admin/post_types/class-fp-admin-cpt-menu.php:75
+msgid "Uploaded to this menu item"
+msgstr ""
+
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:67
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:365
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:397
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:454
+msgid "Featured"
+msgstr ""
+
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:68
+msgid "Item Name"
+msgstr ""
+
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:136
+msgid "Edit this item"
+msgstr ""
+
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:136
+msgid "Edit"
+msgstr ""
+
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:137
+msgid "Edit this item inline"
+msgstr ""
+
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:137
+msgid "Quick&nbsp;Edit"
+msgstr ""
+
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:142
+msgid "Restore this item from the Trash"
+msgstr ""
+
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:142
+msgid "Restore"
+msgstr ""
+
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:144
+msgid "Move this item to the Trash"
+msgstr ""
+
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:144
+msgid "Trash"
+msgstr ""
+
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:146
+msgid "Delete this item permanently"
+msgstr ""
+
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:146
+msgid "Delete Permanently"
+msgstr ""
+
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:151
+#, php-format
+msgid "Preview &#8220;%s&#8221;"
+msgstr ""
+
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:151
+msgid "Preview"
+msgstr ""
+
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:153
+#, php-format
+msgid "View &#8220;%s&#8221;"
+msgstr ""
+
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:153
+msgid "View"
+msgstr ""
+
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:245
+msgid "Toggle featured"
+msgstr ""
+
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:247
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:353
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:403
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:442
+msgid "Yes"
+msgstr ""
+
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:249
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:354
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:404
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:443
+msgid "No"
+msgstr ""
+
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:314
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:391
+msgid "Menu Data"
+msgstr ""
+
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:319
+#: ../includes/admin/post_types/menu_meta_boxes.php:68
+msgid "Price"
+msgstr ""
+
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:321
+msgid "00.00"
+msgstr ""
+
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:326
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:415
+#: ../includes/admin/post_types/menu_meta_boxes.php:142
+msgid "Spicy Level"
+msgstr ""
+
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:347
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:436
+msgid "Vegetarian"
+msgstr ""
+
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:352
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:402
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:420
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:441
+msgid "No Change"
+msgstr ""
+
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:518
+#: ../includes/admin/post_types/reservation_meta_boxes.php:123
+msgid "Status"
+msgstr ""
+
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:520
+#: ../includes/admin/post_types/reservation_meta_boxes.php:64
+#: ../includes/admin/settings/settings_language_tab.php:73
+#: ../includes/admin/settings/settings_language_tab.php:92
+msgid "Date"
+msgstr ""
+
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:521
+#: ../includes/admin/post_types/reservation_meta_boxes.php:67
+#: ../includes/admin/settings/settings_language_tab.php:74
+#: ../includes/admin/settings/settings_language_tab.php:93
+msgid "Time"
+msgstr ""
+
+#: ../includes/admin/post_types/class-fp-admin-post-types.php:522
+msgid "Size"
+msgstr ""
+
+#: ../includes/admin/post_types/duplicate_menu.php:20
+msgid "No menu to duplicate has been supplied!"
+msgstr ""
+
+#: ../includes/admin/post_types/duplicate_menu.php:40
+msgid "Menu creation failed, could not find original menu:"
+msgstr ""
+
+#: ../includes/admin/post_types/duplicate_menu.php:82
+msgid "(Copy)"
+msgstr ""
+
+#: ../includes/admin/post_types/menu_meta_boxes.php:32
+msgid "Calories"
+msgstr ""
+
+#: ../includes/admin/post_types/menu_meta_boxes.php:33
+msgid "How many calories is in this item?"
+msgstr ""
+
+#: ../includes/admin/post_types/menu_meta_boxes.php:35
+#: ../includes/admin/post_types/menu_meta_boxes.php:36
+msgid "Cholesterol"
+msgstr ""
+
+#: ../includes/admin/post_types/menu_meta_boxes.php:38
+#: ../includes/admin/post_types/menu_meta_boxes.php:39
+msgid "Fiber"
+msgstr ""
+
+#: ../includes/admin/post_types/menu_meta_boxes.php:41
+#: ../includes/admin/post_types/menu_meta_boxes.php:42
+msgid "Sodium"
+msgstr ""
+
+#: ../includes/admin/post_types/menu_meta_boxes.php:44
+#: ../includes/admin/post_types/menu_meta_boxes.php:45
+msgid "Carbohydrates"
+msgstr ""
+
+#: ../includes/admin/post_types/menu_meta_boxes.php:47
+#: ../includes/admin/post_types/menu_meta_boxes.php:48
+msgid "Fat"
+msgstr ""
+
+#: ../includes/admin/post_types/menu_meta_boxes.php:50
+#: ../includes/admin/post_types/menu_meta_boxes.php:51
+msgid "Protein"
+msgstr ""
+
+#: ../includes/admin/post_types/menu_meta_boxes.php:69
+msgid "Enter the price for this item"
+msgstr ""
+
+#: ../includes/admin/post_types/menu_meta_boxes.php:108
+#: ../includes/admin/settings/class-settings-settings.php:91
+msgid "Icons"
+msgstr ""
+
+#: ../includes/admin/post_types/menu_meta_boxes.php:113
+msgid ""
+"Menu icon symbols to represent certain values for a menu item. Can be edit "
+"from foodpress settings > Icon Symbols"
+msgstr ""
+
+#: ../includes/admin/post_types/menu_meta_boxes.php:123
+#: ../includes/admin/settings/class-settings-settings.php:121
+msgid "Sub Header"
+msgstr ""
+
+#: ../includes/admin/post_types/menu_meta_boxes.php:129
+msgid "Description"
+msgstr ""
+
+#: ../includes/admin/post_types/menu_meta_boxes.php:135
+#: ../includes/admin/settings/class-settings-settings.php:122
+msgid "Additional Text"
+msgstr ""
+
+#: ../includes/admin/post_types/menu_meta_boxes.php:150
+msgid "Nutritional Information"
+msgstr ""
+
+#: ../includes/admin/post_types/menu_meta_boxes.php:159
+msgid "Ingredients"
+msgstr ""
+
+#: ../includes/admin/post_types/menu_meta_boxes.php:292
+msgid "Select Data from Menu Additions"
+msgstr ""
+
+#: ../includes/admin/post_types/menu_meta_boxes.php:292
+msgid "Edit Menu Additions"
+msgstr ""
+
+#: ../includes/admin/post_types/menu_meta_boxes.php:294
+msgid "There are no menu additions."
+msgstr ""
+
+#: ../includes/admin/post_types/menu_meta_boxes.php:294
+msgid "Create Menu Additions"
+msgstr ""
+
+#: ../includes/admin/post_types/menu_meta_boxes.php:298
+msgid "Enter the custom value here"
+msgstr ""
+
+#: ../includes/admin/post_types/reservation_meta_boxes.php:63
+#: ../includes/admin/settings/settings_language_tab.php:111
+msgid "Reservation ID"
+msgstr ""
+
+#: ../includes/admin/post_types/reservation_meta_boxes.php:72
+#: ../includes/admin/settings/settings_language_tab.php:113
+msgid "Primary Contact"
+msgstr ""
+
+#: ../includes/admin/post_types/reservation_meta_boxes.php:74
+msgid "Reservation Count"
+msgstr ""
+
+#: ../includes/admin/post_types/reservation_meta_boxes.php:76
+msgid "Email"
+msgstr ""
+
+#: ../includes/admin/post_types/reservation_meta_boxes.php:80
+msgid "Phone"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:16
+msgid "General foodpress Settings"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:18
+msgid "General Settings"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:21
+msgid "Write dynamic styles to header"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:21
+msgid ""
+"If making changes to appearances dont reflect on front-end try this option. "
+"This will write those dynamic styles inline to page header."
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:22
+msgid "Disable Content Filter"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:22
+msgid ""
+"This will disable to use of the_content filter on menu description and "
+"custom field values."
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:24
+msgid "Menu Type Categories customization"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:25
+msgid ""
+"Use this to assign custom names for the menu item type categories which you "
+"can use to categorize menu items in variety of ways. <b>NOTE:</b> Once you "
+"update these custom categories refresh the page for the values to show up."
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:26
+msgid "Custom name for Meal Type category (Meal type. eg. lunch, dinner)"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:27
+msgid "Custom name for Dish Type category (Dish Type: Dessert, Entree)"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:29
+msgid "Add an Additional Category"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:29
+msgid ""
+"You can use this to add an extra category type to categorize food items by."
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:31
+msgid "Custom name for Additional Category"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:31
+msgid ""
+"This additional category can be used to categorize food items for eg. "
+"locations of a restaurant)"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:36
+msgid "Menu Item Custom Meta Data Settings"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:37
+msgid "Custom Meta Data"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:40
+msgid ""
+"You can add up to 2 additional custom fields for each menu item using the "
+"below fields. (* Required values)"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:42
+msgid "Activate Additional Field #1"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:42
+#: ../includes/admin/settings/class-settings-settings.php:153
+#: ../includes/admin/settings/settings_reservations_tab.php:146
+msgid "This will activate additional menu item field."
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:44
+msgid "Custom field #1"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:45
+#: ../includes/admin/settings/class-settings-settings.php:58
+#: ../includes/admin/settings/class-settings-settings.php:70
+#: ../includes/admin/settings/settings_reservations_tab.php:148
+msgid "Field Name*"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:46
+#: ../includes/admin/settings/class-settings-settings.php:59
+#: ../includes/admin/settings/class-settings-settings.php:71
+#: ../includes/admin/settings/settings_reservations_tab.php:150
+msgid "Content Type"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:47
+#: ../includes/admin/settings/class-settings-settings.php:60
+#: ../includes/admin/settings/class-settings-settings.php:72
+msgid "Single line Text"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:48
+#: ../includes/admin/settings/class-settings-settings.php:61
+#: ../includes/admin/settings/class-settings-settings.php:73
+msgid "Multiple lines of text"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:49
+#: ../includes/admin/settings/class-settings-settings.php:62
+#: ../includes/admin/settings/class-settings-settings.php:74
+msgid "Use Menu Additions Data"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:55
+msgid "Activate Additional Field #2"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:55
+#: ../includes/admin/settings/class-settings-settings.php:67
+msgid "This will activate a second additional menu item field."
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:57
+msgid "Custom field #2"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:67
+msgid "Activate Additional Field #3"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:69
+msgid "Custom field #3"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:82
+msgid "Look and Feel"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:83
+msgid "Appearance"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:90
+msgid "Custom Icons for foodPress"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:94
+msgid "Menu Card Icons"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:99
+msgid "Ingredients Icon"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:100
+msgid "Nutritions Icon"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:108
+msgid "Icon Symbols for various menu item data"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:109
+msgid "Icon Symbols"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:116
+msgid "MenuTop Settings (MenuTop is a row of menu item)"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:117
+msgid "MenuTop"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:119
+msgid ""
+"Select additional data fields to be shown on menuTop <i>(Default Fields: "
+"Item Name, Description, Price)</i>"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:131
+#: ../includes/admin/settings/class-settings-settings.php:132
+msgid "Menu Paging"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:136
+msgid "Select Menu Archive Page"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:136
+msgid ""
+"If making changes to appearances dont reflect on front-end try this option. "
+"This will write those dynamic styles inline to page header"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:137
+msgid "Select Menu Archive Page Template"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:139
+msgid "foodpress menu Post Slug"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:149
+msgid ""
+"<i>Menu Icons can be added into each menu item to represent a data value in "
+"graphic form. eg. Vegan</i>"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:153
+msgid "Activate Icon Symbol #"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:155
+msgid "Name for the icon symbol"
+msgstr ""
+
+#: ../includes/admin/settings/class-settings-settings.php:156
+msgid "Actual Icon"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:8
+msgid "no menu items"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:8
+msgid "no_menu_items"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:10
+msgid "featured"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:12
+msgid "more info"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:12
+msgid "more_info"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:14
+msgid "read more"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:14
+msgid "read_more"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:16
+msgid "vegetarian"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:18
+msgid "ingredients"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:20
+msgid "description"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:22
+msgid "short description"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:22
+msgid "short_description"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:24
+msgid "price"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:26
+msgid "spicy level"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:26
+msgid "spicy_level"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:28
+msgid "nutritional information"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:28
+msgid "nutritional_information"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:30
+msgid "nutritions"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:32
+msgid "calories"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:34
+msgid "cholesterol"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:36
+msgid "fiber"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:38
+msgid "sodium"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:40
+msgid "carbohydrates"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:42
+msgid "fat"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:44
+msgid "protein"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:51
+msgid "Other General"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:52
+msgid "Location"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:52
+msgid "location"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:55
+msgid "Categories"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:56
+msgid "Category: Meal Type"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:59
+msgid "Category: Dish Type"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:64
+msgid "Reservation Status"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:65
+msgid "check-in"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:66
+msgid "checked"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:69
+msgid "Reservation Form"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:70
+msgid "Form Header Text"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:70
+msgid "Make a Reservation"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:71
+msgid "Form Subheader Text"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:75
+#: ../includes/admin/settings/settings_language_tab.php:94
+#: ../includes/admin/settings/settings_language_tab.php:114
+msgid "Party Size"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:76
+msgid "Your Name"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:77
+msgid "Email Address"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:79
+msgid "Type the code to validate"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:80
+msgid "Reserve Now"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:82
+msgid "By clicking you agree with our "
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:83
+msgid "Privacy Policy"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:84
+msgid "Terms of Use"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:88
+msgid "Reservation Form Success Step"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:89
+msgid "Awesome, we got your reservation!"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:90
+msgid "Success Text"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:90
+msgid ""
+"If there are any issues with this reservation we will give you a call. "
+"Otherwise, we look forward to seeing you soon!"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:97
+msgid "Reservation Form Notification Messages"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:98
+msgid "Posted successfully"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:99
+msgid "Required fields missing"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:100
+msgid "Invalid email address"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:101
+msgid "Invalid phone number"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:102
+msgid "Could not create new reservation. Please try again later"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:103
+msgid "Validation code does not match, please try again!"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:106
+msgid "Reservation Emails"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:107
+msgid "Subject: for notification"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:108
+msgid "Subject: for confirmation"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:110
+msgid "Reservation confirmation"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:112
+msgid "Reservation Time"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:115
+msgid "We look forward to seeing you!"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:116
+msgid "Contact Us for questions and concerns"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:117
+msgid "You have received a new Reservation!"
+msgstr ""
+
+#: ../includes/admin/settings/settings_language_tab.php:118
+msgid "View RSVP in wp-admin"
+msgstr ""
+
+#: ../includes/admin/settings/settings_license_tab.php:103
+msgid ""
+"Activate your copy of foodpress to get free automatic plugin updates direct "
+"to your site!"
+msgstr ""
+
+#: ../includes/admin/settings/settings_reservations_tab.php:16
+msgid "General Reservation Settings"
+msgstr ""
+
+#: ../includes/admin/settings/settings_reservations_tab.php:18
+msgid "General"
+msgstr ""
+
+#: ../includes/admin/settings/settings_reservations_tab.php:20
+msgid "Set time restriction for reservations"
+msgstr ""
+
+#: ../includes/admin/settings/settings_reservations_tab.php:22
+msgid "Please use the time format 2:00pm for below fields"
+msgstr ""
+
+#: ../includes/admin/settings/settings_reservations_tab.php:23
+msgid "Reservation Start Time"
+msgstr ""
+
+#: ../includes/admin/settings/settings_reservations_tab.php:24
+msgid "Reservation End Time"
+msgstr ""
+
+#: ../includes/admin/settings/settings_reservations_tab.php:27
+msgid "Show time in 24 hour format"
+msgstr ""
+
+#: ../includes/admin/settings/settings_reservations_tab.php:29
+msgid "Use WordPress date format"
+msgstr ""
+
+#: ../includes/admin/settings/settings_reservations_tab.php:31
+msgid "Time slot increment by"
+msgstr ""
+
+#: ../includes/admin/settings/settings_reservations_tab.php:33
+msgid "Show start and end time for reservations"
+msgstr ""
+
+#: ../includes/admin/settings/settings_reservations_tab.php:35
+msgid "Set party size capacity limit"
+msgstr ""
+
+#: ../includes/admin/settings/settings_reservations_tab.php:37
+msgid "Type maximum party size allowed"
+msgstr ""
+
+#: ../includes/admin/settings/settings_reservations_tab.php:40
+msgid "Reservations must be approved by admin"
+msgstr ""
+
+#: ../includes/admin/settings/settings_reservations_tab.php:41
+msgid "URL Link to Privacy Policy"
+msgstr ""
+
+#: ../includes/admin/settings/settings_reservations_tab.php:42
+msgid "URL Link to Terms of Use"
+msgstr ""
+
+#: ../includes/admin/settings/settings_reservations_tab.php:46
+msgid "Reservation Form Fields"
+msgstr ""
+
+#: ../includes/admin/settings/settings_reservations_tab.php:47
+msgid "Form Fields"
+msgstr ""
+
+#: ../includes/admin/settings/settings_reservations_tab.php:52
+msgid "Reservation Notifications & Emails"
+msgstr ""
+
+#: ../includes/admin/settings/settings_reservations_tab.php:53
+msgid "Notifications & Emails"
+msgstr ""
+
+#: ../includes/admin/settings/settings_reservations_tab.php:55
+msgid "Notify admin upon new reservation"
+msgstr ""
+
+#: ../includes/admin/settings/settings_reservations_tab.php:58
+msgid "Email address to send notification. (eg. you@domain.com)"
+msgstr ""
+
+#: ../includes/admin/settings/settings_reservations_tab.php:58
+msgid ""
+"You can add multiple email addresses seperated by commas to receive "
+"notifications of event submissions."
+msgstr ""
+
+#: ../includes/admin/settings/settings_reservations_tab.php:59
+#: ../includes/admin/settings/settings_reservations_tab.php:67
+msgid ""
+"From eg. My Name &lt;myname@domain.com&gt; - Default will use admin email "
+"from this website"
+msgstr ""
+
+#: ../includes/admin/settings/settings_reservations_tab.php:65
+msgid "Notify submitter upon receipt of the reservation"
+msgstr ""
+
+#: ../includes/admin/settings/settings_reservations_tab.php:68
+msgid "Contact for help link"
+msgstr ""
+
+#: ../includes/admin/settings/settings_reservations_tab.php:68
+msgid ""
+"This will be added to the bottom of reservation confirmation email sent to "
+"customer"
+msgstr ""
+
+#: ../includes/admin/settings/settings_reservations_tab.php:74
+msgid ""
+"To override and edit the confirmation email to customer, COPY php file from "
+"\"../foodpress/templates/email/reservation-confirmation.php\" to  \"../wp-"
+"content/yourtheme/foodpress/templates/email/reservation-confirmation.php."
+msgstr ""
+
+#: ../includes/admin/settings/settings_reservations_tab.php:81
+msgid "Reservation Submissions"
+msgstr ""
+
+#: ../includes/admin/settings/settings_reservations_tab.php:139
+msgid "Validate form before submission"
+msgstr ""
+
+#: ../includes/admin/settings/settings_reservations_tab.php:141
+msgid ""
+"Activate additional form fields the reservation form.<br/>NOTE: Each "
+"additional field names can also be changed under language settings, which "
+"will override the field names set in here."
+msgstr ""
+
+#: ../includes/admin/settings/settings_reservations_tab.php:146
+msgid "Activate Additional Field #"
+msgstr ""
+
+#: ../includes/admin/settings/settings_reservations_tab.php:149
+msgid "Field Values"
+msgstr ""
+
+#: ../includes/admin/settings/settings_reservations_tab.php:151
+msgid "Single Line Text Field"
+msgstr ""
+
+#: ../includes/admin/settings/settings_reservations_tab.php:152
+msgid "Select Field"
+msgstr ""
+
+#: ../includes/admin/settings/settings_reservations_tab.php:153
+msgid "Checkbox Field"
+msgstr ""
+
+#: ../includes/admin/settings/settings_reservations_tab.php:154
+msgid "Multiple Lines of Text Field"
+msgstr ""
+
+#: ../includes/admin/settings/settings_styles_tab.php:10
+msgid "Add your own custom styles"
+msgstr ""
+
+#: ../includes/admin/settings/settings_styles_tab.php:11
+msgid ""
+"Please use text area below to write your own CSS styles to override or fix "
+"style/layout changes in your menu pages. <br/>These styles will be appended "
+"into the dynamic styles sheet loaded on the front-end."
+msgstr ""
+
+#: ../includes/admin/settings/settings_styles_tab.php:18
+msgid "Auto generated Dynamic Styles"
+msgstr ""
+
+#: ../includes/admin/settings/settings_styles_tab.php:19
+msgid ""
+"If your dynamic styles (appearance changes in foodpress settings) do not "
+"reflect on front-end, it could be that your website is blocking foodpress "
+"from using wp_filesystems() to write these dynamic styles to "
+"\"dynamic_styles.css\". <br/>In this case please <b>copy</b> the below CSS "
+"styles and paste it on your theme styles (style.css)."
+msgstr ""

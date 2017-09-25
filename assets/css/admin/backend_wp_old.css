@@ -1,0 +1,25 @@
+#adminmenuwrap #adminmenu #toplevel_page_foodpress a .wp-menu-image:before{
+	font-size: 20px;
+	margin-top: 3px;
+	margin-left: 5px;
+	position: absolute;
+}
+.fp_yn_btn .btn_inner:before, .fp_yn_btn .btn_inner:after{
+	padding-top: 5px !important;
+}
+.foodpress_admin_meta.postbox{
+	background-image: none;
+}
+
+/* activation */
+body.dashboard_page_fp-about #wpwrap #adminmenuback{z-index: -1;}
+body.dashboard_page_fp-about #wpwrap{background-color: transparent;}
+body.dashboard_page_fp-about #wpwrap #wpcontent{margin-left: 146px;}
+
+/* shortcode button */
+#wp-content-media-buttons #fp_shortcode_btn{
+	padding: 3px 10px 4px;
+}
+
+/* widget */
+	.foodpress_widget_top{margin-top: -23px;}
