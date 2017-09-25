@@ -20,7 +20,6 @@ FoodPress is a complete restaurant menu management system that allow you to crea
 FIXED: fontawesome errors
 FIXED: Widget issue
 
-
 = 1.4.2 (2016-6-28) = 
 FIXED: Meal type with multiple IDs not working
 FIXED: Boxes and other styles to support single meal type IDs
