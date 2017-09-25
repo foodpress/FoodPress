@@ -2008,7 +2008,7 @@ ob_start();?>
 	$fonts_string = ob_get_clean();
 	
 	$str = explode('.', $fonts_string);
-	$font_ = '';
+	$font_ = array();
 	foreach($str as $ss){
 		$s1 = explode(':', $ss);
 		if(!empty($s1[0]) && !in_array($s1[0], array(

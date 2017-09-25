@@ -16,9 +16,9 @@ class foodpress_Widget extends WP_Widget{
 		'three'=>'Info under Image',
 		'four'=>'Info next to Image',
 	);
-	
-	function foodpress_Widget(){
-		$widget_ops = array('classname' => 'fp_Widget', 
+
+	function __construct(){
+		$widget_ops = array('classname' => 'foodpress_Widget', 
 			'description' => 'Add FoodPress Menu widget.' );
 		parent::__construct('foodpress_Widget', 'FoodPress Menu', $widget_ops);
 	}

@@ -17,6 +17,8 @@ FoodPress is a complete restaurant menu management system that allow you to crea
 
 == Changelog ==
 = 1.5 (2017-
+FIXED: fontawesome errors
+FIXED: Widget issue
 
 
 = 1.4.2 (2016-6-28) = 
