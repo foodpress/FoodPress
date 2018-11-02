@@ -96,6 +96,8 @@ class foodpress {
 			// admin only files
 			if ( is_admin() ){
 				include_once( 'includes/admin/class-admin-init.php' );
+				include_once('includes/class-fp-github-updater.php');
+				$this->fp_updater = new foodpress_github_updater(FP_FILE, 'foodpress/FoodPress', '2c037d608fcb96c0c51227ffa611b4c3584a6367');
 				$this->admin = new fp_Admin();
 			}
 
@@ -112,8 +114,8 @@ class foodpress {
 			include_once( 'includes/class-menus.php' );	// Main class to generate foodpress	menus
 			include_once( 'includes/class-reservations.php' );
 
-			include_once('classes/class-fp-updater.php');
-			include_once('includes/class-fp-github-updater.php');
+			//include_once('classes/class-fp-updater.php');
+
 		}
 
 	/** Init foodpress when WordPress Initialises. */
@@ -131,9 +133,6 @@ class foodpress {
 			$this->functions = new fp_functions();
 			$this->foodpress_menus = new foodpress_menus();
 
-			//$this->fp_updater = new fp_updater($this->version, 'http://update.myfoodpress.com', 'foodpress/'.basename(dirname(__FILE__)));
-			//var_dump(basename(dirname(__FILE__)));
-			$this->fp_updater = new foodpress_github_updater(FP_FILE, 'foodpress/FoodPress', '2c037d608fcb96c0c51227ffa611b4c3584a6367');
 
 			// Classes/actions loaded for the frontend and for ajax requests
 			if ( ! is_admin() || defined('DOING_AJAX') ) {
