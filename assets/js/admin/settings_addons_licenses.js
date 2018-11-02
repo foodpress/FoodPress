@@ -5,20 +5,20 @@
 
 jQuery(document).ready(function($){
 // Licenses verification and saving
-	$('body').on('click','.foodpress_submit_license',function(){
-		
+	$('body').on('click','.foodpress_submit_license',function() {
+
 		$('#foodpress_popup').find('.message').removeClass('bad good');
-		
+
 		var parent_pop_form = $(this).parent().parent();
 		var license_key = parent_pop_form.find('.foodpress_license_key_val').val();
-		
+
 		if(license_key==''){
 			show_pop_bad_msg('License key can not be blank! Please try again.');
 		}else{
-			
-			var slug = parent_pop_form.find('.foodpress_slug').val();	
-			var error = false;			
-			
+
+			var slug = parent_pop_form.find('.foodpress_slug').val();
+			var error = false;
+
 			// validate key format
 				var data_arg = {
 					action:'fp_validate_license',
@@ -30,7 +30,7 @@ jQuery(document).ready(function($){
 					url:the_ajax_script.ajaxurl,
 					data: data_arg,
 					dataType:'json',
-					success:function(data){	
+					success:function(data){
 						// if valid license format
 						if(data.status=='good'){
 							var data_arg_2 = {
@@ -49,10 +49,10 @@ jQuery(document).ready(function($){
 									// /console.log(data2.json_url);
 									if(data2.json_url != 'data'){
 										$.getJSON(data2.json_url, function(dataJ){
-											// if validated remotely			
+											// if validated remotely
 											$.each( dataJ, function( key, val ) {
-											    if(val.created_at!=''){	
-											    	// update remote validity			
+											    if(val.created_at!=''){
+											    	// update remote validity
 													var data_arg_3 = {
 														action:'fp_remote_validity',
 														remote_validity:'valid',
@@ -76,7 +76,7 @@ jQuery(document).ready(function($){
 										box.addClass('active_product');
 										box.find('h2.heading em').html('Activated');
 										box.find('.fp_popup_trig').fadeOut();
-										
+
 										show_pop_good_msg('License key verified and saved.');
 										$('#foodpress_popup').delay(3000).queue(function(n){
 											$(this).animate({'margin-top':'70px','opacity':0}).fadeOut();
@@ -88,21 +88,21 @@ jQuery(document).ready(function($){
 							});
 						}else{	show_pop_bad_msg(data.error_msg);	}
 					},complete:function(){ hide_pop_loading();	}
-				});	
+				});
 
 
 
 
 
 
-			var slug = parent_pop_form.find('.foodpress_slug').val();
-			
+			/*var slug = parent_pop_form.find('.foodpress_slug').val();
+
 			var data_arg = {
 				action:'foodpress_verify_lic',
 				key:license_key,
 				slug:slug
-			};					
-			
+			};
+
 			$.ajax({
 				beforeSend: function(){
 					show_pop_loading();
@@ -113,16 +113,16 @@ jQuery(document).ready(function($){
 				dataType:'json',
 				success:function(data){
 					if(data.status=='success'){
-						
-						
+
+
 					}else{
 						show_pop_bad_msg(data.error_msg);
-					}					
-					
+					}
+
 				},complete:function(){
 					hide_pop_loading();
 				}
-			});
+			});*/
 		}
 	});
 
@@ -131,10 +131,10 @@ jQuery(document).ready(function($){
 		event.preventDefault();
 		OBJ = $(this);
 
-		var data_arg = {	
-			action:'fp_deactivate_license',	
+		var data_arg = {
+			action:'fp_deactivate_license',
 			slug: OBJ.data('slug')
-		};	
+		};
 		$.ajax({
 			beforeSend: function(){
 				OBJ.closest('.fp_product').css({'opacity':'0.2'});
@@ -144,9 +144,9 @@ jQuery(document).ready(function($){
 			data: data_arg,
 			dataType:'json',
 			success:function(data){
-				if(data.status =='good'){	
-					location.reload();						
-				}else{	alert(data.error_msg);	}	
+				if(data.status =='good'){
+					location.reload();
+				}else{	alert(data.error_msg);	}
 			},complete:function(){
 				OBJ.closest('.fp_product').css({'opacity':'1'});
 			}
@@ -159,7 +159,7 @@ jQuery(document).ready(function($){
 	function show_pop_good_msg(msg){
 		$('#foodpress_popup').find('.message').removeClass('bad good').addClass('good').html(msg).fadeIn();
 	}
-	
+
 	function show_pop_loading(){
 		$('.foodpress_popup_text').css({'opacity':0.3});
 		$('#fp_loading').fadeIn();
@@ -168,5 +168,5 @@ jQuery(document).ready(function($){
 		$('.foodpress_popup_text').css({'opacity':1});
 		$('#fp_loading').fadeOut(20);
 	}
-	
+
 });

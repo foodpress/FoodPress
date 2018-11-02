@@ -5,41 +5,41 @@
  * @version 	3.1
  * @updated 	2015-3-2
  */
-	
+
 class fp_settings_reservation{
 
-	public function __construct(){
-
+	public function __construct($food_opt){
+		$this->food_opt = $food_opt;
 	}
 
 	function get_content(){
 		global $foodpress;
 		?>
-			<form method="post" action=""><?php settings_fields('food_field_group'); 
-				wp_nonce_field( plugin_basename( __FILE__ ), 'food_noncename' );
+			<form method="post" action=""><?php settings_fields('food_field_group');
+				wp_nonce_field( 'food_nonce', 'food_noncename' );
 			?>
-			<div id="food_1" class=" foodpress_admin_meta food_focus">		
+			<div id="food_1" class=" foodpress_admin_meta food_focus">
 				<div class="inside">
 					<?php
-						
-						$opt6 = $food_opt[6];
-						
-						$cutomization_pg_array = $this->settings();								
-						
+						//var_dump($this->food_opt);
+						//$opt6 = $food_opt[6];
+
+						$cutomization_pg_array = $this->settings();
+
 						$foodpress->load_ajde_backender();
-						print_ajde_customization_form($cutomization_pg_array, $food_opt[6]);
-					?>					
+						print_ajde_customization_form($cutomization_pg_array, $this->food_opt[6]);
+					?>
 				</div>
 				<p class='fp_settings_bottom'><input type="submit" class="btn_prime fp_admin_btn" value="<?php _e('Save Changes') ?>" /></p>
-			</div>	
+			</div>
 			</form>
-		<?php  
+		<?php
 	}
 
 	function settings(){
 		$__fp_admin_email = get_option('admin_email');
 
-		return apply_filters('foodpress_reservation_setting', 
+		return apply_filters('foodpress_reservation_setting',
 			array(
 				array(
 					'id'=>'food_001',
@@ -53,26 +53,26 @@ class fp_settings_reservation{
 								array('id'=>'reservation','type'=>'subheader','name'=>'Everyday Reservable Hours'),
 								array('id'=>'fpr_start_time',
 									'type'=>'dropdown',
-									'name'=>__('Reservation Start Time Range','foodpress'), 
-									'options'=>foodpress_get_times(1)
+									'name'=>__('Reservation Start Time Range','foodpress'),
+									'options'=>foodpress_get_times(2)
 								),
 								array('id'=>'fpr_end_time',
 									'type'=>'dropdown',
-									'name'=>__('Reservation End Time Range','foodpress'), 
-									'options'=>foodpress_get_times(1)
+									'name'=>__('Reservation End Time Range','foodpress'),
+									'options'=>foodpress_get_times(2)
 									),
-							array('id'=>'fpr_timesl','type'=>'end_afterstatement'),	
+							array('id'=>'fpr_timesl','type'=>'end_afterstatement'),
 						//array('id'=>'fpr_24hr','type'=>'yesno','name'=>__('Show time in 24 hour format','foodpress'), 'legend'=>'This will show the time slots available for selection in 24 hour format'),
 
 						//array('id'=>'fpr_univ_date_format','type'=>'yesno','name'=>__('Use WordPress date format','foodpress'), 'legend'=>'Use date format saved in wordpress general settings instead of default date format for reservation form'),
 
-						array('id'=>'fpr_time_incer','type'=>'dropdown','name'=>__('Time slot increment by','foodpress'), 'options'=>array( '1'=>'1 hour','2'=>'30 min', '4'=>'15 min','12'=>'5 min'),'default'=>'2', 'legend'=>'Reservation form time field available values for selection be incremented by this amount for each time interval'),
+						array('id'=>'fpr_time_incer','type'=>'dropdown','name'=>__('Time slot increment by','foodpress'), 'options'=>array( '1'=>'1 hour','2'=>'30 min', '4'=>'15 min','12'=>'5 min'),'default'=>'12', 'legend'=>'Reservation form time field available values for selection be incremented by this amount for each time interval'),
 
 						array('id'=>'fpr_startend','type'=>'yesno','name'=>__('Show start and end time for reservations','foodpress'), 'legend'=>'This will show start and end time as two time selection boxes in reservation form to select from'),
 
 						array('id'=>'fpr_partysize','type'=>'yesno','name'=>__('Set party size capacity limit'),'afterstatement'=>'fpr_partysize', 'legend'=>'This will allow you to restrict the time slots available for reservations to between certain times only'),
 							array('id'=>'fpr_partysize','type'=>'begin_afterstatement'),
-								array('id'=>'fpr_partysz_num','type'=>'text','name'=>__('Type maximum party size allowed','foodpress'), 'default'=>'eg. 8'),	
+								array('id'=>'fpr_partysz_num','type'=>'text','name'=>__('Type maximum party size allowed','foodpress'), 'default'=>'eg. 8'),
 							array('id'=>'fpr_partysize','type'=>'end_afterstatement'),
 
 						array('id'=>'fpr_draft','type'=>'yesno','name'=>__('Reservations must be approved by admin','foodpress'), 'legend'=>'If this is activated, all reservations will need to be approved by admin before they are confirmed'),
@@ -86,8 +86,8 @@ class fp_settings_reservation{
 
 						array('id'=>'fpr_redire','type'=>'yesno','name'=>__('Redirect after form submission'),'afterstatement'=>'fpr_redire', 'legend'=>'This will redirect the web page to a page you set upon successful form submission.'),
 							array('id'=>'fpr_redire','type'=>'begin_afterstatement'),
-								array('id'=>'fpr_redire_url','type'=>'text','name'=>'Redirect Page URL'),					
-							array('id'=>'fpr_redire','type'=>'end_afterstatement'),	
+								array('id'=>'fpr_redire_url','type'=>'text','name'=>'Redirect Page URL'),
+							array('id'=>'fpr_redire','type'=>'end_afterstatement'),
 				)),
 				array(
 					'id'=>'food_002a',
@@ -99,41 +99,41 @@ class fp_settings_reservation{
 					'id'=>'food_002',
 					'name'=>__('Reservation Notifications & Emails','foodpress'),
 					'tab_name'=>__('Notifications & Emails','foodpress'),
-					'fields'=>array(				
+					'fields'=>array(
 						array('id'=>'fpr_notif','type'=>'yesno','name'=>__('Notify admin upon new reservation','foodpress'),'afterstatement'=>'fpr_notif'),
 							array('id'=>'fpr_notif','type'=>'begin_afterstatement'),
-								
+
 								array('id'=>'fpr_ntf_admin_to','type'=>'text','name'=>__('Email address to send notification. (eg. you@domain.com)','foodpress'), 'legend'=>__('You can add multiple email addresses seperated by commas to receive notifications of event submissions.','foodpress'),'default'=>$__fp_admin_email),
 								array('id'=>'fpr_ntf_admin_from','type'=>'text','name'=>__('From eg. My Name &lt;myname@domain.com&gt; - Default will use admin email from this website','foodpress'),),
 								array('id'=>'fpr_ntf_admin_subject','type'=>'note','name'=>'Subject for emails can be changed via language'),
-								
+
 							array('id'=>'fpr_notif','type'=>'end_afterstatement'),
-							
+
 
 							array('id'=>'fpr_notsubmitter','type'=>'subheader','name'=>__('Notify submitter upon receipt of the reservation','foodpress'), ),
-							
+
 							array('id'=>'fpr_ntf_user_from','type'=>'text','name'=>__('From eg. My Name &lt;myname@domain.com&gt; - Default will use admin email from this website','foodpress'), 'default'=>$__fp_admin_email),
 							array('id'=>'fpr_ntf_drf_link','type'=>'text','name'=>__('Contact for help link','foodpress'),'default'=>site_url(), 'legend'=>__('This will be added to the bottom of reservation confirmation email sent to customer','foodpress'),),
 
 
 							array('id'=>'fpr_ntf_admin_subject','type'=>'note','name'=>'Subject for emails can be changed via language'),
-							
-							
+
+
 							array('id'=>'fpr_fcx','type'=>'note','name'=>__('To override and edit the confirmation email to customer, COPY php file from "../foodpress/templates/email/reservation-confirmation.php" to  "../wp-content/yourtheme/foodpress/templates/email/reservation-confirmation.php.','foodpress'),),
-							
+
 							array('id'=>'fpr_3_000','type'=>'code','name'=>'Preview Emails','value'=>$this->foodpress_reservation_settings_001()
-										),	
+										),
 
 				)),array(
 					'id'=>'food_003',
 					'name'=>__('Reservation Submissions','foodpress'),
 					'tab_name'=>__('Reservations','foodpress'),
-					'fields'=>array(				
+					'fields'=>array(
 						array('id'=>'fp_note',
-							'type'=>'code', 
+							'type'=>'code',
 							'value'=>$this->foodpress_reservation_settings_002()
 						),
-						
+
 				))
 			)
 		);
@@ -144,7 +144,7 @@ class fp_settings_reservation{
 	function foodpress_reservation_customcode($opt6){
 		ob_start();
 			echo "<div class='fp_reservation_time_settings'>";
-			
+
 			/*
 			echo "<p class='subheader_fp'>Reservable Time Periods</p>";
 			echo "<div class='fp_reservable_times fp_reservable'>";
@@ -167,26 +167,26 @@ class fp_settings_reservation{
 			foreach(foodpress_get_times(1) as $opt){
 				echo "<option value='{$opt}'>{$opt}</option>";
 			}
-			
+
 			echo "</select>";
 			echo " TO <select class='to'>";
 			foreach(foodpress_get_times(1) as $opt){
 				echo "<option value='{$opt}'>{$opt}</option>";
 			}
-			echo "</select> <span id='add_reservation_time_slot' class='add_reservation_time_slot'>".__('ADD TIME SLOT','foodpress')."</span> <em></em></p>";			 
+			echo "</select> <span id='add_reservation_time_slot' class='add_reservation_time_slot'>".__('ADD TIME SLOT','foodpress')."</span> <em></em></p>";
 			echo "</div>";
 			*/
-		
+
 			// unreservanles
 			echo "<p class='subheader_fp' style='padding-top:25px;'>UN-Reservable Days</p>";
 			echo "<div class='fp_unreservable_dates fp_reservable'>";
-			
+
 			if(!empty($opt6['fp_unres'])){
 				foreach($opt6['fp_unres'] as $dates){
 					echo "<p>{$dates}<span>X</span><input type='hidden' name='fp_unres[]' value='{$dates}'/></p>";
 				}
 			}
-			
+
 			echo "</div>";
 			echo "<div class='add_reservation_time'>";
 			echo "<p>".__('Add date that is NOT reservable','foodpress')."</p>";
@@ -205,14 +205,14 @@ class fp_settings_reservation{
 		ob_start();
 		echo "<a href='".get_admin_url()."admin.php?page=foodpress&tab=food_6&action=nf#food_002' class='fp_admin_btn btn_triad'>Preview Notification Email</a> <a href='".get_admin_url()."admin.php?page=foodpress&tab=food_6&action=cf#food_002' class='fp_admin_btn btn_triad'>Preview Confirmation Email</a>";
 		if(!empty($_GET['action'])){
-			
+
 			$type = ($_GET['action']=='nf')?'notification':'confirmation';
 			echo $foodpress->reservations->get_email_preview('jboune@blackbriar.com',$type);
 		}
 		return ob_get_clean();
-	}	
+	}
 
-	// reservations submission entries settings	
+	// reservations submission entries settings
 	function foodpress_reservation_settings_002(){
 		global $foodpress;
 		return $foodpress->admin->reservation_UI();
@@ -241,7 +241,7 @@ class fp_settings_reservation{
 					array('id'=>'fp_ec_fv'.$x,'type'=>'text','name'=>__('Field Values (comma separated)','foodpress'),'legend'=>'If content type is "select": seperate each select value by comma and enter in here, otherwise this will work as placeholder text for field. Do not leave spaces between values.'),
 					array('id'=>'fp_ec_fb'.$x,'type'=>'dropdown','name'=>__('Content Type','foodpress'), 'options'=>array(
 						'text'=>__('Single Line Text Field','foodpress'),
-						'select'=>__('Select Field','foodpress'), 
+						'select'=>__('Select Field','foodpress'),
 						'checkbox'=>__('Checkbox Field','foodpress'),
 						'multiline'=>__('Multiple Lines of Text Field','foodpress'),
 						)),
@@ -249,7 +249,7 @@ class fp_settings_reservation{
 					array('id'=>'fp_af_'.$x,'type'=>'end_afterstatement'),
 			);
 			$cmf_add_res = array_merge($cmf_add_res, $cmf_add_res_);
-		}		
+		}
 
 		return $cmf_add_res;
 	}
@@ -270,4 +270,3 @@ class fp_settings_reservation{
 
 
 ?>
-

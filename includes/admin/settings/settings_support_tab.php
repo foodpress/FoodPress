@@ -5,7 +5,7 @@
 		
 	<div class="inside foodpress_settings_page">
 		
-		<a class='fp_support_box special' href='http://support.ashanjay.com/forum/foodpress/' target='_blank'>
+		<a class='fp_support_box special' href='https://foodpressplugin.freshdesk.com/support/home/' target='_blank'>
 			<h3>FoodPress Support Forum</h3>
 			<p>This is the official support forum for FoodPress. Please feel free to setup an account and ask your questions in here. You do need your envato username and FoodPress purchase code to register.</p>
 		</a>

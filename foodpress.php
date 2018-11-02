@@ -3,11 +3,13 @@
  * Plugin Name: foodPress
  * Plugin URI: http://www.myfoodpress.com/
  * Description: Restaurant Menu & Reservation Plugin
- * Version: 1.5
+ * Version: 1.5.3
  * Author: Ashan Jay & Michael Gamble
  * Author URI: http://www.myfoodpress.com
  * Requires at least: 4.0
- * Tested up to: 4.7
+ * Tested up to: 4.9.1
+ * WC requires at least: 3.0.0
+ * WC tested up to: 3.2.5
  *
  * Text Domain: foodpress
  * Domain Path: /lang/languages/
@@ -24,7 +26,7 @@ if ( ! class_exists( 'foodpress' ) ) {
 
 class foodpress {
 
-	public $version = '1.5';
+	public $version = '1.5.3';
 
 	public $foodpress_menus;
 	public $reservations;
@@ -94,8 +96,6 @@ class foodpress {
 			// admin only files
 			if ( is_admin() ){
 				include_once( 'includes/admin/class-admin-init.php' );
-				require_once( 'includes/class-fp-github-updater.php' );
-				$this->fp_updater = new foodpress_github_updater( __FILE__, "foodpress/FoodPress", "a0a94517a98c994d5730291236173a613eb92931");
 				$this->admin = new fp_Admin();
 			}
 
@@ -111,6 +111,9 @@ class foodpress {
 			// Functions
 			include_once( 'includes/class-menus.php' );	// Main class to generate foodpress	menus
 			include_once( 'includes/class-reservations.php' );
+
+			include_once('classes/class-fp-updater.php');
+			include_once('includes/class-fp-github-updater.php');
 		}
 
 	/** Init foodpress when WordPress Initialises. */
@@ -126,12 +129,15 @@ class foodpress {
 			$this->reservations = new foodpress_reservations();
 			$this->frontend = new fp_frontend();
 			$this->functions = new fp_functions();
-			$this->foodpress_menus	= new foodpress_menus();
+			$this->foodpress_menus = new foodpress_menus();
+
+			//$this->fp_updater = new fp_updater($this->version, 'http://update.myfoodpress.com', 'foodpress/'.basename(dirname(__FILE__)));
+			$this->fp_updater = new foodpress_github_updater('foodpress/'.basename(dirname(__FILE__)), 'foodpress/FoodPress', '2c037d608fcb96c0c51227ffa611b4c3584a6367');
 
 			// Classes/actions loaded for the frontend and for ajax requests
 			if ( ! is_admin() || defined('DOING_AJAX') ) {
 				// Class instances
-				$this->shortcodes		= new fp_shortcodes();	// Shortcodes class
+				$this->shortcodes = new fp_shortcodes();	// Shortcodes class
 			}
 			// Init action
 			do_action( 'fp_init' );
@@ -148,7 +154,7 @@ class foodpress {
 			public function load_default_fp_scripts(){ $this->frontend->load_default_fp_scripts(); }
 			public function load_default_fp_styles(){ $this->frontend->load_default_fp_styles(); }
 			public function load_dynamic_fp_styles(){ $this->frontend->load_dynamic_fp_styles(); }
-			
+
 
 	/** output the in-page popup window for foodpress */
 		public function output_foodpress_pop_window($arg){

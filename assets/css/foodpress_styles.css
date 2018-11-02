@@ -689,7 +689,7 @@
 		color: #767676;
 	}
 	.entry-content h4.fp_popup_option_title{margin: 0;}
-	.fp_text {float:none;}
+	.fp_text {float:none; margin-bottom: 10px}
 	.fp_text ul{list-style-type:disc;}
 	.fp_text li{margin-left: 20px;}
 	.fp_menucard_content .fp_pop_headerS:hover{

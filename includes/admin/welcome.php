@@ -73,7 +73,7 @@ class fp_welcome_page {
 			
 			<a class="btn_prime fp_admin_btn" href="http://demo.myfoodpress.com/documentation/" target='_blank'><?php _e( 'Documentation', 'foodpress' ); ?></a>
 			
-			<a class="btn_prime fp_admin_btn" href="http://demo.myfoodpress.com/support/" target='_blank'><?php _e( 'Support', 'foodpress' ); ?></a>
+			<a class="btn_prime fp_admin_btn" href="https://foodpressplugin.freshdesk.com/support/home/" target='_blank'><?php _e( 'Support', 'foodpress' ); ?></a>
 			
 			<div class='foodpress-welcome-twitter'>
 			<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.myfoodpress.com/" data-text="Restaurant Meny Manager Plugin for WordPress." data-via="foodpress" data-size="large" data-hashtags="myfoodpress">Tweet</a>

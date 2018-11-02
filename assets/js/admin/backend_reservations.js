@@ -20,7 +20,7 @@ jQuery(document).ready(function($){
 				msg = 'ADDED';
 			}else{
 				msg = 'Already Exists';
-			} 
+			}
 
 			$(this).siblings('em').html(msg).fadeIn(300).delay(1000).fadeOut(300);
 		});
@@ -30,9 +30,9 @@ jQuery(document).ready(function($){
         if($('#fp_input_unreserve').length) {
             $('#fp_input_unreserve').datepicker({
                 'dateFormat': 'yy-mm-dd'
-            });  
+            });
         }
-		
+
 		$('#add_unreserve_date').on('click',function(){
 			date = $(this).siblings('input').val();
 			if(!date) return false;
@@ -45,7 +45,7 @@ jQuery(document).ready(function($){
 			}else{
 				msg = 'Already Exists';
 			}
-			
+
 			$(this).siblings('em').html(msg).fadeIn(300).delay(1000).fadeOut(300);
 		});
 		// delete unreservable
@@ -69,7 +69,7 @@ jQuery(document).ready(function($){
 				dataType:'json',
 				success:function(data){
 					//alert(data);
-					if(data.status=='0'){					
+					if(data.status=='0'){
 						$('.fp_set_res').find('.foodpress_popup_text').html(data.content);
 					}else{
 						$('.fp_set_res').find('.foodpress_popup_text').html('Could not load reservations');
@@ -82,11 +82,11 @@ jQuery(document).ready(function($){
 		$('.foodpress_popup_text').on('click','.fp_res_list i.Dres', function(){
 			var obj = $(this);
 			var rid = obj.data('rid');
-			
+
 			var data_arg = {
 				action: 		'fp_ajax_delete_res',
 				rid: rid,
-				postnonce: fp_reservations.postnonce, 
+				postnonce: fp_reservations.postnonce,
 			};
 			$.ajax({
 				beforeSend: function(){
@@ -98,7 +98,7 @@ jQuery(document).ready(function($){
 				dataType:'json',
 				success:function(data){
 					//alert(data);
-					if(data.status=='success'){					
+					if(data.status=='success'){
 						obj.closest('.fp_reservation').fadeOut();
 					}
 				},complete:function(){}

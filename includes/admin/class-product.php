@@ -6,10 +6,10 @@
 class FP_product{
 
 	// check purchase code correct format
-		public function purchase_key_format($key, $type='main'){				
+		public function purchase_key_format($key, $type='main'){
 			if(!strpos($key, '-'))
 				return false;
-			
+
 			$str = explode('-', $key);
 			return (strlen($str[1])==4 && strlen($str[2])==4 && strlen($str[3])==4 )? true: false;
 		}
@@ -25,21 +25,21 @@ class FP_product{
 				return $url;
 			}else{
 				// for addons
-				
-				$instance = !empty($args['instance'])?$args['instance']:1;				
+
+				$instance = !empty($args['instance'])?$args['instance']:1;
 				$url='http://www.myfoodpress.com/woocommerce/?wc-api=software-api&request=activation&email='.$args['email'].'&licence_key='.$args['key'].'&product_id='.$args['product_id'].'&instance='.$instance;
-				
+
 				//echo $url;
 				$request = wp_remote_get($url);
 
-				if (!is_wp_error($request) && $request['response']['code']===200) { 
-					$result = (!empty($request['body']))? json_decode($request['body']): $request; 
+				if (!is_wp_error($request) && $request['response']['code']===200) {
+					$result = (!empty($request['body']))? json_decode($request['body']): $request;
 					//update_option('test1', json_decode($result));
 					return $result;
-				}else{	
+				}else{
 					return $url;
 				}
-			}	
+			}
 		}
 
 	// activation of foodpress licenses
@@ -55,9 +55,9 @@ class FP_product{
 	// get foodpress license data
 		function get_foodpress_license_data(){
 			$fp_licenses = get_option('_fp_licenses');
-
+			//var_dump($fp_licenses);
 			// running for the first time
-			if(empty($fp_licenses)){				
+			if(empty($fp_licenses)){
 				$lice = array(
 					'foodpress'=>array(
 						'name'=>'foodpress',
@@ -66,11 +66,11 @@ class FP_product{
 						'status'=>'inactive',
 						'key'=>'',
 					));
-				update_option('_fp_licenses', $lice);							
+				update_option('_fp_licenses', $lice);
 			}
 			return get_option('_fp_licenses');
 		}
-	// deactivate license 
+	// deactivate license
 		function deactivate($slug){
 			$product_data = get_option('_fp_licenses');
 			if(!empty($product_data[$slug])){
@@ -87,31 +87,31 @@ class FP_product{
 	// save to wp options
 		public function save_license_key($slug, $key){
 			$licenses =get_option('_fp_licenses');
-			
+
 			if(!empty($licenses) && count($licenses)>0 && !empty($licenses[$slug]) && !empty($key) ){
-				
-				$newarray = array();				
+
+				$newarray = array();
 				$this_license = $licenses[$slug];
-				
+
 				foreach($this_license as $field=>$val){
-					if($field=='key')	$val=$key;					
-					if($field =='status')	$val='active';						
+					if($field=='key')	$val=$key;
+					if($field =='status')	$val='active';
 					$newarray[$field]=$val;
 				}
 
-				$new_ar[$slug] = $newarray;				
-				$merged=array_merge($licenses,$new_ar);				
-				
+				$new_ar[$slug] = $newarray;
+				$merged=array_merge($licenses,$new_ar);
+
 				update_option('_fp_licenses',$merged);
-				
+
 				return $newarray;
 			}else{
 				return false;
 			}
-			
+
 		}
 
-	// update any given fiels 
+	// update any given fiels
 		public function update_field($slug, $field, $value){
 			$product_data = get_option('_fp_licenses');
 

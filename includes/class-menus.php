@@ -10,35 +10,35 @@
  */
 
 class foodpress_menus {
-	
-	public $fopt1, 
+
+	public $fopt1,
 		$fopt2,
 		$lang;
 	public $shortcode_args = array();
 	private $_menu_call_type ='';
-	
+
 	public function __construct(){
 		global $foodpress;
 		/** set class wide variables **/
-		$this->fopt1= get_option('fp_options_food_1');		
-		$this->fopt2= get_option('fp_options_food_2');		
+		$this->fopt1= get_option('fp_options_food_1');
+		$this->fopt2= get_option('fp_options_food_2');
 		add_action( 'wp_enqueue_scripts', array( $this, 'frontend_default_styles' ) );
-		
+
 		$this->functions = $foodpress->functions;
-	}	
-	
+	}
+
 	// Register/queue frontend scripts.
 		public function frontend_default_styles() {
-			global $foodpress;				
-			
-			$foodpress->load_default_fp_styles();		
-			$foodpress->load_default_fp_scripts();	
-			
+			global $foodpress;
+
+			$foodpress->load_default_fp_styles();
+			$foodpress->load_default_fp_scripts();
+
 			if(has_action('foodpress_enqueue_scripts')){
 				do_action('foodpress_enqueue_scripts');
 			}
-		}	
-	
+		}
+
 	// SHORT CODE variables
 		function get_acceptable_shortcode_atts(){
 			return apply_filters('foodpress_default_args', array(
@@ -49,7 +49,7 @@ class foodpress_menus {
 				'menu_type_3'=>'all',
 				'menu_type'=>'ss_1', // ss_2 - categorized or uncategorized
 				'primary'=>'meal_type', // primary categorizeation by
-				'cat_by_dish'=>'no', // sub categorize by dish 
+				'cat_by_dish'=>'no', // sub categorize by dish
 				'all_cat_items'=>'no',// yes no
 				'collapsable'=>false,
 				'collapsable_dt'=>'no',	// collapsable dish type
@@ -78,25 +78,25 @@ class foodpress_menus {
 				'wpml_l3'=>'',		// WPML lanuage L3 = es
 			));
 		}
-	
+
 	// PROCESS shortcode arguments
 		function process_arguments($args='', $type='', $own_defaults=false){
 			$default_arguments = $this->get_acceptable_shortcode_atts();
 
 			if(!empty($args)){
-			
+
 				// merge default values of shortcode
 				if(!$own_defaults)
 					$args = shortcode_atts($default_arguments, $args);
 
 				$this->shortcode_args=$args; // set global arguments
-			
+
 			// empty args
 			}else{
-				
+
 				if($type=='usedefault'){
 					$args = (!empty($this->shortcode_args))? $this->shortcode_args:null;
-					
+
 				}else{
 					$this->shortcode_args=$default_arguments; // set global arguments
 					$args = $default_arguments;
@@ -113,7 +113,7 @@ class foodpress_menus {
 				}
 			// set processed argument values to class var
 			$this->shortcode_args=$args;
-			
+
 			return $args;
 		}
 
@@ -122,7 +122,7 @@ class foodpress_menus {
 			$arg = $this->shortcode_args;
 			$_cd='';
 			//print_r($arg);
-			
+
 			$cdata = apply_filters('foodpress_menu_shortcode_args', $arg);
 			$includes = apply_filters('foodpress_menu_sh_includes', array('meal_type','ux','id','tac','wordcount','lang','wpml_l1','wpml_l2','wpml_l3'));
 
@@ -130,7 +130,7 @@ class foodpress_menus {
 				if(!empty($v) && in_array($f, $includes))
 					$_cd .='data-'.$f.'="'.$v.'" ';
 			}
-			return "<div class='menu_arguments' style='display:none' {$_cd}></div>";			
+			return "<div class='menu_arguments' style='display:none' {$_cd}></div>";
 		}
 
 	// ============================
@@ -142,11 +142,11 @@ class foodpress_menus {
 
 			// initial values
 				$args__ = $this->process_arguments($args);
-				extract($args__);	
+				extract($args__);
 
 				$__menu_classes = array('foodpress_menu');
 				if(!empty($tabbed) && $tabbed=='yes') {$__menu_classes[]='tabbed_menu'; };
-				if(!empty($cat_sty) && $cat_sty=='tb') {$__menu_classes[]='tabbed_menu'; $tabbed='yes';}else{$tabbed='no';};				
+				if(!empty($cat_sty) && $cat_sty=='tb') {$__menu_classes[]='tabbed_menu'; $tabbed='yes';}else{$tabbed='no';};
 				if(!empty($cat_sty) && $cat_sty=='bx') {$__menu_classes[]='box_cats'; };
 				if(!empty($collapsable_dt) && $collapsable_dt=='yes') {$__menu_classes[]='clps_dt'; };
 
@@ -168,7 +168,7 @@ class foodpress_menus {
 				switch ($menu_type){
 					case 'ss_2':// categorized menu
 						// menu style
-						
+
 						$primary_term = ($primary == 'meal_type')? $meal_type: $dish_type;
 						$primary_terms = $this->functions->get_tax_terms($primary, $primary_term);
 
@@ -186,7 +186,7 @@ class foodpress_menus {
 
 										// focused tab
 										$focsued = (
-											($focused_tab && $focused_tab==$term->term_id) || 
+											($focused_tab && $focused_tab==$term->term_id) ||
 											(!$focused_tab && $count==0)
 										)? 'focused':'';
 
@@ -200,7 +200,7 @@ class foodpress_menus {
 									echo "</div><!-- foodpress_tabs-->";
 
 									// each term for tab content
-									echo "<div class='foodpress_tab_body'>"; 
+									echo "<div class='foodpress_tab_body'>";
 									foreach($primary_terms as $term){
 
 										$focused = (($focused_tab && $focused_tab==$term->term_id) || (!$focused_tab &&$cnt==0))? 'block':'none';
@@ -209,7 +209,7 @@ class foodpress_menus {
 
 										// description
 											echo (!empty($term->description))? "<p class='fp_meal_type_description'>".$term->description."</p>":'';
-										
+
 										$content = $this->get_menu_items( $term->term_id, false, false);
 										echo ($content)? $content : 'No Menu Items';
 
@@ -217,7 +217,7 @@ class foodpress_menus {
 										echo "</div>";
 									}
 									echo "</div>";
-									
+
 								}else{	echo __("No meal type tabs found");	}
 							break;
 
@@ -242,10 +242,10 @@ class foodpress_menus {
 
 									echo "</div><!-- foodpress_categories -->
 									<div class='fp_content' style='display:none'><span class='fp_backto_cats'><i></i><em>".$this->functions->fp_get_language('Back to Menu', $this->fopt2)."</em></span>
-										<span class='fp_category_subtitle'></span>"; 
+										<span class='fp_category_subtitle'></span>";
 									foreach($primary_terms as $term){
 										echo "<div class='foodpress_tab_content {$term->slug} fp_{$cnt}' style='display:".($cnt==0?'block':'none')."'>";
-										
+
 										$content = $this->get_menu_items($term->term_id, false, false);
 										echo ($content)? $content : 'No Menu Items';
 
@@ -277,9 +277,9 @@ class foodpress_menus {
 									echo "</div><!-- foodpress_sections-->";
 
 									// each term for tab content
-									echo "<div class='foodpress_scroll_section_body'>"; 
+									echo "<div class='foodpress_scroll_section_body'>";
 									foreach($primary_terms as $term){
-										
+
 										echo "<div data-i='{$cnt}' class='foodpress_section_content fp_{$term->slug}' >";
 
 										// header
@@ -288,7 +288,7 @@ class foodpress_menus {
 											echo "<h4 class='".$focsued."' data-i='{$count}' data-tid='{$term->term_id}' data-termslug='".$term->slug."'>".$icon.$term->name."</h4>";
 										// description
 											echo (!empty($term->description))? "<p class='fp_meal_type_description'>".$term->description."</p>":'';
-										
+
 										$content = $this->get_menu_items( $term->term_id, false, false);
 										echo ($content)? $content : 'No Menu Items';
 
@@ -296,9 +296,9 @@ class foodpress_menus {
 										echo "</div>";
 									}
 									echo "</div>";
-									
+
 								}else{	echo __("No meal type tabs found");	}
-							break;			
+							break;
 							default: // normal list
 								echo $this->get_menu_items();
 							break;
@@ -327,7 +327,7 @@ class foodpress_menus {
 						}
 
 					break;
-					
+
 					default:// uncategorize case
 						echo $this->generate_un_categoried_menu();
 					break;
@@ -345,7 +345,7 @@ class foodpress_menus {
 				}
 
 			echo "</div>";
-			
+
 			// return validated content
 			$content = ob_get_clean();
 			return $this->validate_content($content);
@@ -366,8 +366,8 @@ class foodpress_menus {
 				$dishTypeText = ' > '.$DTterm_name;
 			}
 
-			
-			echo "<h2 class='meal_type fp_menu_sub_section tint_menu dish_type_{$dish_type} meal_type_{$meal_type}'>{$mealTypeText}{$dishTypeText}</h2>";							
+
+			echo "<h2 class='meal_type fp_menu_sub_section tint_menu dish_type_{$dish_type} meal_type_{$meal_type}'>{$mealTypeText}{$dishTypeText}</h2>";
 			echo "<div class='fp_container fp_{$slug}'>";
 			echo "<div class='food_items_container' >";
 
@@ -386,7 +386,7 @@ class foodpress_menus {
 			$terms = !empty($terms)? $terms:$shortc[$primary];
 
 			switch ($primary) {
-				case 'meal_type':		
+				case 'meal_type':
 					return $this->general_categorized_menu('meal_type', $terms, $headers, $container);
 				break;
 				case 'dish_type':
@@ -394,7 +394,7 @@ class foodpress_menus {
 				break;
 			}
 		}
-	
+
 	// GENERAL categorized menu
 		function general_categorized_menu($tax, $terms, $header=false, $container=true){
 			// initial
@@ -404,7 +404,7 @@ class foodpress_menus {
 				// collapsable and collapsed options
 					if($collapsed=='yes'){
 						$__colps = 'style="display:none"';
-						$_collapsable = 'collapsable collapsed';			
+						$_collapsable = 'collapsable collapsed';
 					}else{
 						$__colps = null;
 						$_collapsable = ($collapsable=='yes')? 'collapsable':null;
@@ -414,7 +414,7 @@ class foodpress_menus {
 					if( $tax=='dish_type'){
 						if($collapsed_dt=='yes'){
 							$__colps = 'style="display:none"';
-							$_collapsable = 'collapsable collapsed';			
+							$_collapsable = 'collapsable collapsed';
 						}else{
 							$__colps = null;
 							$_collapsable = ($collapsable_dt=='yes')? 'collapsable':null;
@@ -422,13 +422,13 @@ class foodpress_menus {
 					}else{
 						if($collapsed_dt=='yes'){
 							$__colps_dt = 'style="display:none"';
-							$_collapsable_dt = 'collapsable collapsed';			
+							$_collapsable_dt = 'collapsable collapsed';
 						}else{
 							$__colps_dt = null;
 							$_collapsable_dt = ($collapsable_dt=='yes')? 'collapsable':null;
 						}
-					}					
-									
+					}
+
 				// get tax terms
 					$tax_terms = $this->functions->get_tax_terms($tax, $terms);
 
@@ -438,12 +438,12 @@ class foodpress_menus {
 					}else{$dish_type_terms=array();}
 
 			ob_start();
-			
+
 			// For each primary tax term
 				if(count($tax_terms)>0 && is_array($tax_terms)):
 
 					// EACH primary tax terms
-					foreach($tax_terms as $term): 
+					foreach($tax_terms as $term):
 
 						// intials
 							$section = array();
@@ -462,7 +462,7 @@ class foodpress_menus {
 								$__mt_img_src = (!empty($__mt_img_src))? $__mt_img_src[0]:null;
 
 							$term_name = $this->get_lang('fp_lang_tax_meal_type_'.$term->term_id,$term->name );
-							
+
 
 						// header content for primary tax term
 							if($header){
@@ -477,7 +477,7 @@ class foodpress_menus {
 
 							// EACH DISH type terms
 							$DT_content = $output='';
-										
+
 							// for EACH DISH TYPE term
 								foreach($dish_tax_terms as $dish_term){
 
@@ -495,7 +495,7 @@ class foodpress_menus {
 									$output .= "<div class='food_items_container secondary_section fp_{$dish_term->slug}' {$__colps_dt} >";
 									$output .= $dishtype_items;
 									$output .= "</div><div class='clear'></div>";
-									
+
 								}
 
 							if(!empty($output)){
@@ -514,11 +514,11 @@ class foodpress_menus {
 							$content =  ($container)? "<div class='fp_container fp_{$term->slug}' {$__colps}>":'';
 							$content .=  "<div class='food_items_container' >";
 
-							$inside_content = ($tax=='dish_type')? 
+							$inside_content = ($tax=='dish_type')?
 								$this->get_dishtype_menuitems($term->term_id)
 								:$this->get_primary_menuitems($term->term_id);
 
-							$content .= $inside_content;							
+							$content .= $inside_content;
 							$content .= "</div><div class='clear'></div>";
 							$content .= ($container)? "</div>":'';
 
@@ -528,7 +528,7 @@ class foodpress_menus {
 						// check if section content is provided to create section
 						if(!empty($section['content']))
 							echo implode('',$section);
-						
+
 					endforeach; // each primary term
 				endif;
 
@@ -567,7 +567,7 @@ class foodpress_menus {
 
 				$meal_type= array(
 			     'taxonomy' => $tax,
-			     'field' => 'id', 
+			     'field' => 'id',
 			     'terms' => $args['mealids']
 			    );
 			}else{	$meal_type=''; }
@@ -576,7 +576,7 @@ class foodpress_menus {
 				$l_id = (is_array($args['dishids'])? $args['dishids']: explode(',', $args['dishids']));
 				$dish_type= array(
 			     'taxonomy' => 'dish_type',
-			     'field' => 'id', 
+			     'field' => 'id',
 			     'terms' => $args['dishids']
 			    );
 			}else{	$dish_type=''; }
@@ -586,7 +586,7 @@ class foodpress_menus {
 					$l_id = explode(',', $shortC['menu_location']);
 					$menu_location= array(
 				     'taxonomy' => 'menu_location',
-				     'field' => 'id', 
+				     'field' => 'id',
 				     'terms' => $l_id
 				    );
 				}else{ $menu_location='';}
@@ -596,7 +596,7 @@ class foodpress_menus {
 					$l_id = explode(',', $shortC['menu_type_3']);
 					$menu_type_3= array(
 				     'taxonomy' => 'menu_type_3',
-				     'field' => 'id', 
+				     'field' => 'id',
 				     'terms' => $l_id
 				    );
 				}else{ $menu_type_3='';}
@@ -615,7 +615,7 @@ class foodpress_menus {
 	// show all menu items W/O categorising
 		function generate_un_categoried_menu(){
 
-			// extract the variable values 
+			// extract the variable values
 			$args__ = $this->shortcode_args;
 			extract($args__);
 
@@ -644,7 +644,7 @@ class foodpress_menus {
 				$l_id = explode(',', $menu_location);
 				$menu_location= array(
 			     'taxonomy' => 'menu_location',
-			     'field' => 'id', 
+			     'field' => 'id',
 			     'terms' => $l_id
 			    );
 
@@ -656,10 +656,10 @@ class foodpress_menus {
 			return $this->run_wp_query($wp_argument);
 
 		}
-	
+
 	// RUN WP_Query for all arguments and return data or false
 		function run_wp_query($wp_argument){
-			// extract the variable values 
+			// extract the variable values
 			$args__ = $this->shortcode_args;
 			extract($args__);
 
@@ -668,11 +668,11 @@ class foodpress_menus {
 			$wp_argument['order']=$order;
 
 			$menu = new WP_Query($wp_argument);
-			
+
 			if($menu->have_posts()):
-				$output='';	
-				
-				// create an array of items for the menu 
+				$output='';
+
+				// create an array of items for the menu
 				$featured = $items = array();
 
 				while($menu->have_posts()): $menu->the_post();
@@ -707,15 +707,15 @@ class foodpress_menus {
 
 	// GET HTML for each menu item
 		public function get_individual_item_content($items_array, $args='', $type='', $ft_items_array=''){
-			
+
 
 			if(!empty($items_array) && is_array($items_array)){
 
 				// extract the shortcode argument values
-				if(!empty($args)){ // if shortcode arguments sent to function 
+				if(!empty($args)){ // if shortcode arguments sent to function
 					$args__ = $this->process_arguments($args);
 				}else{
-					$args__ = $this->shortcode_args;}			
+					$args__ = $this->shortcode_args;}
 				extract($args__);
 
 				ob_start();
@@ -737,8 +737,8 @@ class foodpress_menus {
 				foreach($items_array as $menu_id){
 
 					// Intial values
-					$pmv = get_post_custom($menu_id);		
-					
+					$pmv = get_post_custom($menu_id);
+
 					// for featured div
 					if( $_ft_item_count!=0 && in_array($menu_id, $ft_items_array) && $ft_dif=='yes'){
 
@@ -755,11 +755,11 @@ class foodpress_menus {
 					}
 
 
-					// get HTML 
+					// get HTML
 					if(!empty($type) && $type=='single'){
 						echo  $this->intepret_menu_item_html($pmv, $menu_id,'singleITM','',$vars);
 					}else{ echo  $this->intepret_menu_item_html($pmv, $menu_id,'','',$vars); }
-					
+
 
 					// closing of featured items div if printed
 					echo $_ft_div_end_html;
@@ -775,7 +775,7 @@ class foodpress_menus {
 
 			}// end if
 		}
-	
+
 	// return an array of values needed for each menu item via shortcode variables
 		function _get_menu_variables(){
 			$args__ = $this->shortcode_args;
@@ -841,7 +841,7 @@ class foodpress_menus {
 
 			$pmv = (!empty($pmv))? $pmv : get_post_custom($menu_id);
 
-			// extract the variable values 
+			// extract the variable values
 			$args__ = $this->shortcode_args;
 			extract($args__);
 			//print_r($args__);
@@ -856,7 +856,7 @@ class foodpress_menus {
 				$__openpop = $vars['__openpop'];
 				$__active_menu_icons = $vars['__active_menu_icons'];
 
-				
+
 				// item featured and def style set
 					if(!empty($pmv['_featured']) && $pmv['_featured'][0]=='yes' && $ft_dif=='yes'){
 						if($type!='singleITM'){
@@ -873,8 +873,8 @@ class foodpress_menus {
 						}
 						$_box_classes[]='c_'.$box_width; // regular box with
 						$_box_classes[] = 'normal_item';
-					}	
-				
+					}
+
 				// THumbnail
 					$img_id =get_post_thumbnail_id($menu_id);
 					if($img_id!=''){
@@ -884,7 +884,7 @@ class foodpress_menus {
 						if(!empty($this->fopt1['fp_def_thumb_url']))
 							$img_src = $img_src_full = array($this->fopt1['fp_def_thumb_url']);
 					}
-				
+
 				// menu item title
 					$_title = get_the_title($menu_id);
 					$_excerpt_length = (!empty($args__['wordcount'])? $args__['wordcount']: 20);
@@ -903,7 +903,7 @@ class foodpress_menus {
 								if($pos!== false){
 									$_menu_item_icons .= "<i title='{$v[1]}' class='fa {$v[0]}'></i>";
 								}
-							}							
+							}
 						}
 					}
 					$_menu_item_icons = (!empty($_menu_item_icons))? "<p class='fp_icons'>".$_menu_item_icons.'</p>':null;
@@ -911,38 +911,38 @@ class foodpress_menus {
 				// more link
 					$_more_link = ( empty($ux)  || $ux =='lightbox' )? "<a class='".$__openpop." fp_inline_btn' data-menuitem_id='{$menu_id}'> ".$this->functions->fp_get_language('Read More', $this->fopt2, $lang)."</a>": null;
 
-				
+
 				// box data variables
 					$_box_data = apply_filters('foodpress_mi_box_data_vars', array(
 						'ux'=>$ux,
-						'menuitem_id'=>$menu_id,					
+						'menuitem_id'=>$menu_id,
 					), $menu_id);
 					$_box_data_ ='';
 					foreach($_box_data as $f=>$v){
 						$_box_data_ .= "data-".$f."='".$v."' ";
 					}
-				
+
 
 				// menu price
-					$___price = (!empty($pmv['fp_price']))? apply_filters('foodpress_price_value',$pmv['fp_price'][0], $pmv):null;
+					$___price = (!empty($pmv['fp_price'])) ? apply_filters('foodpress_price_value', $pmv['fp_price'][0], $pmv):null;
 					$__price_html = (!empty($pmv['fp_price']) )? "<span class='fp_price'>".$___price."</span>":null;
 					$__price_html_2 = (!empty($pmv['fp_price']) )? "<p class='fp_price'>".$___price."</p>":null;
 
-				
+
 				// MENU TOP fields - v 1.1.5
 					$foodpress_menutop = (!empty($this->fopt1['fs_menutop']))?$this->fopt1['fs_menutop']: null;
 					$foodpress_fields_ = (is_array($foodpress_menutop) )? true:false;
 
-					
+
 					$___mt_subheader = $___mt_additions='';
 					// elements
 						if($foodpress_fields_ && in_array('subheader', $foodpress_menutop) && !empty($pmv['fp_subheader'])){
 						 	$___mt_subheader = '<h5 class="fp_subheader">'.$pmv['fp_subheader'][0].'</h5>';
 						}
-						if($foodpress_fields_ && in_array('addtext', $foodpress_menutop) && !empty($pmv['fp_addition'])){	
+						if($foodpress_fields_ && in_array('addtext', $foodpress_menutop) && !empty($pmv['fp_addition'])){
 						 	$___mt_additions = '<h5 class="fp_additions">'.$pmv['fp_addition'][0].'</h5>';
 						}
-			
+
 			ob_start();
 
 				/* <p class='fp_icons'><?php echo $_vegetarian;?></p>*/
@@ -951,7 +951,7 @@ class foodpress_menus {
 
 				// Featured item styles
 				switch ($featured_item_style):
-					case 'none': break;	
+					case 'none': break;
 					// FT: highlighted
 					case "one":
 						$_box_classes[]='style_ft1';
@@ -965,7 +965,7 @@ class foodpress_menus {
 									<div class='menu_description'><?php echo $_excerpt;?> <?php echo $_more_link;?><?php echo $___mt_additions;?></div>
 									<?php do_action('fp_menu_box_end',$menu_id, $pmv, $featured_item_style, $args__);?>
 								</div>
-							</div>						
+							</div>
 						<?php
 					break;
 
@@ -984,8 +984,8 @@ class foodpress_menus {
 										<p><?php echo $_more_link;?></p><?php echo $___mt_additions;?>
 										<?php do_action('fp_menu_box_end',$menu_id, $pmv, $featured_item_style, $args__);?>
 									</div>
-								</div>							
-							</div>					
+								</div>
+							</div>
 						<?php
 					break;
 
@@ -1003,13 +1003,13 @@ class foodpress_menus {
 									<?php echo $__price_html;?>
 								</div>
 								<div class='menu_info '>
-									<div class='fp_inner_box' >									
+									<div class='fp_inner_box' >
 										<h3 class=''><?php echo $_title;?></h3><?php echo $___mt_subheader;?>
 										<div class='menu_description'><?php echo $_excerpt;?><?php echo $_more_link;?><?php echo $___mt_additions;?></div>
 										<?php do_action('fp_menu_box_end',$menu_id, $pmv, $featured_item_style, $args__);?>
 									</div>
-								</div>							
-							</div>					
+								</div>
+							</div>
 						<?php
 					break;
 
@@ -1030,16 +1030,16 @@ class foodpress_menus {
 										<div class='menu_description'><?php echo $_excerpt;?><?php echo $_more_link;?><?php echo $___mt_additions;?></div>
 										<?php do_action('fp_menu_box_end',$menu_id, $pmv, $featured_item_style, $args__);?>
 									</div>
-								</div>							
-							</div>					
+								</div>
+							</div>
 						<?php
 					break;
 				endswitch;
 
 				// ----------------------------
 				// Regular item styles
-				switch ($regular_item_style):	
-					case 'none': break;	
+				switch ($regular_item_style):
+					case 'none': break;
 					// REG: text based
 					case "one":
 						$_box_classes[]='style_1';
@@ -1056,7 +1056,7 @@ class foodpress_menus {
 									<?php do_action('fp_menu_box_end',$menu_id, $pmv, $featured_item_style, $args__);?>
 								</div>
 							</div>
-						
+
 						<?php
 					break;
 
@@ -1072,7 +1072,7 @@ class foodpress_menus {
 									<?php if(!empty($img_src)):?>
 										<div class='fp_thumbnail new_fp_thumbnail'><img class='new_fp_thumb ' src='<?php echo $img_src[0];?>'></div>
 									<?php endif;?>
-									
+
 									<div class='menu_info'>
 										<?php echo $__price_html;?>
 										<h3 class='' title='<?php echo $_title;?>'><?php echo $_title;?></h3><?php echo $___mt_subheader;?>
@@ -1086,33 +1086,33 @@ class foodpress_menus {
 					break;
 
 				endswitch;
-				
+
 				return ob_get_clean();
 
 		}
 
 	// AJAX - related
-	
+
 	// INDIVIDUAL MENU ITEM
 		function get_detailed_menu_item_content($item_id, $__type='', $args=''){
 			global $foodpress;
 
 			// initias
 				$lang = !empty($args['lang'])? $args['lang']:'L1';
-				
+
 				$menuItem = get_post($item_id );
 				$pmv = get_post_custom($item_id);
-				
+
 				$img_id =get_post_thumbnail_id($item_id);
 				if($img_id!='')
 					$img_src_full = wp_get_attachment_image_src($img_id,'full');
-				
-				// image styles 
-				$in_style =($img_id!='')? 
+
+				// image styles
+				$in_style =($img_id!='')?
 					"<img src=".$img_src_full[0].">":
 					"style='min-height:55px;'";
 				$mi_img_url = ($img_id!='')?$img_src_full[0]:null;
-			
+
 			// get tax 1 terms for this item
 				$this_terms= array();
 				$terms = wp_get_object_terms($item_id, 'meal_type');
@@ -1124,7 +1124,7 @@ class foodpress_menus {
 				}
 
 			$this_terms = '<span>'.implode('</span><span>', $this_terms).'</span>';
-			
+
 			// menu card HTML
 			require_once(FP_PATH.'/includes/fp_menu-card.php');
 
@@ -1162,7 +1162,7 @@ class foodpress_menus {
 				// nutritions
 					$count =1;
 					$left = $right ='';
-					
+
 					$nutrition_items = $this->functions->get_nutrition_items();
 
 					foreach($nutrition_items as $val){
@@ -1208,10 +1208,10 @@ class foodpress_menus {
 
 				// spice level
 					if(!empty($pmv['fp_spicy']) && $pmv['fp_spicy'][0]!='0'):
-						
+
 						$spicelevel = (int)$pmv['fp_spicy'][0];
 						$__menucard['spicelevel'] =array(
-							'level'=>$spicelevel,						
+							'level'=>$spicelevel,
 						);
 
 					endif;
@@ -1245,7 +1245,7 @@ class foodpress_menus {
 		}
 
 	// POPUP FUNCTIONS
-	
+
 		// MENU popup HTML framework
 		function get_popup_info_html(){
 			ob_start();
@@ -1254,8 +1254,8 @@ class foodpress_menus {
 				<div class='fp_popup'>
 					<a id='fp_close'><i class="fa fa-times"></i></a>
 					<div class='fp_pop_inner'>
-						
-					</div>				
+
+					</div>
 				</div>
 			</div>
 			<div id='fp_popup_bg' class='fp_popup_html' style='display:none'>
@@ -1265,19 +1265,19 @@ class foodpress_menus {
 				  <div class="bounce3"></div>
 				</div>
 			</div>
-			
-			<?php		
+
+			<?php
 			return ob_get_clean();
 		}
-			
+
 	// FEATURE IMAGE
 		function get_image($post_id=''){
 			global $post;
-			
+
 			$p_id = (!empty($post_id))? $post_id: $post->ID;
 
 			$img_id =get_post_thumbnail_id($p_id);
-			
+
 			if(!empty($img_id)){
 				$img_src = wp_get_attachment_image_src($img_id,'thumbnail');
 				if($img_src){
@@ -1287,9 +1287,9 @@ class foodpress_menus {
 				$url = FP_URL.'/assets/images/placeholder.png';
 				return "<img class='fp_thumb_postedit def' src='{$url}' />";
 			}
-			
+
 		}
-	
+
 	// SUPPORTING
 		// check to make sure there are content passing through
 			function validate_content($content){
@@ -1302,32 +1302,32 @@ class foodpress_menus {
 			function get_lang($var, $default, $lang=''){
 				$lang = !empty($lang)? $lang: (!empty($this->shortcode_args['lang'])? $this->shortcode_args['lang']:'L1');
 				return foodpress_get_custom_language($this->fopt2, $var, $default, $lang);
-			}		
+			}
 
 		// excerpt
 			function get_excerpt($limit, $post_id=''){
 				global $post;
-				
+
 				$p_id = (!empty($post_id))? $post_id: $post->ID;
 
 				$description = get_post_meta($p_id, 'fp_description', true);
-				
+
 				if(empty($description) )
-					return false;	
-				
+					return false;
+
 				$excerpt = explode(' ', $description, $limit);
-				
+
 				if (count($excerpt)>=$limit) {
 					array_pop($excerpt);
 					$excerpt = implode(" ",$excerpt).' ...';
 				} else {
 					$excerpt = implode(" ",$excerpt);
-				} 
+				}
 				$excerpt = preg_replace('`\[[^\]]*\]`','',$excerpt);
-				
+
 				return $excerpt;
-				
-				
+
+
 			}
-	
+
 }

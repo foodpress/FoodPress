@@ -9,7 +9,7 @@
  * @package 	foodpress/Functions/AJAX
  * @version     0.1
  */
- 
+
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class foodpress_ajax{
@@ -19,14 +19,14 @@ class foodpress_ajax{
 			'fp_ajax_delete_res'=>'foodpress_delete_reservation',
 			'the_ajax_res01x'=>'foodpress_res01x',
 			'fp_ajax_content'=>'foodpress_get_menu_item',
-			'fp_dynamic_css'=>'foodpress_dymanic_css',			
+			'fp_dynamic_css'=>'foodpress_dymanic_css',
 			'fp_ajax_popup'=>'add_new_reservation',
 			'fp_validate_license'=>'validate_license',
 			'foodpress_verify_lic'=>'foodpress_license_verification',
 			'fp_remote_validity'=>'remote_validity',
 			'fp_deactivate_license'=>'deactivate_license',
 		);
-		foreach ( $ajax_events as $ajax_event => $class ) {	
+		foreach ( $ajax_events as $ajax_event => $class ) {
 			add_action( 'wp_ajax_'. $ajax_event, array( $this, $class ) );
 			add_action( 'wp_ajax_nopriv_'. $ajax_event, array( $this, $class ) );
 		}
@@ -76,7 +76,7 @@ class foodpress_ajax{
 				'status'=>$status,
 				'content'=>$content
 			);
-			
+
 			echo json_encode($return);
 			exit;
 		}
@@ -90,7 +90,7 @@ class foodpress_ajax{
 			$return = array(
 				'status'=>$status,
 			);
-			
+
 			echo json_encode($return);
 			exit;
 		}
@@ -107,24 +107,24 @@ class foodpress_ajax{
 			$return_content = array(
 				'new_status_lang'=>$foodpress->reservations->get_checkin_status($status),
 			);
-			
-			echo json_encode($return_content);		
+
+			echo json_encode($return_content);
 			exit;
 		}
 
 	// GET menu item details for the popup
 		function foodpress_get_menu_item(){
 			global $foodpress;
-			
-			$item_id = (int)($_POST['menuitem_id']);			
-			$content = $foodpress->foodpress_menus->get_detailed_menu_item_content($item_id, '',$_POST['args']);			
+
+			$item_id = (int)($_POST['menuitem_id']);
+			$content = $foodpress->foodpress_menus->get_detailed_menu_item_content($item_id, '',$_POST['args']);
 			//$popup_frame = $foodpress->foodpress_menus->get_popup_info_html();
-			
+
 			$return = array(
 				//'popupframe'=>$popup_frame,
 				'content'=>$content
 			);
-			
+
 			echo json_encode($return);
 			exit;
 		}
@@ -137,7 +137,7 @@ class foodpress_ajax{
 		}
 
 	// Activation of FoodPress product
-		// validate the license key	
+		// validate the license key
 			function validate_license(){
 				global $foodpress;
 
@@ -148,19 +148,19 @@ class foodpress_ajax{
 					'status'=>($verifyformat?'good':'bad'),
 					'error_msg'=>(!$verifyformat? $foodpress->admin->product->error_code_('10'):''),
 				);
-				echo json_encode($return_content);		
+				echo json_encode($return_content);
 				exit;
 			}
 	// Verify foodpress Licenses AJAX function
 		function foodpress_license_verification(){
-			global $foodpress;	
+			global $foodpress;
 
 			$debug = $content = $addition_msg ='';
 			$status = 'success';
 			$error_code = '11';
 			$error_msg='';
 
-			// Passing Data				
+			// Passing Data
 			$key = $_POST['key'];
 			$slug = $_POST['slug'];
 			$__passing_instance = (!empty($_POST['instance'])?(int)$_POST['instance']:'1');
@@ -171,32 +171,32 @@ class foodpress_ajax{
 				'product_id'=>(!empty($_POST['product_id'])?$_POST['product_id']:''),
 				'instance'=>$__passing_instance,
 			);
-			
+
 			// verify license from foodpress server
 			$json_content = $foodpress->admin->product->verify_product_license($__data);
-			
+			//var_dump($json_content);
 			$__save_new_lic = $foodpress->admin->product->save_license_key(
 				$__data['slug'],
 				$__data['key']
 			);
-			$content = $status; // url to envato json API		
-						
+			$content = $status; // url to envato json API
+
 			$return_content = array(
 				'status'=>$status,
 				'error_msg'=>$foodpress->admin->product->error_code_($error_code),
 				'addition_msg'=>$addition_msg,
 				'json_url'=> (!is_array($json_content)? $json_content:'data'),
 			);
-			echo json_encode($return_content);		
+			echo json_encode($return_content);
 			exit;
 		}
 		// update remote validity status of a license
 			function remote_validity(){
 				global $foodpress;
-				
+
 				$status = $foodpress->admin->product->update_field($_POST['slug'], 'remote_validity', $_POST['remote_validity']);
 				$return_content = array(	'status'=>($status?'good':'bad')	);
-				echo json_encode($return_content);		
+				echo json_encode($return_content);
 				exit;
 			}
 		// deactivate license
@@ -210,12 +210,12 @@ class foodpress_ajax{
 					'status'=>'good'
 				));
 				exit;
-					
+
 			}
 
 	// save new reservation
 		function add_new_reservation() {
-			
+
 			$status = 0;
 
 			// Reservation Post Meta Information
@@ -223,27 +223,27 @@ class foodpress_ajax{
 				if(is_array($val)) continue;
 				$post[$key]= sanitize_text_field(urldecode($val));
 			}
-			
+
 		    $date = $post['date'];
 		    $people = $post['party'];
 		    $name = !empty($post['name'])? $post['name']:null;
-		    $email = !empty($post['email'])? $post['email']:null;	    
-		    $phone = !empty($post['phone'])? $post['phone']:null;	    
-		    $location = !empty($post['location'])? $post['location']:null;	    
-		    $time = $post['time'];	    
-		   	
+		    $email = !empty($post['email'])? $post['email']:null;
+		    $phone = !empty($post['phone'])? $post['phone']:null;
+		    $location = !empty($post['location'])? $post['location']:null;
+		    $time = $post['time'];
+
 		   	// arguments for reservation form
 		   	$sc_args = '';
 		   	if(!empty($_POST['args'])){
 		   		$sc_args = $_POST['args'];
-		   	}  
+		   	}
 
 		   	//print_r($sc_args);
-		    
+
 		    $opt6 = get_option('fp_options_food_6');
 
 		    // status of the reservation based on admin approval settings
-		    $poststatus = (!empty($opt6['fpr_draft']) && $opt6['fpr_draft']=='yes')? 'draft':'publish'; 
+		    $poststatus = (!empty($opt6['fpr_draft']) && $opt6['fpr_draft']=='yes')? 'draft':'publish';
 
 		    // end time field
 		    $endTime = (!empty($post['end_time']))? $post['end_time']: null;
@@ -251,13 +251,13 @@ class foodpress_ajax{
 		    // custom title
 		    $title = $name.' - Date: '. $date . " - Time: " . $post['time'] . " - People: " . $people;
 
-		    // reservation post 
+		    // reservation post
 		    $post = array(
 		        'post_title'    => $title,
 		        'post_status'   => $poststatus,
 		        'post_type' => 'reservation'
 		    );
-		    
+
 		    // Insert post and update meta
 		    $id = wp_insert_post( $post );
 		    if(!empty($id)){
@@ -278,10 +278,10 @@ class foodpress_ajax{
 			    	update_post_meta($id, 'phone', $phone, true);
 
 			    update_post_meta($id, 'lang', (!empty($sc_args['lang'])? $sc_args['lang']:'L1'));
-			    
+
 			    // for additional fields
 			    for($x=1; $x<=foodpress_get_reservation_form_fields(); $x++){
-					// check if fields are good					
+					// check if fields are good
 					if( !empty($opt6['fp_af_'.$x]) && $opt6['fp_af_'.$x]=='yes' && !empty($opt6['fp_ec_f'.$x]) ){
 						add_post_meta($id, 'fp_af_'.$x, sanitize_text_field(urldecode($_POST['fp_af_'.$x]) ) );
 					}
@@ -293,17 +293,17 @@ class foodpress_ajax{
 		    }else{
 		    	$status = 01;
 		    }
-		    
+
 
 		    $return_content = array(
 				'status'=>$status,
 				'reservation_id'=>$id,
 				'i18n_date'=>date_i18n( get_option( 'date_format'), strtotime($date))
 			);
-			
-			echo json_encode($return_content);		
+
+			echo json_encode($return_content);
 			exit;
-		
+
 		}
 }
 

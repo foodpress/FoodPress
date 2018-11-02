@@ -38,7 +38,7 @@ function foodpress_admin_help_tab_content() {
 		'<p><a href="http://demo.myfoodpress.com/" target="_blank">' . __( 'foodpress Demo', 'foodpress' ) . '</a></p>' .
 		
 		'<p><a href="http://demo.myfoodpress.com/documentation/" target="_blank">' . __( 'Documentation', 'foodpress' ) . '</a></p>'.
-		'<p><a href="http://demo.myfoodpress.com/support/" target="_blank">' . __( 'Support', 'foodpress' ) . '</a></p>'
+		'<p><a href="https://foodpressplugin.freshdesk.com/support/home/" target="_blank">' . __( 'Support', 'foodpress' ) . '</a></p>'
 	);
 }
 ?>

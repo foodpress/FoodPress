@@ -213,7 +213,7 @@ class fp_Admin {
 			$plugin_links = array(
 				'<a href="' . admin_url( 'admin.php?page=foodpress' ) . '">' . __( 'Settings', 'foodpress' ) . '</a>',
 				'<a href="http://myfoodpress.com/documents/">' . __( 'Docs', 'foodpress' ) . '</a>',
-				'<a href="http://myfoodpress.com/support/">' . __( 'Support', 'foodpress' ) . '</a>',
+				'<a href="https://foodpressplugin.freshdesk.com/support/home/">' . __( 'Support', 'foodpress' ) . '</a>',
 			);
 
 			return array_merge( $plugin_links, $links );
