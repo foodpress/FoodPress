@@ -45,7 +45,7 @@ class fp_updater{
         add_filter('plugins_api', array($this, 'fp_check_info'), 10, 3);
 
 		// update to current version
-		$this->save_new_license_field_values('current_version',$this->current_version,$this->slug);
+		$this->save_new_license_field_values('current_version', $this->current_version, $this->slug);
 
     }
 
