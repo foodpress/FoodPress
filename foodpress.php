@@ -3,7 +3,7 @@
  * Plugin Name: foodPress
  * Plugin URI: http://www.myfoodpress.com/
  * Description: Restaurant Menu & Reservation Plugin
- * Version: 1.5.3
+ * Version: 1.5.4
  * Author: Ashan Jay & Michael Gamble
  * Author URI: http://www.myfoodpress.com
  * Requires at least: 4.0
