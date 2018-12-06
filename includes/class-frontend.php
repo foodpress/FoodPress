@@ -54,6 +54,8 @@ class fp_frontend{
 			wp_register_style('fp_res_intl_phone_input', FP_URL.'/assets/css/intlTelInput.css');
 
 			$this->register_fp_dynamic_styles();
+
+			do_action('fp_register_scripts');
 		}
 		public function register_fp_dynamic_styles(){
 			$opt= $this->fpOpt;
@@ -103,44 +105,4 @@ class fp_frontend{
 			global $foodpress;
 			echo "\n\n" . '<!-- foodPress Version -->' . "\n" . '<meta name="generator" content="foodPress ' . esc_attr( $foodpress->version ) . '" />' . "\n\n";
 		}
-
-	// emailing
-		public function get_email_part($part){
-			global $foodpress;
-			$file_name = 'email_'.$part.'.php';
-			$paths = array(
-				0=> TEMPLATEPATH.'/'.$foodpress->template_url.'templates/email/',
-				1=> FP_PATH.'/templates/email/',
-			);
-			foreach($paths as $path){
-				if(file_exists($path.$file_name) ){
-					$template = $path.$file_name;
-					break;
-				}
-			}
-			ob_start();
-			include($template);
-			return ob_get_clean();
-		}
-
-		// body part of the email template loading
-			public function get_email_body($part, $def_location, $args){
-				global $foodpress;
-				$file_name = $part.'.php';
-				$paths = array(
-					0=> TEMPLATEPATH.'/'.$foodpress->template_url.'templates/email/',
-					1=> $def_location,
-				);
-
-				foreach($paths as $path){
-					if(file_exists($path.$file_name) ){
-						$template = $path.$file_name;
-						break;
-					}					//echo($path.$file_name.'<br/>');
-				}
-
-				ob_start();
-				include($template);
-				return ob_get_clean();
-			}
 }

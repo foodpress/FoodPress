@@ -115,7 +115,7 @@ class foodpress_reservations {
 								'people'=>array('4'),
 							),
 						);
-						$message_ = $foodpress->get_email_body($email_template_file_name,$path, $args);
+						$message_ = fp_helper::get_email_body($email_template_file_name,$path, $args);
 						return array(
 							'headers'=>$headers,
 							'to'=>$to,
@@ -128,7 +128,7 @@ class foodpress_reservations {
 							'type'=>$email_type, // notification email or confirmation email
 							'lang'=>(!empty($sc_args['lang'])? $sc_args['lang']:'L1'),
 						);
-						$message_ = $foodpress->get_email_body($email_template_file_name,$path, $args);
+						$message_ = fp_helper::get_email_body($email_template_file_name,$path, $args);
 						add_filter('wp_mail_content_type',create_function('', 'return "text/html";'));
 						return wp_mail($to, $subject, $message_, $headers);
 					}
@@ -236,7 +236,7 @@ class foodpress_reservations {
 								<p class='fp_reservation'><span class='party'><?php echo $rmeta['people'][0];?></span>
 								<br /><b><?php echo 'Reservation #'.$_id.' '. $name.' <br /><i>('.$email.')</i>';?></b>
 								<br/>Time: <?php echo $rmeta['date'][0];?> @ <?php echo $rmeta['time'][0]; echo !empty($rmeta['end_time'])? ' - '.$rmeta['end_time'][0]:null?>
-								<br />Phone: <?php echo (!empty($rmeta['phone_number'])? $rmeta['phone_number'][0]: '-');?>
+								<br />Phone: <?php echo (!empty($rmeta['phone'])? $rmeta['phone'][0]: '-');?>
 								<br/><i class='Dres'data-rid='<?php echo $_id;?>'>Delete Reservation</i></p>
 							<?php
 						}
@@ -348,7 +348,7 @@ class foodpress_reservations {
 				<?php
 					$__time_incre = (!empty($opt6['fpr_time_incer']))?
 						( (in_array($opt6['fpr_time_incer'], array('1','2','4','12')))?
-							$opt6['fpr_time_incer']: 2): 2;
+							$opt6['fpr_time_incer']: 12): 12;
 					$__time_format = (!empty($opt6['fpr_24hr']) &&  $opt6['fpr_24hr']=='yes')? '24':'12';
 					$__time_restrict = (!empty($opt6['fpr_timesl']) &&  $opt6['fpr_timesl']=='yes')? 'yes':'no';
 					$__time_start = (!empty($opt6['fpr_start_time']) )? $opt6['fpr_start_time']:'-';
@@ -439,9 +439,6 @@ class foodpress_reservations {
 						<p>
 							<label for="phone"><?php echo $this->get_lang($opt, 'fp_lang_resform_004d', 'Phone Number'); ?></label>
 							<input id="fp_phone_" class='resinput req' type="tel" name="phone" />
-							<br>
-							<span id="phone-valid-msg" class="hide">✓ Valid</span>
-							<span id="phone-error-msg" class="hide">Invalid number</span>
 					<?php endif;
 
 					// Restaurant Location

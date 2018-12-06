@@ -8,7 +8,8 @@
 
 	global $foodpress;
 
-	echo $foodpress->get_email_part('header');
+	$helper = new fp_helper();
+	echo $helper->get_email_part('header');
 
 	$fp_options = get_option('fp_options_food_1');
 	$fp_options_2 = get_option('fp_options_food_2');
@@ -116,6 +117,6 @@
 
 
 <?php
-	echo $foodpress->get_email_part('footer');
+	echo $helper->get_email_part('footer');
 ?>
 

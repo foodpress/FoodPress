@@ -30,14 +30,14 @@ jQuery(document).ready(function($){
 
 	// switching between tabs
 		$('#acus_left').find('a').click(function(){
-			
+
 			var nfer_id = $(this).data('c_id');
 			$('.nfer').hide();
 			$('#'+nfer_id).show();
 
 			change_tab_position($(this));
 
-			window.location.hash = nfer_id;
+			//window.location.hash = nfer_id;
 
 			if(nfer_id=='food_003'){
 				$('#resetColor').show();
@@ -46,7 +46,7 @@ jQuery(document).ready(function($){
 				$('#resetColor').hide();
 				$('#resetcolornote').hide();
 			}
-			
+
 			return false;
 		});
 
@@ -67,7 +67,7 @@ jQuery(document).ready(function($){
 				var item = $(this).siblings('input');
 				item.attr({'value': item.attr('data-default') });
 			});
-			
+
 		});
 
 
@@ -81,7 +81,7 @@ jQuery(document).ready(function($){
 		}
 	});
 
-	
+
 	// color circle guide popup
 		$('#food_003 .hastitle').hover(function(){
 			var poss = $(this).position();
@@ -99,12 +99,12 @@ jQuery(document).ready(function($){
 	$('.colorselector').ColorPicker({
 		onBeforeShow: function(){
 			$(this).ColorPickerSetColor( $(this).attr('hex'));
-		},	
+		},
 		onChange:function(hsb, hex, rgb,el){
 			//console.log(hex);
 			//$(el).attr({'backgroundColor': '#' + hex});
 			$(el).html( hex);
-		},	
+		},
 		onSubmit: function(hsb, hex, rgb, el) {
 			$(el).siblings('input').attr({'value':hex});
 			$(el).css('backgroundColor', '#' + hex);
@@ -146,15 +146,15 @@ jQuery(document).ready(function($){
 		// close with click outside popup box when pop is shown
 		$(document).mouseup(function (e){
 			var container=$('.fa_icons_selection');
-			
+
 				if (!container.is(e.target) // if the target of the click isn't the container...
 				&& container.has(e.target).length === 0) // ... nor a descendant of the container
 				{
 					$('.fa_icons_selection').fadeOut('fast');
 				}
-			
+
 		});
-	
+
 	// multicolor title/name display
 	$('.row_multicolor').on('mouseover','em',function(){
 		var name = $(this).data('name');
@@ -169,77 +169,77 @@ jQuery(document).ready(function($){
 
 	//yes no buttons in event edit page
 	$('.fp_backender_uix').on('click','.fp_yn_btn', function(){
-		
+
 		if($(this).hasClass('disable')){
-		
+
 		}else{
 			// yes
 			if($(this).hasClass('NO')){
 				$(this).removeClass('NO');
 				$(this).siblings('input').val('yes');
-				
+
 				$('#'+$(this).attr('afterstatement')).slideDown('fast');
-				
+
 			}else{//no
 				$(this).addClass('NO');
 				$(this).siblings('input').val('no');
-				
+
 				$('#'+$(this).attr('afterstatement')).slideUp('fast');
 			}
-		}		
+		}
 	});
-	
+
 	//legend
 	$('.legend_icon').hover(function(){
 		$(this).siblings('.legend').show();
 	},function(){
 		$(this).siblings('.legend').hide();
 	});
-	
+
 	// image
 		var formfield;
 		var preview;
 		var the_variable;
-		
-	  
-	    $('.custom_upload_image_button').click(function() {  
+
+
+	    $('.custom_upload_image_button').click(function() {
 			formfield = $(this).siblings('.custom_upload_image');
 			var parent_id = $(this).attr('parent');
 			var parent = $('#'+parent_id);
-			preview = parent.find('.custom_preview_image');  
+			preview = parent.find('.custom_preview_image');
 	        tb_show('', 'media-upload.php?type=image&from=t31os&TB_iframe=true');
-			
+
 			window.original_send_to_editor = window.send_to_editor;
-			
-	        window.send_to_editor = function(html) {			
+
+	        window.send_to_editor = function(html) {
 				if( $(html).find('img').length ){// <img is inside <a>
 					the_variable = $(html).find('img');
 				}else{	the_variable = $(html);	}
-				
-	            imgurl = $(the_variable).attr('src');  
-				
+
+	            imgurl = $(the_variable).attr('src');
+
 				//alert(imgurl);
-	            classes = $(the_variable).attr('class');  
-	            id = classes.replace(/(.*?)wp-image-/, '');  
-	            formfield.val(id);  
+	            classes = $(the_variable).attr('class');
+	            id = classes.replace(/(.*?)wp-image-/, '');
+	            formfield.val(id);
 	            preview.attr('src', imgurl);
 				preview.show();
 	            tb_remove();
 				parent.find('.custom_no_preview_img').hide();
 				parent.find('.custom_upload_image_button ').hide();
 				parent.find('.custom_clear_image_button').show();
-	        }  
-	        return false;  
-	    });  
-	  
-	    $('.custom_clear_image_button').click(function() {           
-	        $(this).parent().siblings('.custom_upload_image').val('');  
+	        }
+	        return false;
+	    });
+
+	    $('.custom_clear_image_button').click(function() {
+	        $(this).parent().siblings('.custom_upload_image').val('');
 	        $(this).parent().siblings('.custom_preview_image').attr('src', '').hide();
-			
+
 			$(this).parent().siblings('.custom_no_preview_img').show();
 			$(this).parent().siblings('.custom_upload_image_button ').show();
 			$(this).hide();
-	        return false;  
+	        return false;
 	    });
 
 	// hidden section
@@ -250,10 +250,10 @@ jQuery(document).ready(function($){
 			}else{
 				$(this).addClass('open');
 			}
-		});	
+		});
 
-	// sortable		
-		$('.ajderearrange_box').sortable({		
+	// sortable
+		$('.ajderearrange_box').sortable({
 			update: function(e, ul){
 				var sortedID = $(this).sortable('toArray',{attribute:'val'});
 				$(this).closest('.ajderearrange_box').siblings('.ajderearrange_order').val(sortedID);
@@ -274,7 +274,7 @@ jQuery(document).ready(function($){
 
 				obj.closest('.ajderearrange_box').siblings('.ajderearrange_selected').val(hidethese);
 			}
-		
+
 	// at first run a check on list items against saved list -
 		var items='';
 		$('#ajdeEVC_arrange_box').find('p').each(function(){
@@ -282,9 +282,9 @@ jQuery(document).ready(function($){
 				items += $(this).attr('val')+',';
 			}
 		});
-		$('input.ajderearrange_order').val(items);	
-		//if($('input.ajderearrange_selected').val()=='') $('input.ajderearrange_selected').val(items);	
-	
+		$('input.ajderearrange_order').val(items);
+		//if($('input.ajderearrange_selected').val()=='') $('input.ajderearrange_selected').val(items);
+
 // AJDE Backender Section -- END
 // ======================================================
 

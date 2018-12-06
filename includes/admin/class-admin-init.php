@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * foodpress Admin.
  *
- * @class 		fp_Admin 
+ * @class 		fp_Admin
  * @author 		AJDE
  * @category 	Admin
  * @package 	foodpress/Admin
@@ -19,7 +19,7 @@ class fp_Admin {
 		add_action( 'init', array( $this, 'includes' ) );
 		add_action( 'current_screen', array( $this, 'conditonal_includes' ) );
 		//add_action( 'admin_init', array( $this, 'prevent_admin_access' ) );
-		
+
 		add_action( 'admin_init', array( $this, 'foodpress_admin_init' ) );
 		//add_action( 'admin_footer', 'wc_print_js', 25 );
 
@@ -27,7 +27,8 @@ class fp_Admin {
 		add_action( 'admin_enqueue_scripts', array( $this,'foodpress_admin_scripts' ));
 
 		// links into plugins page in wp-admin
-		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'action_links' ) );
+		//global $foodpress;
+		add_filter( 'plugin_action_links_' . FP_BASENAME, array( $this, 'action_links' ) );
 
 		// dashboard widget
 		add_action('wp_dashboard_setup', array($this,'add_dashboard_widgets' ));
@@ -40,12 +41,41 @@ class fp_Admin {
 			include_once( 'class-product.php' );
 			$this->product = new FP_product();
 
+			$activePlugins = get_option('active_plugins');
+
+			if(!$this->product->is_activated('foodpress'))
+				add_action('admin_notices', array($this, '_no_license_warning'));
+
+			if(in_array( 'foodpress-onlineorder/foodpress-onlineorder.php', $activePlugins)) {
+				$s = 'foodpress-onlineorder';
+				if(!$this->product->is_activated($s))
+					add_action('admin_notices', function() use ($s) {
+						$this->_no_license_warning($s);
+					});
+			}
+
+			if(in_array( 'foodpress-importexport/foodpress-importexport.php', $activePlugins)) {
+				$s = 'foodpress-importexport';
+				if(!$this->product->is_activated($s))
+					add_action('admin_notices', function() use ($s) {
+						$this->_no_license_warning($s);
+					});
+			}
+
+			if(in_array( 'foodpress-single-menu/foodpress-single-menu.php', $activePlugins)) {
+				$s = 'foodpress-single-menu';
+				if(!$this->product->is_activated($s))
+					add_action('admin_notices', function() use ($s) {
+						$this->_no_license_warning($s);
+					});
+			}
+
 			// Classes
 			include_once( 'post_types/class-fp-admin-post-types.php' );
-			
+
 			// Classes we only need if the ajax is not-ajax
 			if ( ! defined( 'DOING_AJAX' ) ) {
-				include( 'class-fp-admin-menu.php' );				
+				include( 'class-fp-admin-menu.php' );
 				include( 'welcome.php' );
 			}
 
@@ -54,11 +84,19 @@ class fp_Admin {
 
 		}
 
+		function _no_license_warning($plugin) {
+			//var_dump($plugin);
+			?>
+
+			<div class="message error"><p><?php printf(__('Your '.$this->product->getProductLicenseInfoById($plugin)['name'].' license is not active. Please set a valid license in your <a href="' . admin_url( 'admin.php?page=foodpress&tab=food_5' ) . '">Addons & Licenses</a> tab.', 'foodpress'),  'http://www.myfoodpress.com/'); ?></p></div>
+			<?php
+		}
+
 	/* conditonal_includes */
 		function conditonal_includes(){
 			$screen = get_current_screen();
 			global $menu, $foodpress, $pagenow, $typenow;
-			
+
 			if ( $screen->post_type == "menu" ) {
 				// includes
 				if( $pagenow == 'post-new.php' || $pagenow == 'post.php' || $pagenow == 'edit.php' ) {
@@ -70,31 +108,31 @@ class fp_Admin {
 				include_once( 'post_types/reservation_meta_boxes.php' );
 			}
 		}
-	
+
 	/* Initiate admin */
 		function foodpress_admin_init() {
-			global $pagenow, $typenow, $wpdb, $foodpress;	
+			global $pagenow, $typenow, $wpdb, $foodpress;
 
 			// updates
 			$this->verify_plugin_version();
-				
-			if ( $typenow == 'post' && ! empty( $_GET['post'] ) ) {
+
+			if ( $typenow == 'post' && !empty($_GET['post']) ) {
 //				$typenow = $post->post_type;
-			} elseif ( empty( $typenow ) && ! empty( $_GET['post'] ) ) {
+			} elseif ( empty($typenow) && !empty($_GET['post']) ) {
 		        $post = get_post( $_GET['post'] );
 		        $typenow = $post->post_type;
 		    }
-			
-			if ( $typenow == '' || $typenow == "menu"|| $typenow == "reservation" ) {
+
+			if ( $typenow == '' || $typenow == "menu" || $typenow == "reservation" ) {
 				// filter event post permalink edit options
-				if(!defined('FP_SIN_MI')){
+				if(!defined('FP_SIN_MI')) {
 					$this->foodpress_perma_filter();
-				}					
+				}
 			}
-			
+
 			// install or update foodpress
 				$_foodpress_install = get_option('_foodpress_install');
-				if(empty($_foodpress_install) ){
+				if(empty($_foodpress_install) ) {
 					include_once( 'foodpress-admin-install.php' );
 					$value = array('installed', $foodpress->version);
 
@@ -105,7 +143,7 @@ class fp_Admin {
 				$this->wp_admin_scripts_styles();
 		}
 
-		
+
 		// if events single page hide permalink and preview changes that links to single event post page -- which doesnt have supported template without foodpress single event addon
 			function foodpress_perma_filter(){
 				add_action('admin_print_styles', array( $this,'foodpress_remove_mipost_previewbtn'));
@@ -113,7 +151,7 @@ class fp_Admin {
 			}
 			function foodpress_perm($return, $id, $new_title, $new_slug){
 				$ret2 = preg_replace('/<span id="edit-slug-buttons">.*<\/span>|<span id=\'view-post-btn\'>.*<\/span>/i', '', $return);
-				return $ret2 ='';	
+				return $ret2 ='';
 			}
 			function foodpress_remove_mipost_previewbtn() {
 				?>
@@ -121,12 +159,12 @@ class fp_Admin {
 				<?php
 			}
 
-	// 
+	//
 		function wp_admin_scripts_styles(){
 			global $foodpress, $pagenow;
 
 			if( (!empty($pagenow) && $pagenow=='admin.php')
-			 && (isset($_GET['page']) && ($_GET['page']=='foodpress') ) 
+			 && (isset($_GET['page']) && ($_GET['page']=='foodpress') )
 			){
 
 				// only licenses page
@@ -141,25 +179,25 @@ class fp_Admin {
 			global $foodpress;
 
 			$plugin_version = $foodpress->version;
-				
+
 			// check installed version
 			$installed_version = get_option('foodpress_plugin_version');
-			
+
 			if($installed_version != $plugin_version){
 				update_option('foodpress_plugin_version', $plugin_version);
 				wp_safe_redirect( admin_url( 'index.php?page=fp-about&fp-updated=true' ) );
-				
+
 			}else if(!$installed_version ){
-				add_option('foodpress_plugin_version', $plugin_version);			
+				add_option('foodpress_plugin_version', $plugin_version);
 			}else{
-				update_option('foodpress_plugin_version', $plugin_version);			
+				update_option('foodpress_plugin_version', $plugin_version);
 			}
-			
+
 			// delete options saved on previous version
 			delete_option('fp_plugin_version');
 		}
 
-	// RESERVATIONS 
+	// RESERVATIONS
 	// dashboard widget
 		function add_dashboard_widgets(){
 			wp_add_dashboard_widget('fp_res_dashboard_widget', __('Upcoming Reservations','foodpress'), array($this,'dashboard_widget_function'));
@@ -171,7 +209,7 @@ class fp_Admin {
 			ob_start();
 			global $foodpress;
 			$counts = $foodpress->reservations->get_rsvp_count();
-			?>				
+			?>
 				<div class='fpr_sections'>
 					<?php if(!empty($counts['pending']) && $counts['pending']>0):?>
 					<div class='fpr_box fpr_upcoming pending'>
@@ -198,8 +236,8 @@ class fp_Admin {
 
 					<a class='btn_tritiary fp_admin_btn ' style='margin-top:10px'href='<?php echo get_admin_url();?>post-new.php?post_type=reservation'><?php _e('Manually submit reservation','foodpress');?></a>
 				</div>
-				
-			<?php 
+
+			<?php
 
 			$foodpress->output_foodpress_pop_window(array('content'=>__('Loading...','foodpress'), 'title'=>__('Reservation Information','foodpress'), 'class'=>'fp_set_res','type'=>'padded'));
 
@@ -212,13 +250,15 @@ class fp_Admin {
 
 			$plugin_links = array(
 				'<a href="' . admin_url( 'admin.php?page=foodpress' ) . '">' . __( 'Settings', 'foodpress' ) . '</a>',
+				'<a href="' . admin_url( 'admin.php?page=foodpress&tab=food_5' ) . '">' . __( 'Addons', 'foodpress' ) . '</a>',
 				'<a href="http://myfoodpress.com/documents/">' . __( 'Docs', 'foodpress' ) . '</a>',
-				'<a href="http://myfoodpress.com/support/">' . __( 'Support', 'foodpress' ) . '</a>',
+				'<a href="https://foodpressplugin.freshdesk.com/support/home/">' . __( 'Support', 'foodpress' ) . '</a>',
 			);
-
+			//array_unshift($links, $plugin_links);
 			return array_merge( $plugin_links, $links );
+			//return $links;
 		}
-	
+
 	/** Include admin scripts and styles.	 ONLY on foodpress settings page*/
 		function foodpress_admin_scripts() {
 			global $foodpress, $pagenow, $typenow;
@@ -229,14 +269,14 @@ class fp_Admin {
 		        $post = get_post( $_GET['post'] );
 		        $typenow = $post->post_type;
 		    }
-			
+
 			$jquery_version = isset( $wp_scripts->registered['jquery-ui-core']->ver ) ? $wp_scripts->registered['jquery-ui-core']->ver : '1.10.4';
 
 			// ONLY menu and reservations page
 			if ( $typenow == '' || $typenow == "menu" || $typenow == "reservation" ) {
 				wp_enqueue_style( 'backend_food_post',FP_URL.'/assets/css/admin/backend_post.css');
 				wp_enqueue_script('food_backend_post',FP_URL.'/assets/js/admin/backend_post.js', array('jquery','jquery-ui-core','jquery-ui-datepicker'), 1.0, true );
-				
+
 				wp_localize_script( 'food_backend_post', 'the_ajax_script', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
 
 				do_action('foodpress_load_admin_post_script');
@@ -245,21 +285,21 @@ class fp_Admin {
 			// ONLY for reservations
 			if ( $typenow == '' || $typenow == "reservation" ) {
 				wp_enqueue_style("fp_res_jquery_ui_style", "//ajax.googleapis.com/ajax/libs/jqueryui/{$jquery_version}/themes/smoothness/jquery-ui.min.css");
-				
+
 				wp_register_style('fp_res_timepicker_style',FP_URL.'/assets/css/jquery.timepicker.css');
 				wp_enqueue_style( 'fp_res_timepicker_style' );
 				wp_enqueue_style( 'fp_res_jquery_ui_style' );
 
 				wp_enqueue_script('food_backend_post',FP_URL.'/assets/js/backend_reservation_post.js', array('jquery','jquery-ui-core','jquery-ui-datepicker'), 1.0, true );
-				
+
 				wp_register_script('fp_reservation_timepicker',FP_URL.'/assets/js/jquery.timepicker.js' ,array('jquery', 'jquery-ui-core','jquery-ui-datepicker'),'1.0', true);
-				wp_enqueue_script('fp_reservation_timepicker');	
-							
+				wp_enqueue_script('fp_reservation_timepicker');
+
 				do_action('foodpress_load_resadmin_post_script');
 
 			}
-			
-			// foodPress Settings page only		
+
+			// foodPress Settings page only
 				if($pagenow=='admin.php' && $_GET['page']=='foodpress'){
 					wp_enqueue_script('food_backend_all',FP_URL.'/assets/js/admin/all_backend.js',array('jquery'),1.0,true);
 					wp_enqueue_script('food_settings',FP_URL.'/assets/js/admin/settings.js',array('jquery'),1.0,true);
@@ -273,17 +313,17 @@ class fp_Admin {
 					wp_enqueue_script('fp_reservation_timepicker',FP_URL.'/assets/js/jquery.timepicker.js' ,array('jquery', 'jquery-ui-core','jquery-ui-datepicker'),$foodpress->version, true);
 					wp_enqueue_style('fp_res_timepicker_style',FP_URL.'/assets/css/jquery.timepicker.css');
 
-					wp_localize_script( 
-						'food_settings', 
-						'food_settings', 
-						array( 
-							'ajaxurl' => admin_url( 'admin-ajax.php' ) , 
+					wp_localize_script(
+						'food_settings',
+						'food_settings',
+						array(
+							'ajaxurl' => admin_url( 'admin-ajax.php' ) ,
 							'postnonce' => wp_create_nonce( 'reservation_settings_nonce' )
 						)
 					);
-					
+
 					wp_localize_script( 'food_backend_all', 'the_ajax_script', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
-					
+
 					// LOAD thickbox
 					if(isset($_GET['tab']) && $_GET['tab']=='food_5'){
 						wp_enqueue_script('thickbox');
@@ -291,18 +331,18 @@ class fp_Admin {
 					}
 					$foodpress->enqueue_backender_styles();
 					$foodpress->register_backender_scripts();
-					
+
 					do_action('foodpress_admin_scripts');
 				}
 
 			// all over wp-admin
 				if(is_admin()){
 					wp_enqueue_script('fp_reservations',FP_URL.'/assets/js/admin/backend_reservations.js',array('jquery'),1.0,true);
-					wp_localize_script( 
-						'fp_reservations', 
-						'fp_reservations', 
-						array( 
-							'ajaxurl' => admin_url( 'admin-ajax.php' ) , 
+					wp_localize_script(
+						'fp_reservations',
+						'fp_reservations',
+						array(
+							'ajaxurl' => admin_url( 'admin-ajax.php' ) ,
 							'postnonce' => wp_create_nonce( 'reservation_settings_nonce' )
 						)
 					);
@@ -321,7 +361,7 @@ class fp_Admin {
 	/** scripts and styles for all backend **/
 		function foodpress_all_backend_files(){
 			global $wp_version;
-			
+
 			wp_localize_script( 'fp_backend_post', 'the_ajax_script', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
 			wp_enqueue_script('fp_backend_all',FP_URL.'/assets/js/admin/all_backend.js',array('jquery'),1.0,true);
 
@@ -329,7 +369,7 @@ class fp_Admin {
 			if($wp_version<3.8)
 				wp_enqueue_style( 'oldwp',FP_URL.'/assets/css/admin/backend_wp_old.css');
 
-			// tax order 
+			// tax order
 			//wp_enqueue_script('fp_tax_order',FP_URL.'/assets/js/admin-tax-order.js',array('jquery'),1.0,true);
 
 			wp_enqueue_style( 'foodpress_admin_menu_styles', FP_URL . '/assets/css/admin/menu.css' );
@@ -338,4 +378,3 @@ class fp_Admin {
 			wp_enqueue_style( 'evo_font_icons' );
 		}
 }
-

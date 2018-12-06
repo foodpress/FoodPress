@@ -3,18 +3,20 @@
  * Plugin Name: foodPress
  * Plugin URI: http://www.myfoodpress.com/
  * Description: Restaurant Menu & Reservation Plugin
- * Version: 1.4.2
- * Author: Ashan Jay & Michael Gamble
+ * Version: 1.5.4
+ * Author: Michael Gamble & Josh Riley
  * Author URI: http://www.myfoodpress.com
- * Requires at least: 3.8
- * Tested up to: 4.5.3
+ * Requires at least: 4.5
+ * Tested up to: 4.9.8
+ * WC requires at least: 3.0.0
+ * WC tested up to: 3.5.1
  *
  * Text Domain: foodpress
  * Domain Path: /lang/languages/
  *
  * @package foodPress
  * @category Core
- * @author Ashan Jay  & Michael Gamble
+ * @author Michael Gamble & Josh Riley
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
@@ -24,12 +26,15 @@ if ( ! class_exists( 'foodpress' ) ) {
 
 class foodpress {
 
-	public $version = '1.4.2';
+	public $version = '1.5.4';
 
 	public $foodpress_menus;
 	public $reservations;
 	public $fpOpt;
 	public $fp_updater;
+	public $foodpress_onlineorder_updater;
+	public $foodpress_importexport_updater;
+	public $foodpress_single_menu_updater;
 
 	private $content;
 	public $template_url;
@@ -86,6 +91,7 @@ class foodpress {
 		function includes() {
 
 			include_once( 'includes/foodpress-core-functions.php' );
+			include_once( 'includes/class-helper.php' );
 			include_once( 'includes/class-frontend.php' );
 			include_once( 'includes/class-fp-post-types.php' );
 			include_once( 'includes/class_functions.php' );
@@ -93,12 +99,40 @@ class foodpress {
 			// admin only files
 			if ( is_admin() ){
 				include_once( 'includes/admin/class-admin-init.php' );
-				require_once( 'includes/class-fp-github-updater.php' );
-				$this->fp_updater = new foodpress_github_updater( __FILE__, "foodpress/FoodPress", "a0a94517a98c994d5730291236173a613eb92931");
+				include_once( 'includes/class-fp-github-updater.php' );
+
+				$activePlugins = get_option('active_plugins');
+				$secret = '2c037d608fcb96c0c51227ffa611b4c3584a6367';
+
+				if(in_array( 'foodpress/foodpress.php', $activePlugins)) {
+					global $foodpress;
+					$this->fp_updater = new foodpress_github_updater(FP_FILE, 'foodpress/FoodPress', $secret, $this->version);
+				}
+
+				if(in_array( 'foodpress-onlineorder/foodpress-onlineorder.php', $activePlugins)) {
+					global $foodpress_oo;
+					$pluginFile = WP_PLUGIN_DIR . '/foodpress-onlineorder/foodpress-onlineorder.php';
+					$this->foodpress_onlineorder_updater = new foodpress_github_updater($pluginFile, 'foodpress/Online-Order', $secret, $foodpress_oo->version);
+
+					//if($this->foodpress->product)
+				}
+
+				if(in_array( 'foodpress-importexport/foodpress-importexport.php', $activePlugins)) {
+					global $foodpress_ie;
+					$pluginFile = WP_PLUGIN_DIR . '/foodpress-importexport/foodpress-importexport.php';
+					$this->foodpress_importexport_updater = new foodpress_github_updater($pluginFile, 'foodpress/Import-Export', $secret, $foodpress_ie->version);
+				}
+
+				if(in_array( 'foodpress-single-menu/foodpress-single-menu.php', $activePlugins)) {
+					global $foodpress_sin_mi;
+					$pluginFile = WP_PLUGIN_DIR . '/foodpress-single-menu/foodpress-single-menu.php';
+					$this->foodpress_single_menu_updater = new foodpress_github_updater($pluginFile, 'foodpress/Single-Menu-Item', $secret, $foodpress_sin_mi->version);
+				}
+
 				$this->admin = new fp_Admin();
 			}
 
-			if ( ! is_admin() || defined('DOING_AJAX') )
+			if ( !is_admin() || defined('DOING_AJAX') )
 				include_once( 'foodpress-functions.php' );
 				include_once( 'includes/class-fp-shortcodes.php' );
 				include_once( 'includes/class-fp-template-loader.php' );
@@ -110,6 +144,9 @@ class foodpress {
 			// Functions
 			include_once( 'includes/class-menus.php' );	// Main class to generate foodpress	menus
 			include_once( 'includes/class-reservations.php' );
+
+			//include_once('classes/class-fp-updater.php');
+
 		}
 
 	/** Init foodpress when WordPress Initialises. */
@@ -125,13 +162,14 @@ class foodpress {
 			$this->reservations = new foodpress_reservations();
 			$this->frontend = new fp_frontend();
 			$this->functions = new fp_functions();
-			$this->foodpress_menus	= new foodpress_menus();
+			$this->foodpress_menus = new foodpress_menus();
 
 			// Classes/actions loaded for the frontend and for ajax requests
 			if ( ! is_admin() || defined('DOING_AJAX') ) {
 				// Class instances
-				$this->shortcodes		= new fp_shortcodes();	// Shortcodes class
+				$this->shortcodes = new fp_shortcodes();	// Shortcodes class
 			}
+
 			// Init action
 			do_action( 'fp_init' );
 		}
@@ -147,12 +185,7 @@ class foodpress {
 			public function load_default_fp_scripts(){ $this->frontend->load_default_fp_scripts(); }
 			public function load_default_fp_styles(){ $this->frontend->load_default_fp_styles(); }
 			public function load_dynamic_fp_styles(){ $this->frontend->load_dynamic_fp_styles(); }
-			public function get_email_part($part){
-				return $this->frontend->get_email_part($part);
-			}
-			public function get_email_body($part, $def_location, $args=''){
-				return $this->frontend->get_email_body($part, $def_location, $args);
-			}
+
 
 	/** output the in-page popup window for foodpress */
 		public function output_foodpress_pop_window($arg){
@@ -199,21 +232,25 @@ class foodpress {
 		}
 
 	/** Activate function to store version.	 */
-		public function activate(){
+		public function activate() {
+			$this->addInstallInstance();
 			set_transient( '_fp_activation_redirect', 1, 60 * 60 );
 			do_action('foodpress_activate');
 		}
 
-		public function deactivate(){
+		public function deactivate() {
+			$this->removeInstallInstance();
+
 			do_action('foodpress_deactivate');
 		}
-		public function is_foodpress_activated(){
+
+		public function is_foodpress_activated() {
 			$licenses =get_option('_fp_licenses');
 
 			if(!empty($licenses)){
 				$status = $licenses['foodpress']['status'];
-				return ($status=='active')? true:false;
-			}else{
+				return ($status=='active') ? true : false;
+			} else {
 				return false;
 			}
 		}
@@ -292,14 +329,61 @@ class foodpress {
 
 			echo '</tr><tr class="plugin-update-tr"><td colspan="3" class="plugin-update"><div class="update-message">' . $new_version . __(' Download the new version from <a href="http://www.myfoodpress.com/my-account/" target="_blank">My Account</a> at myfoodpress.com.', 'foodpress') . '</div></td>';
 		}
+
+		public function addInstallInstance() {
+			global $wp_version;
+			$args = [
+				'user' => get_bloginfo('admin_email'),
+				'site_name' => get_bloginfo('name'),
+				'site_url' => get_bloginfo('url'),
+				'wp_version' => get_bloginfo('version'),
+				'fp_version' => $this->version
+			];
+			//var_dump($args);
+			$headers = array(
+				'body' => array(
+					'action' => 'fp_install', 'request' => serialize($args), 'api-key' => md5(get_bloginfo('url'))
+				), 'user-agent' => 'WordPress/' . $wp_version . '; ' . get_bloginfo('url')
+			);
+			//$url = 'http://localhost/fp_internal';
+			$url = 'https://myfoodpress.com/fp_internal';
+			$request = wp_remote_post($url, $headers);
+	        if (!is_wp_error($request) || wp_remote_retrieve_response_code($request) === 200) {
+
+			}
+		}
+
+		public function removeInstallInstance() {
+			global $wp_version;
+			$args = [
+				'user' => get_bloginfo('admin_email'),
+				'site_name' => get_bloginfo('name'),
+				'site_url' => get_bloginfo('url'),
+				'wp_version' => get_bloginfo('version'),
+				'fp_version' => $this->version
+			];
+
+			$headers = array(
+				'body' => array(
+					'action' => 'fp_install_remove', 'request' => serialize($args), 'api-key' => md5(get_bloginfo('url'))
+				), 'user-agent' => 'WordPress/' . $wp_version . '; ' . get_bloginfo('url')
+			);
+			//$url = 'http://localhost/fp_internal';
+			$url = 'https://myfoodpress.com/fp_internal';
+			$request = wp_remote_post($url, $headers);
+	        if (!is_wp_error($request) || wp_remote_retrieve_response_code($request) === 200) {
+
+			}
+		}
+
 }
 
 }// class exists
 
 
-// Main instanace of foodpress
+// Main instance of foodpress
 // @version 1.4
- function FP(){ return foodpress::instanace(); }
+ function FP(){ return foodpress::instance(); }
 // init class
 $GLOBALS['foodpress'] = new foodpress();
 ?>

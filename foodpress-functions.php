@@ -10,13 +10,13 @@
  * @version     0.1
  */
 // PHP function tag
-	function add_foodpress($args){
+	function add_foodpress($args) {
 		global $foodpress;
 
-		// OUT PUT		
+		// OUT PUT
 		ob_start();
-			
+
 		echo $foodpress->foodpress_menus->generate_content($args, 'php');
-		
+
 		return ob_get_clean();
 	}

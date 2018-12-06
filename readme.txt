@@ -1,14 +1,14 @@
 === FoodPress ===
-Contributors: Ashan Jay & Michael Gamble
+Contributors: Michael Gamble & Josh Riley
 Plugin Name: foodPress
-Author URI: http://www.myfoodpress.com/
-Tags: restaurants, menu, food, eating, menu management
+Author URI: https://www.myfoodpress.com/
+Tags: restaurants, menu, food, eating, menu management, reservations, online menu
 Requires at least: 3.8
-Tested up to: 4.5.2
-Stable tag: 1.4.2
+Tested up to: 4.9.2
+Stable tag: 1.5.4
 
 == Description ==
-FoodPress is a complete restaurant menu management system that allow you to create various menus with categorizations and more.
+FoodPress is an advanced restaurant menu management system that allows you to create various menus with categorizations and more.
 
 == Installation ==
 1. Unzip the download zip file
@@ -16,7 +16,30 @@ FoodPress is a complete restaurant menu management system that allow you to crea
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
-= 1.4.2 (2016-6-28) = 
+= 1.5.4 (2018-11-1) =
+ADDED: License verification for FoodPress and its addons to ensure you get quality features. All licenses can now be purchased at https://myfoodpress.com
+ADDED: Remote license validation for the plugin instance/domain based on number of sites purchased. Excludes your localhost domain for development copies
+ADDED: Remote update notifications using WordPress transients, plugins api and github repositories
+ADDED: Settings tab for Import/Export addon
+UPDATED: Various formatting to clean up white space
+FIXED: Typos and contents
+
+= 1.5.3 (2017-11-30) =
+FIXED: URL's to Support (Help Desk) within the Plugin
+
+= 1.5.2 (2017-11-21) =
+FIXED: Saving Reservations settings
+FIXED: Saving custom language text
+FIXED: Phone number now shows in Reservation lists popup
+
+= 1.5.1 (2017-11-8) =
+FIXED: Github Errors in Debug Log
+
+= 1.5 (2017-10-27) =
+FIXED: fontawesome errors
+FIXED: Widget issue
+
+= 1.4.2 (2016-6-28) =
 FIXED: Meal type with multiple IDs not working
 FIXED: Boxes and other styles to support single meal type IDs
 

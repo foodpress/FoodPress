@@ -2008,7 +2008,7 @@ ob_start();?>
 	$fonts_string = ob_get_clean();
 	
 	$str = explode('.', $fonts_string);
-	$font_ = '';
+	$font_ = array();
 	foreach($str as $ss){
 		$s1 = explode(':', $ss);
 		if(!empty($s1[0]) && !in_array($s1[0], array(
@@ -2028,7 +2028,7 @@ ob_start();?>
 	$fonts_string_2 = 
 "fp-watermelon-alt=fp-sushi-2-alt=fp-sushi-alt=fp-taco=fp-taco-alt=fp-tea-pot=fp-tea-pot-alt=fp-totopos=fp-totopos-alt=fp-utensils=fp-utensils-alt=fp-vegetarian=fp-vegetarian-alt=fp-watermelon=fp-sushi-2=fp-salt=fp-roast-alt=fp-sushi=fp-roast=fp-stir-fry-alt=fp-stir-fry2-alt=fp-rice=fp-stir-fry2=fp-rice-alt=fp-pizza-alt=fp-stir-fry=fp-pizza=fp-stawberry-alt=fp-pineapple-alt=fp-stawberry=fp-pineapple=fp-set-1-alt=fp-mug-alt=fp-set-1=fp-mug=fp-scale-alt=fp-muffin-alt=fp-scale=fp-muffin=fp-salt-alt=fp-grapes=fp-corn-dog-alt=fp-ice-cream-cone-alt=fp-kabob=fp-grapes-2=fp-drink1=fp-drink1-alt=fp-grapes-2-alt=fp-kabob-alt=fp-lollipop=fp-grapes-alt=fp-drink2=fp-drink2-alt=fp-ham=fp-lollipop-alt=fp-martini=fp-ham-alt=fp-egg=fp-egg-alt=fp-hat=fp-martini2=fp-martini2-alt=fp-hat-alt=fp-fork-knife=fp-fork-knife2=fp-ice-cream-cone=fp-martini-alt=fp-meat=fp-ice-cream-cone2=fp-fork-knife2-alt=fp-fork-knife-alt=fp-ice-cream-cone2-alt=fp-meat-alt=fp-menu=fp-ice-cream-cone3=fp-fries=fp-ice-cream-cone3-alt=fp-menu-alt=fp-corn-dog=fp-chili-alt=fp-cheese=fp-cake-alt=fp-beverage-alt=fp-cake-1-alt=fp-champagne-bucket-alt=fp-chili=fp-corn-alt=fp-corn=fp-chicken-alt=fp-champagne-bucket=fp-cake-1=fp-beverage2-alt=fp-beverage2=fp-cake=fp-champagne-alt=fp-chicken-2-alt=fp-cookie-alt=fp-cookie=fp-chicken-2=fp-champagne=fp-burger-alt=fp-beverage=fp-beer-alt=fp-burger=fp-chaffing-dish-alt=fp-chicken=fp-cola-alt=fp-cola=fp-cherry-alt=fp-chaffing-dish=fp-bread-alt=fp-beer=fp-basket-alt=fp-bread=fp-caviar-alt=fp-cherry-1-alt=fp-coffee-pot-alt=fp-coffee-pot=fp-cherry-1=fp-caviar=fp-box-alt=fp-basket=fp-apple-alt=fp-apple2-alt=fp-box-2=fp-box-2-alt=fp-carrot-alt=fp-carrot=fp-cheese-alt=fp-cherry=fp-cocktail-alt=fp-cocktail=fp-chilis-alt=fp-cheese-2-alt=fp-candy-alt=fp-box=fp-apple2=fp-apple=fp-bottle-alt=fp-candy=fp-cheese-2=fp-chilis=fp-bottle=";
 
-	$font_2_='';
+	$font_2_= array();
 	$font_2__ = explode('=', $fonts_string_2);
 	$count=1;
 	foreach($font_2__ as $ft){

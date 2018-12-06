@@ -21,7 +21,7 @@ function foodpress_menucard_print($array, $fp_options, $fp_options_2, $pmv='', $
 	$items = count($array);
 	$count=1;
 
-	// additional fields array 
+	// additional fields array
 	$_additions = apply_filters('fp_menucard_adds' , array());
 
 	// FOREACH
@@ -39,17 +39,17 @@ function foodpress_menucard_print($array, $fp_options, $fp_options_2, $pmv='', $
 
 		// EACH menu card types
 		switch($box_f){
-			
+
 			// pluggable additions
 				case has_filter("foodpress_menuCard_{$boxname}"):
-				
+
 					$helpers = array(
 						'fpOPT'=>$fp_options,
 						'fpoOPT2'=>$fp_options_2,
 					);
 
-					$OT.= apply_filters("eventon_eventCard_{$boxname}", $object, $helpers);								
-					
+					$OT.= apply_filters("eventon_eventCard_{$boxname}", $object, $helpers);
+
 				break;
 
 			// header image
@@ -76,7 +76,7 @@ function foodpress_menucard_print($array, $fp_options, $fp_options_2, $pmv='', $
 
 					$OT.= ob_get_clean();
 				break;
-			
+
 			// menu details section
 				case 'details':
 					$OT.= "<div class='fp_inner_box fp_details'>";
@@ -84,7 +84,7 @@ function foodpress_menucard_print($array, $fp_options, $fp_options_2, $pmv='', $
 						$OT.="<p class='fp_menu_type'>". $object->terms ."</p>";
 					endif;
 							$OT.= "<h3>". $object->title ."</h3>";
-							$OT.= "<div class='menu_description'>". ((!$__content_filter)? apply_filters('the_content', $object->description): $object->description) 
+							$OT.= "<div class='menu_description'>". ((!$__content_filter)? apply_filters('the_content', $object->description): $object->description)
 							."</div>";
 
 							if($object->additionaltext) $OT.= "<p class='menu_additional_details'>". $object->additionaltext ."</p>";
@@ -93,7 +93,7 @@ function foodpress_menucard_print($array, $fp_options, $fp_options_2, $pmv='', $
 
 			// ingredients
 				case 'ingredients':
-					
+
 					$OT.= "<div class='fp_popup_option fp_ingredients tint iconrow'>
 							<span class='fp_menudata_icon'><i title='". $object->title ."' class='fa ".foodpress_opt_val($fp_options, 'fp__f2','fa-book' ) ."'></i></span>
 							<div class='fp_inner_box'>
@@ -106,23 +106,23 @@ function foodpress_menucard_print($array, $fp_options, $fp_options_2, $pmv='', $
 				break;
 
 			// nutritions
-				case 'nutritions':				
+				case 'nutritions':
 					$OT.= "<div class='fp_popup_option tint iconrow'>
 							<span class='fp_menudata_icon'><i title='". $object->title ."' class='fa ".foodpress_opt_val($fp_options, 'fp__f3','fa-cutlery' ) ."'></i></span>
 							<div class='fp_inner_box'>
 								<h4 class='fp_popup_option_title'>". $object->title ."</h4>
-								
+
 								<div class='fp_nutritions'>
 									<p class='fp_text'>". $object->left ."</p><p class='fp_text'>". $object->right ."</p><div class='clear'></div>
 								</div>
 							</div>
 						</div>";
 				break;
-				
+
 			case 'spicelevel':
 
 				$title = fp_get_language('Spicy Level', $fp_options_2, $lang);
-			
+
 				if(!empty($fp_options['fs_spicemeter_style']) && $fp_options['fs_spicemeter_style']=='bar'){
 					$spiceperc = (int)(($object->level/5)*100);
 					$spice_icon = foodpress_opt_val($fp_options, 'fp_icon_spice','fp-chili-alt' );
@@ -130,7 +130,7 @@ function foodpress_menucard_print($array, $fp_options, $fp_options_2, $pmv='', $
 					$OT.= "<div class='fp_popup_option tint iconrow'>
 							<span class='fp_menudata_icon'><i title='". $title ."' class='fa {$spice_icon}'></i></span>
 							<div class='fp_inner_box'>
-								<h4 class='fp_popup_option_title spicemeter2'>". $title .' <dt>'.$object->level ."/5</dt> <span><em style='width:{$spiceperc}%'></em></span></h4>	
+								<h4 class='fp_popup_option_title spicemeter2'>". $title .' <dt>'.$object->level ."/5</dt> <span><em style='width:{$spiceperc}%'></em></span></h4>
 							</div>
 						</div>";
 				}else{ // default style
@@ -151,17 +151,17 @@ function foodpress_menucard_print($array, $fp_options, $fp_options_2, $pmv='', $
 						</div>
 					</div>";
 				}
-				
+
 			break;
 		}// endswitch
 
 
 		// for custom meta data fields
 			if(!empty($object->x) && $box_f == 'customfield'.$object->x){
-				
+
 				$status = true;
-					
-				// content 
+
+				// content
 				if($object->content_type =='menuadditions'){
 					if(!empty($object->content)){
 						//$OT.=$object->content;
@@ -170,7 +170,7 @@ function foodpress_menucard_print($array, $fp_options, $fp_options_2, $pmv='', $
 							((!$__content_filter)? apply_filters('the_content',$menuadd->post_content): $menuadd->post_content):'');
 					}else{$status = false;	}
 				}else{
-					$__this_content = (!$__content_filter)? 
+					$__this_content = (!$__content_filter)?
 						apply_filters('the_content',$object->content): $object->content;
 				}
 

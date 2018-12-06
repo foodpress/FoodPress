@@ -3,26 +3,26 @@
 	ver: 0.1
 */
 jQuery(document).ready(function($){
-	
+
 	// ----------
 	// Sitewide POPUP
 	// ----------
 	// hide
-	
+
 	$('#foodpress_popup').on('click','.foodpress_close_pop_btn', function(){
 		var obj = $(this);
 		hide_popupwindowbox( obj);
-		
+
 	});
-	
+
 	$('.foodpress_popup_text').on('click',' .fp_close_pop_trig',function(){
 		var obj = $(this).parent();
 		hide_popupwindowbox( obj);
 	});
-	
+
 	$(document).mouseup(function (e){
 		var container=$('#foodpress_popup');
-		
+
 		if(container.hasClass('active')){
 			if (!container.is(e.target) // if the target of the click isn't the container...
 			&& container.has(e.target).length === 0) // ... nor a descendant of the container
@@ -32,13 +32,13 @@ jQuery(document).ready(function($){
 			}
 		}
 	});
-	
+
 	// function to hide popup that can be assign to click actions
 		function hide_popupwindowbox(){
-			
+
 			var container=$('#foodpress_popup');
 			var clearcontent = container.attr('clear');
-			
+
 			if(container.hasClass('active')){
 				container.animate({'margin-top':'70px','opacity':0},300).fadeOut().
 					removeClass('active')
@@ -52,28 +52,28 @@ jQuery(document).ready(function($){
 				$('#fp_popup_bg').fadeOut();
 			}
 		}
-		
+
 	/*
 		DISPLAY foodpress in-window popup box
 		Usage: <a class='button fp_popup_trig' content_id='is_for_content' dynamic_c='yes'>Click</a>
 	*/
 		$('.fp_popup_trig').click(function(){
-			
-			// dynamic content within the site
+
+			// dynamic content within the site 
 			var dynamic_c = $(this).attr('dynamic_c');
 			if(typeof dynamic_c !== 'undefined' && dynamic_c !== false){
-				
+
 				var content_id = $(this).attr('content_id');
 				var content = $('#'+content_id).html();
-				
+
 				$('#foodpress_popup').find('.foodpress_popup_text').html( content);
 			}
-			
+
 			// if content coming from a AJAX file
 			var attr_ajax_url = $(this).attr('ajax_url');
-			
+
 			if(typeof attr_ajax_url !== 'undefined' && attr_ajax_url !== false){
-				
+
 				$.ajax({
 					beforeSend: function(){
 						show_pop_loading();
@@ -86,27 +86,27 @@ jQuery(document).ready(function($){
 					}
 				});
 			}
-			
-			// change title if present		
+
+			// change title if present
 			var poptitle = $(this).attr('poptitle');
 			if(typeof poptitle !== 'undefined' && poptitle !== false){
 				$('#fpPOP_title').html(poptitle);
 			}
-			
-			
+
+
 			$('#foodpress_popup').find('.message').removeClass('bad good').hide();
 			$('#foodpress_popup').addClass('active').show().animate({'margin-top':'0px','opacity':1}).fadeIn();
 			$('html, body').animate({scrollTop:0}, 700);
 			$('#fp_popup_bg').show();
 		});
-		
+
 		function show_pop_bad_msg(msg){
 			$('#foodpress_popup').find('.message').removeClass('bad good').addClass('bad').html(msg).fadeIn();
 		}
 		function show_pop_good_msg(msg){
 			$('#foodpress_popup').find('.message').removeClass('bad good').addClass('good').html(msg).fadeIn();
 		}
-		
+
 		function show_pop_loading(){
 			$('.foodpress_popup_text').css({'opacity':0.3});
 			$('#fp_loading').fadeIn();
@@ -115,9 +115,9 @@ jQuery(document).ready(function($){
 			$('.foodpress_popup_text').css({'opacity':1});
 			$('#fp_loading').fadeOut(20);
 		}
-	
-	
-	
+
+
+
 // POPUP
 // -	SHORTCODE generator
 	fpPOSH_go_back();
@@ -127,12 +127,12 @@ jQuery(document).ready(function($){
 	var ss_shortcode_vars = new Array();
 
 	var shortcode;
-	
+
 	$('#fpPOSH_outter').on('click','.fpPOSH_btn',function(){
 		var obj = $(this);
 		var section = $(this).data('step2');
 		var code = $(this).data('code');
-		
+
 		// no 2nd step
 		if($(this).hasClass('nostep') ){
 			$('#fpPOSH_code').html('['+code+']').attr({'data-curcode':code});
@@ -141,20 +141,20 @@ jQuery(document).ready(function($){
 			pare.find('.step2').show();
 			pare.find('#'+section).show();
 			$('.fpPOSH_inner').animate({'margin-left':'-470px'});
-			
+
 			fpPOSH_show_back_btn();
-			
+
 			$('#fpPOSH_code').html('['+code+']').attr({'data-curcode':code});
 		}
 
 		var title = $(this).html();
 		$('h3.notifications span').html(title);
 	});
-	
-	
+
+
 	// each option for menu shortcode options
 	$('#foodpress_popup').on('click','.fpPop_option',function(){
-		
+
 		// make sure correct one is highlighted
 		$(this).siblings('.fpPop_option').removeClass('selected');
 		$(this).addClass('selected');
@@ -162,15 +162,15 @@ jQuery(document).ready(function($){
 		var value = $(this).data('value');
 		var codevar = $(this).data('codevar');
 
-		if(value!='' && value!='undefined'){			
+		if(value!='' && value!='undefined'){
 			fpPOSH_update_codevars(codevar,value);
 		}else if(!value){
-			fpPOSH_remove_codevars(codevar);			
-		}	
+			fpPOSH_remove_codevars(codevar);
+		}
 	});
-	
 
-	
+
+
 	// show back button
 	function fpPOSH_show_back_btn(){
 		$('#fpPOSH_back').animate({'left':'0px'});
@@ -178,13 +178,13 @@ jQuery(document).ready(function($){
 	}
 	// go back button on the shortcode popup
 	function fpPOSH_go_back(){
-		$('#fpPOSH_back').click(function(){		
-			$(this).animate({'left':'-20px'},'fast');	
-			
+		$('#fpPOSH_back').click(function(){
+			$(this).animate({'left':'-20px'},'fast');
+
 			$('h3.notifications').removeClass('back');
-		
+
 			$('.fpPOSH_inner').animate({'margin-left':'0px'}).find('.step2_in').fadeOut();
-			
+
 
 			// hide step 2
 			$(this).closest('#fpPOSH_outter').find('.step2').fadeOut();
@@ -201,9 +201,9 @@ jQuery(document).ready(function($){
 			// change subtitle
 			$('h3.notifications span').html( $('h3.notifications span').data('bf') );
 		});
-	}	
-	
-	
+	}
+
+
 	// width change buttons
 	$('#foodpress_popup').on('click','.fpopt_box_size p', function(){
 		var obj = $(this);
@@ -217,34 +217,34 @@ jQuery(document).ready(function($){
 	});
 
 	//yes no buttons
-	$('#foodpress_popup').on('click','.fp_yn_btn', function(){	
+	$('#foodpress_popup').on('click','.fp_yn_btn', function(){
 		var obj = $(this);
 		var codevar = obj.data('codevar');
 		var value;
-		
+
 		if(obj.hasClass('NO')){
-			obj.removeClass('NO');	
+			obj.removeClass('NO');
 			value = 'yes';
 		}else{
 			obj.addClass('NO');	value = 'no';
 		}
-		
+
 		fpPOSH_update_codevars(codevar,value);
 		report_select_steps_( obj, codevar );
-	
+
 	});
 	// input and select fields
 	$('.fpPOSH_inner').on('change','.fpPOSH_input, .fpPOSH_select', function(){
 		var obj = $(this);
 		var value = obj.val();
 		var codevar = obj.data('codevar');
-		
-		if(value!='' && value!='undefined'){			
+
+		if(value!='' && value!='undefined'){
 			fpPOSH_update_codevars(codevar,value);
 			report_select_steps_( obj, codevar );
 		}else if(!value){
-			fpPOSH_remove_codevars(codevar);			
-		}		
+			fpPOSH_remove_codevars(codevar);
+		}
 	});
 
 
@@ -275,10 +275,10 @@ jQuery(document).ready(function($){
 
 
 		// update the current shortcode based on selection
-		if(value!='' && value!='undefined'){			
+		if(value!='' && value!='undefined'){
 			fpPOSH_update_codevars(codevar,value);
 		}else if(!value){
-			fpPOSH_remove_codevars(codevar);			
+			fpPOSH_remove_codevars(codevar);
 		}
 
 		if(value=='ss_1'){
@@ -305,7 +305,7 @@ jQuery(document).ready(function($){
 				ss_shortcode_vars.push(codevar);
 			}
 		}
-		
+
 	}
 
 	function remove_select_step_vals(){
@@ -318,46 +318,46 @@ jQuery(document).ready(function($){
 			}
 		}
 		ss_shortcode_vars=[];
-		
+
 	}
 
 	// INSERT shortcode to WYSIWYG editor
 	$('.fpPOSH_footer').on('click','.fpPOSH_insert',function(){
 		//console.log(shortcode_keys);
 		//fpPOSH_update_shortcode();
-		
+
 		var shortcode = $('#fpPOSH_code').html();
 		tinymce.activeEditor.execCommand('mceInsertContent', false, shortcode);
-		
+
 		hide_popupwindowbox();
-		
-		
+
+
 	});
 
 	// update shortcode based on new selections
 	function fpPOSH_update_shortcode(){
-		
+
 		var el = $('#fpPOSH_code');
 		var string = el.data('curcode')+' ';
-		
+
 		if(shortcode_vars.length==0){
 			string=string;
 		}else{
 			$.each( shortcode_vars, function( key, value ) {
 				string += value.code+'="'+value.val+'" ';
-			});			
+			});
 		}
-		
+
 		// update the shortcode attr on insert button
 		var stringx = '['+string+']';
 		el.html(stringx).attr({'data-curcode': string});
-		
+
 	}
 
 	// UPDATE or ADD new shortcode variable to obj
-	function fpPOSH_update_codevars(codevar,value){		
-		
-		if(shortcode_keys.indexOf(codevar)>-1 
+	function fpPOSH_update_codevars(codevar,value){
+
+		if(shortcode_keys.indexOf(codevar)>-1
 			&& shortcode_vars.length>0){
 			$.each( shortcode_vars, function( key, arr ) {
 				if(arr && arr.code==codevar){
@@ -375,7 +375,7 @@ jQuery(document).ready(function($){
 
 	// REMOVE a shortcode variable to object
 	function fpPOSH_remove_codevars(codevar){
-		
+
 		// remove from main object
 		$.each( shortcode_vars, function( key, arr ) {
 			if(arr.code==codevar){
