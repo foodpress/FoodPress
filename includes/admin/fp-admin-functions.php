@@ -11,7 +11,7 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
- 
+
 function foodpress_prevent_admin_access() {
 	if ( get_option('foodpress_lock_down_admin') == 'yes' && ! is_ajax() && ! ( current_user_can('edit_posts') || current_user_can('manage_foodpress') ) ) {
 		//wp_safe_redirect(get_permalink(woocommerce_get_page_id('myaccount')));
@@ -22,56 +22,55 @@ function foodpress_prevent_admin_access() {
 
 /*	Dynamic styles generation */
 	function foodpress_generate_options_css($newdata='') {
-	 
+
 		/** Define some vars **/
-		$data = $newdata; 
+		$data = $newdata;
 		$uploads = wp_upload_dir();
-		
+
 		//$css_dir = get_template_directory() . '/css/'; // Shorten code, save 1 call
 		//$css_dir = FP_DIR . '/'. FP_BASE.  '/assets/css/'; // Shorten code, save 1 call
-		$css_dir = FP_PATH.  '/assets/css/'; 
-		
+		$css_dir = FP_PATH.  '/assets/css/';
+
 		/** Save on different directory if on multisite **/
 		if(is_multisite()) {
 			$aq_uploads_dir = trailingslashit($uploads['basedir']);
 		} else {
 			$aq_uploads_dir = $css_dir;
 		}
-		
+
 		/** Capture CSS output **/
 		ob_start();
 		require($css_dir . 'dynamic_styles.php');
 		$css = ob_get_clean();
 
 		//print_r($css);
-		
+
 		/** Write to options.css file **/
 		WP_Filesystem();
 		global $wp_filesystem;
 		if ( ! $wp_filesystem->put_contents( $aq_uploads_dir . 'foodpress_dynamic_styles.css', $css, 0777) ) {
 		    return true;
 		}
-		
+
 	}
 
-
 /** Add a SHORTCODE BUTTON to the WP editor. */
-	add_action('media_buttons_context',  'foodpress_add_shortcode_button');
+	add_action('media_buttons',  'foodpress_add_shortcode_button');
 	function foodpress_add_shortcode_button($context) {
-		global $pagenow, $typenow, $wpdb, $post;	
-		
-		
+		global $pagenow, $typenow, $wpdb, $post;
+
+
 		if ( $typenow == 'post' && ! empty( $_GET['post'] ) ) {
 //			$typenow = $post->post_type;
 		} elseif ( empty( $typenow ) && ! empty( $_GET['post'] ) ) {
 	        $post = get_post( $_GET['post'] );
 	        $typenow = $post->post_type;
 	    }
-		
-		if ( $typenow =='' || $typenow == "menu" ) return;		
-		
+
+		if ( $typenow =='' || $typenow == "menu" ) return;
+
 		if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') ) return;
-		
+
 //		//our popup's title
 //	  	$text = '[ ]';
 //	  	$title = 'foodpress Shortcode Generator';
@@ -87,7 +86,7 @@ function foodpress_prevent_admin_access() {
 
 
 
-// foodpress shortcode generator button for WYSIWYG editor 
+// foodpress shortcode generator button for WYSIWYG editor
 	 add_action('admin_init', 'foodpress_shortcode_button_initiat');
 	 function foodpress_shortcode_button_initiat() {
 
@@ -99,16 +98,16 @@ function foodpress_prevent_admin_access() {
 	        $post = get_post( $_GET['post'] );
 	        $typenow = (!empty($post) )? $post->post_type : '';
 	    }
-		
+
 		if ( $typenow == '' || $typenow == "menu" ) return;
-		
+
 
 	      //Abort early if the user will never see TinyMCE
 	      if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') && get_user_option('rich_editing') == 'true')
 	           return;
 
-	      //Add a callback to regiser our tinymce plugin   
-	      add_filter("mce_external_plugins", "foodpress_register_tinymce_plugin"); 
+	      //Add a callback to regiser our tinymce plugin
+	      add_filter("mce_external_plugins", "foodpress_register_tinymce_plugin");
 
 	      // Add a callback to add our button to the TinyMCE toolbar
 	      add_filter('mce_buttons', 'foodpress_add_tinymce_button');
@@ -130,16 +129,31 @@ function foodpress_prevent_admin_access() {
 	    return $buttons;
 	}
 
-
-/** Short code popup content */
-	function foodpress_shortcode_pop_content(){
-		global $foodpress, $fp_shortcode_box;	
+    function foodpress_shortcode_generator_content(){
+		global $foodpress, $fp_shortcode_box;
 		$content='';
 
 		require_once(FP_PATH.'/includes/class-shortcode_box_generator.php');
-		
+
 		$content = $fp_shortcode_box->get_content();
-		
+        echo $content;
+		/*echo $foodpress->output_foodpress_pop_window(array(
+				'content'=>$content,
+				'class'=>'foodpress_shortcode',
+				'attr'=>'clear="false"',
+				'title'=>'Shortcode Generator'
+		));*/
+	}
+
+/** Short code popup content */
+	function foodpress_shortcode_pop_content(){
+		global $foodpress, $fp_shortcode_box;
+		$content='';
+
+		require_once(FP_PATH.'/includes/class-shortcode_box_generator.php');
+
+		$content = $fp_shortcode_box->get_content();
+
 		echo $foodpress->output_foodpress_pop_window(array(
 				'content'=>$content,
 				'class'=>'foodpress_shortcode',
@@ -160,11 +174,11 @@ function foodpress_prevent_admin_access() {
 
 // SAVE: closed meta field boxes
 	function foodpress_save_collapse_metaboxes( $page, $post_value) {
-	    
+
 		if(empty($post_value)){
-			
+
 			$user_id = get_current_user_id();
-			$option_name = 'closedmetaboxes_' . $page; 
+			$option_name = 'closedmetaboxes_' . $page;
 			$opts = get_user_option( $option_name, $user_id );
 
 			if(!empty($opts)){
@@ -174,28 +188,28 @@ function foodpress_prevent_admin_access() {
 
 			return;
 		}else{
-			
+
 			$user_id = get_current_user_id();
 			$option_name = 'closedmetaboxes_' . $page; // use the "pagehook" ID
-			
+
 			$meta_box_ids = array_unique(array_filter(explode(',',$post_value)));
-			
+
 			$meta_box_id_ar =serialize($meta_box_ids);
-			
+
 			update_user_option( $user_id, $option_name,  $meta_box_id_ar , true );
 		}
-		
+
 	}
 
 
 	function foodpress_get_collapsed_metaboxes($page){
-		
+
 		$user_id = get_current_user_id();
 	    $option_name = 'closedmetaboxes_' . $page; // use the "pagehook" ID
 		$option_arr = get_user_option( $option_name, $user_id );
-		
+
 		if(empty($option_arr)) return;
-		
+
 		return unserialize($option_arr);
 		//return ($option_arr);
 

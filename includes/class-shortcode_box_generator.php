@@ -10,7 +10,7 @@
  */
 
 class foodpress_admin_shortcode_box{
-	
+
 	private $_in_select_step=false;
 	private $fp_opt;
 	private $fp_opt_2;
@@ -19,9 +19,9 @@ class foodpress_admin_shortcode_box{
 		$this->fp_opt= get_option('fp_options_food_1');
 		$this->fp_opt_2= get_option('fp_options_food_2');
 	}
-	
-	// default fields that are re-used 
-		public function shortcode_default_field($key){		
+
+	// default fields that are re-used
+		public function shortcode_default_field($key){
 			$SC_defaults = array(
 				'lang'=>array(
 					'name'=>'Language Variation (<a href="'.get_admin_url().'admin.php?page=foodpress&tab=evcal_2">Update Language Text</a>)',
@@ -32,10 +32,10 @@ class foodpress_admin_shortcode_box{
 					'options'=>array('L1'=>'L1','L2'=>'L2','L3'=>'L3')
 				)
 			);
-			
-			return $SC_defaults[$key];		
-		}	
-	
+
+			return $SC_defaults[$key];
+		}
+
 	// ALL the fields for shortcode generator INIT
 		public function get_shortcode_field_array(){
 
@@ -47,7 +47,7 @@ class foodpress_admin_shortcode_box{
 			// additonal taxonomy
 				$__additional_f = ( !empty($this->fp_opt['fp_cusTax']) && $this->fp_opt['fp_cusTax']=='yes')? true:false;
 				$cusTaxName = (!empty($this->fp_opt['fp_mty3']))?$this->fp_opt['fp_mty3']:'Custom Category';
-				
+
 				if($__additional_f){
 					$cusTax_ar =array(
 						'name'=>$cusTaxName.' ID',
@@ -74,7 +74,7 @@ class foodpress_admin_shortcode_box{
 							'value'=>$this->html___regular_item_options()
 						),array(
 							'name'=>'Menu Item Box min-height (px)',
-							'type'=>'text',						
+							'type'=>'text',
 							'guide'=>'Pixel value for the height of the box',
 							'placeholder'=>'eg. 20',
 							'var'=>'boxhei',
@@ -96,7 +96,7 @@ class foodpress_admin_shortcode_box{
 							'name'=>'Menu Item Order By',
 							'type'=>'select',
 							'options'=>array(
-									'title'=>'Item Name', 
+									'title'=>'Item Name',
 									'date'=>'Posted Date',
 									'menu_order'=>'Menu Order',
 									),
@@ -107,7 +107,7 @@ class foodpress_admin_shortcode_box{
 							'name'=>'Menu Item Order',
 							'type'=>'select',
 							'options'=>array(
-									'ASC'=>'ASC', 
+									'ASC'=>'ASC',
 									'DESC'=>'DESC',
 									),
 							'guide'=>'Select the order direction',
@@ -115,7 +115,7 @@ class foodpress_admin_shortcode_box{
 							'default'=>'asc',
 						),array(
 							'name'=>'Excerpt Word count',
-							'type'=>'text',						
+							'type'=>'text',
 							'guide'=>'Number of word count to show for menu item description text',
 							'placeholder'=>'eg. 20',
 							'var'=>'wordcount',
@@ -126,13 +126,13 @@ class foodpress_admin_shortcode_box{
 							'guide'=>'Select how you want the user to interact with menu items. Do not link to anything will only show menu items and user clicks on menu items will do nothing.',
 							'options'=>apply_filters('foodpress_sc_user_interaction', array(
 								'lightbox'=>'Open Lightbox',
-								'none'=>'Do not link to anything',							
+								'none'=>'Do not link to anything',
 							)),
 							'var'=>'ux',
 							'default'=>'no',
 						),array(
 							'name'=>'Show menu last updated date',
-							'type'=>'YN',						
+							'type'=>'YN',
 							'guide'=>'This will show the last date a menu item was updated',
 							'var'=>'show_menu_updated','default'=>'no',
 						)
@@ -151,11 +151,11 @@ class foodpress_admin_shortcode_box{
 							'name'=>'Select the Menu Type',
 							'type'=>'select_step',
 							'options'=>array(
-									'ss_1'=>'Uncategorize Menu', 
-									'ss_2'=>'Categorized Menu', 
-									'ss_5'=>'Specific Type Menu', 
+									'ss_1'=>'Uncategorize Menu',
+									'ss_2'=>'Categorized Menu',
+									'ss_5'=>'Specific Type Menu',
 									//'ss_3'=> $mealTypeName.' Menu',
-									//'ss_4'=> $dishTypeName.' Menu',							
+									//'ss_4'=> $dishTypeName.' Menu',
 								),
 							'guide'=>'Select the type of menu to further customize options for that particular menu type',
 							'var'=>'menu_type'
@@ -190,7 +190,7 @@ class foodpress_admin_shortcode_box{
 								'value'=>$this->custom_shortcode_option_3()
 							),
 
-							array('type'=>'sectionopen', 'name'=>'de')								
+							array('type'=>'sectionopen', 'name'=>'de')
 								,array( // only for normal list menu
 									'name'=>'Center align menu',
 									'type'=>'YN',
@@ -198,8 +198,8 @@ class foodpress_admin_shortcode_box{
 									'var'=>'tac',
 									'default'=>'no',
 								)
-								,array('type'=>'sectionclose', 'name'=>'de')	
-							,array('type'=>'sectionopen', 'name'=>'tb', 'display'=>'hide')								
+								,array('type'=>'sectionclose', 'name'=>'de')
+							,array('type'=>'sectionopen', 'name'=>'tb', 'display'=>'hide')
 								,array( // only for tabbed version
 									'name'=>'Tabbed Menu focused tab term ID',
 									'type'=>'text',
@@ -207,15 +207,15 @@ class foodpress_admin_shortcode_box{
 									'var'=>'focused_tab',
 									'default'=>'no',
 								)
-								,array('type'=>'sectionclose', 'name'=>'tb')	
+								,array('type'=>'sectionclose', 'name'=>'tb')
 
 							,array(
 								'name'=>'Primary Categorization By',
 								'type'=>'select_step',
 								'options'=>array(
 									''=>__('Select','foodpress'),
-									'meal_type'=>$mealTypeName, 
-									'dish_type'=>$dishTypeName,					
+									'meal_type'=>$mealTypeName,
+									'dish_type'=>$dishTypeName,
 								),
 								'guide'=>'Select which category type to use as primary categorization type',
 								'var'=>'primary'
@@ -252,7 +252,7 @@ class foodpress_admin_shortcode_box{
 										'guide'=>'Selecting this will categorize each '.$mealTypeName.' categories into '.$dishTypeName.' sub categories.',
 										'var'=>'cat_by_dish',
 										'default'=>'no', 'afterstatement'=>'clps_dt_style'
-										
+
 									)
 										,array(
 											'name'=>'Enable collapsable '.$dishTypeName.' headers',
@@ -297,7 +297,7 @@ class foodpress_admin_shortcode_box{
 										'default'=>'no',
 									)
 								,array(	'type'=>'close_select_step')
-						
+
 						,array(	'type'=>'close_select_step',	)
 					))
 				),
@@ -322,7 +322,7 @@ class foodpress_admin_shortcode_box{
 							'guide'=>'Select how you want the user to interact with menu items. Do not link to anything will only show menu items and user clicks on menu items will do nothing.',
 							'options'=>apply_filters('foodpress_sc_user_interaction', array(
 								'lightbox'=>'Open Lightbox',
-								'none'=>'Do not link to anything',							
+								'none'=>'Do not link to anything',
 							)),
 							'var'=>'ux',
 							'default'=>'no',
@@ -371,17 +371,17 @@ class foodpress_admin_shortcode_box{
 			));
 
 
-			
+
 			return $shortcode_guide_array;
 		}
-	
+
 	// interpret the array of shortcode data into HTML output
 		public function shortcode_interpret($var){
 			global $foodpress;
 			$line_class = array('fp_fieldline');
 
 			ob_start();
-					
+
 
 			// GUIDE popup
 			$guide = (!empty($var['guide']))? $foodpress->throw_guide($var['guide'], 'L',false):null;
@@ -398,58 +398,58 @@ class foodpress_admin_shortcode_box{
 				// custom type and its html pluggability
 				case has_action("foodpress_shortcode_box_interpret_{$var['type']}"):
 					do_action("foodpress_shortcode_box_interpret_{$var['type']}");
-				
+
 				case 'YN':
 					$line_class[]='fpYN_row';
-					echo 
+					echo
 					"<div class='".implode(' ', $line_class)."'>
 						<p class='label'>".foodpress_io_yn($var['default'],'', $var['var'])."
-						<span >".__($var['name'],'foodpress')."</span>".$guide."</p>							
+						<span >".__($var['name'],'foodpress')."</span>".$guide."</p>
 					</div>";
 				break;
 
 				case 'customcode':
 					echo $var['value'];
 				break;
-				
+
 				case 'text':
-					echo 
+					echo
 					"<div class='".implode(' ', $line_class)."'>
 						<p class='label'><input class='fpPOSH_input' type='text' data-codevar='".$var['var']."' placeholder='".( (!empty($var['placeholder']))?$var['placeholder']:null) ."'/> ".__($var['name'],'foodpress')."".$guide."</p>
 					</div>";
 				break;
 
 				case 'subheader':
-					echo 
+					echo
 					"<div class='".implode(' ', $line_class)."'>
 						<p class='label'>".$var['name']."</p>
 					</div>";
 				break;
-				
+
 				// MENU type item taxonomies
 				case 'menuitemtype':
-					
-					$terms = get_terms($var['var']);	
-					
+
+					$terms = get_terms($var['var']);
+
 					$view ='';
 					if(!empty($terms) && count($terms)>0){
 						foreach($terms as $term){
 							$view.= '<em>'.$term->name .' ('.$term->term_id.')</em>';
 						}
 					}
-					
+
 					$view_html = (!empty($view))? '<span class="fpPOSH_tax">Values<span >'. $view .'</span></span>': '<span class="fpPOSH_tax">Values<span >You dont have any tags with menu items in it.</span></span>';
-										
-					echo 
+
+					echo
 					"<div class='".implode(' ', $line_class)."'>
 						<p class='label'><input class='fpPOSH_input' type='text' data-codevar='".$var['var']."' placeholder='".( (!empty($var['placeholder']))?$var['placeholder']:null) ."'/> ".__($var['name'],'foodpress')." {$view_html}</p>
 					</div>";
 				break;
 
 				// Menu item taxonomy select
-				case 'taxselect':					
+				case 'taxselect':
 					$terms = get_terms($var['var']);
-					
+
 					$view ='';
 					if(!empty($terms) && count($terms)>0){
 						$view.="<option>".__('Select','foodpress')."</option>";
@@ -458,25 +458,25 @@ class foodpress_admin_shortcode_box{
 						}
 					}
 
-					echo 
+					echo
 					"<div class='".implode(' ', $line_class)."'>
 						<p class='label'>
 							<select class='fpPOSH_select' data-codevar='{$var['var']}'>{$view}
 						</select> ".__($var['name'],'foodpress')." {$guide}</p>
 					</div>";
 				break;
-				
+
 				case 'select':
-					echo 
+					echo
 					"<div class='".implode(' ', $line_class)."'>
 						<p class='label'>
 							<select class='fpPOSH_select' data-codevar='".$var['var']."'>";
-							
+
 							foreach($var['options'] as $f=>$val){
 								echo "<option value='".$f."'>".$val."</option>";
-							}		
-							
-							echo 
+							}
+
+							echo
 							"</select> ".__($var['name'],'foodpress')."".$guide."</p>
 					</div>";
 				break;
@@ -484,15 +484,15 @@ class foodpress_admin_shortcode_box{
 				// select steps
 				case 'select_step':
 					$line_class[]='select_step_line';
-					echo 
+					echo
 					"<div class='".implode(' ', $line_class)."'>
 						<p class='label '>
 							<select class='fpPOSH_select_step' data-codevar='".$var['var']."'>";
-							
+
 							foreach($var['options'] as $f=>$val){
 								echo (!empty($val))? "<option value='".$f."'>".$val."</option>":null;
-							}		
-							echo 
+							}
+							echo
 							"</select> ".__($var['name'],'foodpress')."".$guide."</p>
 					</div>";
 				break;
@@ -503,7 +503,7 @@ class foodpress_admin_shortcode_box{
 				break;
 
 				case 'close_select_step':	echo "</div>";	$this->_in_select_step=false; break;
-				
+
 			}// end switch
 
 			// afterstatement
@@ -521,70 +521,70 @@ class foodpress_admin_shortcode_box{
 				$display = (!empty($var['display']) && $var['display']=='hide')? 'none':'block';
 				echo "<div class='fp_section ".$var['name']."' style='display:{$display}'>";
 			}
-			
+
 			return ob_get_clean();
 		}
-	
+
 	// RETURN: HTML inside shortcode generator
 		public function get_content(){
-			
+
 			$shortcode_guide_array = $this->get_shortcode_field_array();
-			
+
 			ob_start();
 			?>
-			
+
 			<div id='fpPOSH_outter'>
+				<div class='fpPOSH_footer'>
+					<p id='fpPOSH_code' data-defsc='add_foodpress_menu' data-curcode='add_foodpress_menu' >[add_foodpress_menu]</p>
+					<span class='fpPOSH_insert' title="<?php _e('Click to copy or insert shortcode','foodpress');?>"></span>
+				</div>
 				<h3 class='notifications '><em id='fpPOSH_back'></em><span data-bf='Select option below to customize shortcode variable values'>Select option below to customize shortcode variable values</span></h3>
 				<div class='fpPOSH_inner'>
 					<div class='step1 steps'>
-					<?php					
+					<?php
 						foreach($shortcode_guide_array as $options){
 							$__step_2 = (empty($options['variables']))? ' nostep':null;
-							
+
 							echo "<div class='fpPOSH_btn{$__step_2}' data-step2='".$options['id']."' data-code='".$options['code']."'>".$options['name']."</div>";
-						}	
-					?>				
+						}
+					?>
 					</div>
 					<div class='step2 steps' >
 						<?php
 							foreach($shortcode_guide_array as $options){
-								
+
 								if(!empty($options['variables'])) {
-								
+
 									echo "<div id='".$options['id']."' class='step2_in' style='display:none'>";
-									
-									foreach($options['variables'] as $var){									
+
+									foreach($options['variables'] as $var){
 										echo (!empty($var))? $this->shortcode_interpret($var):null;
-									}									
-									
+									}
+
 									echo "</div>";
 								}
 							}
 						?>
-						
+
 					</div>
 					<div class='clear'></div>
 				</div>
-				<div class='fpPOSH_footer'>
-					<p id='fpPOSH_code' data-defsc='add_foodpress_menu' data-curcode='add_foodpress_menu' >[add_foodpress_menu]</p>
-					<span class='fpPOSH_insert' title="<?php _e('Click to insert shortcode','foodpress');?>"></span>
-				</div>
 			</div>
-		
+
 			<?php
 			return ob_get_clean();
-		
+
 		}
 
 
-	
+
 
 	// HTML code for custom options
 		public function html___regular_item_options(){
 			ob_start();
-			?>			
-			<div class='fp_sc_menu_1'>	
-				<?php echo $this->get_custom_short_code_styles();?>			
+			?>
+			<div class='fp_sc_menu_1'>
+				<?php echo $this->get_custom_short_code_styles();?>
 			</div>
 			<?php
 			return ob_get_clean();
@@ -605,15 +605,15 @@ class foodpress_admin_shortcode_box{
 		function html___features_item_options(){
 			ob_start();
 			?>
-			<div class='fp_sc_menu_1'>	
+			<div class='fp_sc_menu_1'>
 				<div class='fpPop_options brdb'>
 					<h3><?php _e('Select the featured item style','foodpress');?></h3>
 					<p class='fpPop_option selected' data-codevar='ft_style' data-value='one'><img src='<?php echo FP_URL?>/assets/images/backend/ft_i_1.jpg'/>Highlight<br/>Item</p>
 					<p class='fpPop_option' data-codevar='ft_style' data-value='two'><img src='<?php echo FP_URL?>/assets/images/backend/ft_i_2.jpg'/>Info over<br/>Image</p><p class='fpPop_option' data-codevar='ft_style' data-value='three'><img src='<?php echo FP_URL?>/assets/images/backend/ft_i_3.jpg'/>Info under<br/>Image</p>
 					<div class='clear'></div>
-					
+
 					<?php echo $this->html___opt_box_width('fbox_width');?>
-					
+
 				</div>
 			</div>
 			<?php
@@ -625,15 +625,15 @@ class foodpress_admin_shortcode_box{
 
 			ob_start();
 			?>
-			
-			<div class='fp_sc_menu_1'>	
+
+			<div class='fp_sc_menu_1'>
 				<div class='fpPop_options brdb'>
 					<h3><?php _e('Select the single item style','foodpress');?></h3>
-					<p class='fpPop_option selected' data-codevar='ind_style' data-value='one'><img src='<?php echo FP_URL?>/assets/images/backend/ft_i_0.jpg'/>Text only</p>			
+					<p class='fpPop_option selected' data-codevar='ind_style' data-value='one'><img src='<?php echo FP_URL?>/assets/images/backend/ft_i_0.jpg'/>Text only</p>
 					<p class='fpPop_option' data-codevar='ind_style' data-value='two'><img src='<?php echo FP_URL?>/assets/images/backend/ft_i_2.jpg'/>Info over<br/>Image</p>
 					<p class='fpPop_option' data-codevar='ind_style' data-value='three'><img src='<?php echo FP_URL?>/assets/images/backend/ft_i_3.jpg'/>Info under<br/>Image</p>
-					<p class='fpPop_option' data-codevar='ind_style' data-value='four'><img src='<?php echo FP_URL?>/assets/images/backend/info_thumb_opp.jpg'/>Info next to<br/>Image</p>				
-								
+					<p class='fpPop_option' data-codevar='ind_style' data-value='four'><img src='<?php echo FP_URL?>/assets/images/backend/info_thumb_opp.jpg'/>Info next to<br/>Image</p>
+
 					<div class='clear'></div>
 				</div>
 			</div>
@@ -644,11 +644,11 @@ class foodpress_admin_shortcode_box{
 	// HTML code for categorized menu
 		public function custom_shortcode_option_3(){
 			ob_start();
-			?>			
-			<div class='fp_sc_menu_1'>	
+			?>
+			<div class='fp_sc_menu_1'>
 				<div class='fpPop_options brdb section_selection'>
 					<h3><?php _e('Select Categorized Menu Style','foodpress');?></h3>
-					<p class='fpPop_option selected' data-codevar='cat_sty' data-value='de'><img src='<?php echo FP_URL?>/assets/images/backend/cm_1.png'/><?php _e('Normal List','foodpress');?></p>			
+					<p class='fpPop_option selected' data-codevar='cat_sty' data-value='de'><img src='<?php echo FP_URL?>/assets/images/backend/cm_1.png'/><?php _e('Normal List','foodpress');?></p>
 					<p class='fpPop_option' data-codevar='cat_sty' data-value='bx'><img src='<?php echo FP_URL?>/assets/images/backend/cm_2.png'/><?php _e('Box Style','foodpress');?></p>
 					<p class='fpPop_option' data-codevar='cat_sty' data-value='tb'><img src='<?php echo FP_URL?>/assets/images/backend/cm_3.png'/><?php _e('Tabbed Style','foodpress');?></p>
 					<p class='fpPop_option' data-codevar='cat_sty' data-value='sc'><img src='<?php echo FP_URL?>/assets/images/backend/cm_4.png'/><?php _e('Scroll Style','foodpress');?></p>
@@ -662,7 +662,7 @@ class foodpress_admin_shortcode_box{
 	function get_custom_short_code_styles(){
 		ob_start();?>
 		<div class='fpPop_options brdb'>
-			<h3><?php _e('Select the Menu Item Style','foodpress');?></h3>			
+			<h3><?php _e('Select the Menu Item Style','foodpress');?></h3>
 			<p class='fpPop_option selected' data-codevar='style' data-value='one'><img src='<?php echo FP_URL?>/assets/images/backend/lines.jpg'/>Text Based</p>
 			<p class='fpPop_option ' data-codevar='style' data-value='two'><img src='<?php echo FP_URL?>/assets/images/backend/thumb_lines.jpg'/>Thumb and Text</p>
 			<div class='clear'></div>

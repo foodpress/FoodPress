@@ -22,7 +22,7 @@ jQuery(document).ready(function($) {
                 authorurl : 'http://www.ashanjay.com',
                 version : "1.0"
              };
-          }  
+          }
     });
 
     tinymce.PluginManager.add('foodpress_shortcode_button', tinymce.plugins.foodpress_shortcode_button);

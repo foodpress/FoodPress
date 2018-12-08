@@ -10,16 +10,11 @@ global $foodpress;
 	<?php	/*	LICENSES Section	*/		?>
 	<div class='licenses_list' id='foodpress_licenses'>
 		<?php
-			//$args = (object)array('version' => $foodpress->fp_updater->getRemote_version());
-			//var_dump($args->version);
-			//var_dump($foodpress->fp_updater->getRemote_information($args));
-
 			$admin_url = admin_url();
 			$show_license_msg = true;
 
 			$fp_licenses = $foodpress->admin->product->get_foodpress_license_data();
 
-			//var_dump(get_option('_fp_licenses'));
 			// render existing licenses
 			if(!empty($fp_licenses) && count($fp_licenses) > 0) {
 				foreach($fp_licenses as $slug => $fpl) {
@@ -125,7 +120,7 @@ global $foodpress;
 					//var_dump($_addon_options_array);
 					$guide = (!empty($_addon_options_array['guide_file'])) ? "<span class='fp_admin_btn btn_prime foodpress_guide_btn fp_popup_trig' ajax_url='{$_addon_options_array['guide_file']}' poptitle='How to use {$addons['name']}'>Guide</span>" : null;
 					$_this_version = "<span class='fpa_ver' title='My Version'>".$_addon_options_array['version']."</span>";
-					var_dump($_addon_options_array);
+					//var_dump($_addon_options_array);
 					$varSlug = str_replace('-', '_', $slug) . '_updater';
 					if(isset($foodpress->{$varSlug})) {
 						if(isset($fp_licenses[$slug]['has_new_update']) && !empty($fp_licenses[$slug]['has_new_update']) && $fp_licenses[$slug]['has_new_update']) {

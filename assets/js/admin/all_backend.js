@@ -59,7 +59,7 @@ jQuery(document).ready(function($){
 	*/
 		$('.fp_popup_trig').click(function(){
 
-			// dynamic content within the site 
+			// dynamic content within the site
 			var dynamic_c = $(this).attr('dynamic_c');
 			if(typeof dynamic_c !== 'undefined' && dynamic_c !== false){
 
@@ -321,12 +321,25 @@ jQuery(document).ready(function($){
 
 	}
 
+	const copyToClipboard = str => {
+		const el = document.createElement('textarea');
+		el.value = str;
+		el.setAttribute('readonly', '');
+		el.style.position = 'absolute';
+		el.style.left = '-9999px';
+		document.body.appendChild(el);
+		el.select();
+		document.execCommand('copy');
+		document.body.removeChild(el);
+	};
+
 	// INSERT shortcode to WYSIWYG editor
 	$('.fpPOSH_footer').on('click','.fpPOSH_insert',function(){
 		//console.log(shortcode_keys);
 		//fpPOSH_update_shortcode();
 
 		var shortcode = $('#fpPOSH_code').html();
+		copyToClipboard(shortcode);
 		tinymce.activeEditor.execCommand('mceInsertContent', false, shortcode);
 
 		hide_popupwindowbox();

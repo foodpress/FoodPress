@@ -26,6 +26,7 @@ if ( ! function_exists( 'foodpress_settings' ) ) {
 		// Settings Tabs array
 		$food_tabs = apply_filters('foodpress_settings_tabs',array(
 			'food_1'=>__('Settings','foodpress'),
+			'food_sc'=>__('Shortcode','foodpress'),
 			'food_2'=>__('Language','foodpress'),
 			'food_3'=>__('Styles','foodpress'),
 			'food_6'=>__('Reservations','foodpress'),
@@ -161,6 +162,13 @@ switch ($focus_tab):
 <?php
 	break;
 
+	// Shortcode tabs
+	    case "food_sc":
+			foodpress_shortcode_generator_content();
+			//foodpress_shortcode_pop_content();
+			//echo "<a class='button fp_popup_trig' content_id='is_for_content' dynamic_c='yes'>Click</a>";
+
+		break;
 	// STYLES TAB
 		case "food_3":
 

@@ -3,11 +3,11 @@
  * Plugin Name: foodPress
  * Plugin URI: http://www.myfoodpress.com/
  * Description: Restaurant Menu & Reservation Plugin
- * Version: 1.5.4
+ * Version: 1.5.5
  * Author: Michael Gamble & Josh Riley
  * Author URI: http://www.myfoodpress.com
  * Requires at least: 4.5
- * Tested up to: 4.9.8
+ * Tested up to: 5.0
  * WC requires at least: 3.0.0
  * WC tested up to: 3.5.1
  *
@@ -26,7 +26,7 @@ if ( ! class_exists( 'foodpress' ) ) {
 
 class foodpress {
 
-	public $version = '1.5.4';
+	public $version = '1.5.5';
 
 	public $foodpress_menus;
 	public $reservations;
@@ -41,7 +41,7 @@ class foodpress {
 
 	protected static $_instance = null;
 
-	// setup one instance of eventon
+	// setup one instance
 	public static function instance(){
 		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self();

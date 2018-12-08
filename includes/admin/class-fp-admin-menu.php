@@ -31,30 +31,31 @@ class fp_Admin_Menus {
 	function admin_menu() {
 	    global $menu, $foodpress, $pagenow;
 
-		
+
 		// check for saved plugin update status to modify menu button
 		$licenses = get_option('_fp_licenses');
 		$fp_notification = (!empty($licenses['foodpress']['has_new_update']) && $licenses['foodpress']['has_new_update'])? ' <span class="update-plugins count-1" title="1 Plugin Update"><span class="update-count">1</span></span>':null;
-		
-		// Create admin menu page 
+
+		// Create admin menu page
 		$main_page = add_menu_page(__('foodPress','foodpress'), 'foodPress','manage_options','foodpress', array( $this, 'foodpress_settings_page'), FP_URL.'/assets/images/icons/foodpress_menu_icon.png');
 
 	    add_action( 'load-' . $main_page, array( $this,'foodpress_admin_help_tab' ));
 
 	    // add submenus to the eventon menu
+		add_submenu_page( 'foodpress', 'Shortcode', 'Shortcode', 'manage_options', 'admin.php?page=foodpress&tab=food_sc', '' );
 		add_submenu_page( 'foodpress', 'Language', 'Language', 'manage_options', 'admin.php?page=foodpress&tab=food_2', '' );
 		add_submenu_page( 'foodpress', 'Styles', 'Styles', 'manage_options', 'admin.php?page=foodpress&tab=food_3', '' );
 		add_submenu_page( 'foodpress', 'Reservations', 'Reservations', 'manage_options', 'admin.php?page=foodpress&tab=food_6', '' );
 		add_submenu_page( 'foodpress', 'Addons & Licenses', 'Addons & Licenses', 'manage_options', 'admin.php?page=foodpress&tab=food_5', '' );
 		add_submenu_page( 'foodpress', 'Support', 'Support', 'manage_options', 'admin.php?page=foodpress&tab=food_4', '' );
-		
+
 	}
 	/**
 	 * Highlights the correct top level admin menu item for Settings
 	 */
 		function foodpress_admin_menu_highlight() {
 			global $submenu;
-			
+
 			if ( isset( $submenu['foodpress'] )  )  {
 				$submenu['foodpress'][0][0] = 'Settings';
 				//unset( $submenu['foodpress'][2] );
@@ -70,7 +71,7 @@ class fp_Admin_Menus {
 			echo ob_get_clean();
 		}
 
-	
+
 
 	/** 	Duplicate menu action	 */
 		function foodpress_duplicate_menu_action() {
@@ -93,7 +94,7 @@ class fp_Admin_Menus {
 	/*** Admin Head */
 	function foodpress_admin_head() {
 			?>
-		
+
 		<style type="text/css">
 			#adminmenuwrap #menu-posts-menu .wp-menu-image:before{
 				content:"\e00c";
