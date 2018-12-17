@@ -203,10 +203,25 @@ class fp_settings_reservation{
 	function foodpress_reservation_settings_001(){
 		global $foodpress;
 		ob_start();
-		echo "<a href='".get_admin_url()."admin.php?page=foodpress&tab=food_6&action=nf#food_002' class='fp_admin_btn btn_triad'>Preview Notification Email</a> <a href='".get_admin_url()."admin.php?page=foodpress&tab=food_6&action=cf#food_002' class='fp_admin_btn btn_triad'>Preview Confirmation Email</a>";
+		echo "<a href='".get_admin_url()."admin.php?page=foodpress&tab=food_6&action=nf#food_002' class='fp_admin_btn btn_triad'>Preview Notification Email</a>";
+		echo "<a href='".get_admin_url()."admin.php?page=foodpress&tab=food_6&action=cf#food_002' class='fp_admin_btn btn_triad'>Preview Confirmation Email</a>";
+		echo "<a href='".get_admin_url()."admin.php?page=foodpress&tab=food_6&action=cancelf#food_002' class='fp_admin_btn btn_triad'>Preview Cancellation Email</a>";
 		if(!empty($_GET['action'])){
 
-			$type = ($_GET['action']=='nf')?'notification':'confirmation';
+			//$type = ($_GET['action']=='nf')?'notification':'confirmation';
+			switch($_GET['action']) {
+				case 'nf':
+					$type = 'notification';
+				break;
+				case 'cf':
+					$type = 'confirmation';
+				break;
+				case 'cancelf':
+					$type = 'cancellation';
+				break;
+				default:
+					$type = 'notification';
+			}
 			echo $foodpress->reservations->get_email_preview('jboune@blackbriar.com',$type);
 		}
 		return ob_get_clean();

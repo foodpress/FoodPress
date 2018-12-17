@@ -1,9 +1,10 @@
 <?php
 /**
- * Notification email to ADMIN
+ * Confirmation Email to customer
  *
- * @version  2.0
+ * @version 	2.0
  */
+
 
 	global $foodpress;
 
@@ -14,6 +15,8 @@
 	$fp_options_2 = get_option('fp_options_food_2');
 	$opt6 = get_option('fp_options_food_6');
 
+	$args = $args;
+
 	$lang = !empty($args['lang'])?$args['lang']: 'L1';
 
 	// for preview vs actual
@@ -23,6 +26,7 @@
 		$r_pmv = !empty($args['reservation_id'])? get_post_custom($args['reservation_id'] ):false;
 		$args = $args;
 	}
+
 
 	//styles
 		$__styles_date = "font-size:48px; color:#ABABAB; font-weight:bold; margin-top:5px";
@@ -41,25 +45,29 @@
 
 		// reused elements
 		$__item_p_beg = "<p style='{$__styles_02}'><span style='{$__styles_02a}'>";
-?>
 
+		// Internationalized date
+		$reservation_date = date_i18n( get_option( 'date_format'), strtotime($r_pmv['date'][0]));
+?>
+<?php
+	//print_r($args);
+?>
 <table width='100%' style='width:100%; margin:0;font-family:"open sans"'>
 	<tr>
 		<td style='<?php echo $__sty_td;?>'>
 			<div style="padding:20px; font-family:'open sans'">
-				<p style='<?php echo $__sty_lh;?>font-size:18px; font-style:italic; margin:0'><?php echo foodpress_get_custom_language( $fp_options_2,'you_have_received_a_new_reservation', 'You have received a new Reservation!', $lang)?></p>
+				<p style='<?php echo $__sty_lh;?>font-size:18px; font-style:italic; margin:0;'><?php echo foodpress_get_custom_language( $fp_options_2,'fprsvp_cancellation_text', 'Reservation Cancellation!',$lang)?></p>
 
-				<p style='<?php echo $__styles_02;?> padding-top:15px;'><span style='<?php echo $__styles_02a;?>'><?php echo foodpress_get_custom_language( $fp_options_2,'fprsvp_001', 'Reservation ID', $lang)?>:</span> # <?php echo $args['reservation_id'];?></p>
+				<p style='<?php echo $__styles_02;?> padding-top:15px;'><span style='<?php echo $__styles_02a;?>'><?php echo foodpress_get_custom_language( $fp_options_2,'fprsvp_001', 'Reservation ID',$lang)?>:</span> # <?php echo $args['reservation_id'];?></p>
 
-				<?php echo $__item_p_beg;?><?php echo foodpress_get_custom_language( $fp_options_2,'reservation_time', 'Reservation Time', $lang)?>:</span> <?php echo $r_pmv['date'][0].' '.$r_pmv['time'][0];?> <?php echo !empty($r_pmv['end_time'])?'-'.$r_pmv['end_time'][0]:null;?></p>
+				<?php echo $__item_p_beg;?><?php echo foodpress_get_custom_language( $fp_options_2,'reservation_time', 'Reservation Time',$lang)?>:</span> <?php echo $reservation_date.' '.$r_pmv['time'][0];?><?php echo !empty($r_pmv['end_time'])? '-'.$r_pmv['end_time'][0]:null;?></p>
 
-				<?php echo $__item_p_beg;?><?php echo foodpress_get_custom_language( $fp_options_2,'primary_content', 'Primary Contact', $lang)?>:</span> <?php echo !empty($r_pmv['name'])? $r_pmv['name'][0]:null?></p>
+				<?php echo $__item_p_beg;?><?php echo foodpress_get_custom_language( $fp_options_2,'primary_content', 'Primary Contact',$lang)?>:</span> <?php echo (!empty($r_pmv['name'])? $r_pmv['name'][0]:null);?></p>
 
-				<?php echo $__item_p_beg;?><?php echo foodpress_get_custom_language( $fp_options_2,'fprsvp_005', 'Email Address', $lang)?>:</span> <?php echo !empty($r_pmv['email'])? $r_pmv['email'][0]:null?></p>
+				<?php if(!empty($r_pmv['phone'])): echo $__item_p_beg;?><?php echo foodpress_get_custom_language( $fp_options_2,'fprsvp_006', 'Phone Number',$lang)?>:</span> <?php echo $r_pmv['phone'][0];?></p><?php endif;?>
 
-				<?php echo $__item_p_beg;?><?php echo foodpress_get_custom_language( $fp_options_2,'fprsvp_006', 'Phone Number', $lang)?>:</span> <?php echo !empty($r_pmv['phone'])? $r_pmv['phone'][0]:null?></p>
 
-				<?php echo $__item_p_beg;?><?php echo foodpress_get_custom_language( $fp_options_2,'party_size', 'Party Size', $lang)?>:</span> <?php echo !empty($r_pmv['people'])? $r_pmv['people'][0]:null?></p>
+				<?php echo $__item_p_beg;?><?php echo foodpress_get_custom_language( $fp_options_2,'party_size', 'Party Size',$lang)?>:</span> <?php echo (!empty($r_pmv['people'])? $r_pmv['people'][0]:null);?></p>
 
 				<?php
 					 for($x=1; $x<=foodpress_get_reservation_form_fields(); $x++){
@@ -98,7 +106,11 @@
 	</tr>
 	<tr>
 		<td  style='padding:20px; text-align:left;border-top:1px dashed #d1d1d1; font-style:italic; color:#ADADAD'>
-			<p style='<?php echo $__sty_lh.$__sty_m0;?>'><a target='_blank' href='<?php echo admin_url("post.php?post=".$args['reservation_id']."&action=edit"); ?>'><?php echo foodpress_get_custom_language( $fp_options_2,'fprsvp_002', 'View RSVP in wp-admin', $lang)?></a></p>
+			<?php
+				$__link = (!empty($fp_options['fprs_contact_link']))? $fp_options['fprs_contact_link']:site_url();
+			?>
+			<p style='<?php echo $__sty_lh.$__sty_m0;?> padding-bottom:5px;'><?php echo foodpress_get_custom_language( $fp_options_2,'we_look_forward_to_seeing_you', 'We look forward to seeing you!',$lang)?></p>
+			<p style='<?php echo $__sty_lh.$__sty_m0;?>'><a style='' href='<?php echo $__link;?>'><?php echo foodpress_get_custom_language( $fp_options_2,'contact_us_for_questions_and_concerns', 'Contact Us for questions and concerns',$lang)?></a></p>
 		</td>
 	</tr>
 </table>

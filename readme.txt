@@ -5,7 +5,7 @@ Author URI: https://www.myfoodpress.com/
 Tags: restaurants, menu, food, eating, menu management, reservations, online menu
 Requires at least: 3.8
 Tested up to: 5.0
-Stable tag: 1.5.5
+Stable tag: 1.5.6
 
 == Description ==
 FoodPress is an advanced restaurant menu management system that allows you to create various menus with categorizations and more.
@@ -16,6 +16,12 @@ FoodPress is an advanced restaurant menu management system that allows you to cr
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
+= 1.5.6 (2018-12-17) =
+ADDED: Deleting a reservation now sends a cancellation email.
+ADDED: Language options for cancellation email.
+FIXED: Edit link in notification email.
+FIXED: Admin meal and dish type icon media script.
+
 = 1.5.5 (2018-12-7) =
 ADDED: Shortcode menu item and settings tab to statically show the Shortcode Generator. TinyMCE -> Gutenberg deprecated custom editor buttons
 

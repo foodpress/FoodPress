@@ -45,13 +45,13 @@ $foodpress_custom_language_array = array(
 		),array(
 			'label'=>__('fat','foodpress'),'name'=>__('fat','foodpress'),
 		),
-		array('label'=>__('protein','foodpress'),'name'=>__('protein','foodpress')),		
+		array('label'=>__('protein','foodpress'),'name'=>__('protein','foodpress')),
 
-		// custom meta fields		
+		// custom meta fields
 		array('type'=>'parent', 'children'=>foodpress_lang_get_custom_meta_field()),
 
 	array('type'=>'togend'),
-	
+
 	array('type'=>'togheader','name'=>__('Other General','foodpress'),),
 		array('label'=>__('Location','foodpress'),'name'=>__('location','foodpress')),
 		array('label'=>__('Menu Last Updated','foodpress'),'name'=>__('menu_last_updated','foodpress')),
@@ -95,7 +95,7 @@ $foodpress_custom_language_array = array(
 		array('type'=>'parent', 'children'=>foodpress_lang_get_custom_fields('dish_type')),
 		array('label'=>__('Type the code to validate','foodpress'),'name'=>'fp_lang_resform_si008'),
 		array('label'=>__('Reserve Now','foodpress'),'name'=>'fp_lang_resform_A1'),
-		
+
 		array('label'=>__('By clicking you agree with our ','foodpress'),'name'=>'fp_lang_resform_si005'),
 		array('label'=>__('Privacy Policy','foodpress'),'name'=>'fp_lang_resform_si006'),
 		array('label'=>__('Terms of Use','foodpress'),'name'=>'fp_lang_resform_si007'),
@@ -123,6 +123,7 @@ $foodpress_custom_language_array = array(
 	array('type'=>'togheader','name'=>__('Reservation Emails','foodpress'),),
 		array('label'=>__('Subject: for notification','foodpress'),'name'=>'fprsvp_003','placeholder'=>'We have received your reservation!'),
 		array('label'=>__('Subject: for confirmation','foodpress'),'name'=>'fprsvp_004','placeholder'=>'New Reservation Submission!'),
+		array('label'=>__('Subject: for cancellation','foodpress'),'name'=>'fprsvp_cancellation_text','placeholder'=>'Reservation cancellation!'),
 
 		array('label'=>__('Reservation confirmation','foodpress'),'name'=>'reservation_confirmation'),
 		array('label'=>__('Reservation ID','foodpress'),'name'=>'fprsvp_001','legend'=>''),

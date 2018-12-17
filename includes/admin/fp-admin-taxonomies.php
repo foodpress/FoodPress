@@ -32,20 +32,20 @@ function foodpress_taxonomy_admin(){
 
 	add_action( 'dish_type_add_form_fields', 'fp_add_new_tems_disht', 10, 2 );
 	add_action( 'dish_type_edit_form_fields', 'fp_edit_term_page_disht', 10, 2 );
-	
-	add_action( 'edited_meal_type', 'fp_save_new_terms', 10, 2 );  
+
+	add_action( 'edited_meal_type', 'fp_save_new_terms', 10, 2 );
 	add_action( 'create_meal_type', 'fp_save_new_terms', 10, 2 );
 
-	add_action( 'edited_dish_type', 'fpdt_save_new_terms', 10, 2 );  
+	add_action( 'edited_dish_type', 'fpdt_save_new_terms', 10, 2 );
 	add_action( 'create_dish_type', 'fpdt_save_new_terms', 10, 2 );
 
 
 	global $pagenow;
 
-	if($pagenow =='edit-tags.php' && !empty($_GET['taxonomy']) && $_GET['taxonomy']=='meal_type' && $_GET['post_type']=='menu'){
+	//if($pagenow =='edit-tags.php' && !empty($_GET['taxonomy']) && $_GET['taxonomy']=='meal_type' && $_GET['post_type']=='menu'){
 		wp_enqueue_media();
-	}
-	
+	//}
+
 
 }
 
@@ -63,22 +63,22 @@ function foodpress_taxonomy_admin(){
 		function foodpress_menu_location_description() {
 			echo wpautop( __( 'Menu Locations Categories can be managed here. You can add menu items to locations and later create menus menu items from only certain locations.', 'foodpress' ) );
 		}
-	
+
 // additional columns to menu items
-	
+
 	// MEAL type
 		function fp_meal_type_edit_columns($defaults){
 			$defaults['meal_type_id'] = __('ID');
 		    $defaults['menuicon'] = __('Icon');
 		    return $defaults;
-		}   
+		}
 
 		function fp_meal_type_custom_columns($value, $column_name, $id){
 			if($column_name == 'menuicon'){
 				$term_meta = get_option( "fp_taxonomy_$id" );
 
-				$icon = (!empty($term_meta['fpm_iconname']))? 
-					"<p><i class='fa ".$term_meta['fpm_iconname']. "'/></p>": 
+				$icon = (!empty($term_meta['fpm_iconname']))?
+					"<p><i class='fa ".$term_meta['fpm_iconname']. "'/></p>":
 					"<p><i class='fa'>--</i></p>";
 
 				return $icon;
@@ -94,14 +94,14 @@ function foodpress_taxonomy_admin(){
 		    $defaults['dish_type_id'] = __('ID');
 		    $defaults['dishicon'] = __('Icon');
 		    return $defaults;
-		}   
+		}
 
 		function dish_type_custom_columns($value, $column_name, $id){
 			if($column_name == 'dishicon'){
 				$term_meta = get_option( "fp_taxonomy_$id" );
 
-				$icon = (!empty($term_meta['fpm_iconname']))? 
-					"<p><i class='fa ".$term_meta['fpm_iconname']. "'/></p>": 
+				$icon = (!empty($term_meta['fpm_iconname']))?
+					"<p><i class='fa ".$term_meta['fpm_iconname']. "'/></p>":
 					"<p><i class='fa'>--</i></p>";
 
 				return $icon;
@@ -116,12 +116,12 @@ function foodpress_taxonomy_admin(){
 		function location_edit_columns($defaults){
 		    $defaults['location_id'] = __('ID');
 		    return $defaults;
-		} 
+		}
 		function location_custom_columns($value, $column_name, $id){
 			if($column_name == 'location_id'){
 				return (int)$id;
 			}
-		} 
+		}
 
 // Menu item type extra field
 	// add term page
@@ -129,7 +129,7 @@ function foodpress_taxonomy_admin(){
 			global $foodpress;
 			echo foodpress_admin_load_font_icons_box();
 			// this will add the custom meta field to the add new term page
-			
+
 			?>
 			<div class="form-field" id='fp_icon_field'>
 				<label for="term_meta[fpm_iconname]"><?php _e( 'Menu Type Icon', 'foodpress' ); ?> <p class='faicon'><i class='fp fp-apple'></i><input type="hidden" name="term_meta[fpm_iconname]" id="term_meta[fpm_iconname]" value=""></p></label>
@@ -195,10 +195,10 @@ function foodpress_taxonomy_admin(){
 				</script>
 				<div class="clear"></div>
 			</div>
-			
+
 		<?php
 		}
-	
+
 	// Edit term page
 		function fp_edit_term_page($term) {
 
@@ -218,16 +218,16 @@ function foodpress_taxonomy_admin(){
 			if ( $thumbnail_id )
 				$image = wp_get_attachment_thumb_url( $thumbnail_id );
 			else
-				$image = fp_placeholder_img_src(); 
-			
-		 	
+				$image = fp_placeholder_img_src();
+
+
 			// menu type icon value
 		 	$__this_value = esc_attr( $term_meta['fpm_iconname'] ) ? esc_attr( $term_meta['fpm_iconname'] ) : '';
 
 			?>
 			<tr class="form-field">
 			<th scope="row" valign="top"><label for="term_meta[fpm_iconname]"><?php _e( 'Menu Type Icon', 'foodpress' ); ?></label></th>
-				<td id='fp_menuicon'>				
+				<td id='fp_menuicon'>
 					<p class='fp_icon_p faicon' ><i class='fa <?php echo (!empty($__this_value)? $__this_value: 'fp-apple');?>'></i><input type="hidden" name="term_meta[fpm_iconname]" id="term_meta[fpm_iconname]" value="<?php echo $__this_value;?>"></p>
 					<p class="description"><?php _e( 'Click on the icon to change','foodpress' ); ?></p>
 					<button class="remove_icon_button button"><?php _e( 'Remove Icon', 'foodpress' ); ?></button>
@@ -251,7 +251,7 @@ function foodpress_taxonomy_admin(){
 							});
 
 						// Uploading files
-						var file_frame;						
+						var file_frame;
 
 						jQuery(document).on( 'click', '.upload_image_button', function( event ){
 
@@ -316,7 +316,7 @@ function foodpress_taxonomy_admin(){
 				// Save the option array.
 				update_option( "fp_taxonomy_$t_id", $term_meta );
 			}
-		} 
+		}
 
 // dish type extra fields
 	// add dish type term page
@@ -324,7 +324,7 @@ function foodpress_taxonomy_admin(){
 			global $foodpress;
 			echo foodpress_admin_load_font_icons_box();
 			// this will add the custom meta field to the add new term page
-			
+
 			?>
 			<div class="form-field" id='fp_icon_field'>
 				<label for="term_meta[fpm_iconname]"><?php _e( 'Dish Type Icon', 'foodpress' ); ?> <p class='faicon'><i class='fp fp-apple'></i><input type="hidden" name="term_meta[fpm_iconname]" id="term_meta[fpm_iconname]" value=""></p></label>
@@ -338,7 +338,7 @@ function foodpress_taxonomy_admin(){
 					<button type="button" class="upload_image_button button"><?php _e( 'Upload/Add image', 'foodpress' ); ?></button>
 					<button type="button" class="remove_image_button button"><?php _e( 'Remove image', 'foodpress' ); ?></button>
 				</div>
-				
+
 				<div class="clear"></div>
 			</div>
 			*/?>
@@ -391,11 +391,11 @@ function foodpress_taxonomy_admin(){
 					return false;
 				});
 
-			</script>		
-			
+			</script>
+
 		<?php
 		}
-		
+
 	// Edit Dish type term page
 		function fp_edit_term_page_disht($term) {
 
@@ -415,16 +415,16 @@ function foodpress_taxonomy_admin(){
 			if ( $thumbnail_id )
 				$image = wp_get_attachment_thumb_url( $thumbnail_id );
 			else
-				$image = fp_placeholder_img_src(); 
-			
-		 	
+				$image = fp_placeholder_img_src();
+
+
 			// menu type icon value
 		 	$__this_value = esc_attr( $term_meta['fpm_iconname'] ) ? esc_attr( $term_meta['fpm_iconname'] ) : '';
 
 			?>
 			<tr class="form-field">
 			<th scope="row" valign="top"><label for="term_meta[fpm_iconname]"><?php _e( 'Menu Type Icon', 'foodpress' ); ?></label></th>
-				<td id='fp_menuicon'>				
+				<td id='fp_menuicon'>
 					<p class='fp_icon_p faicon' ><i class='fa <?php echo (!empty($__this_value)? $__this_value: 'fp-apple');?>'></i><input type="hidden" name="term_meta[fpm_iconname]" id="term_meta[fpm_iconname]" value="<?php echo $__this_value;?>"></p>
 					<p class="description"><?php _e( 'Click on the icon to change','foodpress' ); ?></p>
 					<button class="remove_icon_button button"><?php _e( 'Remove Icon', 'foodpress' ); ?></button>
@@ -440,7 +440,7 @@ function foodpress_taxonomy_admin(){
 						<button type="submit" class="upload_image_button button"><?php _e( 'Upload/Add Image', 'foodpress' ); ?></button>
 						<button type="submit" class="remove_image_button button"><?php _e( 'Remove Image', 'foodpress' ); ?></button>
 					</div>
-					
+
 					<div class="clear"></div>
 				</td>
 			</tr>
@@ -454,7 +454,7 @@ function foodpress_taxonomy_admin(){
 					});
 
 				// Uploading files
-				var file_frame;						
+				var file_frame;
 
 				jQuery(document).on( 'click', '.upload_image_button', function( event ){
 
@@ -516,6 +516,6 @@ function foodpress_taxonomy_admin(){
 				// Save the option array.
 				update_option( "fp_taxonomy_$t_id", $term_meta );
 			}
-		}  
-	
+		}
+
 ?>

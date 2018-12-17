@@ -87,6 +87,27 @@ class foodpress_reservations {
 
 			}
 
+		// SEND cancellation email
+			public function send_cancellation_email($reservation_id, $args='') {
+				$res_pmv = get_post_custom($reservation_id);
+				$lang = !empty($args['lang'])? $args['lang']:
+					( !empty($res_pmv['lang'])? $res_pmv['lang'][0]:'L1');
+
+				$resOPT = $this->resOPT;
+				$siteemail = get_bloginfo('admin_email');
+
+				$c_to = (!empty($res_pmv['email_address']))?
+					$res_pmv['email_address'][0]:(!empty($res_pmv['email'])? $res_pmv['email'][0]:false);
+
+				// stop if reserver email is missing
+				if(!$c_to) return;
+
+				$c_from = (!empty($resOPT['fpr_ntf_user_from']))? $resOPT['fpr_ntf_user_from']: $siteemail;
+				$c_subject = $this->get_lang('','fprsvp_cancellation_text','Reservation canceled!');
+
+				$this->send_email($c_to, $c_from, $c_subject, 'cancellation', $reservation_id, array('lang'=>$lang));
+			}
+
 		// this will use foodpress default email templates to send emails
 			public function send_email($to, $from, $subject, $email_type='notification', $reservation_id ='', $sc_args, $echo = false){
 
@@ -94,12 +115,17 @@ class foodpress_reservations {
 
 				$resOPT = $this->resOPT;
 
-				$email_template_file_name = ($email_type=='notification')? 'reservation-notification':'reservation-confirmation';
+				//$email_template_file_name = ($email_type=='notification')? 'reservation-notification':'reservation-confirmation';
+				// Set template file name dynamically from $email_type passed into send_email, else stay as -notification template
+				$email_template_file_name = 'reservation-notification';
+				if($email_type !== 'notification') {
+					$email_template_file_name = 'reservation-'.$email_type;
+				}
 
 				$path = FP_PATH2.'templates/email/';
 
 				$headers = 'From: '.$from;
-
+				$helper = new fp_helper();
 				// output or process
 					if($echo){
 						$args = array(
@@ -115,7 +141,8 @@ class foodpress_reservations {
 								'people'=>array('4'),
 							),
 						);
-						$message_ = fp_helper::get_email_body($email_template_file_name,$path, $args);
+
+						$message_ = $helper->get_email_body($email_template_file_name,$path, $args);
 						return array(
 							'headers'=>$headers,
 							'to'=>$to,
@@ -128,7 +155,8 @@ class foodpress_reservations {
 							'type'=>$email_type, // notification email or confirmation email
 							'lang'=>(!empty($sc_args['lang'])? $sc_args['lang']:'L1'),
 						);
-						$message_ = fp_helper::get_email_body($email_template_file_name,$path, $args);
+
+						$message_ = $helper->get_email_body($email_template_file_name,$path, $args);
 						add_filter('wp_mail_content_type',create_function('', 'return "text/html";'));
 						return wp_mail($to, $subject, $message_, $headers);
 					}
@@ -141,10 +169,13 @@ class foodpress_reservations {
 
 				//$this->lang = 'L2';
 
-				if($type=='confirmation'){
+				if($type == 'confirmation') {
 					$from = (!empty($resOPT['fpr_ntf_user_from']))? $resOPT['fpr_ntf_user_from']: $siteemail;
 					$subject = $this->get_lang('','fprsvp_003','We have received your reservation!');
-				}else{
+				} elseif($type == 'cancellation') {
+					$from = (!empty($resOPT['fpr_ntf_user_from']))? $resOPT['fpr_ntf_user_from']: $siteemail;
+					$subject =  $this->get_lang('', 'fprsvp_cancellation_text', 'Reservation cancellation!');
+				} else {
 					$from = (!empty($resOPT['fpr_ntf_admin_from']))? $resOPT['fpr_ntf_admin_from']: $siteemail;
 					$subject =  $this->get_lang('','fprsvp_004','New Reservation Submission!');
 				}
@@ -262,6 +293,7 @@ class foodpress_reservations {
 				$reservation['post_status']= 'trash';
 				wp_update_post($reservation);
 
+				$this->send_cancellation_email($reservation_id);
 				return 'success';
 			}
 
