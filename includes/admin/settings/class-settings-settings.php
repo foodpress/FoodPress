@@ -17,7 +17,7 @@ class foodpress_settings_settings{
 				'display'=>'show',
 				'tab_name'=>__('General Settings','foodpress'),
 				'top'=>'4',
-				'fields'=>array(		
+				'fields'=>array(
 					array('id'=>'fp_css_head','type'=>'yesno','name'=>__('Write dynamic styles to header','foodpress'),'legend'=>__('If making changes to appearances dont reflect on front-end try this option. This will write those dynamic styles inline to page header.','foodpress'),),
 					array('id'=>'fp_dis_conFilter','type'=>'yesno','name'=>__('Disable Content Filter','foodpress'),'legend'=>__('This will disable to use of the_content filter on menu description and custom field values.','foodpress')),
 					array('id'=>'fp_do_not_delete_settings','type'=>'yesno','name'=>__('Do not delete settings when I delete foodpress plugin','foodpress'),'legend'=>__('Activating this will not delete the saved settings for foodpress when you delete the plugin. By default it will delete saved data.','foodpress')),
@@ -25,11 +25,11 @@ class foodpress_settings_settings{
 					array('id'=>'fp_def_thumb_url','type'=>'text','name'=>__('Default image URL for menu items with no image','foodpress'),'legend'=>__('This default thumbnail will be used for menu items that does not have menu image to make the menu look consistent.','foodpress'),'default'=>'http://www.site.com/images/image.jpg'),
 
 
-					array('id'=>'fp_note','type'=>'subheader','name'=>__('Menu Type Categories customization','foodpress')),					
+					array('id'=>'fp_note','type'=>'subheader','name'=>__('Menu Type Categories customization','foodpress')),
 					array('id'=>'fp_note','type'=>'note','name'=>__('Use this to assign custom names for the menu item type categories which you can use to categorize menu items in variety of ways. <b>NOTE:</b> Once you update these custom categories refresh the page for the values to show up.','foodpress'),),
-					
+
 					array('id'=>'fp_hide_icons','type'=>'yesno','name'=>__('Hide meal & dish type icons next to headers','foodpress'),'legend'=>__('This will hide the meal and dish type icons that appear next to the categorized menu header types.','foodpress')),
-					
+
 					array('id'=>'fp_mty1','type'=>'text','name'=>__('Custom name for Meal Type category (Meal type. eg. lunch, dinner)','foodpress'),),
 					array('id'=>'fp_mty2','type'=>'text','name'=>__('Custom name for Dish Type category (Dish Type: Dessert, Entree)','foodpress'),),
 
@@ -37,8 +37,8 @@ class foodpress_settings_settings{
 					array('id'=>'fp_cusTax','type'=>'begin_afterstatement'),
 					array('id'=>'fp_mty3','type'=>'text','name'=>__('Custom name for Additional Category','foodpress'),'legend'=>__('This additional category can be used to categorize food items for eg. locations of a restaurant)','foodpress'),),
 					array('id'=>'fp_cusTax','type'=>'end_afterstatement'),
-					
-					
+
+
 			)),array(
 				'id'=>'food_003',
 				'name'=>__('Look and Feel','foodpress'),
@@ -49,7 +49,7 @@ class foodpress_settings_settings{
 				'name'=>__('Menu Item Custom Meta Data Settings','foodpress'),
 				'tab_name'=>__('Custom Meta Data','foodpress'),
 				'top'=>'4',
-				'fields'=>$this->__array_get_meta_data()					
+				'fields'=>$this->__array_get_meta_data()
 			),array(
 				'id'=>'food_003a',
 				'name'=>__('Menu Item Card Settings','foodpress'),
@@ -65,7 +65,7 @@ class foodpress_settings_settings{
 					),
 				)
 			),
-		
+
 			// ICONS
 			array(
 				'id'=>'food_004',
@@ -81,7 +81,7 @@ class foodpress_settings_settings{
 					array('id'=>'fp__f2','type'=>'icon','name'=>__('Ingredients Icon','foodpress'),'default'=>'fa-book'),
 					array('id'=>'fp__f3','type'=>'icon','name'=>__('Nutritions Icon','foodpress'),'default'=>'fa-cutlery'),
 					array('id'=>'fp_icon_spice','type'=>'icon','name'=>__('Spice Meter Icon','foodpress'),'default'=>'fp-chili-alt'),
-					
+
 				))
 			),
 
@@ -102,9 +102,9 @@ class foodpress_settings_settings{
 					array('id'=>'fs_menutop','type'=>'checkboxes','name'=>__('Select additional data fields to be shown on menuTop <i>(Default Fields: Item Name, Description, Price)</i>','foodpress'),
 						'options'=> apply_filters('foodpress_menutop_fields', array(
 								'subheader'=>__('Sub Header','foodpress'),
-								'addtext'=>__('Additional Text','foodpress'),											
+								'addtext'=>__('Additional Text','foodpress'),
 							)),
-					),				
+					),
 				)
 			)
 
@@ -113,17 +113,17 @@ class foodpress_settings_settings{
 				'id'=>'food_011',
 				'name'=>__('Menu Paging','foodpress'),
 				'tab_name'=>__('Menu Paging','foodpress'),
-				'fields'=>array(			
+				'fields'=>array(
 					array('id'=>'fp__note','type'=>'note','name'=>'This page will allow you to control templates and permalinks related to foodpress menu pages.'),
-					
+
 					array('id'=>'fp_menu_archive_page_id','type'=>'dropdown','name'=>__('Select Menu Archive Page','foodpress'), 'legend'=>__('If making changes to appearances dont reflect on front-end try this option. This will write those dynamic styles inline to page header','foodpress'), 'options'=>$this->menu_pages(), 'desc'=>'This will allow you to use this page with url slug /menu/ as menu archive page'),
 					array('id'=>'fp_menu_archive_page_template','type'=>'dropdown','name'=>__('Select Menu Archive Page Template','foodpress'), 'options'=>$this->theme_templates()),
-					
+
 					array('id'=>'fp_menu_slug','type'=>'text','name'=>__('foodpress menu Post Slug','foodpress'), 'default'=>'menu'),
 				)
 			)
-			
-		));	
+
+		));
 	}
 
 	// Custom Meta Data
@@ -141,7 +141,7 @@ class foodpress_settings_settings{
 				$data[] = array('id'=>'fp_ec_f'.$x,'type'=>'text','name'=>__('Field Name*','foodpress'));
 				$data[] = array('id'=>'fp_ec_f'.$x.'b','type'=>'dropdown','name'=>__('Content Type','foodpress'), 'options'=>array(
 					'text'=>__('Single line Text','foodpress'),
-					'textarea'=>__('Multiple lines of text','foodpress'), 
+					'textarea'=>__('Multiple lines of text','foodpress'),
 					'menuadditions'=>__('Use Menu Additions Data','foodpress')
 					));
 				$data[] = array('id'=>'fp_ec_f'.$x.'a','type'=>'icon','name'=>__('Icon','foodpress'),'default'=>'fa-asterisk');
@@ -149,7 +149,7 @@ class foodpress_settings_settings{
 			}
 
 			return $data;
-			
+
 		}
 
 	// icon symboles
@@ -159,7 +159,7 @@ class foodpress_settings_settings{
 			$data = array(
 				array('id'=>'fp_mi','type'=>'note','name'=>__('<i>Menu Icons can be added into each menu item to represent a data value in graphic form. eg. Vegan</i>','foodpress'),),
 			);
-			
+
 			for($x=1; $x<= $foodpress->functions->icon_symols_cnt(); $x++){
 				$data[] = array('id'=>'fp_mi'.$x,'type'=>'yesno','name'=>__('Activate Icon Symbol #'.$x,'foodpress'),'legend'=>__('This will activate additional menu item field.','foodpress'),'afterstatement'=>'fp_mi'.$x);
 				$data[] = array('id'=>'fp_mi'.$x,'type'=>'begin_afterstatement');
@@ -175,12 +175,12 @@ class foodpress_settings_settings{
 
 	/**
 	 * theme pages and templates
-	 * @return  
+	 * @return
 	 */
 		function menu_pages(){
 			$pages = new WP_Query(array('post_type'=>'page','posts_per_page'=>-1));
 			$_page_ar[]	='--';
-			while($pages->have_posts()	){ $pages->the_post();								
+			while($pages->have_posts()	){ $pages->the_post();
 				$page_id = get_the_ID();
 				$_page_ar[$page_id] = get_the_title($page_id);
 			}
@@ -220,10 +220,10 @@ class foodpress_settings_settings{
 
 	// appearnace
 		function appearnace(){
-			return apply_filters('foodpress_settings_appearances', 
+			return apply_filters('foodpress_settings_appearances',
 				array(
-					
-					array('id'=>'NOTE','type'=>'note','name'=>sprintf(__('NOTE: Once you make changed to appearance make sure to clear browser and website cache to see results.<br/>If you can not find appearance for items you want to change.. <a target="_blank" href="%s">See how you can add custom styles to change additional appearances</a>','foodpress'), 'http://myfoodpress.com/documents/override-css-foodpress-menu/'), 'default'=>'menu'),
+
+					array('id'=>'NOTE','type'=>'note','name'=>sprintf(__('NOTE: Once you make a change to appearance be sure to clear browser and website cache to see results.<br/>If you can not find appearance for items you want to change.. <a target="_blank" href="%s">See how you can add custom styles to change additional appearances</a>','foodpress'), 'http://myfoodpress.com/documents/override-css-foodpress-menu/'), 'default'=>'menu'),
 					array('id'=>'fc_mcolor','type'=>'multicolor','name'=>'Multiple colors',
 						'variations'=>array(
 							array('id'=>'fc_1', 'default'=>'955181', 'name'=>'Primary color'),
@@ -236,8 +236,8 @@ class foodpress_settings_settings{
 						)
 					),
 
-					array('id'=>'fp_font_fam','type'=>'text','name'=>'Primary Calendar Font family <br/><i>(Note: type the name of the font that is supported in your website. eg. Arial)</i>'),	
-					
+					array('id'=>'fp_font_fam','type'=>'text','name'=>'Primary Font family <br/><i>(Note: type the name of the font that is supported in your website. eg. Arial)</i>'),
+
 
 					array('id'=>'fp_fcxx','type'=>'subheader','name'=>'Fonts'),
 					array('id'=>'fs_fonti','type'=>'fontation','name'=>'Menu header Text',
@@ -271,9 +271,9 @@ class foodpress_settings_settings{
 							)
 						),
 					array('id'=>'fp_fcx','type'=>'hiddensection_close',),
-					
-					
-					
+
+
+
 					array('id'=>'fp_fcx','type'=>'hiddensection_open','name'=>'Menu Categories', 'display'=>'none'),
 						array('id'=>'fs_fonti5','type'=>'fontation','name'=>'Primary category text',
 							'variations'=>array(
@@ -287,11 +287,11 @@ class foodpress_settings_settings{
 							)
 						),
 					array('id'=>'fp_fcx','type'=>'hiddensection_close',),
-					
+
 					/*Added by Mike */
 
 					array('id'=>'fp_fcx','type'=>'hiddensection_open','name'=>'Tabbed Menu Styles', 'display'=>'none'),
-						
+
 						array('id'=>'fc_mcolor','type'=>'multicolor','name'=>'Multiple colors',
 						'variations'=>array(
 							array('id'=>'fc_tab1', 'default'=>'474747', 'name'=>'Tab Text Color'),
@@ -304,108 +304,108 @@ class foodpress_settings_settings{
 							array('id'=>'fc_tab8', 'default'=>'f1f1f1', 'name'=>'Active Tab Background Hover Color'),
 							)
 						),
-						
+
 						array('id'=>'fs_fonti7','type'=>'fontation','name'=>'Tabbed Menu Category Text',
 							'variations'=>array(
 								array('id'=>'fs_007', 'type'=>'font_size', 'default'=>'20px'),
 							)
 						),
 					array('id'=>'fp_fcx','type'=>'hiddensection_close',),
-					
-					
+
+
 					array('id'=>'fp_fcx','type'=>'hiddensection_open','name'=>'Boxed Menu Styles', 'display'=>'none'),
-						
+
 						array('id'=>'fc_mcolor','type'=>'multicolor','name'=>'Multiple colors',
 						'variations'=>array(
 							array('id'=>'fc_box1', 'default'=>'7a2662', 'name'=>'Main Box Background Color'),
 							)
 						),
-						
+
 						array('id'=>'fs_fonti9','type'=>'fontation','name'=>'Main Box Icon Color',
 							'variations'=>array(
 								array('id'=>'fc_009', 'type'=>'color', 'default'=>'ffffff'),
 							)
 						),
-						
-						
+
+
 						array('id'=>'fs_fonti10','type'=>'fontation','name'=>'Main Box Title Text',
 							'variations'=>array(
 								array('id'=>'fc_010', 'type'=>'color', 'default'=>'ffffff'),
 								array('id'=>'fs_010', 'type'=>'font_size', 'default'=>'18px'),
 							)
 						),
-						
+
 						array('id'=>'fs_fonti11','type'=>'fontation','name'=>'Main Box Description Text',
 							'variations'=>array(
 								array('id'=>'fc_011', 'type'=>'color', 'default'=>'ffffff'),
 								array('id'=>'fs_011', 'type'=>'font_size', 'default'=>'14px'),
 							)
 						),
-						
+
 					array('id'=>'fp_fcx','type'=>'hiddensection_close',),
-					
+
 					/* reservation form */
 					array('id'=>'fp_fcx','type'=>'hiddensection_open','name'=>'Reservation System Styles', 'display'=>'none'),
-						
+
 						array('id'=>'fc_mcolor','type'=>'multicolor','name'=>'Multiple colors',
 						'variations'=>array(
 							array('id'=>'fc_res1', 'default'=>'7a2662', 'name'=>'Reservation Box Background Color'),
 							array('id'=>'fc_res2', 'default'=>'8f3174', 'name'=>'Reservation Box Background Hover Color'),
 						)
 					),
-					
+
 					array('id'=>'fs_fontres3','type'=>'fontation','name'=>'Reservation Box Title Text',
 						'variations'=>array(
 							array('id'=>'fc_res3', 'type'=>'color', 'default'=>'ffffff'),
 							array('id'=>'fs_res3', 'type'=>'font_size', 'default'=>'22px'),
 						)
 					),
-					
+
 					array('id'=>'fs_fontres4','type'=>'fontation','name'=>'Reservation Box Subtitle Text',
 						'variations'=>array(
 							array('id'=>'fc_res4', 'type'=>'color', 'default'=>'ffffff'),
 							array('id'=>'fs_res4', 'type'=>'font_size', 'default'=>'14px'),
 						)
-					),		
-					
-					
+					),
+
+
 					array('id'=>'fp_res_formbd','type'=>'fontation','name'=>'Reservation Background',
 						'variations'=>array(
 							array('id'=>'fp_res_formbd_bgc', 'type'=>'color', 'title'=>'(LightBox) Default Background Color', 'default'=>'8a2945'),
-							array('id'=>'fp_res_formbd_bgcS', 'type'=>'color', 'title'=>'(LightBox) Success Stage Background Color', 'default'=>'7A9E6B'),						
-							array('id'=>'fp_res_formbd_bgcS_ONP', 'type'=>'color', 'title'=>'(OnPage Form) Background Color', 'default'=>'ffffff'),						
+							array('id'=>'fp_res_formbd_bgcS', 'type'=>'color', 'title'=>'(LightBox) Success Stage Background Color', 'default'=>'7A9E6B'),
+							array('id'=>'fp_res_formbd_bgcS_ONP', 'type'=>'color', 'title'=>'(OnPage Form) Background Color', 'default'=>'ffffff'),
 						)
 					),
 
 					array('id'=>'fp_res_formtext','type'=>'fontation','name'=>'Reservation Form Content',
 						'variations'=>array(
-							array('id'=>'fp_res_form_genfont', 'type'=>'color', 'title'=>'General Text Color', 'default'=>'ffffff'),					
-							array('id'=>'fp_res_formbd_fields', 'type'=>'color', 'title'=>'Input/textarea Fields Background Color', 'default'=>'A54460'),	
-							array('id'=>'fp_res_formbd_fieldtext', 'type'=>'color', 'title'=>'Input/textarea Fields Text Color', 'default'=>'FFFFFF'),				
-							array('id'=>'fp_res_formbd_fieldborder', 'type'=>'color', 'title'=>'Input/textarea Fields Border Color', 'default'=>'8A2945'),	
-							array('id'=>'fp_res_formbd_fieldplaceholder', 'type'=>'color', 'title'=>'Input Placeholder Text Color', 'default'=>'ffffff'),	
-							array('id'=>'fp_res_links', 'type'=>'color', 'title'=>'Permalink Text Color', 'default'=>'ffffff'),	
-							
+							array('id'=>'fp_res_form_genfont', 'type'=>'color', 'title'=>'General Text Color', 'default'=>'ffffff'),
+							array('id'=>'fp_res_formbd_fields', 'type'=>'color', 'title'=>'Input/textarea Fields Background Color', 'default'=>'A54460'),
+							array('id'=>'fp_res_formbd_fieldtext', 'type'=>'color', 'title'=>'Input/textarea Fields Text Color', 'default'=>'FFFFFF'),
+							array('id'=>'fp_res_formbd_fieldborder', 'type'=>'color', 'title'=>'Input/textarea Fields Border Color', 'default'=>'8A2945'),
+							array('id'=>'fp_res_formbd_fieldplaceholder', 'type'=>'color', 'title'=>'Input Placeholder Text Color', 'default'=>'ffffff'),
+							array('id'=>'fp_res_links', 'type'=>'color', 'title'=>'Permalink Text Color', 'default'=>'ffffff'),
+
 						)
 					),
 					array('id'=>'fp_res_formtext','type'=>'fontation','name'=>'(OnPage) Form Content',
-						'variations'=>array(							
+						'variations'=>array(
 							array('id'=>'fp_res_form_genfontOP', 'type'=>'color', 'title'=>'General Text Color', 'default'=>'717171'),
-							array('id'=>'fp_res_linksOP', 'type'=>'color', 'title'=>'Permalink Text Color', 'default'=>'C34545'),	
+							array('id'=>'fp_res_linksOP', 'type'=>'color', 'title'=>'Permalink Text Color', 'default'=>'C34545'),
 					)),
 					array('id'=>'fp_res_btn','type'=>'fontation','name'=>'Reservation Form Button',
-						'variations'=>array(											
+						'variations'=>array(
 							array('id'=>'fp_res_btn_text', 'type'=>'color', 'title'=>'Button Text Color', 'default'=>'ffffff'),
-							array('id'=>'fp_res_btn_bgc', 'type'=>'color', 'title'=>'Button Background Color', 'default'=>'8a2945'),				
-							array('id'=>'fp_res_btn_bgcH', 'type'=>'color', 'title'=>'Button Background Color (Hover)', 'default'=>'8f3174'),				
+							array('id'=>'fp_res_btn_bgc', 'type'=>'color', 'title'=>'Button Background Color', 'default'=>'8a2945'),
+							array('id'=>'fp_res_btn_bgcH', 'type'=>'color', 'title'=>'Button Background Color (Hover)', 'default'=>'8f3174'),
 						)
 					),
-					
-						
+
+
 					array('id'=>'fp_fcx','type'=>'hiddensection_close',),
 
 				)
 			);
 		}
-}			
+}
 ?>

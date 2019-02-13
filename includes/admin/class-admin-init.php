@@ -301,7 +301,7 @@ class fp_Admin {
 
 			// foodPress Settings page only
 				if($pagenow=='admin.php' && $_GET['page']=='foodpress'){
-					wp_enqueue_script('food_backend_all',FP_URL.'/assets/js/admin/all_backend.js',array('jquery'),1.0,true);
+					//wp_enqueue_script('food_backend_all',FP_URL.'/assets/js/admin/all_backend.js',array('jquery'),1.0,true);
 					wp_enqueue_script('food_settings',FP_URL.'/assets/js/admin/settings.js',array('jquery'),1.0,true);
 
 					// timepicker

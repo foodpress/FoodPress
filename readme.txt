@@ -4,8 +4,8 @@ Plugin Name: foodPress
 Author URI: https://www.myfoodpress.com/
 Tags: restaurants, menu, food, eating, menu management, reservations, online menu
 Requires at least: 3.8
-Tested up to: 5.0
-Stable tag: 1.5.6
+Tested up to: 5.0.3
+Stable tag: 1.5.7
 
 == Description ==
 FoodPress is an advanced restaurant menu management system that allows you to create various menus with categorizations and more.
@@ -16,6 +16,12 @@ FoodPress is an advanced restaurant menu management system that allows you to cr
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
+= 1.5.7 (2018-12-17) =
+ADDED: Gutenberg support. It is the new editor using blocks.
+FIXED: Shortcode generator in the Shortcode tab. Use the purple [] button to copy the shortcode that can then be pasted on a page or in a gutenberg block.
+FIXED: Reservation status bug.
+UPDATED: Content for option notes in some areas.
+
 = 1.5.6 (2018-12-17) =
 ADDED: Deleting a reservation now sends a cancellation email.
 ADDED: Language options for cancellation email.

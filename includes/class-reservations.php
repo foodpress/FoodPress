@@ -290,7 +290,7 @@ class foodpress_reservations {
 		// delete a reservation
 			public function delete_reservation($reservation_id){
 				$reservation = get_post($reservation_id, 'ARRAY_A');
-				$reservation['post_status']= 'trash';
+				$reservation['post_status'] = 'trash';
 				wp_update_post($reservation);
 
 				$this->send_cancellation_email($reservation_id);
@@ -594,7 +594,7 @@ class foodpress_reservations {
 	// get checkin status
 		function get_checkin_status($status='', $lang=''){
 
-			if(empty($status)){
+			if(empty($status)) {
 				return $this->def_status();
 			}else{
 				$opt2 = $this->opt2;
@@ -602,6 +602,8 @@ class foodpress_reservations {
 
 				if($status=='checked'){
 					return (!empty($opt2[$lang]['fp_lang_resform_R2']))? $opt2[$lang]['fp_lang_resform_R2']: 'checked';
+				}elseif($status =='cancelled'){
+					return (!empty($opt2[$lang]['fp_lang_resform_R3']))? $opt2[$lang]['fp_lang_resform_R3']: 'cancelled';
 				}else{
 					return (!empty($opt2[$lang]['fp_lang_resform_R1']))? $opt2[$lang]['fp_lang_resform_R1']: $this->def_status();
 				}

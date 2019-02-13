@@ -153,7 +153,7 @@ jQuery(document).ready(function($){
 
 
 	// each option for menu shortcode options
-	$('#foodpress_popup').on('click','.fpPop_option',function(){
+	$('#foodpress_popup, #fpPOSH_outter').on('click','.fpPop_option',function(){
 
 		// make sure correct one is highlighted
 		$(this).siblings('.fpPop_option').removeClass('selected');
@@ -205,7 +205,7 @@ jQuery(document).ready(function($){
 
 
 	// width change buttons
-	$('#foodpress_popup').on('click','.fpopt_box_size p', function(){
+	$('#foodpress_popup, #fpPOSH_outter').on('click','.fpopt_box_size p', function(){
 		var obj = $(this);
 		var codevar = obj.parent().data('codevar');
 		var value = obj.data('size');
@@ -217,24 +217,30 @@ jQuery(document).ready(function($){
 	});
 
 	//yes no buttons
-	$('#foodpress_popup').on('click','.fp_yn_btn', function(){
+	$('#foodpress_popup, #fpPOSH_outter').on('click','.fp_yn_btn', function(){
 		var obj = $(this);
+
 		var codevar = obj.data('codevar');
 		var value;
-
-		if(obj.hasClass('NO')){
-			obj.removeClass('NO');
-			value = 'yes';
-		}else{
-			obj.addClass('NO');	value = 'no';
+		if(obj[0].classList.contains("NO")) {
+			obj[0].classList.remove("NO");
+			obj[0].classList.add("yes");
+			value = "yes";
+			console.log(obj);
+		} else {
+			obj[0].classList.remove("yes");
+			obj[0].classList.add("NO");
+			value = "no";
 		}
+
 
 		fpPOSH_update_codevars(codevar,value);
 		report_select_steps_( obj, codevar );
 
+		//return false;
 	});
 	// input and select fields
-	$('.fpPOSH_inner').on('change','.fpPOSH_input, .fpPOSH_select', function(){
+	$('.fpPOSH_inner, #fpPOSH_outter').on('change','.fpPOSH_input, .fpPOSH_select', function(){
 		var obj = $(this);
 		var value = obj.val();
 		var codevar = obj.data('codevar');
@@ -249,7 +255,7 @@ jQuery(document).ready(function($){
 
 
 	// afterstatements within shortcode gen
-	$('#foodpress_popup').on('click', '.trig_afterst .fp_yn_btn',function(){
+	$('#foodpress_popup, #fpPOSH_outter').on('click', '.trig_afterst .fp_yn_btn',function(){
 		$(this).closest('.trig_afterst').next('.fp_afterst').toggle();
 	});
 
@@ -340,7 +346,8 @@ jQuery(document).ready(function($){
 
 		var shortcode = $('#fpPOSH_code').html();
 		copyToClipboard(shortcode);
-		tinymce.activeEditor.execCommand('mceInsertContent', false, shortcode);
+		alert("Shortcode copied!");
+		//tinymce.activeEditor.execCommand('mceInsertContent', false, shortcode);
 
 		hide_popupwindowbox();
 

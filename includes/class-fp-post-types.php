@@ -22,22 +22,22 @@ class fp_post_types{
 	public function __construct() {
 		add_action( 'init', array( __CLASS__, 'register_taxonomies' ), 5 );
 		add_action( 'init', array( __CLASS__, 'register_post_types' ), 5 );
-		
+
 	}
 
 	public static function register_taxonomies() {
 		if ( post_type_exists('menu') )
 			return;
-		
+
 		/**
 		 * Taxonomies
 		 **/
-		do_action( 'foodpress_register_taxonomy' );		
-		
+		do_action( 'foodpress_register_taxonomy' );
+
 		$fp_opt= get_option('fp_options_food_1');
 		$fp_opt_2= get_option('fp_options_food_2');
-		
-		//menu item types category 
+
+		//menu item types category
 		$fp_tax = (!empty($fp_opt['fp_mty1']))?$fp_opt['fp_mty1']:'Meal Type';
 			$fp_tax_plur = $fp_tax;
 		$fp_tax2 = (!empty($fp_opt['fp_mty2']))?$fp_opt['fp_mty2']:'Dish Type';
@@ -45,13 +45,13 @@ class fp_post_types{
 			// additional category type
 			$fp_tax3 = (!empty($fp_opt['fp_mty3']))?$fp_opt['fp_mty3']:'Custom Category';
 				$fp_tax3_plur = $fp_tax3;
-		
+
 		$_hierarchical = true;
-		
-		register_taxonomy('meal_type', 
+
+		register_taxonomy('meal_type',
 			apply_filters( 'fp_taxonomy_objects_meal_type', array('menu') ),
 			apply_filters( 'fp_taxonomy_args_meal_type', array(
-				'hierarchical' => $_hierarchical, 
+				'hierarchical' => $_hierarchical,
 				'label' 				=> __( $fp_tax, 'foodpress'),
 	            'labels' => array(
 	                    'name' 				=> __( $fp_tax, 'foodpress'),
@@ -67,16 +67,18 @@ class fp_post_types{
 	                    'new_item_name' 	=> __( 'New  Name'.$fp_tax, 'foodpress')
 	            	),
 				'show_ui' => true,
-				'query_var' => true,				
+				'query_var' => true,
 				'rewrite' => array( 'slug' => 'meal-type' ),
-				'sort'=>true
+				'sort'=>true,
+				'show_in_rest' => true,
+				'public' => true
 			) )
 		);
-		
-		register_taxonomy('dish_type', 
+
+		register_taxonomy('dish_type',
 			apply_filters( 'fp_taxonomy_objects_dish_type', array('menu') ),
 			apply_filters( 'fp_taxonomy_args_dish_type', array(
-				'hierarchical' => $_hierarchical, 
+				'hierarchical' => $_hierarchical,
 				'label' 				=> __( $fp_tax2, 'foodpress'),
 	            'labels' => array(
 	                    'name' 				=> __( $fp_tax2, 'foodpress'),
@@ -90,22 +92,24 @@ class fp_post_types{
 	                    'update_item' 		=> __( 'Update '.$fp_tax2, 'foodpress'),
 	                    'add_new_item' 		=> __( 'Add New '.$fp_tax2, 'foodpress'),
 	                    'new_item_name' 	=> __( 'New  Name'.$fp_tax2, 'foodpress')
-	            	), 
+	            	),
 				'show_ui' => true,
-				'query_var' => true,				
-				'rewrite' => array( 'slug' => 'dish-type' )
+				'query_var' => true,
+				'rewrite' => array( 'slug' => 'dish-type' ),
+				'show_in_rest' => true,
+				'public' => true
 			) )
 		);
-	
+
 
 		// restaurant Location for menus
 
 		$fp_taxL = $fp_taxL_plur = fp_get_language('Location',$fp_opt_2 );
-		 
-		register_taxonomy('menu_location', 
+
+		register_taxonomy('menu_location',
 			apply_filters( 'fp_taxonomy_objects_location', array('menu') ),
 			apply_filters( 'fp_taxonomy_args_location', array(
-				'hierarchical' => $_hierarchical, 
+				'hierarchical' => $_hierarchical,
 				'label' 				=> __( $fp_taxL, 'foodpress'),
 	            'labels' => array(
 	                    'name' 				=> __( $fp_taxL, 'foodpress'),
@@ -119,19 +123,21 @@ class fp_post_types{
 	                    'update_item' 		=> __( 'Update '.$fp_taxL, 'foodpress'),
 	                    'add_new_item' 		=> __( 'Add New '.$fp_taxL, 'foodpress'),
 	                    'new_item_name' 	=> __( 'New  Name'.$fp_taxL, 'foodpress')
-	            	), 
+	            	),
 				'show_ui' => true,
-				'query_var' => true,				
-				'rewrite' => array( 'slug' => 'menu-location' )
+				'query_var' => true,
+				'rewrite' => array( 'slug' => 'menu-location' ),
+				'show_in_rest' => true,
+				'public' => true
 			) )
 		);
-		
+
 		// Extra category if set
 		if( !empty($fp_opt['fp_cusTax']) && $fp_opt['fp_cusTax']=='yes'){
-			register_taxonomy('menu_type_3', 
+			register_taxonomy('menu_type_3',
 				apply_filters( 'fp_taxonomy_objects_menu_type_3', array('menu') ),
 				apply_filters( 'fp_taxonomy_args_menu_type_3', array(
-					'hierarchical' => $_hierarchical, 
+					'hierarchical' => $_hierarchical,
 					'label' 				=> __( $fp_tax3, 'foodpress'),
 		            'labels' => array(
 		                    'name' 				=> __( $fp_tax3, 'foodpress'),
@@ -145,10 +151,12 @@ class fp_post_types{
 		                    'update_item' 		=> __( 'Update '.$fp_tax3, 'foodpress'),
 		                    'add_new_item' 		=> __( 'Add New '.$fp_tax3, 'foodpress'),
 		                    'new_item_name' 	=> __( 'New  Name'.$fp_tax3, 'foodpress')
-		            	), 
+		            	),
 					'show_ui' => true,
-					'query_var' => true,				
-					'rewrite' => array( 'slug' => 'menu-type' ) 
+					'query_var' => true,
+					'rewrite' => array( 'slug' => 'menu-type' ),
+					'show_in_rest'       => true,
+					'public' => true
 				) )
 			);
 		}
@@ -165,9 +173,9 @@ class fp_post_types{
 		 * Post Types
 		 **/
 		do_action( 'foodpress_register_post_type' );
-		
+
 		$labels = foodpress_get_proper_labels(__('Menu Item', 'foodpress'),__('Menu Items', 'foodpress'));
-		register_post_type('menu', 
+		register_post_type('menu',
 			apply_filters( 'foodpress_register_post_type_menu',
 				array(
 					'labels' => $labels,
@@ -180,16 +188,16 @@ class fp_post_types{
 					'hierarchical' 			=> false,
 					'rewrite' 				=> apply_filters('foodpress_menu_cpt_slug', array('slug'=>'menuitems')),
 					'query_var'		 		=> true,
-					'supports' 				=> array('title','custom-fields','thumbnail', 'page-attributes'),
-					//'supports' => array('title','thumbnail', 'page-attributes'),
-					'menu_position' 		=> 5, 
-					'has_archive' 			=> true
+					'supports' 				=> array('title', 'editor', 'thumbnail', 'custom-fields', 'page-attributes'),
+					'menu_position' 		=> 5,
+					'has_archive' 			=> true,
+					'show_in_rest'       => true // gutenberg
 				)
 			)
 		);
 
 		$labelX = foodpress_get_proper_labels(__('Menu Addition', 'foodpress'),__('Menu Additions', 'foodpress'));
-		register_post_type('menu-additions', 
+		register_post_type('menu-additions',
 			apply_filters( 'foodpress_register_post_type_menu',
 				array(
 					'labels' => $labelX,
@@ -203,7 +211,7 @@ class fp_post_types{
 					'query_var'		 		=> true,
 					'supports' 				=> array('title','editor', 'page-attributes'),
 					//'supports' => array('title','thumbnail', 'page-attributes'),
-					'menu_position' 		=> 5, 
+					'menu_position' 		=> 5,
 					'show_in_menu'			=>'edit.php?post_type=menu',
 					'has_archive' 			=> true
 				)
@@ -212,7 +220,7 @@ class fp_post_types{
 
 
 		$labels_2 = foodpress_get_proper_labels( __('Reservation','foodpress'),__('Reservations', 'foodpress'));
-		register_post_type('reservation', 
+		register_post_type('reservation',
 			apply_filters( 'foodpress_register_post_type_reservation',
 				array(
 					'labels' => $labels_2,
@@ -227,10 +235,10 @@ class fp_post_types{
 					'query_var'		 		=> true,
 					'supports' 				=> array('title','custom-fields',),
 					//'supports' => array('title','thumbnail', 'page-attributes'),
-					'menu_position' 		=> 5, 
+					'menu_position' 		=> 5,
 					'show_in_menu'			=>'foodpress',
 					'has_archive' 			=> true
-					
+
 				)
 			)
 		);

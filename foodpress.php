@@ -3,11 +3,11 @@
  * Plugin Name: foodPress
  * Plugin URI: http://www.myfoodpress.com/
  * Description: Restaurant Menu & Reservation Plugin
- * Version: 1.5.6
+ * Version: 1.5.7
  * Author: Michael Gamble & Josh Riley
  * Author URI: http://www.myfoodpress.com
  * Requires at least: 4.5
- * Tested up to: 5.0
+ * Tested up to: 5.0.3
  * WC requires at least: 3.0.0
  * WC tested up to: 3.5.1
  *
@@ -26,7 +26,7 @@ if ( ! class_exists( 'foodpress' ) ) {
 
 class foodpress {
 
-	public $version = '1.5.6';
+	public $version = '1.5.7';
 
 	public $foodpress_menus;
 	public $reservations;
