@@ -16,6 +16,9 @@ FoodPress is an advanced restaurant menu management system that allows you to cr
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
+= 1.5.8 (2018-12-17) =
+FIXED: Remote updater.
+
 = 1.5.7 (2018-12-17) =
 ADDED: Gutenberg support. It is the new editor using blocks.
 FIXED: Shortcode generator in the Shortcode tab. Use the purple [] button to copy the shortcode that can then be pasted on a page or in a gutenberg block.

@@ -3,7 +3,7 @@
  * Plugin Name: foodPress
  * Plugin URI: http://www.myfoodpress.com/
  * Description: Restaurant Menu & Reservation Plugin
- * Version: 1.5.7
+ * Version: 1.5.8
  * Author: Michael Gamble & Josh Riley
  * Author URI: http://www.myfoodpress.com
  * Requires at least: 4.5
@@ -26,7 +26,7 @@ if ( ! class_exists( 'foodpress' ) ) {
 
 class foodpress {
 
-	public $version = '1.5.7';
+	public $version = '1.5.8';
 
 	public $foodpress_menus;
 	public $reservations;
@@ -113,8 +113,6 @@ class foodpress {
 					global $foodpress_oo;
 					$pluginFile = WP_PLUGIN_DIR . '/foodpress-onlineorder/foodpress-onlineorder.php';
 					$this->foodpress_onlineorder_updater = new foodpress_github_updater($pluginFile, 'foodpress/Online-Order', $secret, $foodpress_oo->version);
-
-					//if($this->foodpress->product)
 				}
 
 				if(in_array( 'foodpress-importexport/foodpress-importexport.php', $activePlugins)) {

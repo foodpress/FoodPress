@@ -59,12 +59,12 @@ class foodpress_github_updater {
 
     public function getInfoFromGitHub($latestOnly = false){
 		// We need the access token for private repos
-		if (!empty($this->accessToken)) {
-		    $url = add_query_arg(array("access_token" => $this->accessToken), $this->url);
-		}
+		//if (!empty($this->accessToken)) {
+		//    $url = add_query_arg(array("access_token" => $this->accessToken), $this->url);
+		//}
 
 		// Get the results
-		$this->githubAPIResult = wp_remote_retrieve_body(wp_remote_get($url));
+		$this->githubAPIResult = wp_remote_retrieve_body(wp_remote_get($this->url));
         //var_dump($this->githubAPIResult);
 		if (!empty($this->githubAPIResult)) {
 		    $this->githubAPIResult = @json_decode($this->githubAPIResult);
